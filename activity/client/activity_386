@@ -1,0 +1,69 @@
+return {
+	prop =
+	{
+		activityId = 386,
+		name = [[秘藏寻宝]],
+		title = [[秘藏寻宝]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1.活动期间通过各种活动任务获得<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">随机秘藏暗号</font>。<br/>2.活动期间未持有的秘藏暗号可发起求助，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">每日可求助5次</font>。<br/>3.活动期间可向其他指挥赠送秘藏暗号，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">每日可帮助5次</font>，每次帮助其他玩家可获得一份奖励。<br/>4.集齐5种不同的秘藏暗号<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">可进行寻宝</font>。<br/>5.活动期间每位指挥官可发现宝藏次数为<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">9次</font>。<br/>6.寻宝后有几率发现<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">军事宝库</font>，发现军事宝库需要贵族等级大于9级或基地等级大于35级。<br/>7.军事宝库的存在时间为<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">2小时</font>。<br/>8.占领军事宝库<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">持续达到要求时间</font>，可领取军事宝库奖励。<br/>9.占领军事宝库期间如果被其他玩家攻击，战斗胜利方会<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">自动成为军事宝库的占领者</font>，占领时间重置。<br/>10.对占领中的军事宝库发动攻击<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">不会取消</font>正在开启的时空屏障。<br/>11.对占领中的军事宝库发动攻击，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">不会损失</font>任何士兵。<br/>12.军事宝库占领奖励每位指挥官活动期间最多<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">可领取6次</font>。<br/>13.寻宝和对军事宝库行军都<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">不会消耗体力</font>。<br/>14.寻宝发现宝藏概率公示:<br/>  稀有宝藏:50%<br/>  史诗宝藏:30%<br/>  传说宝藏:20%<br/>15.军事宝库生成概率公示:<br/>  拾取稀有宝藏:20%出现军事宝库<br/>  拾取史诗宝藏:40%出现军事宝库<br/>  拾取传说宝藏:60%出现军事宝库<br/>所有类型的军事宝库出现概率均等<br/>16.服务器拆分或服务器合并都会导致已经生成的军事宝库被清除，请及时及时参与并领取奖励。<br/></font>]],
+		priority = 10001,
+		icon = [[Activity_Icon_386_Nor.png]],
+		selecticon = [[Activity_Icon_386_Sel.png]],
+		activityFindTime = [[10:00-14:00,18:00-22:00]],
+		mapchipItems = [[30000_21070126_1,30000_21070127_1,30000_21070128_1,30000_21070129_1,30000_21070130_1]],
+		findTimesLimit = 9,
+		getArmoryTreasuryAwardTimesLimit = 6,
+		helpAwardTimesLimit = 5,
+		helpTimesLimit = 5,
+		getAwardTimesLimit = 5,
+		findAwardBuildSpeed = 1,
+		findPylonBuildSpeed = 30,
+		helpAward = [[30000_810000_50]],
+		helpCD = 180,
+	},
+	act_findStorehouse386_create = [[id	createTreasurePointArea	buildPoolId	maxVipLimit	maxBaseLimit
+1	1	2	1	1
+10001	60	1001_5000,1002_3000,1003_2000	9	35
+10002	60	1004_5000,1005_3000,1006_2000	9	999
+10003	60	1004_5000,1005_3000,1006_2000	999	35
+10004	60	1004_5000,1005_3000,1006_2000	999	999
+]],
+	act_findStorehouse386_buildPool = [[poolId	createTreasureBuildId	createTreasureBuildWeight	armoryTreasuryCreateMinLimit	armoryTreasuryCreateMaxLimit	armoryTreasuryBuildId
+1	1	1	1	1	2
+1001	10001	0	0	0	20001_10000,20002_10000,20003_10000
+1002	10002	0	0	0	20001_10000,20002_10000,20003_10000
+1003	10003	0	0	0	20001_10000,20002_10000,20003_10000
+1004	10004	2000	2	2	20001_10000,20002_10000,20003_10000
+1005	10005	4000	2	2	20001_10000,20002_10000,20003_10000
+1006	10006	6000	2	2	20001_10000,20002_10000,20003_10000
+]],
+	act_findStorehouse386_build = [[buildId	buildType	thirdBuildId	holdTime	buildCcbi	buildImage	live	award	showAward	buildQuality	buildName
+1	1	1	1	2	2	1	2	1	1	2
+10001	1		0	Acte386_Build_01	Alliance_BuildIcon_Act386_102.png	7200	30000_21063076_5,30000_21063077_45,30000_810000_180,30000_1780045_120		2	稀有宝藏
+10002	1		0	Acte386_Build_01	Alliance_BuildIcon_Act386_103.png	7200	30000_21063076_8,30000_21063077_45,30000_810000_180,30000_1780045_120		3	史诗宝藏
+10003	1		0	Acte386_Build_01	Alliance_BuildIcon_Act386_104.png	7200	30000_21063076_10,30000_21063077_45,30000_810000_180,30000_1780045_120		4	传说宝藏
+10004	1		0	Acte386_Build_01	Alliance_BuildIcon_Act386_102.png	7200	30000_21063076_5,30000_21063077_45,30000_810000_180,30000_1780045_120	1	2	稀有宝藏
+10005	1		0	Acte386_Build_01	Alliance_BuildIcon_Act386_103.png	7200	30000_21063076_8,30000_21063077_45,30000_810000_180,30000_1780045_120	1	3	史诗宝藏
+10006	1		0	Acte386_Build_01	Alliance_BuildIcon_Act386_104.png	7200	30000_21063076_10,30000_21063077_45,30000_810000_180,30000_1780045_120	1	4	传说宝藏
+20001	2	4	300	Acte386_Build_02	Alliance_BuildIcon_Act386_204.png	7200	30000_21063076_10,30000_810000_380	1	4	星穹军事宝库
+20002	2	4	300	Acte386_Build_02	Alliance_BuildIcon_Act386_204.png	7200	30000_21063077_60,30000_810000_380	1	4	星辉军事宝库
+20003	2	4	300	Acte386_Build_02	Alliance_BuildIcon_Act386_204.png	7200	30000_1000101_300,30000_810000_380	1	4	精华军事宝库
+]],
+	act_findStorehouse386_achieve = [[achieveId	conditionValue	rewards	taskText	gotoType	gotoValue
+1	2	2	2	1	2
+386001	1	30000_21070131_1	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">每日登录<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>次（每日重置）</font>	-1	
+386002	280	30000_21070131_1	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">每日活跃积分达到<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>（每日重置）</font>	1141	3
+386003	420	30000_21070131_2	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">每日活跃积分达到<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>（每日重置）</font>	1141	3
+386004	30	30000_21070131_1	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">击败任意等级野外敌军<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>次（每日重置）</font>	31	2_0
+386005	100	30000_21070131_2	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">击败任意等级野外敌军<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>次（每日重置）</font>	31	2_0
+386006	5000000	30000_21070131_1	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">采集任意资源<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>（每日重置）</font>	31	1_1_1007
+386007	10000000	30000_21070131_1	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">采集任意资源<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>（每日重置）</font>	31	1_1_1007
+386008	10000	30000_21070131_1	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">收取任意兵种<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>个（每日重置）</font>	-1	
+386009	30000	30000_21070131_2	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">收取任意兵种<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>个（每日重置）</font>	-1	
+386010	1000	30000_21070131_1	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">使用道具加速<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>分钟（每日重置）</font>	-1	
+386011	3000	30000_21070131_2	<font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">使用道具加速<font color="#f5d99d" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">{1}</font>分钟（每日重置）</font>	-1	
+386012	100	30000_21070131_1	<font color="#ffffff" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">{1}</font>金币<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18"></font><font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18"></font><font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">(每日重置)</font></font>	1137	
+386013	300	30000_21070131_2	<font color="#ffffff" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">{1}</font>金币<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18"></font><font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18"></font><font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">(每日重置)</font></font>	1137	
+386014	100	30000_21070131_2	<font color="#ffffff" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">{1}</font>金条<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18"></font><font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18"></font><font color="#99a5b6" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="18">(每日重置)</font></font>	1002	1
+]],
+
+}

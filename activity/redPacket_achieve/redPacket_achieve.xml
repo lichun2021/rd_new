@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data stageID="1" rewardsID="5000020" num="300" broadcastItemID="30000_21063076_68,30000_21063076_88" showTime="11:00:00" startTime="12:00:00" endTime="12:30:00" day="1" />
+      <data stageID="2" rewardsID="5000020" num="300" broadcastItemID="30000_21063076_68,30000_21063076_88" showTime="19:00:00" startTime="20:00:00" endTime="20:30:00" day="1" />
+      <data stageID="3" rewardsID="5000021" num="300" broadcastItemID="30000_1300037_128,30000_1300037_218" showTime="11:00:00" startTime="12:00:00" endTime="12:30:00" day="2" />
+      <data stageID="4" rewardsID="5000021" num="300" broadcastItemID="30000_1300037_128,30000_1300037_218" showTime="19:00:00" startTime="20:00:00" endTime="20:30:00" day="2" />
+      <data stageID="5" rewardsID="5000022" num="300" broadcastItemID="30000_21070056_888,30000_21070056_1288" showTime="11:00:00" startTime="12:00:00" endTime="12:30:00" day="3" />
+      <data stageID="6" rewardsID="5000022" num="300" broadcastItemID="30000_21070056_888,30000_21070056_1288" showTime="19:00:00" startTime="20:00:00" endTime="20:30:00" day="3" />
+      <data stageID="7" rewardsID="5000023" num="300" broadcastItemID="30000_21065001_258,30000_21065001_388" showTime="11:00:00" startTime="12:00:00" endTime="12:30:00" day="4" />
+      <data stageID="8" rewardsID="5000023" num="300" broadcastItemID="30000_21065001_258,30000_21065001_388" showTime="19:00:00" startTime="20:00:00" endTime="20:30:00" day="4" />
+      <data stageID="9" rewardsID="5000024" num="300" broadcastItemID="30000_1782123_188,30000_1782123_328" showTime="11:00:00" startTime="12:00:00" endTime="12:30:00" day="5" />
+      <data stageID="10" rewardsID="5000024" num="300" broadcastItemID="30000_1782123_188,30000_1782123_328" showTime="19:00:00" startTime="20:00:00" endTime="20:30:00" day="5" />
+      <data stageID="11" rewardsID="5000025" num="300" broadcastItemID="10000_1001_2888,10000_1001_3888" showTime="11:00:00" startTime="12:00:00" endTime="12:30:00" day="6" />
+      <data stageID="12" rewardsID="5000025" num="300" broadcastItemID="10000_1001_2888,10000_1001_3888" showTime="19:00:00" startTime="20:00:00" endTime="20:30:00" day="6" />
+      <data stageID="13" rewardsID="5000026" num="300" broadcastItemID="30000_1000005_28,30000_1000005_38" showTime="11:00:00" startTime="12:00:00" endTime="12:30:00" day="7" />
+      <data stageID="14" rewardsID="5000026" num="300" broadcastItemID="30000_1000005_28,30000_1000005_38" showTime="19:00:00" startTime="20:00:00" endTime="20:30:00" day="7" />
+</root>

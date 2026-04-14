@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+    <data protoId="0" elapse="0" desc="默认配置" />
+    <data protoId="5" elapse="50" desc="CUSTOM_DATA_DEFINE" />
+	<data protoId="301" elapse="50" desc="PLAYER_WORLD_MOVE" />
+	<data protoId="306" elapse="2000" desc="GEN_WORLD_POINT_C" />
+	<data protoId="3608" elapse="100" desc="WORLD_MARCH_SPEEDUP_C" />
+	<data protoId="64443" elapse="386" desc="ARMOUR_STAR_ATTR_UP_TEN_REQ" />
+	<data protoId="2100" elapse="500" desc="MAIL_MARK_READ_C" />
+	<data protoId="2116" elapse="500" desc="MAIL_REWARD_C" />
+	<data protoId="2102" elapse="500" desc="MAIL_DEL_MAIL_BY_ID_C" />
+</root>

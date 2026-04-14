@@ -1,0 +1,21 @@
+return {
+	prop =
+	{
+		activityId = 137,
+		name = [[周年机甲]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">完成任务获得机甲零件，可生成机甲海报，邀请指定人数可获得邀请礼包，每生成一次海报，可抽奖一次。</font>]],
+		priority = 11282,
+		icon = [[Activity_Icon_137_Nor.png]],
+		selecticon = [[Activity_Icon_137_Sel.png]],
+		urlType = [[]],
+		urlQQ = [[https://hongjing.qq.com/cp/a20250917jjpt/index.html]],
+		urlWX = [[https://hongjing.qq.com/cp/a20250917jjpt/index.html]],
+		guestUrl = [[https://hongjing.qq.com/cp/a20250917jjpt/index.html]],
+		platform = [[]],
+		shareImg = [[V5Activity_137_Share_URL.jpg]],
+		shareCCBName = [[RAActivity137NodeShareV5.ccbi]],
+		urlDailyReward = [[]],
+	},
+
+}

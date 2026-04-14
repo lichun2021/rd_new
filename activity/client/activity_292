@@ -1,0 +1,78 @@
+return {
+	prop =
+	{
+		activityId = 292,
+		name = [[幸运转盘]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">转盘概率设定：<br/>1个超级大奖栏位<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">感恩蜉蝣-永久</font>，概率为0.1%<br/>另外3个大奖栏位，每一个的概率为0.3%<br/>8个普通栏位，每一个的概率为12.375%<br/><br/>1.所有奖品，一旦被抽完，就会从转盘中移走，不再挤占中奖概率。剩余奖项的概率会<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">提升</font>！<br/>2.如果4个大奖被提前抽完，则免费获得盘面上还剩下的<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">所有奖励</font>。<br/>3.在活动最后一天，多余的抽奖道具可以用来兑换物品。</font>]],
+		priority = 10001,
+		icon = [[Activity_Icon_292_Nor.png]],
+		selecticon = [[Activity_Icon_292_Sel.png]],
+		bigIcon = [[]],
+		itemOnce = [[30000_29200001_1]],
+		rotationtimes = 5,
+		buytimes = [[200]],
+		buyprice = [[10000_1000_249]],
+		gainItem = [[30000_29200001_1]],
+	},
+	lucky_box_turntable_reward = [[id	canSelected	number	assignweight	weight	rewardId
+1	1	1	1	1	2
+1	1	1	0	100000	101
+2	0	30	0	12370000	201
+3	0	6	0	12380000	301
+4	1	1	0	300000	401,402,403,404,405
+5	0	30	0	12370000	501
+6	0	30	0	12380000	601
+7	1	1	0	300000	701,702,703,704,705,706
+8	0	30	0	12370000	801
+9	0	30	0	12380000	901
+10	1	1	0	300000	1001,1002,1003,1004
+11	0	30	0	12370000	1101
+12	0	10	0	12380000	1201
+]],
+	lucky_box_reward = [[id	reward
+1	2
+101	30000_9648000_1
+401	30000_1300037_800
+402	30000_1300027_22000
+403	30000_21063005_16000
+404	30000_1782103_32000
+405	30000_1300017_80000
+701	30000_21065001_1600
+702	30000_21070056_3200
+703	30000_802005_6600
+704	30000_802004_8000
+705	30000_800002_25000
+706	30000_800000_7200
+1001	30000_1782123_1100
+1002	30000_9990032_13500
+1003	30000_840195_8500
+1004	30000_100060_120
+201	30000_800002_500
+301	30000_100050_30
+501	30000_840194_1500
+601	30000_1480001_3000
+801	30000_800000_150
+901	30000_21063005_300
+1101	30000_1300017_1500
+1201	30000_1000003_25
+]],
+	lucky_box_exchange = [[id	priority	exchangerequirements	exchangeobtain	string	limittimes
+1	1	2	2	2	1
+1	1	30000_29200001_2	30000_21065001_20	ActivityExchangeGainItemDes1	10
+2	2	30000_29200001_2	30000_9990041_200	ActivityExchangeGainItemDes1	10
+3	3	30000_29200001_2	30000_9990042_40	ActivityExchangeGainItemDes1	10
+4	4	30000_29200001_2	30000_9990051_100	ActivityExchangeGainItemDes1	10
+5	5	30000_29200001_2	30000_9990052_20	ActivityExchangeGainItemDes1	10
+6	6	30000_29200001_2	30000_802005_100	ActivityExchangeGainItemDes1	10
+7	7	30000_29200001_2	30000_802004_200	ActivityExchangeGainItemDes1	10
+8	8	30000_29200001_2	30000_1300027_240	ActivityExchangeGainItemDes1	10
+9	9	30000_29200001_2	30000_21063005_300	ActivityExchangeGainItemDes1	10
+10	10	30000_29200001_2	30000_800002_600	ActivityExchangeGainItemDes1	10
+11	11	30000_29200001_2	30000_1782103_600	ActivityExchangeGainItemDes1	20
+12	12	30000_29200001_1	30000_1782106_45	ActivityExchangeGainItemDes1	30
+13	13	30000_29200001_1	30000_1300017_800	ActivityExchangeGainItemDes1	30
+14	14	30000_29200001_1	30000_810002_6	ActivityExchangeGainItemDes1	99
+]],
+
+}

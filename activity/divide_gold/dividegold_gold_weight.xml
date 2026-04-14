@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" goldNum="77" weight="3700" />
+      <data id="2" goldNum="166" weight="1200" />
+      <data id="3" goldNum="288" weight="1400" />
+      <data id="4" goldNum="399" weight="1600" />
+      <data id="5" goldNum="777" weight="1800" />
+      <data id="6" goldNum="1666" weight="200" />
+      <data id="7" goldNum="2888" weight="95" />
+      <data id="8" goldNum="7777" weight="5" />
+</root>

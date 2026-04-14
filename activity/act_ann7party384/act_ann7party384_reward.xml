@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1001" rewards="30000_24200051_500" weight="1" round="1" mustShow="1" />
+      <data id="1002" rewards="30000_802006_40" weight="1" round="1" mustShow="1" />
+      <data id="1003" rewards="30000_21063076_24" weight="1" round="1" mustShow="1" />
+      <data id="1004" rewards="30000_21070056_1266" weight="1" round="1" mustShow="1" />
+      <data id="1005" rewards="30000_850048_50" weight="1" round="1" mustShow="1" />
+      <data id="1006" rewards="30000_802006_300" weight="622" round="1" />
+      <data id="1007" rewards="30000_24200051_10000" weight="622" round="1" />
+      <data id="1008" rewards="30000_1300037_1666" weight="622" round="1" />
+      <data id="1009" rewards="30000_21070056_6666" weight="622" round="1" />
+      <data id="1010" rewards="30000_21065001_2666" weight="622" round="1" />
+      <data id="1011" rewards="30000_1000005_266" weight="622" round="1" />
+      <data id="1012" rewards="30000_1300037_50" weight="3300" round="1" />
+      <data id="1013" rewards="30000_1300037_30" weight="3300" round="1" />
+      <data id="1014" rewards="30000_1300037_20" weight="3300" round="1" />
+      <data id="1015" rewards="30000_21070056_200" weight="3300" round="1" />
+      <data id="1016" rewards="30000_21070056_120" weight="3300" round="1" />
+      <data id="1017" rewards="30000_21070056_80" weight="3300" round="1" />
+      <data id="1018" rewards="30000_21065001_75" weight="3300" round="1" />
+      <data id="1019" rewards="30000_21065001_45" weight="3300" round="1" />
+      <data id="1020" rewards="30000_21065001_30" weight="3300" round="1" />
+      <data id="1021" rewards="30000_1000005_15" weight="3300" round="1" />
+      <data id="1022" rewards="30000_1000005_9" weight="3300" round="1" />
+      <data id="1023" rewards="30000_1000005_6" weight="3300" round="1" />
+      <data id="1024" rewards="30000_810001_100" weight="3300" round="1" />
+      <data id="1025" rewards="30000_810001_77" weight="3300" round="1" />
+      <data id="1026" rewards="30000_810001_60" weight="3300" round="1" />
+      <data id="1027" rewards="30000_820002_40" weight="3300" round="1" />
+      <data id="1028" rewards="30000_820002_25" weight="3300" round="1" />
+      <data id="1029" rewards="30000_820002_15" weight="3300" round="1" />
+      <data id="1030" rewards="30000_21063076_30" weight="2268" round="1" />
+      <data id="1031" rewards="30000_21063076_15" weight="2300" round="1" />
+      <data id="1032" rewards="30000_21063076_10" weight="2300" round="1" />
+      <data id="2001" rewards="30000_24200051_500" weight="1" round="2" mustShow="1" />
+      <data id="2002" rewards="30000_802006_40" weight="1" round="2" mustShow="1" />
+      <data id="2003" rewards="30000_21063076_24" weight="1" round="2" mustShow="1" />
+      <data id="2004" rewards="30000_21070056_1266" weight="1" round="2" mustShow="1" />
+      <data id="2005" rewards="30000_850048_50" weight="1" round="2" mustShow="1" />
+      <data id="2006" rewards="30000_802006_300" weight="622" round="2" />
+      <data id="2007" rewards="30000_24200051_10000" weight="622" round="2" />
+      <data id="2008" rewards="30000_1300037_1666" weight="622" round="2" />
+      <data id="2009" rewards="30000_21070056_6666" weight="622" round="2" />
+      <data id="2010" rewards="30000_21065001_2666" weight="622" round="2" />
+      <data id="2011" rewards="30000_1000005_266" weight="622" round="2" />
+      <data id="2012" rewards="30000_1300037_50" weight="3300" round="2" />
+      <data id="2013" rewards="30000_1300037_30" weight="3300" round="2" />
+      <data id="2014" rewards="30000_1300037_20" weight="3300" round="2" />
+      <data id="2015" rewards="30000_21070056_200" weight="3300" round="2" />
+      <data id="2016" rewards="30000_21070056_120" weight="3300" round="2" />
+      <data id="2017" rewards="30000_21070056_80" weight="3300" round="2" />
+      <data id="2018" rewards="30000_21065001_75" weight="3300" round="2" />
+      <data id="2019" rewards="30000_21065001_45" weight="3300" round="2" />
+      <data id="2020" rewards="30000_21065001_30" weight="3300" round="2" />
+      <data id="2021" rewards="30000_1000005_15" weight="3300" round="2" />
+      <data id="2022" rewards="30000_1000005_9" weight="3300" round="2" />
+      <data id="2023" rewards="30000_1000005_6" weight="3300" round="2" />
+      <data id="2024" rewards="30000_810001_100" weight="3300" round="2" />
+      <data id="2025" rewards="30000_810001_77" weight="3300" round="2" />
+      <data id="2026" rewards="30000_810001_60" weight="3300" round="2" />
+      <data id="2027" rewards="30000_820002_40" weight="3300" round="2" />
+      <data id="2028" rewards="30000_820002_25" weight="3300" round="2" />
+      <data id="2029" rewards="30000_820002_15" weight="3300" round="2" />
+      <data id="2030" rewards="30000_21063076_30" weight="2268" round="2" />
+      <data id="2031" rewards="30000_21063076_15" weight="2300" round="2" />
+      <data id="2032" rewards="30000_21063076_10" weight="2300" round="2" />
+      <data id="3001" rewards="30000_24200051_500" weight="1" round="3" mustShow="1" />
+      <data id="3002" rewards="30000_802006_40" weight="1" round="3" mustShow="1" />
+      <data id="3003" rewards="30000_21063076_24" weight="1" round="3" mustShow="1" />
+      <data id="3004" rewards="30000_21070056_1266" weight="1" round="3" mustShow="1" />
+      <data id="3005" rewards="30000_850048_50" weight="1" round="3" mustShow="1" />
+      <data id="3006" rewards="30000_802006_300" weight="622" round="3" />
+      <data id="3007" rewards="30000_24200051_10000" weight="622" round="3" />
+      <data id="3008" rewards="30000_1300037_1666" weight="622" round="3" />
+      <data id="3009" rewards="30000_21070056_6666" weight="622" round="3" />
+      <data id="3010" rewards="30000_21065001_2666" weight="622" round="3" />
+      <data id="3011" rewards="30000_1000005_266" weight="622" round="3" />
+      <data id="3012" rewards="30000_1300037_50" weight="3300" round="3" />
+      <data id="3013" rewards="30000_1300037_30" weight="3300" round="3" />
+      <data id="3014" rewards="30000_1300037_20" weight="3300" round="3" />
+      <data id="3015" rewards="30000_21070056_200" weight="3300" round="3" />
+      <data id="3016" rewards="30000_21070056_120" weight="3300" round="3" />
+      <data id="3017" rewards="30000_21070056_80" weight="3300" round="3" />
+      <data id="3018" rewards="30000_21065001_75" weight="3300" round="3" />
+      <data id="3019" rewards="30000_21065001_45" weight="3300" round="3" />
+      <data id="3020" rewards="30000_21065001_30" weight="3300" round="3" />
+      <data id="3021" rewards="30000_1000005_15" weight="3300" round="3" />
+      <data id="3022" rewards="30000_1000005_9" weight="3300" round="3" />
+      <data id="3023" rewards="30000_1000005_6" weight="3300" round="3" />
+      <data id="3024" rewards="30000_810001_100" weight="3300" round="3" />
+      <data id="3025" rewards="30000_810001_77" weight="3300" round="3" />
+      <data id="3026" rewards="30000_810001_60" weight="3300" round="3" />
+      <data id="3027" rewards="30000_820002_40" weight="3300" round="3" />
+      <data id="3028" rewards="30000_820002_25" weight="3300" round="3" />
+      <data id="3029" rewards="30000_820002_15" weight="3300" round="3" />
+      <data id="3030" rewards="30000_21063076_30" weight="2268" round="3" />
+      <data id="3031" rewards="30000_21063076_15" weight="2300" round="3" />
+      <data id="3032" rewards="30000_21063076_10" weight="2300" round="3" />
+</root>

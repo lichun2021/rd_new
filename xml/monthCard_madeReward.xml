@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" cardId="2101" reward="30000_800002_1500" />
+      <data id="2" cardId="2101" reward="30000_802004_500" />
+      <data id="3" cardId="2101" reward="30000_21063003_1666" />
+      <data id="4" cardId="2101" reward="30000_21063002_1666" />
+      <data id="5" cardId="2101" reward="30000_1800001_150" />
+      <data id="6" cardId="2101" reward="30000_1800000_3000" />
+      <data id="7" cardId="2101" reward="30000_1300017_4500" />
+      <data id="8" cardId="2101" reward="30000_9990032_840" />
+      <data id="9" cardId="2102" reward="30000_800002_1800" />
+      <data id="10" cardId="2102" reward="30000_802004_600" />
+      <data id="11" cardId="2102" reward="30000_21063003_2000" />
+      <data id="12" cardId="2102" reward="30000_21063002_2000" />
+      <data id="13" cardId="2102" reward="30000_1800001_180" />
+      <data id="14" cardId="2102" reward="30000_1800000_3600" />
+      <data id="15" cardId="2102" reward="30000_1300017_5400" />
+      <data id="16" cardId="2102" reward="30000_9990032_1008" />
+      <data id="17" cardId="2401" reward="30000_9990042_160" />
+      <data id="18" cardId="2401" reward="30000_9990052_80" />
+      <data id="19" cardId="2402" reward="30000_9990042_192" />
+      <data id="20" cardId="2402" reward="30000_9990052_96" />
+      <data id="21" cardId="2101" reward="30000_810001_12" />
+      <data id="22" cardId="2102" reward="30000_810001_15" />
+      <data id="23" cardId="2101" reward="30000_21063005_800" />
+      <data id="24" cardId="2101" reward="30000_1300027_1000" />
+      <data id="25" cardId="2101" reward="30000_802005_360" />
+      <data id="26" cardId="2102" reward="30000_21063005_960" />
+      <data id="27" cardId="2102" reward="30000_1300027_1200" />
+      <data id="28" cardId="2102" reward="30000_802005_432" />
+</root>

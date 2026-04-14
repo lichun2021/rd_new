@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data buildId="10001" buildType="1" holdTime="0" live="7200" award="1229090" buildQuality="2" />
+      <data buildId="10002" buildType="1" holdTime="0" live="7200" award="1229091" buildQuality="3" />
+      <data buildId="10003" buildType="1" holdTime="0" live="7200" award="1229092" buildQuality="4" />
+      <data buildId="10004" buildType="1" holdTime="0" live="7200" award="1229093" buildQuality="2" />
+      <data buildId="10005" buildType="1" holdTime="0" live="7200" award="1229094" buildQuality="3" />
+      <data buildId="10006" buildType="1" holdTime="0" live="7200" award="1229095" buildQuality="4" />
+      <data buildId="20001" buildType="2" thirdBuildId="4" holdTime="300" live="7200" award="1229096" buildQuality="4" />
+      <data buildId="20002" buildType="2" thirdBuildId="4" holdTime="300" live="7200" award="1229097" buildQuality="4" />
+      <data buildId="20003" buildType="2" thirdBuildId="4" holdTime="300" live="7200" award="1229098" buildQuality="4" />
+</root>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" cost="0" peak="500" left="15000" right="20000" base="0" down="3000" up="4000" />
+      <data id="2" cost="2" peak="600" left="15000" right="500000" base="0" down="3300" up="9900" />
+      <data id="3" cost="4" peak="700" left="15000" right="500000" base="0" down="3600" up="9900" />
+      <data id="4" cost="7" peak="800" left="15000" right="450000" base="0" down="3900" up="9900" />
+      <data id="5" cost="10" peak="900" left="15000" right="400000" base="0" down="4200" up="9900" />
+      <data id="6" cost="20" peak="1000" left="15000" right="350000" base="0" down="4500" up="9900" />
+      <data id="7" cost="50" peak="1200" left="15000" right="300000" base="0" down="4800" up="9900" />
+      <data id="8" cost="100" peak="1400" left="15000" right="250000" base="0" down="5100" up="9900" />
+      <data id="9" cost="200" peak="1600" left="15000" right="200000" base="0" down="5400" up="9900" />
+      <data id="10" cost="500" peak="1800" left="15000" right="150000" base="0" down="5700" up="9900" />
+</root>

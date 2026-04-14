@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1001" rewards="30000_1300037_288" singleWeight="50" tenWeight="50" />
+      <data id="1002" rewards="30000_1300027_300" singleWeight="500" tenWeight="500" />
+      <data id="1003" rewards="30000_1300017_1200" singleWeight="500" tenWeight="500" />
+      <data id="1004" rewards="30000_1300027_1888" singleWeight="100" tenWeight="100" />
+      <data id="1005" rewards="30000_1300037_5" singleWeight="2650" tenWeight="2650" />
+      <data id="1006" rewards="30000_1300017_6888" singleWeight="100" tenWeight="100" />
+      <data id="1007" rewards="30000_1300027_60" singleWeight="2400" tenWeight="2400" />
+      <data id="1008" rewards="30000_1300017_200" singleWeight="2400" tenWeight="2400" />
+      <data id="1009" rewards="30000_1300037_38" singleWeight="300" tenWeight="300" />
+      <data id="1010" rewards="30000_101050_18" singleWeight="1000" tenWeight="1000" />
+</root>

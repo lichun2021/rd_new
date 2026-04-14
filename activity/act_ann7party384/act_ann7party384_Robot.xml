@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data robotId="10001" type="1" robotCreateCondition="0" robotValue="0,0" notCreateRobotLimit="0" />
+      <data robotId="10002" type="1" robotCreateCondition="23" robotValue="0,1" notCreateRobotLimit="5" />
+      <data robotId="10003" type="1" robotCreateCondition="27" robotValue="1,1" notCreateRobotLimit="7" />
+      <data robotId="10004" type="1" robotCreateCondition="53" robotValue="1,3" notCreateRobotLimit="9" />
+      <data robotId="10005" type="1" robotCreateCondition="157" robotValue="3,6" notCreateRobotLimit="17" />
+      <data robotId="20001" type="2" robotCreateCondition="0" robotValue="1,3" notCreateRobotLimit="5" />
+      <data robotId="20002" type="2" robotCreateCondition="6" robotValue="0,0" notCreateRobotLimit="0" />
+</root>

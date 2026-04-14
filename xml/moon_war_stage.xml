@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data stageId="1" stageStartTime="0" stageEndTime="299" />
+      <data stageId="2" stageStartTime="300" stageEndTime="1199" stageOpenBuild="1" />
+      <data stageId="3" stageStartTime="1200" stageEndTime="2399" stageOpenBuild="1,2" />
+      <data stageId="4" stageStartTime="2400" stageEndTime="3599" stageOpenBuild="1,2,3" />
+      <data stageId="5" stageStartTime="3600" stageEndTime="21599" />
+      <data stageId="6" stageStartTime="21600" stageEndTime="22799" stageOpenBuild="1,2,3,9" />
+      <data stageId="7" stageStartTime="22800" stageEndTime="25199" stageOpenBuild="1,2,3,5,9" />
+      <data stageId="8" stageStartTime="25200" stageEndTime="26999" stageOpenBuild="1,2,3,5,6,9" />
+      <data stageId="9" stageStartTime="27000" stageEndTime="28799" stageOpenBuild="1,2,3,5,6,7,9" />
+</root>

@@ -1,0 +1,60 @@
+return {
+	prop =
+	{
+		activityId = 383,
+		name = [[命运轮盘机]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1.活动期间指挥官可通过抽取的方式提升奖励层数。层数越高，奖励越好。<br/>2.抽取方式分为普通抽取和保护抽取。普通抽取不花费任何道具，普通抽取到降层后层数将会降低，<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="20">且会结束本轮游戏，获得降层后层数对应的奖励</font>。保护抽取需要花费命运祈愿石，花费的数量和当前层数有关，层数越高花费数量越多。命运祈愿石可花费金条购买。保护抽取到降层结果时，层数不会降低，且连续2次抽到降层结果时，下一次保护抽取必定升层。<br/>3.当前层数为0时不可使用普通抽取。<br/>4.玩家可选择手动领取本层奖励。领取奖励后层数将会重置到0。<br/>5.升到6层后自动领取奖励，并将层数重置到0。<br/>6.抽取获得的命运硬币可在兑换商店内兑换梦幻岛建筑或其他奖励。<br/>7.活动结束时未使用的命运祈愿石和命运硬币保留，可在下期活动中使用。<br/><br/>升降层概率公示<br/><font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="20">0层时</font><br/>层数+3 概率0.5%<br/>层数+2    概率19.5%<br/>层数+1    概率80%<br/><font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="20">第1-5层时</font><br/>层数+3    概率0.1%<br/>层数+2   概率3.9%<br/>层数+1   概率18%<br/>层数-1    概率68%<br/>层数-2    概率10%<br/></font>]],
+		priority = 10001,
+		icon = [[Activity_Icon_383_Nor.png]],
+		selecticon = [[Activity_Icon_383_Sel.png]],
+		bigIcon = [[]],
+		termLimit = 1800,
+		coinPrice = [[10000_1000_30]],
+		coinBuyLimit = 2000,
+		coinItemId = [[30000_1383001_1]],
+		exChangeTokenValue = [[30000_1383002_1]],
+		showId = 102601,
+		offset = [[0,-30]],
+	},
+	homeland_round_floor = [[id	floor	floorReward	cost	guarantee	showReward1	showReward2
+1	1	2	2	1	2	2
+1	0	30000_1383002_4,30000_810000_10	30000_1383001_2	3	30000_1383002_4,30000_810000_10	30000_1383002_4,30000_810000_10
+2	1	30000_1383002_18,30000_810000_20	30000_1383001_2	3	30000_1383002_18,30000_810000_20	30000_1383002_18,30000_810000_20
+3	2	30000_1383002_55,30000_810000_60	30000_1383001_4	3	30000_1383002_55,30000_810000_60	30000_1383002_55,30000_810000_60
+4	3	30000_1383002_150,30000_810000_150	30000_1383001_6	3	30000_1383002_150,30000_810000_150	30000_1383002_150,30000_810000_150
+5	4	30000_1383002_350,30000_810000_300	30000_1383001_10	3	30000_1383002_350,30000_810000_300	30000_1383002_350,30000_810000_300
+6	5	30000_1383002_780,30000_810000_600	30000_1383001_16	3	30000_1383002_780,30000_810000_600	30000_1383002_780,30000_810000_600
+7	6	30000_1383002_1800,30000_810000_1200			30000_1383002_1800,30000_810000_1200	30000_1383002_1800,30000_810000_1200
+]],
+	homeland_round_shop = [[id	needItem	gainItem	times
+1	2	2	1
+1	30000_1383002_1000	30000_6102601_1	78
+2	30000_1383002_1000	30000_6102501_1	78
+3	30000_1383002_1000	30000_6102101_1	78
+4	30000_1383002_1000	30000_6101401_1	78
+5	30000_1383002_100	30000_1383003_10	780
+6	30000_1383002_300	30000_6101101_1	10
+7	30000_1383002_300	30000_6100701_1	10
+8	30000_1383002_300	30000_6101301_1	10
+9	30000_1383002_1	30000_810000_1	9999
+10	30000_1383002_1	30000_850008_1	9999
+11	30000_1383002_1	30000_850038_1	9999
+12	30000_1383002_1	30000_850018_1	9999
+13	30000_1383002_1	30000_850028_1	9999
+]],
+	homeland_round_achieve = [[achieveId	type	conditionType	conditionValue	rewards	title	gotoType	gotoValue
+1	1	2	2	2	2	1	2
+38310001	1	140900	1	30000_1383001_4,30000_850007_50,30000_850037_50,30000_850017_50,30000_850027_50	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">每日登录<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">1</font>次</font>	-1	-1
+38310002	1	37804	10	30000_1383001_6,30000_850007_50,30000_850037_50,30000_850017_50,30000_850027_50	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">本期共消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">10</font>个命运祈愿石</font>	-1	-1
+38310003	1	37804	25	30000_1383001_10,30000_850007_100,30000_850037_100,30000_850017_100,30000_850027_100	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">本期共消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">25</font>个命运祈愿石</font>	-1	-1
+38310004	1	37804	50	30000_1383001_15,30000_850007_150,30000_850037_150,30000_850017_150,30000_850027_150	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">本期共消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">50</font>个命运祈愿石</font>	-1	-1
+38310005	1	37804	100	30000_1383001_25,30000_850007_200,30000_850037_200,30000_850017_200,30000_850027_200	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">本期共消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">100</font>个命运祈愿石</font>	-1	-1
+38310006	1	37804	200	30000_1383001_40,30000_850007_250,30000_850037_250,30000_850017_250,30000_850027_250	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">本期共消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">200</font>个命运祈愿石</font>	-1	-1
+38310007	1	37804	400	30000_1383001_60,30000_850007_300,30000_850037_300,30000_850017_300,30000_850027_300	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">本期共消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">400</font>个命运祈愿石</font>	-1	-1
+38310008	1	37804	800	30000_1383001_90,30000_850007_350,30000_850037_350,30000_850017_350,30000_850027_350	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">本期共消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">800</font>个命运祈愿石</font>	-1	-1
+38310009	1	37804	1500	30000_1383001_120,30000_850007_400,30000_850037_400,30000_850017_400,30000_850027_400	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">本期共消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">1500</font>个命运祈愿石</font>	-1	-1
+38310010	1	37804	3000	30000_1383001_200,30000_850007_500,30000_850037_500,30000_850017_500,30000_850027_500	<font color="#ffffff" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">本期共消耗<font color="#f5d99d" face = "Font/HiraginoSansGB-W6.ttf" fontsize ="18">3000</font>个命运祈愿石</font>	-1	-1
+]],
+
+}

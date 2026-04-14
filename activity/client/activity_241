@@ -1,0 +1,14 @@
+return {
+	prop =
+	{
+		activityId = 241,
+		name = [[新年赠礼]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1.活动期间，每天<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">12:00</font>和<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">19:00</font>，大世界中都会出现圣诞礼物。<br/>2.行军前往即可领取，先到先得！<br/>3.注意关注游戏内<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">公告</font>。每次礼物派送过程持续1小时。</font>]],
+		priority = 30000,
+		icon = [[Activity_Icon_241_Nor.png]],
+		selecticon = [[Activity_Icon_241_Sel.png]],
+		refreshTimes = [[12_19]],
+		rewardDuration = 3600,
+	},
+
+}

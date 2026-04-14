@@ -1,0 +1,19 @@
+return {
+	prop =
+	{
+		activityId = 372,
+		name = [[金马贺岁]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20"><font color="#ffe782" face = "Microsoft YaHei" fontsize ="36">新春快乐</font><br/>亲爱的玩家朋友们，大家丙午马年新春快乐。<br/>祝愿每一位红警OL玩家在新的一年里，福运连连，财运满满，幸福安康，万事如意！<br/>值此新春佳节，红警OL团队为您奉上有史以来最豪华的贺岁合集。更多的白嫖，更低的折扣，琳琅满目，应有尽有。<br/><br/>贺岁活动分为三个主题会场，各具特色。<br/>1.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">摘星揽月</font>，以史低折扣为特色，闭着眼睛买，样样都实惠。<br/>2.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">喜迎新春</font>，以合作聚会为特色，你成亲我喝酒，一年更比一年有。<br/>3.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">春色满园</font>，以豪华白嫖为特色，就算不花钱，背包也能满。<br/><br/>新春珍宝清单：<br/>1.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲</font>套装。中华神话体系首位神邸降临，不同于以往任何装扮。前所未有的艺术品质，前所未有的特权技能，前所未有的稀有属性。<br/>2.第5个<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">指挥官形象</font>，随女娲套装面世。<br/>3.春节装扮<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">马踏新程</font>套装。能够减少全队所受伤害。<br/>4.罕见开启守护特效商店。能够买到泡泡和气球之外的稀有<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">守护特效</font>。<br/>5.主会场同款纪念，梦幻岛国风摆设。三款金色传说级别（<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">摘星揽月</font>、<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">喜迎新春</font>、<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">春色满园</font>），两款紫色史诗级别（福气满满，财运滚滚）。分别隐藏在各大主题会场，等待您和您的盟友一起发现收藏。</font>]],
+		priority = 10052,
+		icon = [[Activity_Icon_372_Nor.png]],
+		selecticon = [[Activity_Icon_372_Sel.png]],
+		entranceType = 22,
+	},
+	scene_import_content = [[id	name	icon	entranceType	notOpenTxt	publicTxt	endTxt	clickInTime
+1	2	2	1	2	2	2	2
+1	春色满园	1	1002	2月10日开放	豪华白嫖多福利	活动已结束	2026-02-10 00:00:00
+2	喜迎新春	2	1001	2月10日开放	合作共赢同富裕	活动已结束	2026-02-10 00:00:00
+3	摘星揽月	3	1000	2月10日开放	春节大促超优惠	活动已结束	2026-02-10 00:00:00
+]],
+
+}

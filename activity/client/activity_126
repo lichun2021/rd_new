@@ -1,0 +1,73 @@
+return {
+	prop =
+	{
+		activityId = 126,
+		name = [[幸运折扣]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1.活动开启期间，玩家可以在幸运折扣商城抽取幸运折扣并购买稀有道具。 <br/>2.不同折扣对应不同种类的8种商品。<br/>3.折扣商品限时限量出售，重置倒计时结束将重置幸运折扣商城，所有商品将会消失，需要重新抽取折扣。<br/>4.每天0点重置免费抽取折扣的资格。<br/>5.抽取折扣所需的道具“幸运券”可在幸运福利活动中获取。<br/><br/></font><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">幸运折扣概率公示：<br/></font><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">4.0折25%概率<br/>3.0折25%概率<br/>2.0折25%概率<br/>1.5折15%概率<br/>0.8折10%概率</font>]],
+		priority = 20010,
+		icon = [[Activity_Icon_126_Nor.png]],
+		selecticon = [[Activity_Icon_126_Sel.png]],
+		bigIcon = [[Activity_BattlefieldWelfare_u_Rendered.png]],
+		discountMax = 5,
+		messageKey = [[Act126Tips2]],
+		needItem = [[30000_1150093_1]],
+		refresh = 1,
+		resetTime = 7200,
+	},
+	luckydiscount_shop = [[id	pool	item	limitNum	oldPrice	newPrice	tag	discount
+1	1	2	1	1	2	2	2
+1	1	30000_850048_1	10	100	10000_1000_40	V5Activity_126_u_Num_BG_03.png	4
+2	1	30000_21063076_10	1	300	10000_1000_120	V5Activity_126_u_Num_BG_03.png	4
+3	1	30000_21063077_50	1	300	10000_1000_120	V5Activity_126_u_Num_BG_03.png	4
+4	1	30000_1300037_10	30	300	10000_1000_120	V5Activity_126_u_Num_BG_03.png	4
+5	1	30000_21070056_30	30	300	10000_1000_120	V5Activity_126_u_Num_BG_03.png	4
+6	1	30000_21065001_10	30	300	10000_1000_120	V5Activity_126_u_Num_BG_03.png	4
+7	1	30000_1782123_10	30	300	10000_1000_120	V5Activity_126_u_Num_BG_03.png	4
+8	1	30000_802005_30	30	300	10000_1000_120	V5Activity_126_u_Num_BG_03.png	4
+9	2	30000_850048_1	3	100	10000_1000_30	V5Activity_126_u_Num_BG_02.png	3
+10	2	30000_21063076_6	1	180	10000_1000_54	V5Activity_126_u_Num_BG_02.png	3
+11	2	30000_21063077_30	1	180	10000_1000_54	V5Activity_126_u_Num_BG_02.png	3
+12	2	30000_1300037_10	5	300	10000_1000_90	V5Activity_126_u_Num_BG_02.png	3
+13	2	30000_21070056_30	30	300	10000_1000_90	V5Activity_126_u_Num_BG_02.png	3
+14	2	30000_21065001_10	30	300	10000_1000_90	V5Activity_126_u_Num_BG_02.png	3
+15	2	30000_1782123_10	30	300	10000_1000_90	V5Activity_126_u_Num_BG_02.png	3
+16	2	30000_802005_30	30	300	10000_1000_90	V5Activity_126_u_Num_BG_02.png	3
+17	3	30000_850048_1	2	100	10000_1000_20	V5Activity_126_u_Num_BG_02.png	2
+18	3	30000_21063076_2	1	60	10000_1000_12	V5Activity_126_u_Num_BG_02.png	2
+19	3	30000_21063077_10	1	60	10000_1000_12	V5Activity_126_u_Num_BG_02.png	2
+20	3	30000_1300037_10	5	300	10000_1000_60	V5Activity_126_u_Num_BG_02.png	2
+21	3	30000_21070056_30	30	300	10000_1000_60	V5Activity_126_u_Num_BG_02.png	2
+22	3	30000_21065001_10	30	300	10000_1000_60	V5Activity_126_u_Num_BG_02.png	2
+23	3	30000_1782123_10	30	300	10000_1000_60	V5Activity_126_u_Num_BG_02.png	2
+24	3	30000_802005_30	30	300	10000_1000_60	V5Activity_126_u_Num_BG_02.png	2
+25	4	30000_850048_1	1	100	10000_1000_15	V5Activity_126_u_Num_BG_01.png	1.5
+26	4	30000_21063076_1	1	30	10000_1000_4	V5Activity_126_u_Num_BG_01.png	1.5
+27	4	30000_21063077_5	1	30	10000_1000_4	V5Activity_126_u_Num_BG_01.png	1.5
+28	4	30000_1300037_10	10	300	10000_1000_45	V5Activity_126_u_Num_BG_01.png	1.5
+29	4	30000_21070056_30	30	300	10000_1000_45	V5Activity_126_u_Num_BG_01.png	1.5
+30	4	30000_21065001_10	30	300	10000_1000_45	V5Activity_126_u_Num_BG_01.png	1.5
+31	4	30000_1782123_10	20	300	10000_1000_45	V5Activity_126_u_Num_BG_01.png	1.5
+32	4	30000_802005_30	30	300	10000_1000_45	V5Activity_126_u_Num_BG_01.png	1.5
+33	5	30000_850048_1	1	100	10000_1000_8	V5Activity_126_u_Num_BG_01.png	0.8
+34	5	30000_21065001_10	30	300	10000_1000_24	V5Activity_126_u_Num_BG_01.png	0.8
+35	5	30000_1300027_100	100	3000	10000_1000_30	V5Activity_126_u_Num_BG_01.png	0.1
+36	5	30000_800002_100	60	2000	10000_1000_20	V5Activity_126_u_Num_BG_01.png	0.1
+37	5	30000_802005_50	100	500	10000_1000_40	V5Activity_126_u_Num_BG_01.png	0.8
+38	5	30000_840299_10	30	500	10000_1000_10	V5Activity_126_u_Num_BG_01.png	0.2
+39	5	30000_1782123_10	20	300	10000_1000_24	V5Activity_126_u_Num_BG_01.png	0.8
+40	5	30000_21063005_100	50	3000	10000_1000_30	V5Activity_126_u_Num_BG_01.png	0.1
+]],
+	luckydiscount_pool = [[discount
+1
+4
+3
+2
+1.5
+0.8
+2
+1.5
+0.8
+]],
+
+}

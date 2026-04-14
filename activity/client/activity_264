@@ -1,0 +1,31 @@
+return {
+	prop =
+	{
+		activityId = 264,
+		name = [[新春祈福]],
+		title = [[]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1.每人每天可以进行一次<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">祈福</font>。每次祈福都会获得<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">礼物</font>。<br/>2.你选择的祈愿辞会被<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">其他人</font>看到。<br/>3.人们的共同祈福次数每达到一个里程碑，会解锁<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">大礼物</font>。<br/><br/>一三二 ★新年快乐！★ 一三二</font>]],
+		priority = 19250,
+		icon = [[Activity_Icon_264_Nor.png]],
+		selecticon = [[Activity_Icon_264_Sel.png]],
+		tips1 = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">达成条件：全服进度达到</font>]],
+		tips2 = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">达成奖励：</font>]],
+		signRewards = [[30000_810001_5,30000_24200049_200]],
+		randomRewards = 2021121,
+		chatTime = [[2_7]],
+		bulletChatCount = 30,
+		supplementaryArticles = 20,
+		defaultNumber = 8,
+		typeface = 30,
+		color = [[242_236_222,255_158_163,249_205_116,239_153_94,203_180_226,168_200_246]],
+		blessingWords = [[@Bless151,@Bless152,@Bless153,@Bless154,@Bless155,@Bless156,@Bless157,@Bless158,@Bless159,@Bless160,@Bless161,@Bless162,@Bless163,@Bless164,@Bless165,@Bless166,@Bless167,@Bless168,@Bless169,@Bless170,@Bless171,@Bless172,@Bless173,@Bless174,@Bless175,@Bless176,@Bless177,@Bless178,@Bless179,@Bless180,@Bless181,@Bless182,@Bless183,@Bless184,@Bless185,@Bless186,@Bless187,@Bless188,@Bless189,@Bless190,@Bless191,@Bless192,@Bless193,@Bless194,@Bless195,@Bless196,@Bless197,@Bless198,@Bless199,@Bless200,@Bless201,@Bless202,@Bless203,@Bless204,@Bless205,@Bless206,@Bless207,@Bless208,@Bless209,@Bless210,@Bless211,@Bless212,@Bless213,@Bless214,@Bless215,@Bless216,@Bless217,@Bless218,@Bless219,@Bless220,@Bless221,@Bless222,@Bless223,@Bless224,@Bless225,@Bless226,@Bless227,@Bless228,@Bless229,@Bless230]],
+	},
+	ssy_full_signin_reward = [[achieveId	conditionValue	rewards
+1	1	2
+2640001	200000	30000_24200049_200,30000_1000005_3,30000_1300037_5,30000_21070056_30,30000_21065001_10,30000_1300027_200,30000_802004_75,30000_21063005_125,30000_1782103_250,30000_802005_50,30000_800002_150,30000_810001_10,30000_1780045_10
+2640002	500000	30000_24200049_300,30000_1000005_6,30000_1300037_10,30000_21070056_60,30000_21065001_20,30000_1300027_400,30000_802004_150,30000_21063005_250,30000_1782103_500,30000_802005_100,30000_800002_300,30000_810001_20,30000_1780045_20
+2640003	800000	30000_11093000_1,30000_24200049_400,30000_1000005_9,30000_1300037_15,30000_21070056_90,30000_21065001_30,30000_1300027_600,30000_802004_225,30000_21063005_375,30000_1782103_750,30000_802005_150,30000_800002_450,30000_810001_30,30000_1780045_30
+2640004	1200000	30000_6103201_10,30000_24200049_600,30000_1000005_12,30000_1300037_20,30000_21070056_120,30000_21065001_40,30000_1300027_800,30000_802004_300,30000_21063005_500,30000_1782103_1000,30000_802005_200,30000_800002_600,30000_810001_40,30000_1780045_40
+]],
+
+}

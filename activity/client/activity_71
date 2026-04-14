@@ -1,0 +1,18 @@
+return {
+	prop =
+	{
+		activityId = 71,
+		name = [[实力鉴定]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">参与活动鉴定您的隐藏实力，邀请好友组成征战新服小队，完成任务可领取海量福利。</font>]],
+		priority = 11200,
+		icon = [[Activity_Icon_71_Nor.png]],
+		selecticon = [[Activity_Icon_71_Sel.png]],
+		urlQQ = [[https://hongjing.qq.com/cp/a20251107hjchdj/index.html]],
+		urlWX = [[https://hongjing.qq.com/cp/a20251107hjchdj/index.html]],
+		guestUrl = [[https://hongjing.qq.com/cp/a20251107hjchdj/index.html]],
+		platform = [[]],
+		urlDailyReward = [[]],
+	},
+
+}

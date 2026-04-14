@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data advancedRewardId="1" advancedType="29900001" reward="30000_21063005_42,30000_810001_1,30000_1780040_1" weight="1000" openTime="7200" />
+      <data advancedRewardId="2" advancedType="29900001" reward="30000_802004_24,30000_810001_1,30000_1780040_1" weight="1000" openTime="7200" />
+      <data advancedRewardId="3" advancedType="29900001" reward="30000_802005_16,30000_810001_1,30000_1780040_1" weight="1000" openTime="7200" />
+      <data advancedRewardId="4" advancedType="29900002" reward="30000_21065001_8,30000_810001_2,30000_1780040_2" weight="1000" openTime="14400" />
+      <data advancedRewardId="5" advancedType="29900002" reward="30000_1300027_80,30000_810001_2,30000_1780040_2" weight="1000" openTime="14400" />
+      <data advancedRewardId="6" advancedType="29900002" reward="30000_1782123_6,30000_810001_2,30000_1780040_2" weight="1000" openTime="14400" />
+      <data advancedRewardId="7" advancedType="29900003" reward="30000_21070056_32,30000_810001_5,30000_1780040_5" weight="1000" openTime="28800" />
+      <data advancedRewardId="8" advancedType="29900003" reward="30000_21065001_16,30000_810001_5,30000_1780040_5" weight="1000" openTime="28800" />
+      <data advancedRewardId="9" advancedType="29900003" reward="30000_1782123_12,30000_810001_5,30000_1780040_5" weight="1000" openTime="28800" />
+</root>

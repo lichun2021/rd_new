@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data achieveId="386001" conditionType="140900" refreshType="1" conditionValue="1" rewards="1229200" />
+      <data achieveId="386002" conditionType="180101" refreshType="1" conditionValue="280" rewards="1229201" />
+      <data achieveId="386003" conditionType="180101" refreshType="1" conditionValue="420" rewards="1229202" />
+      <data achieveId="386004" conditionType="200100" refreshType="1" conditionValue="0_30" rewards="1229203" />
+      <data achieveId="386005" conditionType="200100" refreshType="1" conditionValue="0_100" rewards="1229204" />
+      <data achieveId="386006" conditionType="31100" refreshType="1" conditionValue="0_5000000" rewards="1229205" />
+      <data achieveId="386007" conditionType="31100" refreshType="1" conditionValue="0_10000000" rewards="1229206" />
+      <data achieveId="386008" conditionType="20100" refreshType="1" conditionValue="0_10000" rewards="1229207" />
+      <data achieveId="386009" conditionType="20100" refreshType="1" conditionValue="0_30000" rewards="1229208" />
+      <data achieveId="386010" conditionType="500004" refreshType="1" conditionValue="1000" rewards="1229209" />
+      <data achieveId="386011" conditionType="500004" refreshType="1" conditionValue="3000" rewards="1229210" />
+      <data achieveId="386012" conditionType="151100" refreshType="1" conditionValue="1001_100" rewards="1229211" />
+      <data achieveId="386013" conditionType="151100" refreshType="1" conditionValue="1001_300" rewards="1229212" />
+      <data achieveId="386014" conditionType="151100" refreshType="1" conditionValue="1000_100" rewards="1229213" />
+</root>

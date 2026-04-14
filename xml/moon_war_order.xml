@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1001" techId="207" techCost="60" coolingTime="1500" p1="30" />
+      <data id="2001" techId="214" techCost="40" coolingTime="900" effectTime="3600" orderEffect="136_50000" />
+      <data id="3001" techId="116" techCost="240" coolingTime="9000" p1="8" p2="100" />
+      <data id="4001" techId="220" techCost="60" coolingTime="1500" p1="3" />
+</root>

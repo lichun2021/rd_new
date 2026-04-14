@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" num="2" buff="136_25000" />
+      <data id="2" num="4" buff="136_25000,102_25000" />
+      <data id="3" num="6" buff="136_25000,102_25000,100_25000" />
+      <data id="4" num="10" buff="136_25000,102_25000,100_25000,12101_10000" />
+</root>

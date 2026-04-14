@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data poolId="1001" createTreasureBuildId="10001" createTreasureBuildWeight="0" armoryTreasuryCreateMinLimit="0" armoryTreasuryCreateMaxLimit="0" armoryTreasuryBuildId="20001_10000,20002_10000,20003_10000" />
+      <data poolId="1002" createTreasureBuildId="10002" createTreasureBuildWeight="0" armoryTreasuryCreateMinLimit="0" armoryTreasuryCreateMaxLimit="0" armoryTreasuryBuildId="20001_10000,20002_10000,20003_10000" />
+      <data poolId="1003" createTreasureBuildId="10003" createTreasureBuildWeight="0" armoryTreasuryCreateMinLimit="0" armoryTreasuryCreateMaxLimit="0" armoryTreasuryBuildId="20001_10000,20002_10000,20003_10000" />
+      <data poolId="1004" createTreasureBuildId="10004" createTreasureBuildWeight="2000" armoryTreasuryCreateMinLimit="2" armoryTreasuryCreateMaxLimit="2" armoryTreasuryBuildId="20001_10000,20002_10000,20003_10000" />
+      <data poolId="1005" createTreasureBuildId="10005" createTreasureBuildWeight="4000" armoryTreasuryCreateMinLimit="2" armoryTreasuryCreateMaxLimit="2" armoryTreasuryBuildId="20001_10000,20002_10000,20003_10000" />
+      <data poolId="1006" createTreasureBuildId="10006" createTreasureBuildWeight="6000" armoryTreasuryCreateMinLimit="2" armoryTreasuryCreateMaxLimit="2" armoryTreasuryBuildId="20001_10000,20002_10000,20003_10000" />
+</root>

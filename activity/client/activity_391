@@ -1,0 +1,94 @@
+return {
+	prop =
+	{
+		activityId = 391,
+		name = [[天奢秘宝]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1.活动期间，玩家可消耗<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢祈愿石</font>进行祈愿。<br/>2.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢祈愿石</font>可在天奢商店中购买获得。<br/>3.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢徽记</font>可用于兑换<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢系列装扮</font>及其他养成所需资源与道具。<br/>4.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢祈愿石</font>与<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢徽记</font>均可保留至下次活动继续使用。<br/>5.集齐以下六件装扮（获得永久或限时版本道具均视为已收集）：<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">素衣娲灵</font>、<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">灵珠长宁</font>、<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲铭牌</font>、<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲签名</font>、<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲头像</font>、<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲头像框</font>，系统将自动发放道具<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">万形初祖-永久</font>。<br/>6.若已拥有以下装扮的永久版本，则通过祈愿再次获得同名装扮（无论永久或限时）时，将自动兑换为<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢徽记</font>：<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">素衣娲灵</font>，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">灵珠长宁</font>，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲铭牌</font>，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲签名</font>，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲头像</font>，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲头像框</font>。<br/>7.天奢装扮<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">华裳娲皇</font>无法通过祈愿获得，仅可通过兑换商店兑换获得。<br/><br/>天奢秘宝概率公示：<br/>必得天奢徽记<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢徽记</font>×1，概率70%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢徽记</font>×2，概率15%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢徽记</font>×3，概率10%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">天奢徽记</font>×5，概率5%<br/><br/>其他随机奖励<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">素衣娲灵-永久</font> X1，概率0.01%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">素衣娲灵-1天</font> X1，概率1.20%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">素衣娲灵-3天</font> X1，概率0.59%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">灵珠长宁-永久</font> X1，概率0.01%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">灵珠长宁-1天</font>X1，概率1.20%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">灵珠长宁-3天</font> X1，概率0.59%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲铭牌-永久</font> X1，概率0.05%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲签名-永久</font> X1，概率0.15%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲头像-永久</font> X1，概率0.10%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲头像框-永久</font> X1，概率0.15%<br/>城建加速 2 小时 X1，概率11.00%<br/>研究加速 2 小时 X1，概率11.00%<br/>训练加速 2 小时 X1，概率11.00%<br/>伤兵加速 2 小时 X1，概率11.00%<br/>500,000 矿石 X3，概率8.00%<br/>500,000 石油 X3，概率8.00%<br/>80,000 合金 X3，概率8.00%<br/>20,000 稀土 X3，概率8.00%<br/>500,000 矿石 X4，概率4.50%<br/>500,000 石油 X4，概率4.50%<br/>80,000 合金 X4，概率4.50%<br/>20,000 稀土 X4，概率4.50%<br/>高级行军加速 X1，概率1.95%<br/><br/>重复装扮兑换天奢徽记汇率公示：<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">素衣娲灵-永久</font>，天奢徽记 X1000<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">灵珠长宁-永久</font>，天奢徽记 X500<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲铭牌-永久</font>，天奢徽记 X50<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲签名-永久</font>，天奢徽记 X15<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲头像-永久</font>，天奢徽记 X25<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">女娲头像框-永久</font>，天奢徽记 X15<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">素衣娲灵-1天</font>，天奢徽记 X5<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">素衣娲灵-3天</font>，天奢徽记 X15<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">素衣娲灵-7天</font>，天奢徽记 X70<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">灵珠长宁-1天</font>，天奢徽记 X3<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">灵珠长宁-3天</font>，天奢徽记 X8<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">灵珠长宁-7天</font>，天奢徽记 X35<br/></font>]],
+		priority = 10015,
+		icon = [[Activity_Icon_391_Nor.png]],
+		selecticon = [[Activity_Icon_391_Sel.png]],
+		bigIcon = [[]],
+		drawlimit = 9999,
+		drawoncelimit = 100,
+		drawitem = [[30000_21070135_1]],
+		bestreward = [[30000_11365000_1]],
+		collectionreward = [[30000_10030000_1]],
+		collectionneed1 = [[30000_11366000_1,30000_9356000_1]],
+		collectionneed2 = [[30000_10145000_1,30000_9488000_1,30000_10000091_1,30000_11092000_1]],
+		showDressing = 2365,
+		showEffect = 4101,
+		showcurrency = [[30000_21070134_1]],
+	},
+	highend_dress_act391_exchange = [[id	priority	needItem	gainItem	des	times	exchangeTips	mainShow
+1	1	2	2	2	1	1	1
+1	1	30000_21070134_8000	30000_11365000_1	ActivityExchangeGainItemDes1	1	1	1
+2	2	30000_21070134_1000	30000_11366000_1	ActivityExchangeGainItemDes1	1	1	1
+3	3	30000_21070134_60	30000_11366007_1	ActivityExchangeGainItemDes1	1	1	1
+4	4	30000_21070134_500	30000_9356000_1	ActivityExchangeGainItemDes1	1	1	1
+5	5	30000_21070134_30	30000_9356007_1	ActivityExchangeGainItemDes1	1	1	1
+6	6	30000_21070134_50	30000_10145000_1	ActivityExchangeGainItemDes1	1	1	1
+7	7	30000_21070134_15	30000_9488000_1	ActivityExchangeGainItemDes1	1	1	1
+8	8	30000_21070134_25	30000_10000091_1	ActivityExchangeGainItemDes1	1	1	1
+9	9	30000_21070134_15	30000_11092000_1	ActivityExchangeGainItemDes1	1	1	1
+10	10	30000_21070134_15	30000_850008_1	ActivityExchangeGainItemDes1	30	1	
+11	11	30000_21070134_15	30000_850038_1	ActivityExchangeGainItemDes1	30	1	
+12	12	30000_21070134_15	30000_850018_1	ActivityExchangeGainItemDes1	30	1	
+13	13	30000_21070134_15	30000_850028_1	ActivityExchangeGainItemDes1	30	1	
+14	14	30000_21070134_8	30000_810002_1	ActivityExchangeGainItemDes1	60	1	
+15	15	30000_21070134_1	30000_1510003_3	ActivityExchangeGainItemDes1	999	1	
+16	16	30000_21070134_1	30000_13310003_3	ActivityExchangeGainItemDes1	999	1	
+17	17	30000_21070134_1	30000_1480001_12	ActivityExchangeGainItemDes1	999	1	
+]],
+	highend_dress_act391_package = [[id	shopItemType	times	refreshType	iosPayId	androidPayId	payQuota	payItem	payItemShow	getItem	buyLimitTxt	inLimitbuyItem
+1	1	1	1	1	1	1	2	2	2	2	1
+1	0	1	1						30000_21070135_1,30000_840172_1	每日限购:	
+2	2	1	1				10000_1000_30		30000_21070135_1,30000_840172_1	每日限购:	
+3	1	1		3910101	3910001	6			30000_21070135_5,30000_840172_5	活动限购:	
+4	1	2		3910102	3910002	30			30000_21070135_15,30000_840172_15	活动限购:	
+5	1	2		3910103	3910003	68			30000_21070135_25,30000_840172_25	活动限购:	
+6	1	2		3910104	3910004	128			30000_21070135_40,30000_840172_40	活动限购:	
+7	1	2		3910105	3910005	328			30000_21070135_80,30000_840172_80	活动限购:	
+8	1	40		3910106	3910006	648			30000_21070135_150,30000_840172_150	活动限购:	
+]],
+	highend_dress_act391_draw = [[id	item	weight
+1	1	1
+1001	30000_21070134_1	7000
+1002	30000_21070134_2	1500
+1003	30000_21070134_3	1000
+1004	30000_21070134_5	500
+1005	30000_101050_1	1100
+1006	30000_103050_1	1100
+1007	30000_104050_1	1100
+1008	30000_105050_1	1100
+1009	30000_850007_3	800
+1010	30000_850037_3	800
+1011	30000_850017_3	800
+1012	30000_850027_3	800
+1013	30000_850007_4	450
+1014	30000_850037_4	450
+1015	30000_850017_4	450
+1016	30000_850027_4	450
+1017	30000_820002_1	195
+1018	30000_11366001_1	120
+1019	30000_11366003_1	59
+1020	30000_11366000_1	1
+1021	30000_9356001_1	120
+1022	30000_9356003_1	59
+1023	30000_9356000_1	1
+1024	30000_10145000_1	5
+1025	30000_9488000_1	15
+1026	30000_10000091_1	10
+1027	30000_11092000_1	15
+]],
+	highend_dress_act391_change = [[id	itemchange
+1	2
+10145000	10145000_1145000,10145001_1145001,10145003_1145003,10145007_1145007,10145014_1145014,10145030_1145030
+11366000	11366000_2366000,11366001_2366001,11366003_2366003,11366007_2366007,11366014_2366014,11366030_2366030
+9356000	9356000_356000,9356001_356001,9356003_356003,9356007_356007,9356014_356014,9356030_356030
+9488000	9488000_488000,9488001_488001,9488003_488003,9488007_488007,9488014_488014,9488030_488030
+10000091	10000091_200228
+11092000	11092000_248000
+]],
+
+}

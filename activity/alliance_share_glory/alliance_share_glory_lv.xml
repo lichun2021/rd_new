@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1001" level="1" type="1" expNeed="5" isMax="0" rewards="30000_21063076_2,30000_1000005_2,30000_1782123_12,30000_1300037_5" rewardProportion="1000" />
+      <data id="1002" level="2" type="1" expNeed="10" isMax="0" rewards="30000_21063076_4,30000_1000005_4,30000_1782123_18,30000_1300037_10" rewardProportion="2000" />
+      <data id="1003" level="3" type="1" expNeed="20" isMax="0" rewards="30000_21063076_7,30000_1000005_6,30000_1782123_24,30000_1300037_15" rewardProportion="3000" />
+      <data id="1004" level="4" type="1" expNeed="30" isMax="0" rewards="30000_21063076_10,30000_1000005_9,30000_1782123_36,30000_1300037_25" rewardProportion="4000" />
+      <data id="1005" level="5" type="1" expNeed="50" isMax="1" rewards="30000_21063076_12,30000_1000005_15,30000_1782123_60,30000_1300037_40" rewardProportion="5000" />
+      <data id="2001" level="1" type="2" expNeed="500" isMax="0" rewards="30000_21063077_10,30000_1300037_2,30000_1300027_40,30000_21070056_15" rewardProportion="1000" />
+      <data id="2002" level="2" type="2" expNeed="1000" isMax="0" rewards="30000_21063077_20,30000_1300037_5,30000_1300027_120,30000_21070056_45" rewardProportion="2000" />
+      <data id="2003" level="3" type="2" expNeed="2000" isMax="0" rewards="30000_21063077_50,30000_1300037_8,30000_1300027_160,30000_21070056_60" rewardProportion="3000" />
+      <data id="2004" level="4" type="2" expNeed="3000" isMax="0" rewards="30000_21063077_100,30000_1300037_12,30000_1300027_240,30000_21070056_90" rewardProportion="4000" />
+      <data id="2005" level="5" type="2" expNeed="5000" isMax="1" rewards="30000_21063077_150,30000_1300037_18,30000_1300027_360,30000_21070056_135" rewardProportion="5000" />
+</root>

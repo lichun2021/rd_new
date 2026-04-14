@@ -1,0 +1,51 @@
+# 开服时长不足的服务器不参与(单位:秒)
+serverDelay = 604800
+
+# 参战人数
+warMember = 8
+
+# 报名时间
+warTimeHour = 13:00_20:00_21:00_22:00
+
+# 参与匹配最低人数限制
+warMemberMinCnt = 5
+
+# 战场开启时间(单位:秒)
+warOpenTime = 3600
+
+# 结束前多长时间内不能进入副本 单位秒
+limitTimeBoforeEnd = 180
+
+# 玩家主动退出副本,或弹出结算界面之后 多长时间强制回签原服 （时间短点比较好）
+forceMoveBackTime = 10
+
+# 控制匹配模式,配1采用灰度匹配模式,不配或者配0采用正常匹配模式
+isTestMatch = 0
+
+# 匹配修正系数-万分比（胜利）
+matchRateWin = 11000
+
+# 匹配修正系数-万分比（失败）
+matchRateLose = 9000
+
+# 当前匹配机制开关
+tiberiumMatchSwitch = 1
+
+# 每队可使用佣兵玩家数量
+useMercenaryNumber = 3
+
+# 战斗阶段时间
+occupationTime = 3600
+
+# 中心区域开放时间
+centerAreaOpenTime = 360
+
+# 开启前公告时间
+mailBeforeTime = 1800_600_300
+
+# 结束前公告时间
+mailAfterTime = 1800_600_300
+
+# 报名时间
+signUpTime = 172800
+

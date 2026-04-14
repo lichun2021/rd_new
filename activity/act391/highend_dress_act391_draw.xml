@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1001" pool="1" item="30000_21070134_1" weight="7000" />
+      <data id="1002" pool="1" item="30000_21070134_2" weight="1500" />
+      <data id="1003" pool="1" item="30000_21070134_3" weight="1000" />
+      <data id="1004" pool="1" item="30000_21070134_5" weight="500" />
+      <data id="1005" pool="2" item="30000_101050_1" weight="1100" />
+      <data id="1006" pool="2" item="30000_103050_1" weight="1100" />
+      <data id="1007" pool="2" item="30000_104050_1" weight="1100" />
+      <data id="1008" pool="2" item="30000_105050_1" weight="1100" />
+      <data id="1009" pool="2" item="30000_850007_3" weight="800" />
+      <data id="1010" pool="2" item="30000_850037_3" weight="800" />
+      <data id="1011" pool="2" item="30000_850017_3" weight="800" />
+      <data id="1012" pool="2" item="30000_850027_3" weight="800" />
+      <data id="1013" pool="2" item="30000_850007_4" weight="450" />
+      <data id="1014" pool="2" item="30000_850037_4" weight="450" />
+      <data id="1015" pool="2" item="30000_850017_4" weight="450" />
+      <data id="1016" pool="2" item="30000_850027_4" weight="450" />
+      <data id="1017" pool="2" item="30000_820002_1" weight="195" />
+      <data id="1018" pool="2" item="30000_11366001_1" weight="120" />
+      <data id="1019" pool="2" item="30000_11366003_1" weight="59" />
+      <data id="1020" pool="2" item="30000_11366000_1" weight="1" />
+      <data id="1021" pool="2" item="30000_9356001_1" weight="120" />
+      <data id="1022" pool="2" item="30000_9356003_1" weight="59" />
+      <data id="1023" pool="2" item="30000_9356000_1" weight="1" />
+      <data id="1024" pool="2" item="30000_10145000_1" weight="5" />
+      <data id="1025" pool="2" item="30000_9488000_1" weight="15" />
+      <data id="1026" pool="2" item="30000_10000091_1" weight="10" />
+      <data id="1027" pool="2" item="30000_11092000_1" weight="15" />
+</root>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" shopItemType="0" times="1" refreshType="1" getItem="30000_21070132_1,30000_840172_1" />
+      <data id="2" shopItemType="2" times="1" payItem="10000_1000_300" getItem="30000_21070132_3,30000_840172_3" />
+      <data id="3" shopItemType="2" times="1" payItem="10000_1000_680" getItem="30000_21070132_5,30000_840172_5" />
+      <data id="4" shopItemType="2" times="2" payItem="10000_1000_1280" getItem="30000_21070132_8,30000_840172_8" />
+      <data id="5" shopItemType="2" times="2" payItem="10000_1000_3280" getItem="30000_21070132_15,30000_840172_15" />
+      <data id="6" shopItemType="2" times="2" payItem="10000_1000_6480" getItem="30000_21070132_28,30000_840172_28" />
+</root>

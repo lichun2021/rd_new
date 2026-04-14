@@ -1,0 +1,19 @@
+return {
+	prop =
+	{
+		activityId = 379,
+		name = [[暖冬专服]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">暖冬专服，天降鸿福。<br/>每日抽大奖，连抽七日！</font>]],
+		priority = 11210,
+		icon = [[Activity_Icon_379_Nor.png]],
+		selecticon = [[Activity_Icon_379_Sel.png]],
+		urlType = [[]],
+		urlQQ = [[https://hongjing.qq.com/cp/a20251212xyccl/index.html]],
+		urlWX = [[https://hongjing.qq.com/cp/a20251212xyccl/index.html]],
+		guestUrl = [[https://hongjing.qq.com/cp/a20251212xyccl/index.html]],
+		platform = [[]],
+		urlDailyReward = [[]],
+	},
+
+}

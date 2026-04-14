@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="10001" createTreasurePointArea="60" buildPoolId="1001_5000,1002_3000,1003_2000" maxVipLimit="9" maxBaseLimit="35" />
+      <data id="10002" createTreasurePointArea="60" buildPoolId="1004_5000,1005_3000,1006_2000" maxVipLimit="9" maxBaseLimit="999" />
+      <data id="10003" createTreasurePointArea="60" buildPoolId="1004_5000,1005_3000,1006_2000" maxVipLimit="999" maxBaseLimit="35" />
+      <data id="10004" createTreasurePointArea="60" buildPoolId="1004_5000,1005_3000,1006_2000" maxVipLimit="999" maxBaseLimit="999" />
+</root>

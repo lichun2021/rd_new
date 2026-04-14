@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" item="30000_6103001_1" rareItem="1" maxNum="70" weight1="0" weight2="100" weight3="100" />
+      <data id="2" item="30000_21070056_10" weight1="1400" weight2="1400" weight3="0" />
+      <data id="3" item="30000_810001_4" weight1="1800" weight2="1800" weight3="0" />
+      <data id="4" item="30000_3530001_1" rareItem="1" maxNum="26" weight1="0" weight2="200" weight3="200" />
+      <data id="5" item="30000_810001_10" weight1="500" weight2="500" weight3="0" />
+      <data id="6" item="30000_21070056_20" weight1="500" weight2="500" weight3="0" />
+      <data id="7" item="30000_6103101_1" rareItem="1" maxNum="78" weight1="0" weight2="600" weight3="600" />
+      <data id="8" item="30000_21070056_8" weight1="1800" weight2="1800" weight3="0" />
+      <data id="9" item="30000_810001_5" weight1="1400" weight2="1400" weight3="0" />
+      <data id="10" item="30000_21070056_128" rareItem="1" weight1="0" weight2="100" weight3="100" />
+      <data id="11" item="30000_810001_7" weight1="800" weight2="800" weight3="0" />
+      <data id="12" item="30000_21070056_12" weight1="800" weight2="800" weight3="0" />
+</root>

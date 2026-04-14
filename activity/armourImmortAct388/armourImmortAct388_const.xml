@@ -1,0 +1,36 @@
+# 服务器开服延时开启活动时间；单位:秒
+serverDelay = 1728000
+
+# 多倍抽奖最多可抽x次
+multipleDrawLimitValue = 10
+
+# 单次抽奖需要消耗x个奖券
+drawNeedItem = 30000_21070132_1
+
+# 可以点击的格子数量
+gridValue = 12
+
+# 道具【钥匙】数量
+keyValue = 3
+
+# 道具【升级】数量
+levelupValue = 6
+
+# 道具【+1】数量
+addAwardValue = 3
+
+# 活动期间可以抽奖的次数
+maxDrawLimitValue = 999
+
+# 道具【钥匙】类型
+keyType = 1
+
+# 道具【升级】类型
+levelupType = 3
+
+# 道具【+1】数量
+addAwardType = 2
+
+# 游戏初始宝箱ID
+gameStartBox = 1001
+

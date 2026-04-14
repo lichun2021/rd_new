@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" pool="1" reward="30000_1782123_7" maxLimit="999" />
+      <data id="2" pool="1" reward="30000_1300027_130" maxLimit="999" />
+      <data id="3" pool="1" reward="30000_21063005_100" maxLimit="999" />
+      <data id="4" pool="1" reward="30000_802004_50" maxLimit="999" />
+      <data id="5" pool="1" reward="30000_1782103_200" maxLimit="999" />
+      <data id="6" pool="1" reward="30000_800002_150" maxLimit="999" />
+      <data id="7" pool="1" reward="30000_1782106_15" maxLimit="999" />
+      <data id="8" pool="1" reward="30000_800000_40" maxLimit="999" />
+      <data id="9" pool="1" reward="30000_1300017_480" maxLimit="999" />
+      <data id="10" pool="1" reward="30000_840194_600" maxLimit="999" />
+      <data id="11" pool="1" reward="30000_1480001_1200" maxLimit="999" />
+      <data id="12" pool="1" reward="30000_800110_50" maxLimit="999" />
+      <data id="13" pool="2" reward="30000_1300037_120" maxLimit="10" />
+      <data id="14" pool="2" reward="30000_21070056_650" maxLimit="10" />
+      <data id="15" pool="2" reward="30000_21065001_240" maxLimit="10" />
+      <data id="16" pool="2" reward="30000_1782123_170" maxLimit="10" />
+      <data id="17" pool="2" reward="30000_802005_960" maxLimit="10" />
+      <data id="18" pool="2" reward="30000_1000003_150" maxLimit="10" />
+      <data id="19" pool="2" reward="30000_9990032_2050" maxLimit="10" />
+</root>

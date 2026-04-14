@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1101" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="6" />
+      <data id="1102" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="9" />
+      <data id="1201" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="12" />
+      <data id="1202" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="5871" />
+      <data id="1203" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="5878" />
+      <data id="1301" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="11503" />
+      <data id="1302" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="11513" />
+      <data id="1303" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="11522" />
+      <data id="1304" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="11532" />
+      <data id="1401" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1003" combatPower="11761" />
+      <data id="1402" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1003" combatPower="11809" />
+      <data id="1403" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1003" combatPower="11829" />
+      <data id="1404" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1003" combatPower="11907" />
+      <data id="1405" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1003" combatPower="12004" />
+      <data id="1501" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1011" combatPower="12822" />
+      <data id="1502" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1011" combatPower="12880" />
+      <data id="1503" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1011" combatPower="12978" />
+      <data id="1504" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1011" combatPower="13075" />
+      <data id="1505" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1011" combatPower="13366" />
+      <data id="1601" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1015" combatPower="13658" />
+      <data id="1602" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1015" combatPower="13755" />
+      <data id="1603" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1015" combatPower="14338" />
+      <data id="1604" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1015" combatPower="14533" />
+      <data id="1605" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" superSoldier="1015" combatPower="14922" />
+      <data id="1701" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="16416" />
+      <data id="1702" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="17312" />
+      <data id="1703" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="17910" />
+      <data id="1704" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="21285" />
+      <data id="1705" heroList="6100013_5|6100009_5" soldierList="100101_100|100501_100|100301_100" combatPower="24714" />
+</root>

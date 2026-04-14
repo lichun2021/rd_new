@@ -1,0 +1,36 @@
+# 服务器开服延时开启活动时间；单位：秒
+serverDelay = 259200
+
+# 签到系数（默认签到一次增加多少）
+signinfactorQQ = 1
+
+# 签到系数（默认签到一次增加多少）
+signinfactorWX = 1
+
+# 签到注水基数(活动开始直接注入)
+signinAssistBaseQQ = 0
+
+# 签到注水基数(活动开始直接注入)
+signinAssistBaseWX = 0
+
+# 定时注水
+signinAssistIntervalQQ = 0_3600_60_1458,3600_86400_60_181,86400_90000_60_1458,90000_172800_60_181,172800_176400_60_1458,176400_259200_60_181,259200_262800_60_1458,262800_345600_60_181,345600_349200_60_1458,349200_432000_60_181,432000_435600_60_1458,435600_518400_60_181,518400_522000_60_1458,522000_604800_60_225
+
+# 定时注水
+signinAssistIntervalWX = 0_3600_60_1458,3600_86400_60_181,86400_90000_60_1458,90000_172800_60_181,172800_176400_60_1458,176400_259200_60_181,259200_262800_60_1458,262800_345600_60_181,345600_349200_60_1458,349200_432000_60_181,432000_435600_60_1458,435600_518400_60_181,518400_522000_60_1458,522000_604800_60_225
+
+# 数据刷新（秒）
+refreshTime = 30
+
+# 每次签到奖励（固定）
+signRewards = 30000_810001_5,30000_24200049_200
+
+# 每次签到随机奖励
+randomRewards = 2021121
+
+# 默认打开界面推送多少弹幕
+bulletChatCount = 30
+
+# 祈福语库
+blessingWords = @Bless151,@Bless152,@Bless153,@Bless154,@Bless155,@Bless156,@Bless157,@Bless158,@Bless159,@Bless160,@Bless161,@Bless162,@Bless163,@Bless164,@Bless165,@Bless166,@Bless167,@Bless168,@Bless169,@Bless170,@Bless171,@Bless172,@Bless173,@Bless174,@Bless175,@Bless176,@Bless177,@Bless178,@Bless179,@Bless180,@Bless181,@Bless182,@Bless183,@Bless184,@Bless185,@Bless186,@Bless187,@Bless188,@Bless189,@Bless190,@Bless191,@Bless192,@Bless193,@Bless194,@Bless195,@Bless196,@Bless197,@Bless198,@Bless199,@Bless200,@Bless201,@Bless202,@Bless203,@Bless204,@Bless205,@Bless206,@Bless207,@Bless208,@Bless209,@Bless210,@Bless211,@Bless212,@Bless213,@Bless214,@Bless215,@Bless216,@Bless217,@Bless218,@Bless219,@Bless220,@Bless221,@Bless222,@Bless223,@Bless224,@Bless225,@Bless226,@Bless227,@Bless228,@Bless229,@Bless230
+

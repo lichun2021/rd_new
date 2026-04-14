@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" levelFactor="3600" />
+      <data id="2" levelFactor="10800" />
+      <data id="3" levelFactor="21600" />
+      <data id="4" levelFactor="33200" />
+      <data id="5" levelFactor="43200" />
+      <data id="6" levelFactor="53200" />
+      <data id="7" levelFactor="63200" />
+      <data id="8" levelFactor="73200" />
+      <data id="9" levelFactor="83200" />
+      <data id="10" levelFactor="93200" />
+      <data id="11" levelFactor="103200" />
+      <data id="12" levelFactor="113200" />
+      <data id="13" levelFactor="123200" />
+      <data id="14" levelFactor="133200" />
+</root>

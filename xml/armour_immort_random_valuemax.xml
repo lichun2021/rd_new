@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" number="0" controlDown="10" controlUp="77" />
+      <data id="2" number="1" controlDown="33" controlUp="177" />
+      <data id="3" number="2" controlDown="77" controlUp="222" />
+      <data id="4" number="3" controlDown="177" controlUp="333" />
+      <data id="5" number="4" controlDown="188" controlUp="366" />
+</root>

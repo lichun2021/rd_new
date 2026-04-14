@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data level="1" levelUpExp="200" allianceLevelUpExp="0" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1300037_12,30000_1300027_300,30000_810000_188" />
+      <data level="2" levelUpExp="400" allianceLevelUpExp="500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_21070056_130,30000_21070057_200,30000_810000_188" />
+      <data level="3" levelUpExp="600" allianceLevelUpExp="1500" normalReward="30000_1300037_12" allianceReward="30000_6103201_1" advReward="30000_21065001_28,30000_21063005_240,30000_810000_188" />
+      <data level="4" levelUpExp="800" allianceLevelUpExp="3500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1000005_10,30000_820002_8,30000_810000_188" />
+      <data level="5" levelUpExp="1000" allianceLevelUpExp="5500" normalReward="30000_6103201_1" allianceReward="30000_1000005_10" advReward="30000_6103201_1,30000_820002_8,30000_810000_888" />
+      <data level="6" levelUpExp="1220" allianceLevelUpExp="7500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1300037_24,30000_1300027_600,30000_810000_188" />
+      <data level="7" levelUpExp="1440" allianceLevelUpExp="10500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_21070056_260,30000_21070057_400,30000_810000_188" />
+      <data level="8" levelUpExp="1660" allianceLevelUpExp="13500" normalReward="30000_1300037_24" allianceReward="30000_6103201_1" advReward="30000_21065001_56,30000_21063005_480,30000_810000_188" />
+      <data level="9" levelUpExp="1880" allianceLevelUpExp="17500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1000005_10,30000_820002_8,30000_810000_188" />
+      <data level="10" levelUpExp="2100" allianceLevelUpExp="21500" normalReward="30000_6103201_1" allianceReward="30000_1000005_10" advReward="30000_6103201_1,30000_820002_8,30000_810000_888" />
+      <data level="11" levelUpExp="2340" allianceLevelUpExp="27500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1300037_36,30000_1300027_900,30000_810000_188" />
+      <data level="12" levelUpExp="2580" allianceLevelUpExp="33500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_21070056_390,30000_21070057_600,30000_810000_188" />
+      <data level="13" levelUpExp="2820" allianceLevelUpExp="41500" normalReward="30000_1300037_36" allianceReward="30000_6103201_1" advReward="30000_21065001_84,30000_21063005_720,30000_810000_188" />
+      <data level="14" levelUpExp="3060" allianceLevelUpExp="49500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1000005_10,30000_820002_8,30000_810000_188" />
+      <data level="15" levelUpExp="3300" allianceLevelUpExp="57500" normalReward="30000_6103201_1" allianceReward="30000_1000005_10" advReward="30000_6103201_1,30000_820002_8,30000_810000_888" />
+      <data level="16" levelUpExp="3560" allianceLevelUpExp="67500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1300037_48,30000_1300027_1200,30000_810000_188" />
+      <data level="17" levelUpExp="3820" allianceLevelUpExp="77500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_21070056_520,30000_21070057_800,30000_810000_188" />
+      <data level="18" levelUpExp="4080" allianceLevelUpExp="87500" normalReward="30000_1300037_48" allianceReward="30000_6103201_1" advReward="30000_21065001_112,30000_21063005_960,30000_810000_188" />
+      <data level="19" levelUpExp="4340" allianceLevelUpExp="97500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1000005_10,30000_820002_8,30000_810000_188" />
+      <data level="20" levelUpExp="4600" allianceLevelUpExp="107500" normalReward="30000_6103201_1" allianceReward="30000_1000005_10" advReward="30000_6103201_1,30000_820002_8,30000_810000_888" />
+      <data level="21" levelUpExp="4880" allianceLevelUpExp="117500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1300037_60,30000_1300027_1500,30000_810000_188" />
+      <data level="22" levelUpExp="5160" allianceLevelUpExp="127500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_21070056_650,30000_21070057_1000,30000_810000_188" />
+      <data level="23" levelUpExp="5440" allianceLevelUpExp="137500" normalReward="30000_1300037_60" allianceReward="30000_6103201_1" advReward="30000_21065001_140,30000_21063005_1200,30000_810000_188" />
+      <data level="24" levelUpExp="5720" allianceLevelUpExp="147500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1000005_10,30000_820002_8,30000_810000_188" />
+      <data level="25" levelUpExp="6000" allianceLevelUpExp="157500" normalReward="30000_6103201_1" allianceReward="30000_1000005_10" advReward="30000_6103201_1,30000_820002_8,30000_810000_888" />
+      <data level="26" levelUpExp="6300" allianceLevelUpExp="167500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1300037_72,30000_1300027_1800,30000_810000_888" />
+      <data level="27" levelUpExp="6600" allianceLevelUpExp="177500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_21070056_780,30000_21070057_1200,30000_810000_888" />
+      <data level="28" levelUpExp="6900" allianceLevelUpExp="197500" normalReward="30000_1300037_72" allianceReward="30000_6103201_2" advReward="30000_21065001_168,30000_21063005_1440,30000_810000_888" />
+      <data level="29" levelUpExp="7200" allianceLevelUpExp="217500" normalReward="30000_810000_188" allianceReward="30000_810000_188" advReward="30000_1000005_20,30000_820002_18,30000_810000_888" />
+      <data level="30" levelUpExp="7500" allianceLevelUpExp="237500" normalReward="30000_6103201_2" allianceReward="30000_1000005_20" advReward="30000_6103201_2,30000_820002_18,30000_810000_1888" />
+</root>

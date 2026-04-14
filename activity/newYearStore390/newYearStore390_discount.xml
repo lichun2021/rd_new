@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" discountTriggerValue="10000_1000_1000" discountReduceValue="10000_1000_150" />
+      <data id="2" discountTriggerValue="10000_1000_1800" discountReduceValue="10000_1000_300" />
+      <data id="3" discountTriggerValue="10000_1000_3000" discountReduceValue="10000_1000_600" />
+      <data id="4" discountTriggerValue="10000_1000_5000" discountReduceValue="10000_1000_1200" />
+      <data id="5" discountTriggerValue="10000_1000_10000" discountReduceValue="10000_1000_3000" maxGear="1" />
+</root>

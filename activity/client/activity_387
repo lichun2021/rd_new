@@ -1,0 +1,24 @@
+return {
+	prop =
+	{
+		activityId = 387,
+		name = [[梦幻建设]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1. 指挥官达到活动界面的指定条件即可领取对应奖励。<br/>2. 请您点击<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">领取按钮</font>领取奖励。<br/>3. 返回活动页面可查看奖励详情。<br/>4. 若您于活动期间未领取奖励，将视为<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">自动放弃</font>奖励。<br/></font>]],
+		priority = 10040,
+		icon = [[Activity_Icon_387_Nor.png]],
+		selecticon = [[Activity_Icon_387_Sel.png]],
+		bigIcon = [[Activity_BattlefieldWelfare_u_Rendered.png]],
+		currentBuilding = 1033,
+	},
+	dreamyConstruction387_achieve = [[achieveId	conditionType	conditionValue	configValue	refreshType	gotoType	gotoValue	rewards	title
+1	1	2	1	1	1	2	2	2
+3870001	140900	1	1	1	-1		30000_810000_10,30000_850008_10,30000_850038_10,30000_850018_10,30000_850028_10	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">每日登录1次</font>
+3870002	38703	1	1	2	2050		30000_21070105_1,30000_850008_10,30000_850038_10,30000_850018_10,30000_850028_10	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">分享自己的梦幻岛<font color="#ffeb00" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">{0}</font>次</font>
+3870003	38701	1001_2	2	2	2050		30000_810000_10,30000_850008_20,30000_850038_20,30000_850018_20,30000_850028_20	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">领取集会所天空徽章<font color="#ffeb00" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">{1}</font>次</font>
+3870004	38701	1001_5	5	2	2050		30000_810000_20,30000_850008_30,30000_850038_30,30000_850018_30,30000_850028_30	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">领取集会所天空徽章<font color="#ffeb00" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">{1}</font>次</font>
+3870005	38701	1001_10	10	2	2050		30000_810000_30,30000_850008_40,30000_850038_40,30000_850018_40,30000_850028_40	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">领取集会所天空徽章<font color="#ffeb00" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">{1}</font>次</font>
+3870006	38702	1033_1	1	2	2050		30000_11102000_1,30000_850008_50,30000_850038_50,30000_850018_50,30000_850028_50	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">{0}达到<font color="#ffeb00" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">{1}</font>级</font>
+]],
+
+}

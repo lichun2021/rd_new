@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" shopItemType="2" times="6" refreshType="1" payItem="10000_1000_500" getItem="30000_21070125_1,30000_840172_1" />
+      <data id="2" shopItemType="1" times="1" iosPayId="3840101" androidPayID="3840001" payQuota="198" getItem="30000_21070124_1,30000_840172_1" />
+      <data id="3" shopItemType="1" times="4" refreshType="1" iosPayId="3840102" androidPayID="3840002" payQuota="328" getItem="30000_21070124_1,30000_840172_1" />
+</root>

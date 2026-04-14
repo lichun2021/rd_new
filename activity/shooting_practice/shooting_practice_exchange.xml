@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1001" needItem="30000_21070034_37" gainItem="30000_21070056_1" times="160" />
+      <data id="1002" needItem="30000_21070034_100" gainItem="30000_21065001_1" times="60" />
+      <data id="1003" needItem="30000_21070034_24" gainItem="30000_9990051_1" times="125" />
+      <data id="1004" needItem="30000_21070034_120" gainItem="30000_9990052_1" times="25" />
+      <data id="1005" needItem="30000_21070034_12" gainItem="30000_9990041_1" times="250" />
+      <data id="1006" needItem="30000_21070034_60" gainItem="30000_9990042_1" times="50" />
+      <data id="1007" needItem="30000_21070034_1100" gainItem="30000_1000005_1" times="6" />
+      <data id="1008" needItem="30000_21070034_85" gainItem="30000_1000003_1" times="70" />
+      <data id="1009" needItem="30000_21070034_85" gainItem="30000_1300027_16" times="65" />
+      <data id="1010" needItem="30000_21070034_70" gainItem="30000_802005_4" times="80" />
+      <data id="1011" needItem="30000_21070034_12" gainItem="30000_21063005_2" times="500" />
+      <data id="1012" needItem="30000_21070034_10" gainItem="30000_1782103_4" times="600" />
+      <data id="1013" needItem="30000_21070034_10" gainItem="30000_802004_1" times="600" />
+      <data id="1014" needItem="30000_21070034_10" gainItem="30000_800002_3" times="600" />
+      <data id="1015" needItem="30000_21070034_34" gainItem="30000_1782106_1" times="180" />
+      <data id="1016" needItem="30000_21070034_6" gainItem="30000_1300017_6" times="1000" />
+      <data id="1017" needItem="30000_21070034_5" gainItem="30000_1480001_12" times="1200" />
+      <data id="1018" needItem="30000_21070034_5" gainItem="30000_840194_6" times="1200" />
+      <data id="1019" needItem="30000_21070034_11" gainItem="30000_800000_1" times="600" />
+      <data id="1020" needItem="30000_21070034_60" gainItem="30000_810001_1" times="100" />
+      <data id="1021" needItem="30000_21070034_10" gainItem="30000_1780035_1" times="9999" />
+</root>

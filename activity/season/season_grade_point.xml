@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="201" zone="100" range="1" point="5000" match="5" />
+      <data id="202" zone="100" range="2" point="4700" match="5" />
+      <data id="203" zone="100" range="3_4" point="4400" match="5" />
+      <data id="204" zone="100" range="5_8" point="4200" match="5" />
+      <data id="205" zone="100" range="9_16" point="4000" match="5" />
+      <data id="206" zone="100" range="17_32" point="3800" match="5" />
+      <data id="207" zone="100" range="33_64" point="3600" match="5" />
+      <data id="208" zone="100" range="65_128" point="3400" match="5" />
+      <data id="209" zone="100" range="129_129" point="3200" match="5" />
+      <data id="210" zone="100" range="130_130" point="3000" match="5" />
+      <data id="211" zone="100" range="131_132" point="2800" match="5" />
+      <data id="212" zone="100" range="133_136" point="2600" match="5" />
+      <data id="213" zone="100" range="137_144" point="2450" match="5" />
+      <data id="214" zone="100" range="145_160" point="2300" match="5" />
+      <data id="215" zone="100" range="161_192" point="2150" match="5" />
+      <data id="216" zone="100" range="193_256" point="2000" match="5" />
+      <data id="217" zone="200" range="1" point="1800" match="5" />
+      <data id="218" zone="200" range="2" point="1700" match="5" />
+      <data id="219" zone="200" range="3_4" point="1650" match="5" />
+      <data id="220" zone="200" range="5_8" point="1600" match="5" />
+      <data id="221" zone="200" range="9_16" point="1550" match="5" />
+      <data id="222" zone="200" range="17_32" point="1500" match="5" />
+      <data id="223" zone="200" range="33_64" point="1450" match="5" />
+      <data id="224" zone="200" range="65_128" point="1400" match="5" />
+      <data id="225" zone="200" range="129_129" point="1350" match="5" />
+      <data id="226" zone="200" range="130_130" point="1300" match="5" />
+      <data id="227" zone="200" range="131_132" point="1250" match="5" />
+      <data id="228" zone="200" range="133_136" point="1200" match="5" />
+      <data id="229" zone="200" range="137_144" point="1150" match="5" />
+      <data id="230" zone="200" range="145_160" point="1100" match="5" />
+      <data id="231" zone="200" range="161_192" point="1050" match="5" />
+      <data id="232" zone="200" range="193_256" point="1000" match="5" />
+      <data id="233" zone="300" range="1" point="900" match="5" />
+      <data id="234" zone="300" range="2" point="850" match="5" />
+      <data id="235" zone="300" range="3_4" point="825" match="5" />
+      <data id="236" zone="300" range="5_8" point="800" match="5" />
+      <data id="237" zone="300" range="9_16" point="775" match="5" />
+      <data id="238" zone="300" range="17_32" point="750" match="5" />
+      <data id="239" zone="300" range="33_64" point="725" match="5" />
+      <data id="240" zone="300" range="65_128" point="700" match="5" />
+      <data id="241" zone="300" range="129_129" point="675" match="5" />
+      <data id="242" zone="300" range="130_130" point="650" match="5" />
+      <data id="243" zone="300" range="131_132" point="625" match="5" />
+      <data id="244" zone="300" range="133_136" point="600" match="5" />
+      <data id="245" zone="300" range="137_144" point="575" match="5" />
+      <data id="246" zone="300" range="145_160" point="550" match="5" />
+      <data id="247" zone="300" range="161_192" point="525" match="5" />
+      <data id="248" zone="300" range="193_256" point="500" match="5" />
+      <data id="249" range="0" point="0" match="5" />
+      <data id="801" range="1" point="4800" match="9" />
+      <data id="802" range="2" point="4600" match="9" />
+      <data id="803" range="3_8" point="4400" match="9" />
+      <data id="804" range="9_32" point="4000" match="9" />
+      <data id="805" range="33_9999" point="1000" match="9" />
+      <data id="806" range="0" point="0" match="9" />
+</root>

@@ -1,0 +1,36 @@
+# 服务器开服延时开启活动时间；单位：秒
+serverDelay = 2592000
+
+# 寻宝时间段
+activityFindTime = 10:00-14:00,18:00-22:00
+
+# 碎片道具组
+mapchipItems = 30000_21070126_1,30000_21070127_1,30000_21070128_1,30000_21070129_1,30000_21070130_1
+
+# 活动期间寻宝次数
+findTimesLimit = 9
+
+# 活动期间可领取军事宝库奖励次数
+getArmoryTreasuryAwardTimesLimit = 6
+
+# 帮助获奖次数(送别人拿奖励)
+helpAwardTimesLimit = 5
+
+# 限制每日帮助次数(送别人)
+helpTimesLimit = 5
+
+# 限制每日求助次数(发起求助)
+getAwardTimesLimit = 5
+
+# 寻宝行军速度比例-以打野的速度为准
+findAwardBuildSpeed = 1
+
+# 能量塔行军速度比例-以打野的速度为准
+findPylonBuildSpeed = 30
+
+# 帮助奖励
+helpAward = 30000_810000_50
+
+# 求助cd：秒
+helpCD = 180
+

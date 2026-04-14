@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1001" pool="1" reward="30000_21065001_10" weight="1600" />
+      <data id="1002" pool="1" reward="30000_1782123_10" weight="2400" />
+      <data id="1003" pool="1" reward="30000_21063005_100" weight="2400" />
+      <data id="1004" pool="1" reward="30000_810001_15" weight="1800" />
+      <data id="1005" pool="1" reward="30000_1780050_10" weight="1800" />
+      <data id="1006" pool="2" reward="30000_21065001_20" weight="1600" />
+      <data id="1007" pool="2" reward="30000_1782123_20" weight="2400" />
+      <data id="1008" pool="2" reward="30000_21063005_200" weight="2400" />
+      <data id="1009" pool="2" reward="30000_810001_30" weight="1800" />
+      <data id="1010" pool="2" reward="30000_1780050_20" weight="1800" />
+      <data id="1011" pool="3" reward="30000_1300037_20" weight="2200" />
+      <data id="1012" pool="3" reward="30000_21070056_100" weight="2200" />
+      <data id="1013" pool="3" reward="30000_1300027_400" weight="2200" />
+      <data id="1014" pool="3" reward="30000_810001_60" weight="3400" />
+      <data id="1017" pool="4" reward="30000_1300037_50" weight="2200" />
+      <data id="1018" pool="4" reward="30000_21070056_300" weight="2200" />
+      <data id="1019" pool="4" reward="30000_1300027_1200" weight="2200" />
+      <data id="1020" pool="4" reward="30000_810001_120" weight="3400" />
+</root>

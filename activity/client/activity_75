@@ -1,0 +1,57 @@
+return {
+	prop =
+	{
+		activityId = 75,
+		name = [[幸运星]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1. 指挥官在活动界面可购买礼包，礼包内有超值道具和抽奖次数。<br/>2. 获得抽奖次数后可在下方抽奖区域消耗抽奖次数进行抽奖。<br/>3. 累计抽奖次数满足条件后，可获得进度奖励<br/>4. 礼包为直购礼包，购买消耗的金额不计入首充、累充等活动中。<br/>5. 活动期间，礼包每日重置。</font><br/><br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">概率公示：<br/></font><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">1. 荣耀通用碎片数量50概率0.5%。</font><br/><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">2. 100金币数量3概率22.5%。</font><br/><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">3. 100金币数量108概率0.5%。</font><br/><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">4. 泰能辉金数量18概率22.5%。</font><br/><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">5. 泰能辉金数量888概率0.5%。</font><br/><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">6.核心推演原型数量38概率22.5%。</font><br/><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">7. 核心推演原型数量2088概率0.5%。</font><br/><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">8. 炽耀勋章数量8概率25%。</font><br/><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">9. 炽耀勋章数量58概率5%。</font><br/><font color="#adb0c0" face = "Microsoft YaHei" fontsize ="18">10. 炽耀勋章数量388概率0.5%。</font>]],
+		priority = 20220,
+		icon = [[Activity_Icon_75_Nor.png]],
+		selecticon = [[Activity_Icon_75_Sel.png]],
+		bigIcon = [[Activity_u_Banner_Render_01.png]],
+		typeName = [[]],
+		lotteryCnt = 10,
+		rewardId = 1,
+		cost = [[30000_9990005_1]],
+	},
+	lucky_star_package = [[payGiftId	platform	showRMB
+2	1	1
+250001	2	38800
+250002	2	58800
+250003	2	68800
+250004	2	88800
+250005	2	168800
+260001	1	38800
+260002	1	58800
+260003	1	68800
+260004	1	88800
+260005	1	168800
+]],
+	lucky_star_lottery = [[id	rewards	singleWeight
+1	2	1
+1	30000_1000005_50	50
+2	30000_850048_3	2250
+3	30000_850048_108	50
+4	30000_21065001_18	2250
+5	30000_21065001_888	50
+6	30000_21070056_38	2250
+7	30000_21070056_2088	50
+8	30000_1300037_8	2500
+9	30000_1300037_58	500
+10	30000_1300037_388	50
+]],
+	lucky_star_gift = [[id	award
+1	2
+1	30000_9990005_1,10000_1001_10,30000_850051_1,30000_810001_2,30000_1780045_2
+]],
+	lucky_star_progress_reward = [[achieveId	conditionType	conditionValue	rewards	color
+1	1	1	2	1
+751001	170208	10	30000_1000005_6,30000_21063076_3,30000_1300037_4,30000_21070056_18,30000_100050_5	1
+751002	170208	20	30000_1000005_9,30000_21063076_6,30000_1300037_8,30000_21070056_36,30000_100050_10	2
+751003	170208	30	30000_1000005_14,30000_21063076_9,30000_1300037_12,30000_21070056_54,30000_100050_15	3
+751004	170208	40	30000_1000005_19,30000_21063076_12,30000_1300037_16,30000_21070056_72,30000_100050_20	4
+751005	170208	50	30000_1000005_24,30000_21063076_15,30000_1300037_20,30000_21070056_90,30000_100050_25	5
+751006	170208	60	30000_1000005_33,30000_21063076_18,30000_1300037_24,30000_21070056_108,30000_100050_30	5
+]],
+
+}

@@ -1,0 +1,21 @@
+return {
+	prop =
+	{
+		activityId = 136,
+		name = [[周年账号鉴定]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">七年之旅，感恩有你。参与活动鉴定您的账号价值，红警OL与您共赴美好未来。</font>]],
+		priority = 11281,
+		icon = [[Activity_Icon_136_Nor.png]],
+		selecticon = [[Activity_Icon_136_Sel.png]],
+		urlType = [[]],
+		urlQQ = [[https://hongjing.qq.com/cp/a20250915zhjddb/index.html]],
+		urlWX = [[https://hongjing.qq.com/cp/a20250915zhjddb/index.html]],
+		guestUrl = [[https://hongjing.qq.com/cp/a20250915zhjddb/index.html]],
+		platform = [[]],
+		shareImg = [[V5Activity_136_Share_URL.jpg]],
+		shareCCBName = [[RAActivity136NodeShareV5.ccbi]],
+		urlDailyReward = [[]],
+	},
+
+}

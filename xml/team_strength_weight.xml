@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" type="10" rankUpper="1" rankLower="20" weightValue="10000" />
+      <data id="2" type="10" rankUpper="21" rankLower="999999" weightValue="0" />
+      <data id="3" type="20" rankUpper="1" rankLower="50" weightValue="10000" />
+      <data id="4" type="20" rankUpper="51" rankLower="999999" weightValue="0" />
+      <data id="5" type="30" rankUpper="1" rankLower="100" weightValue="10000" />
+      <data id="6" type="30" rankUpper="101" rankLower="999999" weightValue="0" />
+      <data id="7" type="40" rankUpper="1" rankLower="100" weightValue="10000" />
+      <data id="8" type="40" rankUpper="101" rankLower="999999" weightValue="0" />
+      <data id="9" type="50" rankUpper="1" rankLower="40" weightValue="10000" />
+      <data id="10" type="50" rankUpper="41" rankLower="999999" weightValue="0" />
+</root>

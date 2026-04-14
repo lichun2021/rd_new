@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" chargingLabel="1" effectid="2111" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="1" soldierType="1" />
+      <data id="2" chargingLabel="2" effectid="2112" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="2" soldierType="1" />
+      <data id="3" chargingLabel="3" effectid="2113" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="3" soldierType="1" />
+      <data id="4" chargingLabel="4" effectid="2114" effectValueStep="1" effectValueMax="400" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="4" soldierType="1" />
+      <data id="5" chargingLabel="5" effectid="2121" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="1" soldierType="2" />
+      <data id="6" chargingLabel="6" effectid="2122" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="2" soldierType="2" />
+      <data id="7" chargingLabel="7" effectid="2123" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="3" soldierType="2" />
+      <data id="8" chargingLabel="8" effectid="2124" effectValueStep="1" effectValueMax="400" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="4" soldierType="2" />
+      <data id="9" chargingLabel="9" effectid="2131" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="1" soldierType="3" />
+      <data id="10" chargingLabel="10" effectid="2132" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="2" soldierType="3" />
+      <data id="11" chargingLabel="11" effectid="2133" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="3" soldierType="3" />
+      <data id="12" chargingLabel="12" effectid="2134" effectValueStep="1" effectValueMax="400" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="4" soldierType="3" />
+      <data id="13" chargingLabel="13" effectid="2141" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="1" soldierType="4" />
+      <data id="14" chargingLabel="14" effectid="2142" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="2" soldierType="4" />
+      <data id="15" chargingLabel="15" effectid="2143" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="3" soldierType="4" />
+      <data id="16" chargingLabel="16" effectid="2144" effectValueStep="1" effectValueMax="400" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="4" soldierType="4" />
+      <data id="17" chargingLabel="17" effectid="2151" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="1" soldierType="5" />
+      <data id="18" chargingLabel="18" effectid="2152" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="2" soldierType="5" />
+      <data id="19" chargingLabel="19" effectid="2153" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="3" soldierType="5" />
+      <data id="20" chargingLabel="20" effectid="2154" effectValueStep="1" effectValueMax="400" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="4" soldierType="5" />
+      <data id="21" chargingLabel="21" effectid="2161" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="1" soldierType="6" />
+      <data id="22" chargingLabel="22" effectid="2162" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="2" soldierType="6" />
+      <data id="23" chargingLabel="23" effectid="2163" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="3" soldierType="6" />
+      <data id="24" chargingLabel="24" effectid="2164" effectValueStep="1" effectValueMax="400" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="4" soldierType="6" />
+      <data id="25" chargingLabel="25" effectid="2171" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="1" soldierType="7" />
+      <data id="26" chargingLabel="26" effectid="2172" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="2" soldierType="7" />
+      <data id="27" chargingLabel="27" effectid="2173" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="3" soldierType="7" />
+      <data id="28" chargingLabel="28" effectid="2174" effectValueStep="1" effectValueMax="400" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="4" soldierType="7" />
+      <data id="29" chargingLabel="29" effectid="2181" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="1" soldierType="8" />
+      <data id="30" chargingLabel="30" effectid="2182" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="2" soldierType="8" />
+      <data id="31" chargingLabel="31" effectid="2183" effectValueStep="1" effectValueMax="600" upgradeweight="100" randomweight="200" maxPower="3000" effectGroup="3" soldierType="8" />
+      <data id="32" chargingLabel="32" effectid="2184" effectValueStep="1" effectValueMax="400" upgradeweight="100" randomweight="100" maxPower="3000" effectGroup="4" soldierType="8" />
+      <data id="33" chargingLabel="33" effectid="2301" effectValueStep="1" effectValueMax="100" upgradeweight="50" randomweight="50" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+      <data id="34" chargingLabel="34" effectid="2303" effectValueStep="1" effectValueMax="100" upgradeweight="50" randomweight="50" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+      <data id="35" chargingLabel="35" effectid="2101" effectValueStep="1" effectValueMax="400" upgradeweight="800" randomweight="100" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+      <data id="36" chargingLabel="36" effectid="2102" effectValueStep="1" effectValueMax="400" upgradeweight="800" randomweight="200" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+      <data id="37" chargingLabel="37" effectid="2103" effectValueStep="1" effectValueMax="400" upgradeweight="800" randomweight="200" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+      <data id="38" chargingLabel="38" effectid="2104" effectValueStep="1" effectValueMax="250" upgradeweight="800" randomweight="100" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+      <data id="39" chargingLabel="39" effectid="2105" effectValueStep="10" effectValueMax="500" upgradeweight="800" randomweight="200" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+      <data id="40" chargingLabel="40" effectid="2106" effectValueStep="10" effectValueMax="500" upgradeweight="800" randomweight="200" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+      <data id="41" chargingLabel="41" effectid="2107" effectValueStep="10" effectValueMax="1000" upgradeweight="800" randomweight="200" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+      <data id="42" chargingLabel="42" effectid="2108" effectValueStep="10" effectValueMax="1000" upgradeweight="800" randomweight="200" maxPower="3000" effectGroup="0" soldierType="1_2_3_4_5_6_7_8" />
+</root>

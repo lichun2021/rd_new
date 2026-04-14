@@ -1,0 +1,69 @@
+# 解锁等级
+baseLimit = 36
+
+# 地图大小
+mapRange = 30,30
+
+# 通用货币ID
+currencyId = 30000_6000001_1
+
+# 主建筑type
+mainBuildtype = 1001
+
+# 【废弃】抽卡奖池awardId
+awardId = 6000001
+
+# 【废弃】单抽消耗
+cost1 = 30000_6000001_100
+
+# 【废弃】十抽消耗
+cost2 = 30000_6000001_1000
+
+# 【废弃】每日免费次数
+shopFreeTimes = 5
+
+# 【废弃】免费抽取cd（秒）
+shopFreeCd = 7200
+
+# 每日最大抽取次数
+shopMaxTimes = 99999
+
+# 每日最大点赞次数
+thumbsUpMaxTimes = 100
+
+# 【废弃】抽奖，特殊奖池
+gacha_pool_super = 5
+
+# 【废弃】抽奖，特殊奖池保底，中奖概率 = (n/m)^k，其中n为连续未中奖次数，m和k的值（万分数）
+gacha_k = 40000
+
+# 【废弃】抽奖，特殊奖池保底，中奖概率 = (n/m)^k，其中n为连续未中奖次数，m和k的值（万分数）
+gacha_m = 300000
+
+# 【废弃】抽奖，普通奖池（未中奖时，使用的奖池）
+gacha_pool_normal = 2_3_4
+
+# 【废弃】抽奖，第N次花费资源数量=step*N
+gacha_cost_step = 50
+
+# 【废弃】抽奖，每次花费资源数量不会超过max
+gacha_cost_max = 10000
+
+# 系统解锁时赠送通用货币数量
+send_currency = 30000_6000001_1000,30000_6100101_1
+
+# 分享cd
+shareCdTime = 300
+
+# 主界面提示收取的间隔
+collectRecruitPushCd = 14400
+
+# 刷新出随机事件的概率（万分比）
+issueRate = 5000
+
+# 刷新随机事件的时间（HH_MM_SS)
+issueTime = 9
+
+# 随机事件每天领奖次数
+issueNum = 2
+

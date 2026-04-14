@@ -1,0 +1,38 @@
+return {
+	prop =
+	{
+		activityId = 114,
+		name = [[凯旋先驱]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1.活动期间，限时出售<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">凯旋先驱宝箱</font>。<br/>2.宝箱必得<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">凯旋之心</font>，甚至有机会直接获得装扮<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">凯旋先驱</font>。<br/>3.新程之心可用于兑换<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">凯旋先驱系列装扮</font>、以及其他发展所需的资源和道具。<br/><br/>凯旋先驱宝箱概率公示：<br/>必得凯旋之心<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">凯旋之心</font>×1，概率40%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">凯旋之心</font>×2，概率30%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">凯旋之心</font>×3，概率20%<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">凯旋之心</font>×5，概率10%<br/><br/>其他随机奖励<br/><font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">凯旋先驱-永久</font>×1，概率0.01%<br/>凯旋先驱-3天×1，概率0.29%<br/>凯旋先驱-1天×1，概率0.7%<br/>行军时间减少50%×1，概率3%<br/>500,000  矿石×4，概率5%<br/>500,000  石油×4，概率5%<br/>80,000  合金×4，概率5%<br/>20,000  稀土×4，概率5%<br/>500,000  矿石×3，概率8%<br/>500,000  石油×3，概率8%<br/>80,000  合金×3，概率8%<br/>20,000  稀土×3，概率8%<br/>城建加速2小时×1，概率11%<br/>科技研究加速2小时×1，概率11%<br/>部队训练加速2小时×1，概率11%<br/>医疗加速2小时×1，概率11%</font>]],
+		priority = 10015,
+		icon = [[Activity_Icon_114_Nor.png]],
+		selecticon = [[Activity_Icon_114_Sel.png]],
+		bigIcon = [[]],
+		mandatoryRewards = [[30000_1150299_1]],
+		randomRewards = [[30000_11370001_1,30000_11370003_1,30000_11370000_1,30000_820002_1]],
+		showDressing = 2370,
+		showEffect = 1162,
+	},
+	universal_exchange = [[id	priority	needItem	gainItem	des	times	exchangeTips	mainShow
+1	1	2	2	2	1	1	1
+1	1	30000_1150299_1200	30000_11370000_1	ActivityExchangeGainItemDes1	1	1	1
+2	2	30000_1150299_1	30000_1150098_1	ActivityExchangeGainItemDes1	1	1	
+3	3	30000_1150299_68	30000_11370007_1	ActivityExchangeGainItemDes1	1	1	
+4	4	30000_1150299_34	30000_11370003_1	ActivityExchangeGainItemDes1	1	1	
+5	5	30000_1150299_5	30000_9491000_1	ActivityExchangeGainItemDes1	1	1	
+6	6	30000_1150299_15	30000_850008_1	ActivityExchangeGainItemDes1	30		
+7	7	30000_1150299_15	30000_850038_1	ActivityExchangeGainItemDes1	30		
+8	8	30000_1150299_15	30000_850018_1	ActivityExchangeGainItemDes1	30		
+9	9	30000_1150299_15	30000_850028_1	ActivityExchangeGainItemDes1	30		
+10	10	30000_1150299_8	30000_810002_1	ActivityExchangeGainItemDes1	60		
+11	11	30000_1150299_1	30000_1510003_3	ActivityExchangeGainItemDes1	999		
+12	12	30000_1150299_1	30000_13310003_3	ActivityExchangeGainItemDes1	999		
+13	13	30000_1150299_1	30000_1480001_12	ActivityExchangeGainItemDes1	999		
+]],
+	universal_package = [[id	itemId	awardId	price	limit
+1	1	1	2	1
+100001	1150299	4950167	10000_1000_68	999
+]],
+
+}

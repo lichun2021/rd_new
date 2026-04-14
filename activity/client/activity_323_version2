@@ -1,0 +1,27 @@
+return {
+	prop =
+	{
+		activityId = 323,
+		name = [[新服启航]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1. 活动持续20天，每个阶段会有不同的状态加成<br/>2. 每个阶段开启后，可领取一份奖励，阶段结束且奖励没有领取则不会进行补发</font>]],
+		priority = 40000,
+		icon = [[Activity_Icon_323_Nor.png]],
+		selecticon = [[Activity_Icon_323_Sel.png]],
+		bigIcon = [[Activity_BattlefieldWelfare_u_Rendered.png]],
+	},
+	bonusr_reward = [[id	service	day	icon	iconTab	tips	tips2	buffId	reward
+1	1	2	2	2	2	2	2	2
+1	0	1-4	V5Activity_323_Icon_01.png	V5Activity_323_Icon_Tab_01	@Act323_Day1	@Act323_new_day1tips1	323119	30000_850009_2,30000_850039_2,30000_850019_2,30000_850029_2,30000_810003_90
+2	0	5-7	V5Activity_323_Icon_02.png,V5Activity_323_Icon_05.png	V5Activity_323_Icon_Tab_02	@Act323_Day3,@Act323_Day2	@Act323_new_day2tips1,@Act323_new_day2tips2	323120,323121	30000_850009_2,30000_850039_2,30000_850019_2,30000_850029_2,30000_810008_90
+3	0	8-11	V5Activity_323_Icon_03.png,V5Activity_323_Icon_04.png	V5Activity_323_Icon_Tab_03	@Act323_Day5,@Act323_Day4	@Act323_new_day3tips1,@Act323_new_day3tips2	323122,323123	30000_850009_2,30000_850039_2,30000_850019_2,30000_850029_2,30000_810010_90
+4	0	12-15	V5Activity_323_Icon_01.png,V5Activity_323_Icon_06.png	V5Activity_323_Icon_Tab_06	@Act323_Day1,@Act323_Day4_new	@Act323_new_day4tips1,@Act323_new_day4tips2	323124,323125	30000_850009_2,30000_850039_2,30000_850019_2,30000_850029_2,30000_810012_90
+5	0	16-20	V5Activity_323_Icon_01.png,V5Activity_323_Icon_02.png,V5Activity_323_Icon_03.png	V5Activity_323_Icon_Tab_01	@Act323_Day1,@Act323_Day3,@Act323_Day5	@Act323_new_day5tips1,@Act323_new_day5tips2,@Act323_new_day5tips3	323126,323127,323128	30000_850009_2,30000_850039_2,30000_850019_2,30000_850029_2,30000_810000_90
+6	1	1-4	V5Activity_323_Icon_01.png	V5Activity_323_Icon_Tab_01	@Act323_Day1	@Act323_new_day1tips1-1	323129	30000_850009_5,30000_850039_5,30000_850019_5,30000_850029_5,30000_810003_120
+7	1	5-7	V5Activity_323_Icon_02.png,V5Activity_323_Icon_05.png	V5Activity_323_Icon_Tab_02	@Act323_Day3,@Act323_Day2	@Act323_new_day2tips1-1,@Act323_new_day2tips2-1	323130,323131	30000_850009_5,30000_850039_5,30000_850019_5,30000_850029_5,30000_810008_120
+8	1	8-11	V5Activity_323_Icon_03.png,V5Activity_323_Icon_04.png	V5Activity_323_Icon_Tab_03	@Act323_Day5,@Act323_Day4	@Act323_new_day3tips1-1,@Act323_new_day3tips2-1	323132,323133	30000_850009_5,30000_850039_5,30000_850019_5,30000_850029_5,30000_810010_120
+9	1	12-15	V5Activity_323_Icon_01.png,V5Activity_323_Icon_06.png	V5Activity_323_Icon_Tab_06	@Act323_Day1,@Act323_Day4_new	@Act323_new_day4tips1-1,@Act323_new_day4tips2-1	323134,323135	30000_850009_5,30000_850039_5,30000_850019_5,30000_850029_5,30000_810012_120
+10	1	16-20	V5Activity_323_Icon_01.png,V5Activity_323_Icon_02.png,V5Activity_323_Icon_03.png	V5Activity_323_Icon_Tab_01	@Act323_Day1,@Act323_Day3,@Act323_Day5	@Act323_new_day5tips1-1,@Act323_new_day5tips2-1,@Act323_new_day5tips3-1	323136,323137,323138	30000_850009_5,30000_850039_5,30000_850019_5,30000_850029_5,30000_810000_120
+]],
+
+}

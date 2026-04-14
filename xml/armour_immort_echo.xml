@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="101" type="1" echotype="1" echoAttribute1="1003_20000" echoAttribute2="1011_20000,1019_20000" echoAttribute3="2207_125" weight="100" />
+      <data id="102" type="1" echotype="2" echoAttribute1="1003_20000" echoAttribute2="1011_20000,1019_20000" echoAttribute3="2212_3062" weight="300" />
+      <data id="103" type="1" echotype="3" echoAttribute1="1003_20000" echoAttribute2="1011_20000,1019_20000" echoAttribute3="2214_17142" weight="300" />
+      <data id="104" type="1" echotype="4" echoAttribute1="1003_20000" echoAttribute2="1011_20000,1019_20000" echoAttribute3="2215_200" weight="300" />
+      <data id="201" type="2" echotype="1" echoAttribute1="1020_20000" echoAttribute2="1012_20000,1004_20000" echoAttribute3="2201_291" weight="100" />
+      <data id="202" type="2" echotype="2" echoAttribute1="1020_20000" echoAttribute2="1012_20000,1004_20000" echoAttribute3="2209_12250" weight="300" />
+      <data id="203" type="2" echotype="3" echoAttribute1="1020_20000" echoAttribute2="1012_20000,1004_20000" echoAttribute3="2213_17142" weight="300" />
+      <data id="204" type="2" echotype="4" echoAttribute1="1020_20000" echoAttribute2="1012_20000,1004_20000" echoAttribute3="2215_200" weight="300" />
+      <data id="301" type="3" echotype="1" echoAttribute1="1021_20000" echoAttribute2="1013_20000,1005_20000" echoAttribute3="2202_364" weight="100" />
+      <data id="302" type="3" echotype="2" echoAttribute1="1021_20000" echoAttribute2="1013_20000,1005_20000" echoAttribute3="2209_12250" weight="300" />
+      <data id="303" type="3" echotype="3" echoAttribute1="1021_20000" echoAttribute2="1013_20000,1005_20000" echoAttribute3="2213_17142" weight="300" />
+      <data id="304" type="3" echotype="4" echoAttribute1="1021_20000" echoAttribute2="1013_20000,1005_20000" echoAttribute3="2215_200" weight="300" />
+      <data id="401" type="4" echotype="1" echoAttribute1="1006_20000" echoAttribute2="1014_20000,1022_20000" echoAttribute3="2205_182" weight="100" />
+      <data id="402" type="4" echotype="2" echoAttribute1="1006_20000" echoAttribute2="1014_20000,1022_20000" echoAttribute3="2211_3062" weight="300" />
+      <data id="403" type="4" echotype="3" echoAttribute1="1006_20000" echoAttribute2="1014_20000,1022_20000" echoAttribute3="2214_17142" weight="300" />
+      <data id="404" type="4" echotype="4" echoAttribute1="1006_20000" echoAttribute2="1014_20000,1022_20000" echoAttribute3="2215_200" weight="300" />
+      <data id="501" type="5" echotype="1" echoAttribute1="1023_20000" echoAttribute2="1015_20000,1007_20000" echoAttribute3="2203_364" weight="100" />
+      <data id="502" type="5" echotype="2" echoAttribute1="1023_20000" echoAttribute2="1015_20000,1007_20000" echoAttribute3="2210_395" weight="300" />
+      <data id="503" type="5" echotype="3" echoAttribute1="1023_20000" echoAttribute2="1015_20000,1007_20000" echoAttribute3="2213_17142" weight="300" />
+      <data id="504" type="5" echotype="4" echoAttribute1="1023_20000" echoAttribute2="1015_20000,1007_20000" echoAttribute3="2215_200" weight="300" />
+      <data id="601" type="6" echotype="1" echoAttribute1="1024_20000" echoAttribute2="1016_20000,1008_20000" echoAttribute3="2204_330" weight="100" />
+      <data id="602" type="6" echotype="2" echoAttribute1="1024_20000" echoAttribute2="1016_20000,1008_20000" echoAttribute3="2210_395" weight="300" />
+      <data id="603" type="6" echotype="3" echoAttribute1="1024_20000" echoAttribute2="1016_20000,1008_20000" echoAttribute3="2213_17142" weight="300" />
+      <data id="604" type="6" echotype="4" echoAttribute1="1024_20000" echoAttribute2="1016_20000,1008_20000" echoAttribute3="2215_200" weight="300" />
+      <data id="701" type="7" echotype="1" echoAttribute1="1009_20000" echoAttribute2="1017_20000,1025_20000" echoAttribute3="2206_93" weight="100" />
+      <data id="702" type="7" echotype="2" echoAttribute1="1009_20000" echoAttribute2="1017_20000,1025_20000" echoAttribute3="2211_3062" weight="300" />
+      <data id="703" type="7" echotype="3" echoAttribute1="1009_20000" echoAttribute2="1017_20000,1025_20000" echoAttribute3="2214_17142" weight="300" />
+      <data id="704" type="7" echotype="4" echoAttribute1="1009_20000" echoAttribute2="1017_20000,1025_20000" echoAttribute3="2215_200" weight="300" />
+      <data id="801" type="8" echotype="1" echoAttribute1="1010_20000" echoAttribute2="1018_20000,1026_20000" echoAttribute3="2208_125" weight="100" />
+      <data id="802" type="8" echotype="2" echoAttribute1="1010_20000" echoAttribute2="1018_20000,1026_20000" echoAttribute3="2212_3062" weight="300" />
+      <data id="803" type="8" echotype="3" echoAttribute1="1010_20000" echoAttribute2="1018_20000,1026_20000" echoAttribute3="2214_17142" weight="300" />
+      <data id="804" type="8" echotype="4" echoAttribute1="1010_20000" echoAttribute2="1018_20000,1026_20000" echoAttribute3="2215_200" weight="300" />
+</root>

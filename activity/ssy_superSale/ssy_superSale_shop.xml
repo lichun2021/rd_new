@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" pool="1" item="30000_850048_1" limitNum="1" newPrice="10000_1000_18" />
+      <data id="2" pool="1" item="30000_1300037_35" limitNum="1" newPrice="10000_1000_189" cashItem="30000_1620085_1" />
+      <data id="3" pool="1" item="30000_21070056_180" limitNum="1" newPrice="10000_1000_324" cashItem="30000_1620085_1,30000_1620086_1" />
+      <data id="4" pool="1" item="30000_21065001_60" limitNum="1" newPrice="10000_1000_324" cashItem="30000_1620085_1,30000_1620086_1" />
+      <data id="5" pool="1" item="30000_9990041_120" limitNum="1" newPrice="10000_1000_64" cashItem="30000_1620085_1" />
+      <data id="6" pool="1" item="30000_9990042_24" limitNum="1" newPrice="10000_1000_64" cashItem="30000_1620085_1" />
+      <data id="7" pool="1" item="30000_9990051_60" limitNum="1" newPrice="10000_1000_64" cashItem="30000_1620085_1" />
+      <data id="8" pool="1" item="30000_9990052_12" limitNum="1" newPrice="10000_1000_64" cashItem="30000_1620085_1" />
+      <data id="9" pool="2" item="30000_850048_1" limitNum="1" newPrice="10000_1000_8" />
+      <data id="10" pool="2" item="30000_1300037_5" limitNum="1" newPrice="10000_1000_12" />
+      <data id="11" pool="2" item="30000_21070056_60" limitNum="1" newPrice="10000_1000_48" />
+      <data id="12" pool="2" item="30000_21065001_20" limitNum="1" newPrice="10000_1000_48" />
+      <data id="13" pool="2" item="30000_1782123_20" limitNum="1" newPrice="10000_1000_48" />
+      <data id="14" pool="2" item="30000_802005_300" limitNum="1" newPrice="10000_1000_240" cashItem="30000_1620085_1" />
+      <data id="15" pool="2" item="30000_820002_1" limitNum="1" newPrice="10000_1000_12" />
+      <data id="16" pool="2" item="30000_810001_5" limitNum="1" newPrice="10000_1000_16" />
+      <data id="17" pool="3" item="30000_850048_1" limitNum="1" newPrice="10000_1000_3" />
+      <data id="18" pool="3" item="30000_1000005_5" limitNum="1" newPrice="10000_1000_315" cashItem="30000_1620085_1,30000_1620086_1" />
+      <data id="19" pool="3" item="30000_21070056_30" limitNum="1" newPrice="10000_1000_10" />
+      <data id="20" pool="3" item="30000_21065001_10" limitNum="1" newPrice="10000_1000_10" />
+      <data id="21" pool="3" item="30000_1782123_10" limitNum="1" newPrice="10000_1000_10" />
+      <data id="22" pool="3" item="30000_802005_150" limitNum="1" newPrice="10000_1000_54" />
+      <data id="23" pool="3" item="30000_9990032_600" limitNum="1" newPrice="10000_1000_216" cashItem="30000_1620085_1" />
+      <data id="24" pool="3" item="30000_810001_1" limitNum="1" newPrice="10000_1000_1" />
+      <data id="25" pool="4" item="30000_850048_1" limitNum="1" newPrice="10000_1000_1" />
+      <data id="26" pool="4" item="30000_1000005_1" limitNum="1" newPrice="10000_1000_28" />
+      <data id="27" pool="4" item="30000_21070056_20" limitNum="1" newPrice="10000_1000_3" />
+      <data id="28" pool="4" item="30000_21065001_9" limitNum="1" newPrice="10000_1000_4" />
+      <data id="29" pool="4" item="30000_802005_50" limitNum="1" newPrice="10000_1000_8" />
+      <data id="30" pool="4" item="30000_802004_600" limitNum="1" newPrice="10000_1000_288" cashItem="30000_1620085_1" />
+      <data id="31" pool="4" item="30000_21063005_1500" limitNum="1" newPrice="10000_1000_720" cashItem="30000_1620085_1,30000_1620086_1,30000_1620087_1" />
+      <data id="32" pool="4" item="30000_1300027_3600" limitNum="1" newPrice="10000_1000_864" cashItem="30000_1620085_1,30000_1620086_1,30000_1620087_1" />
+      <data id="33" pool="5" item="30000_850048_2" limitNum="1" newPrice="10000_1000_1" />
+      <data id="34" pool="5" item="30000_21070056_20" limitNum="1" newPrice="10000_1000_1" />
+      <data id="35" pool="5" item="30000_1300027_3000" limitNum="1" newPrice="10000_1000_540" cashItem="30000_1620085_1,30000_1620086_1,30000_1620087_1" />
+      <data id="36" pool="5" item="30000_800002_2500" limitNum="1" newPrice="10000_1000_300" cashItem="30000_1620085_1,30000_1620086_1" />
+      <data id="37" pool="5" item="30000_1782103_5000" limitNum="1" newPrice="10000_1000_900" cashItem="30000_1620085_1,30000_1620086_1,30000_1620087_1" />
+      <data id="38" pool="5" item="30000_802004_200" limitNum="1" newPrice="10000_1000_36" />
+      <data id="39" pool="5" item="30000_1000003_50" limitNum="1" newPrice="10000_1000_300" cashItem="30000_1620085_1,30000_1620086_1" />
+      <data id="40" pool="5" item="30000_1480001_12500" limitNum="1" newPrice="10000_1000_500" cashItem="30000_1620085_1,30000_1620086_1,30000_1620087_1" />
+</root>

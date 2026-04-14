@@ -1,0 +1,15 @@
+return {
+	prop =
+	{
+		activityId = 58,
+		name = [[首充双倍重置]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1.快快点击<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">右上角</font>的金条，看看发生了什么。<br/>2.没错，金条商城的<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">首充双倍</font>被重置了！<br/>3.重返青春的机会以后还有，但不常有。希望您喜欢这些多出来的金条。</font>]],
+		priority = 10059,
+		icon = [[Activity_Icon_58_Nor.png]],
+		selecticon = [[Activity_Icon_58_Sel.png]],
+		toType = 1,
+		serverDelay = 259200,
+	},
+
+}

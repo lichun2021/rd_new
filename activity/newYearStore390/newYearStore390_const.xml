@@ -1,0 +1,18 @@
+# 服务器开服延时开启活动时间；单位:秒
+serverDelay = 259200
+
+# 是否开启循环折扣1.循环折扣 2.只进行一次满减
+multipleDrawLimitValue = 1
+
+# 每日限购补货时间点
+addItemsTime = 00:00:01
+
+# 购买时间点
+bugTime = 00:01:00-23:59:59
+
+# 不刷新商品数量
+fixedItemsValue = 4
+
+# 刷新商品数量
+randomItemsValue = 8
+

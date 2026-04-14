@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1005" pool="1" reward="30000_802006_188" weight="36" defaultChoose="1" />
+      <data id="1010" pool="1" reward="30000_1300037_436" weight="36" />
+      <data id="1015" pool="1" reward="30000_21070056_1788" weight="36" />
+      <data id="1020" pool="1" reward="30000_21065001_648" weight="36" />
+      <data id="1025" pool="1" reward="30000_1782123_468" weight="36" />
+      <data id="1030" pool="1" reward="30000_802005_4288" weight="36" />
+      <data id="1035" pool="1" reward="30000_810001_988" weight="36" />
+      <data id="1040" pool="1" reward="30000_1490005_258" weight="36" />
+      <data id="2005" pool="2" reward="30000_1300037_12" weight="300" defaultChoose="1" />
+      <data id="2010" pool="2" reward="30000_21070056_49" weight="300" defaultChoose="1" />
+      <data id="2015" pool="2" reward="30000_21065001_18" weight="300" defaultChoose="1" />
+      <data id="2020" pool="2" reward="30000_1782123_13" weight="300" />
+      <data id="2025" pool="2" reward="30000_802005_120" weight="300" />
+      <data id="2030" pool="2" reward="30000_1300027_320" weight="300" />
+      <data id="2035" pool="2" reward="30000_21063005_270" weight="300" />
+      <data id="2040" pool="2" reward="30000_1782103_600" weight="300" />
+      <data id="2045" pool="2" reward="30000_800002_450" weight="300" />
+      <data id="2050" pool="2" reward="30000_810001_27" weight="300" defaultChoose="1" />
+      <data id="2055" pool="2" reward="30000_820002_7" weight="300" />
+      <data id="2060" pool="2" reward="30000_1490005_7" weight="300" />
+      <data id="3005" pool="3" reward="30000_802004_8" weight="2191" defaultChoose="1" />
+      <data id="3010" pool="3" reward="30000_800002_24" weight="2191" defaultChoose="1" />
+      <data id="3015" pool="3" reward="30000_1782103_32" weight="2191" defaultChoose="1" />
+      <data id="3020" pool="3" reward="30000_1300017_80" weight="2191" defaultChoose="1" />
+      <data id="3025" pool="3" reward="30000_1000003_1" weight="2191" />
+      <data id="3030" pool="3" reward="30000_800000_8" weight="2191" />
+      <data id="3035" pool="3" reward="30000_9990032_14" weight="2191" />
+      <data id="3040" pool="3" reward="30000_840194_100" weight="2191" />
+      <data id="3045" pool="3" reward="30000_1800000_50" weight="2191" />
+      <data id="3050" pool="3" reward="30000_1800001_2" weight="2191" />
+      <data id="3055" pool="3" reward="30000_1480001_200" weight="2191" />
+      <data id="3060" pool="3" reward="30000_802003_5" weight="2191" />
+      <data id="3065" pool="3" reward="30000_1490006_20" weight="2191" />
+      <data id="3070" pool="3" reward="30000_1510003_55" weight="2191" />
+      <data id="3075" pool="3" reward="30000_13310003_55" weight="2191" />
+      <data id="3080" pool="3" reward="30000_101050_2" weight="2191" />
+      <data id="3085" pool="3" reward="30000_103050_2" weight="2191" />
+      <data id="3090" pool="3" reward="30000_104050_1" weight="2191" />
+      <data id="3095" pool="3" reward="30000_105050_1" weight="2191" />
+</root>

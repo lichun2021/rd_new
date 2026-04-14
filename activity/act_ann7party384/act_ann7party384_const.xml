@@ -1,0 +1,123 @@
+# 服务器开服延时开启活动时间；单位：秒
+serverDelay = 259200
+
+# 开房道具（不删除）
+openPartyRoomItem = 30000_21070124_1
+
+# 参与道具
+inPartyRoomItem = 30000_21070125_1
+
+# 每个玩家每天可开启聚会次数
+openPartyRoomValueLimit = 29
+
+# 每个玩家每日可参与次数
+inPartyRoomValueLimit = 10
+
+# 每个玩家作为房客放弃奖励次数（已经废弃）
+partyRoomGiveupLimit = 3
+
+# 房间内其他成员数量
+partyRoomMaxValue = 6
+
+# 成功聚会后每多一个玩家给房主的奖励
+homeownerGetAward = 30000_802006_12,30000_24200051_240,30000_820002_50,30000_810001_150
+
+# 房间开启x分钟后提示 邀请弹窗
+roomTips1Times = 1
+
+# 房间开启x分钟后 解散房间
+roomTips2Times = 10
+
+# 分享cd：秒
+shareCD = 60
+
+# 开始x秒后自动开始聚会
+autoPartyTime = 60
+
+# 公开聚会房间后x秒接收玩家
+receivePlayerTime = 1
+
+# 每轮act_anniversary7party384_reward表 mustShow出现数量
+goodRewardShowValue = 5,5,5
+
+# 每轮开奖时间 秒
+openRewardTimes = 20
+
+# 每轮开奖的等待时间 秒
+openRewardWaitTimes = 10
+
+# 每轮奖励箱子数量
+rewardBoxLimit = 12
+
+# 奖励轮数
+rewardRoundLimit = 3
+
+# 作为房主单轮可获得奖励数量
+homeownerGetBoxLimit = 6
+
+# 作为房客单轮可获得奖励数量
+lodgerGetBoxLimit = 1
+
+# 检测房主机器人生成时间 秒
+createRobotTime = 29
+
+# 生成房客机器人检测时间 秒
+createRobotGuestTime = 113
+
+# 邀请好友cd：秒
+friendCD = 15
+
+# 房主单日可获得好友邀请礼物上限
+friendGiftLimit = 174
+
+# 房主单日获得箱子奖励上限,配置整数倍，只用来检测保险作用，如果触发了就说明有严重问题
+homeownerDaliyGetLimit = 522
+
+# 房客单日获得箱子奖励上限,配置整数倍，只用来检测保险作用，如果触发了就说明有严重问题
+lodgerDaliyGetLimit = 30
+
+# 活动开启时间
+actOpenTimeperiod = 11:00-14:00;19:00-22:00
+
+# 活动结束前x分钟 不可开启房间，购买道具，可购买房客的券
+buyItemLimit = 30
+
+# 随机分组的服务器组数
+serverGroup = 10
+
+# 单个房间房主发出邀请的数量上限
+roomInviteLimit = 200
+
+# 单个玩家发出加入房间申请的房间数上限
+joinApplyLimit = 15
+
+# 一组服务器同时可开启的房间数上限
+serverGroupRoomLimit = 3000
+
+# 排队人数上限 
+queuePlayerLimit = 60000
+
+# 控制单个房间可接受申请加入的人员上限
+roomJoinApplyLimitCount  = 600
+
+# 推荐展示房间总数
+showRoomValueLimit = 15
+
+# 机器人使用的头像
+portraitImg = 200001,200002,200003,200004,200005,200006,200007,200008,200009,200010,200011,200012,200013,200014,200015,200016,200052,200053,200054,200055,200056,200057,200058
+
+# 机器人使用的头像框
+portraitFrame = 100001,102001,102002,102003,102004,102005,215000,216000,220000,223000,225000,227000,228000,229000,235000
+
+# 解锁基地等级
+baseOpenLevelLimit = 5
+
+# 最少需要x个房客才能开启房间
+needLodgerValueLimit = 3
+
+# 每个玩家作为房客可领取奖励次数
+partyRoomGetLodgerAwardLimit = 10
+
+# 再次申请排队cd（秒）
+queueCd = 10
+

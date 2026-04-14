@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1001" type="1" weight="100" />
+      <data id="1002" type="1" weight="100" />
+      <data id="1003" type="1" weight="100" />
+      <data id="1004" type="2" weight="100" />
+      <data id="1005" type="2" weight="100" />
+      <data id="1006" type="2" weight="100" />
+      <data id="1007" type="3" weight="100" />
+      <data id="1008" type="3" weight="100" />
+      <data id="1009" type="3" weight="100" />
+      <data id="1010" type="3" weight="100" />
+      <data id="1011" type="3" weight="100" />
+      <data id="1012" type="3" weight="100" />
+</root>

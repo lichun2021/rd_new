@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1001" awardId="1300001" upCondition="3_2" openCondition="1_2" />
+      <data id="1002" awardId="1300002" upCondition="3_4" openCondition="1_2" />
+      <data id="1003" awardId="1300003" upCondition="3_6" openCondition="1_2" />
+      <data id="1004" awardId="1300004" openCondition="1_2" />
+</root>

@@ -1,0 +1,63 @@
+return {
+	prop =
+	{
+		activityId = 382,
+		name = [[梦幻岛手册]],
+		title = [[梦幻岛手册]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1.活动期间可通过消耗<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">梦幻心愿卡</font>进行刮卡<br/>2.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">梦幻心愿卡</font>可通过活动商店购买，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">梦幻心愿卡</font>可保留到下次活动<br/>3.刮卡可刮出普通图案，组合图案，限定图案<br/>  普通图案：刮到后可获得对应图案的奖励<br/>  组合图案：集齐组合图案中的所有图案才可获得对应奖励，并刷新组合图案获取状态<br/>  限定图案：刮到后获得对应图案奖励，限定图案每期获得存在出现上限，到达出现上限次数后，不会再被刮到<br/>4.每次刮卡可获得<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">1点梦幻积分</font>和<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">60个天空徽章</font><br/>5.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">梦幻积分</font>可在兑换商店兑换道具<br/>6.<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">梦幻积分</font>在活动结束时会被清空<br/>7.图案出现的保底规则<br/>  组合图案：连续10次没有抽到组合图案，必得一个没有获得的组合图案<br/>  限定图案：连续70次没有抽到限定图案，必得限定图案<br/>  如果某次刮卡同时满足限定图案和组合图案的保底，优先奖励限定图案<br/>8.每天可有一次免费刮卡的次数，免费刮卡次数每日零点进行刷新</font>]],
+		priority = 10001,
+		icon = [[Activity_Icon_382_Nor.png]],
+		selecticon = [[Activity_Icon_382_Sel.png]],
+		homeBuildId = 103301,
+		scratchCardItemSave = [[30000_21070105_1]],
+		exchangeItem = [[30000_21070104_1]],
+		scratchCardTimesLimit = 3000,
+		intervalTime = 0.1,
+		dailyFreeDrawLimit = 1,
+		drawGetAward = 1230001,
+		groupID = [[6,7,8,9,10]],
+		bigPrizeID = 11,
+		groupItems = [[30000_6103301_1]],
+		bigPrizeGetLimit = 10,
+		groupAwardMustGetValue = 10,
+		bigPrizeMustGetValue = 70,
+		drawLogShowLimit = 100,
+		drawBatchTimesLimit = 40,
+		buildLevelLimit = 36,
+	},
+	act_home382_pattern = [[id	pattern	weight	poolType	rewards	image
+1	2	1	1	2	2
+1	30000_21070093_1	1510	3	30000_810000_20	V5Activity_382_Icon_01.png
+2	30000_21070094_1	1510	3	30000_850008_20	V5Activity_382_Icon_02.png
+3	30000_21070095_1	1510	3	30000_850038_20	V5Activity_382_Icon_09.png
+4	30000_21070096_1	1510	3	30000_850018_20	V5Activity_382_Icon_10.png
+5	30000_21070097_1	1510	3	30000_850028_20	V5Activity_382_Icon_05.png
+6	30000_21070098_1	460	2		V5Activity_382_Icon_06.png
+7	30000_21070099_1	460	2		V5Activity_382_Icon_07.png
+8	30000_21070100_1	460	2		V5Activity_382_Icon_08.png
+9	30000_21070101_1	460	2		V5Activity_382_Icon_03.png
+10	30000_21070102_1	460	2		V5Activity_382_Icon_04.png
+11	30000_21070103_1	150	1	30000_6103301_1	V5Activity_382_Icon_11.png
+]],
+	act_home382_pointsShop = [[id	times	needItem	gainItem	refreshType	buyLimitTxt
+1	1	2	2	1	2
+1	68	30000_21070104_200	30000_6103301_1	2	活动限购:
+2	10	30000_21070104_100	30000_6101101_1	2	活动限购:
+3	9999	30000_21070104_1	30000_810001_1	2	活动限购:
+4	9999	30000_21070104_1	30000_850009_5	2	活动限购:
+5	9999	30000_21070104_1	30000_850039_5	2	活动限购:
+6	9999	30000_21070104_1	30000_850019_5	2	活动限购:
+7	9999	30000_21070104_1	30000_850029_5	2	活动限购:
+]],
+	act_home382_shop = [[id	shopItemType	times	refreshType	iosPayId	androidPayID	payQuota	payItem	payItemShow	getItem	buyLimitTxt
+1	1	1	1	1	1	1	2	2	2	2
+1	2	5					10000_1000_60	10000_1000_60	30000_21070105_2,30000_840172_2	活动限购:
+2	1	5		3820101	3820001	6			30000_21070105_2,30000_840172_2	活动限购:
+3	1	2		3820102	3820002	30			30000_21070105_6,30000_840172_6	活动限购:
+4	1	2		3820103	3820003	68			30000_21070105_12,30000_840172_12	活动限购:
+5	1	2		3820104	3820004	128			30000_21070105_22,30000_840172_22	活动限购:
+6	1	3		3820105	3820005	328			30000_21070105_55,30000_840172_55	活动限购:
+7	1	15		3820106	3820006	648			30000_21070105_108,30000_840172_108	活动限购:
+]],
+
+}

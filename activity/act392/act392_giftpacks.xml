@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" firstlevel="0_14" triggerlevel="5" reachlevel="21" upgrade="21" iosPayId="3920101" androidPayId="3920001" payQuota="30" />
+      <data id="2" firstlevel="0_14" triggerlevel="21" reachlevel="25" upgrade="25" iosPayId="3920102" androidPayId="3920002" payQuota="68" />
+      <data id="3" firstlevel="15_99" triggerlevel="5" reachlevel="25" upgrade="25" iosPayId="3921101" androidPayId="3921001" payQuota="98" />
+</root>

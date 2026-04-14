@@ -1,0 +1,64 @@
+return {
+	prop =
+	{
+		activityId = 388,
+		name = [[超维投影]],
+		title = [[活动详情]],
+		tips = [[<font color="#adb0c0" face = "Microsoft YaHei" fontsize ="20">1. 消耗超维能量锚，可在超维空间中捕捉超维能量投影，凝聚结晶，从而获得奖励，可以选择花费多个超维能量锚，获得多倍奖励。<br/>2. 使用超维能量锚后，在12个节点中点击可获得三种元素：<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">维度钥匙</font>，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">奖励能量</font>，<font color="#ffe782" face = "Microsoft YaHei" fontsize ="20">升级能量</font>。<br/>3. 维度钥匙：获得2个立刻获得维度投影奖励，并结束本次投影。<br/>4. 奖励能量：每获得1个可以多获得一次奖励。<br/>5. 升级能量：每获得2个可以升级一次维度投影等级。<br/>6. 超维能量锚在活动结束后不会清空。</font>]],
+		priority = 10040,
+		icon = [[Activity_Icon_388_Nor.png]],
+		selecticon = [[Activity_Icon_388_Sel.png]],
+		bigIcon = [[Activity_BattlefieldWelfare_u_Rendered.png]],
+		multipleDrawLimitValue = 10,
+		drawNeedItem = [[30000_21070132_1]],
+		gridValue = 12,
+		keyValue = 3,
+		levelupValue = 6,
+		addAwardValue = 3,
+		maxDrawLimitValue = 999,
+		keyType = 1,
+		levelupType = 3,
+		addAwardType = 2,
+		gameStartBox = 1001,
+	},
+	armourImmortAct388_achieve = [[achieveId	conditionType	conditionValue	configValue	refreshType	gotoType	gotoValue	rewards	title
+1	1	2	1	1	1	2	2	2
+3880001	38801	5	5	2	-1		30000_802006_45,30000_810000_100,30000_850007_100,30000_850037_100,30000_850017_100,30000_850027_100	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">消耗{0}{1}个</font>
+3880002	38801	10	10	2	-1		30000_802006_90,30000_810000_100,30000_850007_100,30000_850037_100,30000_850017_100,30000_850027_100	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">消耗{0}{1}个</font>
+3880003	38801	20	20	2	-1		30000_802006_140,30000_810000_100,30000_850007_100,30000_850037_100,30000_850017_100,30000_850027_100	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">消耗{0}{1}个</font>
+3880004	38801	40	40	2	-1		30000_802006_190,30000_810000_100,30000_850007_100,30000_850037_100,30000_850017_100,30000_850027_100	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">消耗{0}{1}个</font>
+3880005	38801	88	88	2	-1		30000_802006_235,30000_810000_100,30000_850007_100,30000_850037_100,30000_850017_100,30000_850027_100	<font color="#fefefe" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">消耗{0}{1}个</font>
+]],
+	armourImmortAct388_awardPool = [[id	awardId	upCondition	openCondition	awardTitle	level
+1	1	2	2	2	1
+1001	1300001	3_2	1_2	@act388AwardTitle_0001	1
+1002	1300002	3_4	1_2	@act388AwardTitle_0002	2
+1003	1300003	3_6	1_2	@act388AwardTitle_0003	3
+1004	1300004		1_2	@act388AwardTitle_0004	4
+]],
+	armourImmortAct388_shop = [[id	shopItemType	times	refreshType	iosPayId	androidPayId	payQuota	payItem	payItemShow	getItem	buyLimitTxt
+1	1	1	1	1	1	1	2	2	2	2
+1	0	1	1						30000_21070132_1,30000_840172_1	每日限购:
+2	2	1					10000_1000_300	10000_1000_300	30000_21070132_3,30000_840172_3	活动限购:
+3	2	1					10000_1000_680	10000_1000_680	30000_21070132_5,30000_840172_5	活动限购:
+4	2	2					10000_1000_1280	10000_1000_1280	30000_21070132_8,30000_840172_8	活动限购:
+5	2	2					10000_1000_3280	10000_1000_3280	30000_21070132_15,30000_840172_15	活动限购:
+6	2	2					10000_1000_6480	10000_1000_6480	30000_21070132_28,30000_840172_28	活动限购:
+]],
+	armourImmortAct388_draw = [[id	type	weight	drawImage	drawName	drawDes
+1	1	1	2	2	2
+1001	1	100	V5Activity_388_Icon_03.png	@Act388_1001name	@Act388_1001des
+1002	1	100	V5Activity_388_Icon_03.png	@Act388_1001name	@Act388_1001des
+1003	1	100	V5Activity_388_Icon_03.png	@Act388_1001name	@Act388_1001des
+1004	2	100	V5Activity_388_Icon_01.png	@Act388_1002name	@Act388_1002des
+1005	2	100	V5Activity_388_Icon_01.png	@Act388_1002name	@Act388_1002des
+1006	2	100	V5Activity_388_Icon_01.png	@Act388_1002name	@Act388_1002des
+1007	3	100	V5Activity_388_Icon_02.png	@Act388_1003name	@Act388_1003des
+1008	3	100	V5Activity_388_Icon_02.png	@Act388_1003name	@Act388_1003des
+1009	3	100	V5Activity_388_Icon_02.png	@Act388_1003name	@Act388_1003des
+1010	3	100	V5Activity_388_Icon_02.png	@Act388_1003name	@Act388_1003des
+1011	3	100	V5Activity_388_Icon_02.png	@Act388_1003name	@Act388_1003des
+1012	3	100	V5Activity_388_Icon_02.png	@Act388_1003name	@Act388_1003des
+]],
+
+}

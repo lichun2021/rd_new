@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" getItem="30000_802006_1" times="40" payItem="10000_1000_3" shopItemType="2" />
+      <data id="2" getItem="30000_100050_4" times="200" payItem="10000_1000_15" shopItemType="2" />
+      <data id="3" getItem="30000_820002_20" times="20" payItem="10000_1000_300" refreshType="1" weight="100" shopItemType="2" />
+      <data id="4" getItem="30000_802006_10" times="150" payItem="10000_1000_70" refreshType="1" weight="150" shopItemType="2" />
+      <data id="5" getItem="30000_21063076_50" times="20" payItem="10000_1000_450" refreshType="1" weight="120" shopItemType="2" />
+      <data id="6" getItem="30000_21063077_100" times="40" payItem="10000_1000_180" refreshType="1" weight="100" shopItemType="2" />
+      <data id="7" getItem="30000_21070056_300" times="20" payItem="10000_1000_363" refreshType="1" weight="120" shopItemType="2" />
+      <data id="8" getItem="30000_21065001_100" times="24" payItem="10000_1000_330" refreshType="1" weight="100" shopItemType="2" />
+      <data id="9" getItem="30000_1782123_100" times="15" payItem="10000_1000_462" refreshType="1" weight="120" shopItemType="2" />
+      <data id="10" getItem="30000_802005_100" times="128" payItem="10000_1000_55" refreshType="1" weight="100" shopItemType="2" />
+      <data id="11" getItem="30000_802004_250" times="50" payItem="10000_1000_135" refreshType="1" weight="100" shopItemType="2" />
+      <data id="12" getItem="30000_1300037_50" times="20" payItem="10000_1000_360" refreshType="1" weight="120" shopItemType="2" />
+      <data id="13" getItem="30000_1300027_600" times="50" payItem="10000_1000_135" refreshType="1" weight="100" shopItemType="2" />
+      <data id="14" getItem="30000_1300017_1000" times="100" payItem="10000_1000_56" refreshType="1" weight="100" shopItemType="2" />
+      <data id="15" getItem="30000_21063005_300" times="100" payItem="10000_1000_72" refreshType="1" weight="100" shopItemType="2" />
+      <data id="16" getItem="30000_1782103_500" times="120" payItem="10000_1000_60" refreshType="1" weight="100" shopItemType="2" />
+      <data id="17" getItem="30000_1782106_100" times="50" payItem="10000_1000_160" refreshType="1" weight="100" shopItemType="2" />
+      <data id="18" getItem="30000_9990032_300" times="100" payItem="10000_1000_74" refreshType="1" weight="100" shopItemType="2" />
+      <data id="19" getItem="30000_800002_500" times="100" payItem="10000_1000_70" refreshType="1" weight="100" shopItemType="2" />
+      <data id="20" getItem="30000_1000005_10" times="15" payItem="10000_1000_465" refreshType="1" weight="120" shopItemType="2" />
+      <data id="21" getItem="30000_850051_20" times="1" payItem="10000_1000_60" shopItemType="2" />
+      <data id="22" getItem="30000_850048_8" times="1" payItem="10000_1000_24" shopItemType="2" />
+</root>

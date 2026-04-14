@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="1" needItem="30000_6000002_10000" gainItem="30000_6102501_1" times="5" />
+      <data id="2" needItem="30000_6000002_10000" gainItem="30000_6102301_1" times="5" />
+      <data id="3" needItem="30000_6000002_10000" gainItem="30000_6102201_1" times="5" />
+      <data id="4" needItem="30000_6000002_10000" gainItem="30000_6102101_1" times="5" />
+      <data id="5" needItem="30000_6000002_10000" gainItem="30000_6101901_1" times="5" />
+      <data id="6" needItem="30000_6000002_10000" gainItem="30000_6101501_1" times="5" />
+      <data id="7" needItem="30000_6000002_10000" gainItem="30000_6101401_1" times="5" />
+      <data id="8" needItem="30000_6000002_3000" gainItem="30000_6102401_1" times="10" />
+      <data id="9" needItem="30000_6000002_3000" gainItem="30000_6102001_1" times="10" />
+      <data id="10" needItem="30000_6000002_3000" gainItem="30000_6101801_1" times="10" />
+      <data id="11" needItem="30000_6000002_3000" gainItem="30000_6101701_1" times="10" />
+      <data id="12" needItem="30000_6000002_3000" gainItem="30000_6101601_1" times="10" />
+      <data id="13" needItem="30000_6000002_3000" gainItem="30000_6101301_1" times="10" />
+      <data id="14" needItem="30000_6000002_3000" gainItem="30000_6101101_1" times="10" />
+      <data id="15" needItem="30000_6000002_3000" gainItem="30000_6100701_1" times="10" />
+      <data id="16" needItem="30000_6000002_1000" gainItem="30000_6100601_1" times="20" />
+      <data id="17" needItem="30000_6000002_1000" gainItem="30000_6101201_1" times="20" />
+      <data id="18" needItem="30000_6000002_1000" gainItem="30000_6100401_1" times="20" />
+      <data id="19" needItem="30000_6000002_1000" gainItem="30000_6100501_1" times="20" />
+      <data id="20" needItem="30000_6000002_500" gainItem="30000_6100301_1" times="50" />
+      <data id="21" needItem="30000_6000002_500" gainItem="30000_6100801_1" times="50" />
+      <data id="22" needItem="30000_6000002_500" gainItem="30000_6100201_1" times="50" />
+</root>
