@@ -71,7 +71,7 @@ public class PlayerEntity extends HawkDBEntity {
 
 	@Column(name = "iconBuy")
     @IndexProp(id = 9)
-	private String iconBuy;
+	private String iconBuy = "";
 
 	@Column(name = "battlePoint")
     @IndexProp(id = 10)

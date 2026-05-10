@@ -26,7 +26,9 @@ import com.hawk.game.player.Player;
 import com.hawk.game.protocol.Script.ScriptError;
 import com.hawk.game.recharge.RechargeManager;
 import com.hawk.game.util.GsConst;
+import com.hawk.game.util.GsConst.DiamondPresentReason;
 import com.hawk.game.recharge.RechargeType;
+import com.hawk.log.Action;
 
 /**
  * 模拟充值回调通知入口
@@ -52,79 +54,84 @@ public class GmRechargeHandler extends HawkScript {
 		int rechargeType = Integer.parseInt(params.get("rechargeType"));
 		// 物品id
 		String goodsId = params.get("goodsId");
-		
+
 		// 初始化返回json对象
 		JSONObject result = new JSONObject();
-		
+
+		String billno = params.get("billno");
+
 		if (rechargeType == RechargeType.RECHARGE) {
-			gmRecharge(player, goodsId, result);
-			
+			gmRecharge(player, goodsId, billno, result);
+
 		} else if (rechargeType == RechargeType.GIFT) {
-			gmBuyGift(player, goodsId, result);
-			
+			gmBuyGift(player, goodsId, billno, result);
+
 		} else {
 			result.put("result", "rechargeType error!");
 		}
-		
+
 		return result.toJSONString();
 	}
-	
+
 	/**
 	 * 充值
+	 * 
 	 * @param player
 	 * @param goodsId
 	 */
-	public void gmRecharge(Player player, String goodsId, JSONObject result) {
-		Optional<RechargeEntity> optional = player.getData().getPlayerRechargeEntities().parallelStream().filter(e -> e.getType() == RechargeType.RECHARGE).findAny();
-		// 抛首充事件
-		if (!optional.isPresent()) {
-			ActivityManager.getInstance().postEvent(new FirstRechargeEvent(player.getId()));
-		}
-		
-		// 创建订单
+	public void gmRecharge(Player player, String goodsId, String billno, JSONObject result) {
+		// 获取充值配置
 		PayCfg payCfg = HawkConfigManager.getInstance().getConfigByKey(PayCfg.class, goodsId);
 		if (payCfg == null) {
 			result.put("result", "payCfg is null!");
 			return;
 		}
-		
-		// 订单id
-		String orderId = HawkOSOperator.randomUUID();
-		
+
+		int diamonds = payCfg.getGainDia();
+
+		// 使用平台传入的订单号，没有则自动生成
+		String orderId = HawkOSOperator.isEmptyString(billno) ? HawkOSOperator.randomUUID() : billno;
 		RechargeManager.getInstance().createRechargeRecord(player, orderId, "",
-				payCfg.getId(), (int)(payCfg.getPayRMB() * GsConst.RECHARGE_BASE), payCfg.getPayRMB(),
-				"RMB", RechargeType.RECHARGE, HawkTime.getSeconds(), payCfg.getGainDia());
-		player.getPlayerBaseEntity().setSaveAmt(1);
+				payCfg.getId(), (int) (payCfg.getPayRMB() * GsConst.RECHARGE_BASE), payCfg.getPayRMB(),
+				"RMB", RechargeType.RECHARGE, HawkTime.getSeconds(), diamonds);
+
+		// 发放钻石并触发充值成功全套流程（复用IDIP模拟充值逻辑）
+		int playerSaveAmt = player.getPlayerBaseEntity().getSaveAmt();
+		int diamondsBefore = player.getDiamonds();
+		player.increaseDiamond(diamonds, Action.IDIP_CHANGE_PLAYER_ATTR, null, DiamondPresentReason.COMPENSATION);
+		int oldNum = player.getPlayerBaseEntity().getSaveAmt();
+		player.getPlayerBaseEntity().setSaveAmt(oldNum + diamonds);
+		player.rechargeSuccess(playerSaveAmt, diamonds, diamondsBefore);
+		player.getPlayerBaseEntity().setSaveAmt(oldNum);
+
 		player.getPush().syncHasFirstRecharge();
-		//测试代码，仅供测试充值成就
-		ActivityManager.getInstance().postEvent(new DiamondRechargeEvent(player.getId(), goodsId, payCfg.getGainDia()));
-		//测试代码，仅测试充值豪礼成就
-		ActivityManager.getInstance().postEvent(new RechargeMoneyEvent(player.getId(), payCfg.getGainDia()));
-		result.put("result", "recharge success!");
+		result.put("result", "recharge success!!");
 	}
-	
+
 	/**
 	 * 礼包
+	 * 
 	 * @param player
 	 * @param goodsId
 	 */
-	public void gmBuyGift(Player player, String goodsId, JSONObject result) {
+	public void gmBuyGift(Player player, String goodsId, String billno, JSONObject result) {
 		PayGiftCfg payGiftCfg = HawkConfigManager.getInstance().getConfigByKey(PayGiftCfg.class, goodsId);
 		if (payGiftCfg == null) {
 			result.put("result", "payGiftCfg is null!");
 			return;
 		}
-		
+
 		// 构造参数
-		String billno = HawkOSOperator.randomUUID();
+		String orderId = HawkOSOperator.isEmptyString(billno) ? HawkOSOperator.randomUUID() : billno;
 		int payMoney = payGiftCfg.getPayRMB() / 10;
-		
+
 		// 创建订单
-		RechargeManager.getInstance().createRechargeRecord(player, billno, "", goodsId, 
+		RechargeManager.getInstance().createRechargeRecord(player, orderId, "", goodsId,
 				payMoney, payMoney * 10, "RMB", RechargeType.GIFT, HawkTime.getSeconds(), payGiftCfg.getGainDia());
-		
+
 		// 发货通知
-		HawkApp.getInstance().postMsg(player.getXid(), PlayerRechargeGrantItemMsg.valueOf(payGiftCfg, billno, payMoney * 10));
+		HawkApp.getInstance().postMsg(player.getXid(),
+				PlayerRechargeGrantItemMsg.valueOf(payGiftCfg, orderId, payMoney * 10));
 		result.put("result", "buy gift success!");
 	}
 }

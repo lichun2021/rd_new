@@ -52,7 +52,7 @@ public class CommanderEntity extends HawkDBEntity {
 	/**
 	 * 星能探索
 	 */
-	@Column(name = "starExplore")
+	@Column(name = "starExplore", nullable = false, columnDefinition = "text")
 	@IndexProp(id = 6)
 	private String starExplore="";
 

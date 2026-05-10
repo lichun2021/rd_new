@@ -6,7 +6,6 @@
 	<classpathentry kind="src" path="gmscript"/>
 	<classpathentry kind="src" path="idipscript"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.ajdt.core.ASPECTJRT_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="lib/commonlib.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/sdklib.jar" sourcepath="/SDKLib"/>
 	<classpathentry exported="true" kind="lib" path="lib/org.json-20130603.jar"/>

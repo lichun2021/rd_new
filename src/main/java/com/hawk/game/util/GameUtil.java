@@ -1654,7 +1654,7 @@ public class GameUtil {
 	 * @return
 	 */
 	public static boolean isWin32Platform(String platform, String channel) {
-		return "android".equals(platform) && "guest".equals(channel);
+		return ("android".equals(platform) || "ios".equals(platform)) && "guest".equals(channel);
 	}
 	
 	/** 判断是否是安卓用户 */

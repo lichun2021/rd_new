@@ -65,7 +65,28 @@ public class LoginUtil {
 	 * 失败的openid创建记录
 	 */
 	private static Set<String> createFailedOpenIds = new ConcurrentHashSet<String>();
-	
+
+	/**
+	 * 安全解析pfToken为JSONObject，允许清理前后噪声并在失败时返回null。
+	 */
+	public static JSONObject safeParsePfToken(String pfToken) {
+		if (HawkOSOperator.isEmptyString(pfToken)) {
+			return null;
+		}
+		try {
+			String trimmed = pfToken.trim();
+			int start = trimmed.indexOf('{');
+			int end = trimmed.lastIndexOf('}');
+			if (start >= 0 && end > start) {
+				String jsonSlice = trimmed.substring(start, end + 1);
+				return JSONObject.parseObject(jsonSlice);
+			}
+		} catch (Exception e) {
+			HawkException.catchException(e);
+		}
+		return null;
+	}
+
 	/**
 	 * 校验服务器和puid信息
 	 * 
@@ -96,43 +117,50 @@ public class LoginUtil {
 	 * @param channel
 	 * @return
 	 */
-	public static String getLoginNameByPuid(String playerId, String puid, String pfToken, String channel, HawkSession session, String openid) {
+	public static String getLoginNameByPuid(String playerId, String puid, String pfToken, String channel,
+			HawkSession session, String openid) {
 		// 预设名字
 		String preinstallName = RedisProxy.getInstance().getPreinstallName(openid);
 		if (!HawkOSOperator.isEmptyString(preinstallName)) {
 			RedisProxy.getInstance().removePreinstallName(openid, preinstallName);
 			return preinstallName;
 		}
-		
+
 		String playerName = "";
 		String puidProfile = null;
 		boolean profileReload = false;
 		try {
 			// 拉取平台名字
 			puidProfile = RedisProxy.getInstance().getPuidProfile(puid);
-			
+
 			// 缓存信息中不存在的时候, 通过msdk接口重新拉取
-			if (HawkOSOperator.isEmptyString(puidProfile) && !HawkOSOperator.isEmptyString(pfToken) && !GsConfig.getInstance().isRobotMode() && !puid.startsWith("robot")) {
-				JSONObject pfInfoJson = JSONObject.parseObject(pfToken);
-				Map<String, String> params = new HashMap<String, String>();
-				params.put("channel", channel);
-				JSONObject json = SDKManager.getInstance().fetchProfile(SDKConst.SDKType.MSDK, params, pfInfoJson, session.getAddress());
-				if (json != null) {
-					puidProfile = json.toJSONString();
-					profileReload = true;
+			if (HawkOSOperator.isEmptyString(puidProfile) && !HawkOSOperator.isEmptyString(pfToken)
+					&& !GsConfig.getInstance().isRobotMode() && !puid.startsWith("robot")) {
+				JSONObject pfInfoJson = safeParsePfToken(pfToken);
+				if (pfInfoJson == null) {
+					HawkLog.errPrintln("pfToken json invalid, openid: {}, puid: {}", openid, puid);
+				} else {
+					Map<String, String> params = new HashMap<String, String>();
+					params.put("channel", channel);
+					JSONObject json = SDKManager.getInstance().fetchProfile(SDKConst.SDKType.MSDK, params, pfInfoJson,
+							session.getAddress());
+					if (json != null) {
+						puidProfile = json.toJSONString();
+						profileReload = true;
+					}
 				}
 			}
 
 			// 获取平台中对应的名字
 			if (!HawkOSOperator.isEmptyString(puidProfile)) {
 				JSONObject profileJson = JSON.parseObject(puidProfile);
-				
+
 				// QQ为大写, WX为小写
 				playerName = profileJson.getString("nickName");
 				if (HawkOSOperator.isEmptyString(playerName)) {
 					playerName = profileJson.getString("nickname");
 				}
-				
+
 				// 平台名如果在系统中非法, 重置不采用
 				if (GameUtil.checkPlayerNameCode(playerName) != Status.SysError.SUCCESS_OK_VALUE) {
 					playerName = "";
@@ -150,7 +178,7 @@ public class LoginUtil {
 					break;
 				}
 				playerName = String.format("%s%d", playerName, ++index);
-				
+
 				// 合法性检测
 				if (GameUtil.checkPlayerNameCode(playerName) != Status.SysError.SUCCESS_OK_VALUE) {
 					playerName = "";
@@ -168,10 +196,10 @@ public class LoginUtil {
 		if (profileReload && !HawkOSOperator.isEmptyString(puidProfile)) {
 			RedisProxy.getInstance().updatePuidProfile(puid, puidProfile);
 		}
-		
+
 		return playerName;
 	}
-	
+
 	/**
 	 * 系统随机名字
 	 * 
@@ -188,7 +216,7 @@ public class LoginUtil {
 				return randName;
 			}
 		} while (randTimes++ < NAME_RANDOM_TIMES);
-		
+
 		return HawkUUIDGenerator.genUUID();
 	}
 
@@ -201,25 +229,27 @@ public class LoginUtil {
 	 * @param cmd
 	 * @return
 	 */
-	public static PlayerEntity createNewPlayer(String playerId, String openid,String puid, String playerName, String serverId, HPLogin cmd) {
+	public static PlayerEntity createNewPlayer(String playerId, String openid, String puid, String playerName,
+			String serverId, HPLogin cmd) {
 		PlayerEntity playerEntity = null;
 		if (createFailedOpenIds.contains(openid)) {
 			List<PlayerEntity> playerEntitys = HawkDBManager.getInstance().query(
-					"from PlayerEntity where puid = ? and serverId = ? and isActive = 1 and invalid = 0", puid, serverId);
+					"from PlayerEntity where puid = ? and serverId = ? and isActive = 1 and invalid = 0", puid,
+					serverId);
 
 			// 移除错误记录
 			createFailedOpenIds.remove(openid);
-			
+
 			if (playerEntitys != null && playerEntitys.size() > 0) {
 				playerEntity = playerEntitys.get(0);
 			}
-			
+
 			if (playerEntity != null) {
 				playerEntity.setName(playerName);
 				return playerEntity;
 			}
 		}
-		
+
 		// 创建玩家实体对象
 		playerEntity = new PlayerEntity();
 		playerEntity.setId(playerId);
@@ -247,7 +277,7 @@ public class LoginUtil {
 			HawkLog.errPrintln("create player entity failed, puid: {}, deviceId: {}", puid, cmd.getDeviceId());
 			return null;
 		}
-		
+
 		return playerEntity;
 	}
 
@@ -267,22 +297,24 @@ public class LoginUtil {
 		try {
 			// id校验检查
 			if (objBase != null && !xid.getUUID().equals(objBase.getObjKey().getUUID())) {
-				HawkLog.errPrintln("player uuid deranged, playerId: {}, objId: {}", xid.getUUID(), objBase.getObjKey().getUUID());
+				HawkLog.errPrintln("player uuid deranged, playerId: {}, objId: {}", xid.getUUID(),
+						objBase.getObjKey().getUUID());
 				return false;
 			}
-			
+
 			// 对象不存在即创建
 			if (objBase == null || !objBase.isObjValid()) {
 				objBase = GsApp.getInstance().createObj(xid);
 				if (objBase != null) {
 					objBase.lockObj();
-					HawkLog.logPrintln("player object create success, playerId: {}, puid: {}, deviceId: {}", accountInfo.getPlayerId(), accountInfo.getPuid(), cmd.getDeviceId());
+					HawkLog.logPrintln("player object create success, playerId: {}, puid: {}, deviceId: {}",
+							accountInfo.getPlayerId(), accountInfo.getPuid(), cmd.getDeviceId());
 				}
 			}
 
 			if (objBase != null) {
 				Player player = (Player) objBase.getImpl();
-				
+
 				// 踢出之前的活跃对象
 				kickoutActiveRole(cmd);
 				String platform = LoginUtil.getLoginPlatform(cmd);
@@ -290,55 +322,65 @@ public class LoginUtil {
 				// 设置平台的token信息
 				if (!GameUtil.isWin32Platform(platform, channel)) {
 					if (!HawkOSOperator.isEmptyString(cmd.getPfToken())) {
-						JSONObject pfInfoJson = JSONObject.parseObject(cmd.getPfToken());
-						
+						JSONObject pfInfoJson = safeParsePfToken(cmd.getPfToken());
+						if (pfInfoJson == null) {
+							HawkLog.errPrintln("player login pftoken invalid json, playerId: {}", cmd.getPlayerId());
+							return false;
+						}
+
 						// 避免token盗用
 						try {
 							String openid = (String) pfInfoJson.get("open_id");
 							if (!cmd.getPuid().equals(openid)) {
-								HawkLog.errPrintln("player login pftoken-openid error, self openid: {}, pfToken openid: {}", cmd.getPuid(), openid);
+								HawkLog.errPrintln(
+										"player login pftoken-openid error, self openid: {}, pfToken openid: {}",
+										cmd.getPuid(), openid);
 								return false;
 							}
 						} catch (Exception e) {
 							HawkException.catchException(e);
 						}
-						
+
 						player.setPfTokenJson(pfInfoJson);
 						try {
 							String channelId = player.getChannelId();
 							if (!HawkOSOperator.isEmptyString(channelId)) {
-								RedisProxy.getInstance().getRedisSession().setNx("PlayerRegChannel:" + cmd.getPuid(), channelId);
+								RedisProxy.getInstance().getRedisSession().setNx("PlayerRegChannel:" + cmd.getPuid(),
+										channelId);
 							}
 						} catch (Exception e) {
 							HawkException.catchException(e);
 						}
-						
+
 						if (!pfInfoJson.containsKey("channelId")) {
-							HawkLog.errPrintln("player login pftoken channelId error, playerId: {}, pfInfoJson: {}", cmd.getPlayerId(), pfInfoJson);
+							HawkLog.errPrintln("player login pftoken channelId error, playerId: {}, pfInfoJson: {}",
+									cmd.getPlayerId(), pfInfoJson);
 						}
 					} else {
 						HawkLog.errPrintln("player login pftoken miss, playerId: {}", cmd.getPlayerId());
 					}
 				}
-				
+
 				// 当前玩家在线的处理
 				if (player.getActiveState() == GsConst.PlayerState.ONLINE) {
 					// 如果会话一致, 即本玩家已是登录状态, 不处理登录协议
 					if (player.getSession() == session) {
-						HawkLog.logPrintln("player login request discard, state: {}, playerId: {}, puid: {}, deviceId: {}",
-								player.getActiveState(), accountInfo.getPlayerId(), accountInfo.getPuid(), cmd.getDeviceId());
-						
+						HawkLog.logPrintln(
+								"player login request discard, state: {}, playerId: {}, puid: {}, deviceId: {}",
+								player.getActiveState(), accountInfo.getPlayerId(), accountInfo.getPuid(),
+								cmd.getDeviceId());
+
 						return false;
 					}
-					
+
 					// 不是同一个会话, 直接踢出之前的连接
 					HawkLog.logPrintln("player been kickout by broken connect, playerId: {}", player.getId());
 					{
 						player.notifyPlayerKickout(Status.SysError.PLAYER_KICKOUT_VALUE, "");
-						
+
 						// 通知退出
 						GsApp.getInstance().postMsg(player, SessionClosedMsg.valueOf());
-						
+
 						// 延迟关闭会话
 						HawkSession oldSession = player.getSession();
 						oldSession.setAppObject(null);
@@ -359,7 +401,7 @@ public class LoginUtil {
 					// 在回话对象上面设置account信息
 					session.setUserObject("account", accountInfo);
 				}
-				
+
 				return true;
 			}
 		} catch (Exception e) {
@@ -372,9 +414,10 @@ public class LoginUtil {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 跨服专用.
+	 * 
 	 * @param cmd
 	 * @param playerId
 	 */
@@ -383,7 +426,7 @@ public class LoginUtil {
 		if (HawkOSOperator.isEmptyString(accountOnlineInfo)) {
 			return;
 		}
-		
+
 		String[] serverPlatInfo = accountOnlineInfo.split(":");
 		// 同一区分将另一在线角色踢下线
 		if (serverPlatInfo[0].equals(GsConfig.getInstance().getServerId())) {
@@ -392,33 +435,38 @@ public class LoginUtil {
 			AccountInfo activeRole = null;
 			if (!HawkOSOperator.isEmptyString(playerId)) {
 				activeRole = GlobalData.getInstance().getAccountInfoByPlayerId(playerId);
-			}			 
+			}
 			// 账号初始化踢出在线角色玩家时，没有做正常的游戏退出逻辑处理，因此上面判断这个账号还在线，实际上它的账号信息已被清除了
 			if (activeRole == null) {
-				HawkLog.errPrintln("cs active role kickout error, puid: {}, serverId: {}", onlinePuid, GsConfig.getInstance().getServerId());
+				HawkLog.errPrintln("cs active role kickout error, puid: {}, serverId: {}", onlinePuid,
+						GsConfig.getInstance().getServerId());
 				RedisProxy.getInstance().removeOnlineInfo(cmd.getPuid());
 				return;
 			}
-			
+
 			Player activePlayer = GlobalData.getInstance().getActivePlayer(activeRole.getPlayerId());
 			if (activePlayer != null) {
 				activePlayer.kickout(Status.SysError.ACCOUNT_DIFF_ROLE_KICKOUT_VALUE, true, null);
 			}
-			HawkLog.logPrintln("cs account role is online, openid: {}, platform: {}, serverId: {}", cmd.getPuid(), serverPlatInfo[1], cmd.getServerId());			
+			HawkLog.logPrintln("cs account role is online, openid: {}, platform: {}, serverId: {}", cmd.getPuid(),
+					serverPlatInfo[1], cmd.getServerId());
 		} else {
-			//把这个任务从跨服线程里面移掉.
+			// 把这个任务从跨服线程里面移掉.
 			HawkTaskManager.getInstance().postExtraTask(new HawkTask() {
-				
+
 				@Override
 				public Object run() {
-					GmProxyHelper.proxyCall(serverPlatInfo[0], "kickout", "openid=" + cmd.getPuid() + "&serverId=" + GsConfig.getInstance().getServerId(), 2000);
+					GmProxyHelper.proxyCall(serverPlatInfo[0], "kickout",
+							"openid=" + cmd.getPuid() + "&serverId=" + GsConfig.getInstance().getServerId(), 2000);
 					return null;
 				}
 			});
 		}
 	}
+
 	/**
 	 * 将在线玩家踢下线
+	 * 
 	 * @param player
 	 * @param platform
 	 */
@@ -427,7 +475,7 @@ public class LoginUtil {
 		if (HawkOSOperator.isEmptyString(accountOnlineInfo)) {
 			return;
 		}
-		
+
 		String[] serverPlatInfo = accountOnlineInfo.split(":");
 		// 同一区分将另一在线角色踢下线
 		if (serverPlatInfo[0].equals(GsConfig.getInstance().getServerId())) {
@@ -436,24 +484,27 @@ public class LoginUtil {
 			AccountInfo activeRole = null;
 			if (!HawkOSOperator.isEmptyString(onlinePlayerId)) {
 				activeRole = GlobalData.getInstance().getAccountInfoByPlayerId(onlinePlayerId);
-			}			 
+			}
 			// 账号初始化踢出在线角色玩家时，没有做正常的游戏退出逻辑处理，因此上面判断这个账号还在线，实际上它的账号信息已被清除了
 			if (activeRole == null) {
-				HawkLog.errPrintln("active role kickout error, puid: {}, serverId: {}", onlinePuid, GsConfig.getInstance().getServerId());
+				HawkLog.errPrintln("active role kickout error, puid: {}, serverId: {}", onlinePuid,
+						GsConfig.getInstance().getServerId());
 				RedisProxy.getInstance().removeOnlineInfo(cmd.getPuid());
 				return;
 			}
-			
+
 			String platform = LoginUtil.getLoginPlatform(cmd);
-			//下面这段判断逻辑有几种情况，A服不同平台登录,   A,B两服都有角色, 从A服跨到B服， 原B服角色登录也会走下面的逻辑.
-			Player activePlayer = GlobalData.getInstance().getActivePlayer(activeRole.getPlayerId());			
-			if (activePlayer != null && (!activePlayer.getPlatform().equals(platform) || 
+			// 下面这段判断逻辑有几种情况，A服不同平台登录, A,B两服都有角色, 从A服跨到B服， 原B服角色登录也会走下面的逻辑.
+			Player activePlayer = GlobalData.getInstance().getActivePlayer(activeRole.getPlayerId());
+			if (activePlayer != null && (!activePlayer.getPlatform().equals(platform) ||
 					!activePlayer.getMainServerId().equals(GsConfig.getInstance().getServerId()))) {
 				activePlayer.kickout(Status.SysError.ACCOUNT_DIFF_ROLE_KICKOUT_VALUE, true, null);
 			}
-			HawkLog.logPrintln("account role is online, openid: {}, platform: {}, serverId: {}", cmd.getPuid(), serverPlatInfo[1], cmd.getServerId());			
+			HawkLog.logPrintln("account role is online, openid: {}, platform: {}, serverId: {}", cmd.getPuid(),
+					serverPlatInfo[1], cmd.getServerId());
 		} else {
-			GmProxyHelper.proxyCall(serverPlatInfo[0], "kickout", "openid=" + cmd.getPuid() + "&serverId=" + GsConfig.getInstance().getServerId(), 2000);
+			GmProxyHelper.proxyCall(serverPlatInfo[0], "kickout",
+					"openid=" + cmd.getPuid() + "&serverId=" + GsConfig.getInstance().getServerId(), 2000);
 		}
 	}
 
@@ -484,7 +535,7 @@ public class LoginUtil {
 		if (channel.equals(GsConfig.getInstance().getGmChannel())) {
 			return true;
 		}
-				
+
 		// auth已鉴权, 松散模式信赖auth鉴权结果
 		if (authCheckLevel == AuthCheckLevel.RELAX) {
 			String puid = GameUtil.getPuidByPlatform(cmd.getPuid(), platform);
@@ -493,18 +544,23 @@ public class LoginUtil {
 				return true;
 			}
 		}
-		
+
 		// win32无需鉴权
-		if ("android".equals(platform) && "guest".equals(channel)) {
+		if (("android".equals(platform) || "ios".equals(platform)) && "guest".equals(channel)) {
 			return true;
 		}
 
 		// gameserver进行严格鉴权
 		try {
-			JSONObject pfInfoJson = JSONObject.parseObject(cmd.getPfToken());
+			JSONObject pfInfoJson = safeParsePfToken(cmd.getPfToken());
+			if (pfInfoJson == null) {
+				HawkLog.errPrintln("platformAuthCheck pfToken invalid json, puid: {}, channel: {}", cmd.getPuid(),
+						cmd.getChannel());
+				return false;
+			}
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("channel", cmd.getChannel());
-			params.put("platform", cmd.getPlatform());  //TODO 这里一定要获取原始的 platform参数
+			params.put("platform", cmd.getPlatform()); // TODO 这里一定要获取原始的 platform参数
 			JSONObject json = SDKManager.getInstance().verifyLogin(params, pfInfoJson, session.getAddress());
 			if (json != null && json.getIntValue("ret") == SDKConst.ResultCode.SUCCESS) {
 				return true;
@@ -546,7 +602,7 @@ public class LoginUtil {
 	public static boolean isPuidCtrl() {
 		return GsConfig.getInstance().isPuidCtrl();
 	}
-	
+
 	/**
 	 * 账号激活判断
 	 * 
@@ -563,9 +619,9 @@ public class LoginUtil {
 		if (RedisProxy.getInstance().checkPuidControl(puid)) {
 			return true;
 		}
-		
-		HawkLog.logPrintln("puid ctrl interdict, puid: {}",puid);
-		
+
+		HawkLog.logPrintln("puid ctrl interdict, puid: {}", puid);
+
 		return false;
 	}
 
@@ -583,19 +639,19 @@ public class LoginUtil {
 			builder.setDeviceId(cmd.getDeviceId());
 			builder.setCode(Status.DeviceError.ACTIVE_TOKEN_NOT_EXIST_VALUE);
 			int result = RedisProxy.getInstance().canUseDeviceActiveToken(cmd.getActiveToken());
-			
+
 			if (result > 0) {
 				builder.setCode(Status.DeviceError.ACTIVE_TOKEN_BEEN_USED_VALUE);
 			} else if (result == 0) {
 				RedisProxy.getInstance().activeDevice(cmd.getDeviceId(), cmd.getActiveToken());
 				builder.setCode(0);
 			}
-			
+
 			protocol.response(HawkProtocol.valueOf(HP.code.DEVICE_ACTIVE_S, builder));
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 判断账号是否是被禁止创建角色的账号
 	 * 
@@ -608,7 +664,7 @@ public class LoginUtil {
 		if (banInfo == null) {
 			return false;
 		}
-		
+
 		HPLoginRet.Builder response = HPLoginRet.newBuilder();
 		response.setErrCode(Status.SysError.FORBID_CREATE_ROLE_VALUE);
 		session.sendProtocol(HawkProtocol.valueOf(HP.code.LOGIN_S, response));
@@ -621,7 +677,7 @@ public class LoginUtil {
 				kickoutSession.close();
 			}
 		});
-		
+
 		return true;
 	}
 
@@ -635,20 +691,21 @@ public class LoginUtil {
 	public static boolean forbidAccount(HawkSession session, AccountInfo accountInfo, String openid) {
 		long currentTime = HawkTime.getMillisecond();
 		String banReason = "";
-		IDIPBanInfo banInfo = RedisProxy.getInstance().getIDIPBanInfo(openid, IDIPBanType.AREA_BAN_ACCOUNT);  // 保留这一行是为了兼容历史
+		IDIPBanInfo banInfo = RedisProxy.getInstance().getIDIPBanInfo(openid, IDIPBanType.AREA_BAN_ACCOUNT); // 保留这一行是为了兼容历史
 		if (banInfo == null) {
 			banInfo = RedisProxy.getInstance().getIDIPBanInfo(accountInfo.getPuid(), IDIPBanType.AREA_BAN_ACCOUNT);
 		}
-		
+
 		if (banInfo != null) {
 			long banEndTime = banInfo.getEndTime();
 			banInfo.setTargetId(accountInfo.getPlayerId());
 			banInfo.setBanMsg(banInfo.getBanMsg() + "（解封时间：" + HawkTime.formatTime(banEndTime) + "）");
 			banReason = banInfo.getBanMsg();
 			RedisProxy.getInstance().addIDIPBanInfo(accountInfo.getPlayerId(), banInfo, IDIPBanType.BAN_ACCOUNT);
-			accountInfo = GlobalData.getInstance().updateAccountInfo(accountInfo.getPuid(), accountInfo.getServerId(), accountInfo.getPlayerId(), banEndTime, accountInfo.getPlayerName());
+			accountInfo = GlobalData.getInstance().updateAccountInfo(accountInfo.getPuid(), accountInfo.getServerId(),
+					accountInfo.getPlayerId(), banEndTime, accountInfo.getPlayerName());
 		}
-		
+
 		long banEndTime = accountInfo.getForbidenTime();
 		// 封禁时间结束了
 		if (currentTime > banEndTime) {
@@ -657,11 +714,11 @@ public class LoginUtil {
 			if (banInfo == null || currentTime < banInfo.getStartTime() || currentTime > banInfo.getEndTime()) {
 				return false;
 			}
-			
+
 			banEndTime = banInfo.getEndTime();
 			banReason = banInfo.getBanMsg();
 		}
-		
+
 		HPLoginRet.Builder response = HPLoginRet.newBuilder();
 		response.setErrCode(Status.SysError.PLAYER_FORBIDDEN_VALUE);
 		if (!HawkOSOperator.isEmptyString(banReason)) {
@@ -672,7 +729,7 @@ public class LoginUtil {
 				response.setBanReason(banInfo.getBanMsg());
 			}
 		}
-		
+
 		response.setBanTimeDiff(banEndTime - HawkTime.getMillisecond());
 		session.sendProtocol(HawkProtocol.valueOf(HP.code.LOGIN_S, response));
 
@@ -685,11 +742,12 @@ public class LoginUtil {
 			}
 		});
 
-		HawkLog.logPrintln("player is forbiden, playerId: {}, puid: {}", accountInfo.getPlayerId(), accountInfo.getPuid());
-		
+		HawkLog.logPrintln("player is forbiden, playerId: {}, puid: {}", accountInfo.getPlayerId(),
+				accountInfo.getPuid());
+
 		return true;
 	}
-	
+
 	/**
 	 * 玩家注册相关信息存储
 	 * 
@@ -698,27 +756,27 @@ public class LoginUtil {
 	 */
 	public static void playerRegisterSuccess(PlayerEntity playerEntity, HPLogin cmd) {
 		AccountRoleInfo accountRole = AccountRoleInfo.newInstance().openId(playerEntity.getOpenid())
-				 .playerId(playerEntity.getId())
-				 .playerName(playerEntity.getName())
-				 .playerLevel(1)
-				 .cityLevel(1)
-				 .vipLevel(0)
-				 .battlePoint(0)
-				 .icon(playerEntity.getIcon())
-				 .pfIcon("")
-				 .serverId(playerEntity.getServerId())
-				 .activeServer(playerEntity.getServerId())
-				 .platform(playerEntity.getPlatform())
-				 .registerTime(HawkTime.getMillisecond())
-				 .loginTime(0)
-				 .logoutTime(0);
+				.playerId(playerEntity.getId())
+				.playerName(playerEntity.getName())
+				.playerLevel(1)
+				.cityLevel(1)
+				.vipLevel(0)
+				.battlePoint(0)
+				.icon(playerEntity.getIcon())
+				.pfIcon("")
+				.serverId(playerEntity.getServerId())
+				.activeServer(playerEntity.getServerId())
+				.platform(playerEntity.getPlatform())
+				.registerTime(HawkTime.getMillisecond())
+				.loginTime(0)
+				.logoutTime(0);
 		RedisProxy.getInstance().batchAddRegisterInfo(accountRole, cmd.getPhoneInfo());
-		
+
 		ZonineSDK.getInstance().opDataReport(OpDataType.NEW_USER, playerEntity.getOpenid(), 1);
-		
+
 		RelationService.getInstance().beInvitedAccountIntoGame(playerEntity, cmd.getPfToken());
 	}
-	
+
 	/**
 	 * 玩家心跳处理
 	 * 
@@ -729,46 +787,47 @@ public class LoginUtil {
 		if (protocol == null || protocol.getSession() == null || protocol.getSession().getAppObject() == null) {
 			return false;
 		}
-		
-		try {			
+
+		try {
 			Player player = (Player) protocol.getSession().getAppObject();
-			
-			//如果是跨服就扔到跨服那边去处理 之所以倒一次手, 是因为需要通过心跳包来保证player不被清理.
+
+			// 如果是跨服就扔到跨服那边去处理 之所以倒一次手, 是因为需要通过心跳包来保证player不被清理.
 			String toServerId = CrossService.getInstance().getEmigrationPlayerServerId(player.getId());
 			if (!HawkOSOperator.isEmptyString(toServerId)) {
 				CrossProxy.getInstance().sendNotify(protocol, toServerId, player.getId());
-				//return true;
+				// return true;
 			}
 			HPHeartBeat cmd = protocol.parseProtocol(HPHeartBeat.getDefaultInstance());
-			
+
 			// 机器人模式下测试账号重置
 			if (GsConfig.getInstance().isRobotMode() && cmd.hasResetAccount() && cmd.getResetAccount()) {
 				GameUtil.resetAccount(player);
 				return true;
 			}
-						
+
 			// 客户端时间和服务端时间不相上下时，说明客户端传的时间是正确的，才有以下操作
 			long clientTime = cmd.getTimeStamp();
 			long serverTime = HawkApp.getInstance().getCurrentTime();
 			if (serverTime / clientTime < 2) {
-				player.getData().setClientServerTimeSub((int) ((clientTime - serverTime)/1000));
+				player.getData().setClientServerTimeSub((int) ((clientTime - serverTime) / 1000));
 			}
-			
+
 			// 回复心跳
 			HPHeartBeat.Builder builder = HPHeartBeat.newBuilder();
 			builder.setTimeStamp(serverTime);
 			protocol.response(HawkProtocol.valueOf(HP.sys.HEART_BEAT, builder));
-			
+
 			return true;
 		} catch (Exception e) {
 			HawkException.catchException(e);
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * 从登录协议数据中获取platform
+	 * 
 	 * @param cmd
 	 * @return
 	 */
@@ -779,9 +838,10 @@ public class LoginUtil {
 		}
 		return platform;
 	}
-	
+
 	/**
 	 * 从登录协议数据中获取channel
+	 * 
 	 * @param cmd
 	 * @return
 	 */
@@ -793,5 +853,5 @@ public class LoginUtil {
 		}
 		return channel;
 	}
-	
+
 }

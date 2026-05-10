@@ -1012,7 +1012,7 @@ public class PlayerLoginModule extends PlayerModule {
 			// 模拟的平台图标
 			String pfIcon = RedisProxy.getInstance().getPfIcon(player.getPuid());
 			if (HawkOSOperator.isEmptyString(pfIcon)) {
-				if ("android".equals(playerEntity.getPlatform()) && "guest".equals(playerEntity.getChannel())) {
+				if (("android".equals(playerEntity.getPlatform()) || "ios".equals(playerEntity.getPlatform())) && "guest".equals(playerEntity.getChannel())) {
 					pfIcon = GameConstCfg.getInstance().randomPfIcon();
 				}
 

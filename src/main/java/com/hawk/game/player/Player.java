@@ -2600,7 +2600,7 @@ public class Player extends HawkAppObj {
             return false;
         }
 
-		if (!SDKManager.getInstance().isPayOpen()) {
+		if (GameUtil.isWin32Platform(this) || !SDKManager.getInstance().isPayOpen()) {
 			getPlayerBaseEntity().setDiamonds(getDiamonds() + diamond);
 			getPush().syncPlayerDiamonds();
 			HawkLog.logPrintln("increase diamond, playerId: {}, add: {}, afterCount: {}, action: {}", getId(), diamond, getDiamonds(), action.strValue());
@@ -2639,7 +2639,7 @@ public class Player extends HawkAppObj {
 		}
 
 		// 消耗钻石
-		if (!SDKManager.getInstance().isPayOpen()) {
+		if (GameUtil.isWin32Platform(this) || !SDKManager.getInstance().isPayOpen()) {
 			getPlayerBaseEntity().setDiamonds(getDiamonds() - diamond);
 			getPush().syncPlayerDiamonds();
 			if (!diamondsConsumeIgnoreAction(action)) {
