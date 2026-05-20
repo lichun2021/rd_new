@@ -526,6 +526,10 @@ public class LoginUtil {
 		String channel = LoginUtil.getLoginChannel(cmd);
 		// 重连的情况不需要鉴权
 		if (cmd.getFlag() == LoginFlag.BROKEN_CONNECT_VALUE) {
+			// guest渠道无需第三方鉴权, 直接放行
+			if (("android".equals(platform) || "ios".equals(platform)) && "guest".equals(channel)) {
+				return true;
+			}
 			String puid = GameUtil.getPuidByPlatform(cmd.getPuid(), platform);
 			AccountInfo ai = GlobalData.getInstance().getAccountInfo(puid, cmd.getServerId());
 			return ai != null;

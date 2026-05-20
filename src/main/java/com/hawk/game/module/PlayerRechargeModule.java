@@ -307,12 +307,14 @@ public class PlayerRechargeModule extends PlayerModule {
 		String rechargeInfo = request.getRechargeInfo();
 		PayCfg payCfg = HawkConfigManager.getInstance().getConfigByKey(PayCfg.class, goodsId);
 
-		// win32直接充值成功
+		// win32直接充值成功 -- 已关闭，防止客户端绕过支付直接到账
+		/*
 		if (GameUtil.isWin32Platform(player)) {
 			win32DirectRecharge(payCfg, rechargeId, rechargeInfo);
 			player.responseSuccess(protocol.getType());
 			return true;
-		} 
+		}
+		*/
 		
 		try {
 			// 明显失败的订单信息 
@@ -440,6 +442,8 @@ public class PlayerRechargeModule extends PlayerModule {
 	 * @return
 	 */
 	private boolean buyItem(PayGiftCfg payGiftCfg, int protocol) {
+		// win32平台直接发货已关闭，防止客户端绕过支付直接到账
+		/*
 		if (!GameUtil.isWin32Platform(player)) {
 			return buyItemRequest(payGiftCfg, protocol);
 		}
@@ -463,6 +467,9 @@ public class PlayerRechargeModule extends PlayerModule {
 		sendProtocol(HawkProtocol.valueOf(HP.code.GIFT_SUCCESS_RESP, resp));
 		
 		return true;
+		*/
+		// 所有渠道均走正常支付流程
+		return buyItemRequest(payGiftCfg, protocol);
 	}
 	
 	

@@ -530,8 +530,11 @@ public class PlantSoldierAdvanceModule extends PlayerModule {
 	private void onSpeedUpMsg(PlantSoldierAdvanceQueueSpeedUpEvent msg) {
 		PlantSoldierAdvanceEntity factory = player.getData().getPlantSoldierAdvanceEntity();
 		long upTime = msg.getUpTime();
-		if (upTime < 0) { // 金币立即完成
-			upTime = Integer.MAX_VALUE;
+		if (upTime < 0) { // 金币立即完成：直接将结束时间设为已过期，强制立即完成收兵
+			factory.setAdvanceEnd(GsApp.getInstance().getCurrentTime() - 1);
+			factory.setLastResStoreTime(0);
+			onCollectFactory(null);
+			return;
 		}
 		upTime += 1000;
 		double storedAdd = upTime / getAdvanceSpeed(factory);

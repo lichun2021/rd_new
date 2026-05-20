@@ -64,7 +64,7 @@ set RELPATH=%CLASSNAME%.class
 
 rem 多个可能的查找路径
 set CLASSFILE=
-set SEARCHPATHS=build\classes\java\main;classes\java\main;D:\game\classes\java\main;..\classes\java\main
+set SEARCHPATHS=classes\java\main;script\bin;D:\classes\java\main
 
 for %%P in (%SEARCHPATHS%) do (
     if exist "%%P\%RELPATH%" (
