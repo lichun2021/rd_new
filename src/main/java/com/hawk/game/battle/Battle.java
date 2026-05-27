@@ -163,7 +163,7 @@ public class Battle {
 	}
 
 	/** 立即进行战斗
-	 * 
+	 *
 	 * @return 获胜方 */
 	public BattleConst.Troop warfare() {
 		long startTime = HawkTime.getMillisecond();

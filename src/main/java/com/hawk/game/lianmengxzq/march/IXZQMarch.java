@@ -25,6 +25,7 @@ import com.hawk.game.player.Player;
 import com.hawk.game.protocol.GuildWar.GuildWarSingleInfo;
 import com.hawk.game.protocol.GuildWar.GuildWarTeamInfo;
 import com.hawk.game.protocol.HP;
+import com.hawk.game.protocol.Status;
 import com.hawk.game.protocol.World.WorldMarchStatus;
 import com.hawk.game.protocol.World.WorldPointType;
 import com.hawk.game.service.GuildService;
@@ -66,18 +67,29 @@ public interface IXZQMarch extends BasedMarch {
 		// 超级武器点
 		XZQWorldPoint xzqPoint = XZQService.getInstance().getXZQPoint(terminalId);
 		if (xzqPoint.isPeace()) {
+			WorldMarchService.logger.info("XZQ march return on peace, playerId: {}, guildId: {}, marchId: {}, marchType: {}, terminalId: {}, pointBuildStatus: {}, controlGuild: {}, xzqState: {}",
+					player.getId(), player.getGuildId(), this.getMarchId(), this.getMarchType(),
+					terminalId, xzqPoint.getXZQBuildStatus(), xzqPoint.getGuildControl(),
+					XZQService.getInstance().getState());
+			for (Player atker : atkPlayers) {
+				atker.sendError(HP.code.XZQ_SINGLE_MARCH_C_VALUE, Status.XZQError.XZQ_ATK_LIMIT_NOT_BATTLE_TIME_VALUE, 0);
+			}
 			returnMarchList(massMarchList);
 			return;
 		}
 		//如果不是自己联盟占领,需要判断占领个数是否达到上线
 		int canAttack =  XZQService.getInstance().canAttackXZQWorldPoint(player, xzqPoint);
 		if(canAttack > 0){
+			WorldMarchService.logger.info("XZQ march return on canAttack, playerId: {}, guildId: {}, marchId: {}, marchType: {}, terminalId: {}, canAttackCode: {}, pointBuildStatus: {}, controlGuild: {}, xzqState: {}",
+					player.getId(), player.getGuildId(), this.getMarchId(), this.getMarchType(),
+					terminalId, canAttack, xzqPoint.getXZQBuildStatus(), xzqPoint.getGuildControl(),
+					XZQService.getInstance().getState());
 			for(Player atker :atkPlayers){
 				atker.sendError(HP.code.XZQ_SINGLE_MARCH_C_VALUE, canAttack, 0);
 			}
 			returnMarchList(massMarchList);
 			return;
-		} 
+		}
 		int termId = XZQService.getInstance().getXZQTermId();
 		// 如果有npc占领
 		if (xzqPoint.hasNpc()) {

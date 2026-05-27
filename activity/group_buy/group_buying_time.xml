@@ -64,4 +64,23 @@
       <data termId="62" showTime="2026-01-04 00:00:00" startTime="2026-01-04 00:00:00" endTime="2026-01-06 23:59:59" hiddenTime="2026-1-7 23:59:59" />
       <data termId="63" showTime="2026-02-02 00:00:00" startTime="2026-02-02 00:00:00" endTime="2026-02-04 23:59:59" hiddenTime="2026-2-5 23:59:59" />
       <data termId="64" showTime="2026-03-02 00:00:00" startTime="2026-03-02 00:00:00" endTime="2026-03-04 23:59:59" hiddenTime="2026-3-5 23:59:59" />
+      <data termId="65" showTime="2026-04-06 00:00:00" startTime="2026-04-06 00:00:00" endTime="2026-04-08 23:59:59" hiddenTime="2026-4-9 23:59:59" />
+      <data termId="66" showTime="2026-04-20 00:00:00" startTime="2026-04-20 00:00:00" endTime="2026-04-22 23:59:59" hiddenTime="2026-4-23 23:59:59" />
+      <data termId="67" showTime="2026-05-04 00:00:00" startTime="2026-05-04 00:00:00" endTime="2026-05-06 23:59:59" hiddenTime="2026-5-7 23:59:59" />
+      <data termId="68" showTime="2026-05-18 00:00:00" startTime="2026-05-18 00:00:00" endTime="2026-05-20 23:59:59" hiddenTime="2026-5-21 23:59:59" />
+      <data termId="69" showTime="2026-06-01 00:00:00" startTime="2026-06-01 00:00:00" endTime="2026-06-03 23:59:59" hiddenTime="2026-6-4 23:59:59" />
+      <data termId="70" showTime="2026-06-15 00:00:00" startTime="2026-06-15 00:00:00" endTime="2026-06-17 23:59:59" hiddenTime="2026-6-18 23:59:59" />
+      <data termId="71" showTime="2026-07-06 00:00:00" startTime="2026-07-06 00:00:00" endTime="2026-07-08 23:59:59" hiddenTime="2026-7-9 23:59:59" />
+      <data termId="72" showTime="2026-07-20 00:00:00" startTime="2026-07-20 00:00:00" endTime="2026-07-22 23:59:59" hiddenTime="2026-7-23 23:59:59" />
+      <data termId="73" showTime="2026-08-03 00:00:00" startTime="2026-08-03 00:00:00" endTime="2026-08-05 23:59:59" hiddenTime="2026-8-6 23:59:59" />
+      <data termId="74" showTime="2026-08-17 00:00:00" startTime="2026-08-17 00:00:00" endTime="2026-08-19 23:59:59" hiddenTime="2026-8-20 23:59:59" />
+      <data termId="75" showTime="2026-09-07 00:00:00" startTime="2026-09-07 00:00:00" endTime="2026-09-09 23:59:59" hiddenTime="2026-9-10 23:59:59" />
+      <data termId="76" showTime="2026-09-21 00:00:00" startTime="2026-09-21 00:00:00" endTime="2026-09-23 23:59:59" hiddenTime="2026-9-24 23:59:59" />
+      <data termId="77" showTime="2026-10-05 00:00:00" startTime="2026-10-05 00:00:00" endTime="2026-10-07 23:59:59" hiddenTime="2026-10-8 23:59:59" />
+      <data termId="78" showTime="2026-10-19 00:00:00" startTime="2026-10-19 00:00:00" endTime="2026-10-21 23:59:59" hiddenTime="2026-10-22 23:59:59" />
+      <data termId="79" showTime="2026-11-02 00:00:00" startTime="2026-11-02 00:00:00" endTime="2026-11-04 23:59:59" hiddenTime="2026-11-5 23:59:59" />
+      <data termId="80" showTime="2026-11-16 00:00:00" startTime="2026-11-16 00:00:00" endTime="2026-11-18 23:59:59" hiddenTime="2026-11-19 23:59:59" />
+      <data termId="81" showTime="2026-12-07 00:00:00" startTime="2026-12-07 00:00:00" endTime="2026-12-09 23:59:59" hiddenTime="2026-12-10 23:59:59" />
+      <data termId="82" showTime="2026-12-21 00:00:00" startTime="2026-12-21 00:00:00" endTime="2026-12-23 23:59:59" hiddenTime="2026-12-24 23:59:59" />
+
 </root>

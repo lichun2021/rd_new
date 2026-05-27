@@ -62,7 +62,7 @@ stealTimesMax = 10
 stealOneCd = 3600
 
 # 服务器开服延时开启活动时间；单位：秒
-serverDelay = 604800
+serverDelay = 0
 
 # 各类机器人每日可偷晶体个数
 robotStealNum = 2_3,3_3
