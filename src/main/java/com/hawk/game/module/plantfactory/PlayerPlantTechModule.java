@@ -128,8 +128,15 @@ public class PlayerPlantTechModule extends PlayerModule {
 		PBPlantTechUpgradeReq req = protocol.parseProtocol(PBPlantTechUpgradeReq.getDefaultInstance());
 		BuildingType type = req.getBuildType();
 		PlantTech upfactory = getTechObjByType(type);
+		if (upfactory == null) {
+			return;
+		}
 		PlantTechnologyCfg cfg = HawkConfigManager.getInstance().getConfigByKey(PlantTechnologyCfg.class, upfactory.getCfgId());
 		PlantTechnologyCfg upcfg = HawkConfigManager.getInstance().getConfigByKey(PlantTechnologyCfg.class, cfg.getPostStage());
+		if (upcfg == null) {
+			// 已是最高阶段，无可升级配置
+			return;
+		}
 
 		if (!checkFront(upcfg, protocol.getType())) {
 			return;
