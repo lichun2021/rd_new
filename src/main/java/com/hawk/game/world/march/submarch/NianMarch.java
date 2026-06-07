@@ -324,8 +324,21 @@ public interface NianMarch extends BasedMarch {
 			
 			int totalBlood = WorldNianService.getInstance().getNianInitBlood(nianCfg.getId());
 			int hpNumber = nianCfg.getHpNumber();
+			// [FIX] 防止 hpNumber == 0 导致除零 ArithmeticException
+			if (hpNumber <= 0) {
+				WorldMarchService.logger.error("doBattleResult: hpNumber is 0 or negative, nianId:{}, skip HP segment check", nianCfg.getId());
+				sendAtkAward(point, nianCfg, atkPlayers, battleOutcome, afterBlood, totalKillCount);
+				WorldMarchService.getInstance().sendBattleResultInfo(this, true, WorldUtil.mergAllPlayerArmy(battleOutcome.getAftArmyMapAtk()), new ArrayList<ArmyInfo>(), point.getRemainBlood() <= 0, false);
+				return;
+			}
 			int oneHpBlood = totalBlood / hpNumber;
-			
+			// [FIX] 防止 oneHpBlood == 0 （totalBlood < hpNumber 时）导致后续除零
+			if (oneHpBlood <= 0) {
+				WorldMarchService.logger.error("doBattleResult: oneHpBlood is 0, totalBlood:{}, hpNumber:{}, nianId:{}, skip HP segment check", totalBlood, hpNumber, nianCfg.getId());
+				sendAtkAward(point, nianCfg, atkPlayers, battleOutcome, afterBlood, totalKillCount);
+				WorldMarchService.getInstance().sendBattleResultInfo(this, true, WorldUtil.mergAllPlayerArmy(battleOutcome.getAftArmyMapAtk()), new ArrayList<ArmyInfo>(), point.getRemainBlood() <= 0, false);
+				return;
+			}
 			int beforeHpNumber = Math.min(((beforeBlood - 1) / oneHpBlood + 1), hpNumber);
 			int afterHpNumber = Math.min(((afterBlood - 1) / oneHpBlood + 1), hpNumber);
 			if (beforeHpNumber != afterHpNumber) {

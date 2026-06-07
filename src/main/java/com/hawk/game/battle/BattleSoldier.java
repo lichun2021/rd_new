@@ -3711,6 +3711,12 @@ public abstract class BattleSoldier implements IBattleSoldier {
 		if(getEffVal(EffType.EFF_12811)==0 || this instanceof ISSSSolomonPet){
 			return HawkTuples.tuple(0, 0);
 		}
+		// ★ 修复：effect12811AtkRound 未配置时默认为0，% 0 会抛 ArithmeticException
+		//   导致携带纳米虫群(swId=2006)的战斗单元被 catch 移除，双方均无伤害
+		if(ConstProperty.getInstance().effect12811AtkRound <= 0){
+			addDebugLog("12811~12812 effect12811AtkRound 未配置，跳过");
+			return HawkTuples.tuple(0, 0);
+		}
 		int rr = getBattleRound()%ConstProperty.getInstance().effect12811AtkRound;
 		if(rr < ConstProperty.getInstance().effect12811ContinueRound || getBattleRound() == ConstProperty.getInstance().effect12811ContinueRound){
 			int eff12811 = (int) (getEffVal(EffType.EFF_12811) * GsConst.EFF_PER * ConstProperty.getInstance().effect12811SoldierAdjustMap.getOrDefault(enemy.getType(), 10000));

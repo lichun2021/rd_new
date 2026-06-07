@@ -135,8 +135,10 @@ public interface SuperWeaponMarch extends BasedMarch {
 			
 		} else {
 			boolean attackWin = true;
-			// 超级武器里是否有行军
-			boolean hasMarchBefore = WorldMarchService.getInstance().hasSuperWeaponMarch(terminalId);
+			// ★ 修复：用 getSuperWeaponStayMarchs 检查有效驻守行军（与 attackWarPoint 内部保持一致），
+			//   避免 hasSuperWeaponMarch 只检查 marchId 队列导致的竞争条件（队列非空但行军已失效）
+			List<IWorldMarch> stayMarchs = WorldMarchService.getInstance().getSuperWeaponStayMarchs(terminalId);
+			boolean hasMarchBefore = !stayMarchs.isEmpty();
 			// 有行军驻扎走战斗逻辑， 没有则直接驻扎
 			if (hasMarchBefore) {
 				attackWin = attackWarPoint(massMarchList, worldPoint, player);

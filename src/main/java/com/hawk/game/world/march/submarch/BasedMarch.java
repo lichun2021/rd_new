@@ -694,6 +694,12 @@ public interface BasedMarch extends IWorldMarch {
 			}
 		}
 
+		// ★ 防御检查：defMarchs 为空时（驻守行军数据竞争失效），直接返回，避免后续 get(0) 抛异常导致战报丢失
+		if (defMarchs == null || defMarchs.isEmpty()) {
+			WorldMarchService.logger.warn("attackWarPoint defMarchs is empty, pointType:{}, pointId:{}", worldPoint.getPointType(), worldPoint.getId());
+			return true;
+		}
+
 		List<IWorldMarch> calAtkList = new ArrayList<>();
 		atkMarchs.forEach(march -> { // 填充攻击方玩家
 			Player atkplayer = GlobalData.getInstance().makesurePlayer(march.getPlayerId());

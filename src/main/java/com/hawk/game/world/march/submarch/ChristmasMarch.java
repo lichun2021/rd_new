@@ -277,8 +277,21 @@ public interface ChristmasMarch extends BasedMarch {
 			
 			int totalBlood = WorldChristmasWarService.getInstance().getInitBlood();
 			int hpNumber = bossCfg.getHpNumber();
+			// [FIX] 防止 hpNumber == 0 导致除零 ArithmeticException
+			if (hpNumber <= 0) {
+				WorldMarchService.logger.error("doBattleResult(Christmas): hpNumber is 0 or negative, bossId:{}, skip HP segment check", bossCfg.getId());
+				sendAtkAward(point, bossCfg, atkPlayers, battleOutcome, afterBlood, totalKillCount);
+				WorldMarchService.getInstance().sendBattleResultInfo(this, true, WorldUtil.mergAllPlayerArmy(battleOutcome.getAftArmyMapAtk()), new ArrayList<ArmyInfo>(), point.getRemainBlood() <= 0, false);
+				return;
+			}
 			int oneHpBlood = totalBlood / hpNumber;
-			
+			// [FIX] 防止 oneHpBlood == 0 导致后续除零
+			if (oneHpBlood <= 0) {
+				WorldMarchService.logger.error("doBattleResult(Christmas): oneHpBlood is 0, totalBlood:{}, hpNumber:{}, bossId:{}, skip HP segment check", totalBlood, hpNumber, bossCfg.getId());
+				sendAtkAward(point, bossCfg, atkPlayers, battleOutcome, afterBlood, totalKillCount);
+				WorldMarchService.getInstance().sendBattleResultInfo(this, true, WorldUtil.mergAllPlayerArmy(battleOutcome.getAftArmyMapAtk()), new ArrayList<ArmyInfo>(), point.getRemainBlood() <= 0, false);
+				return;
+			}
 			int beforeHpNumber = Math.min(((beforeBlood - 1) / oneHpBlood + 1), hpNumber);
 			int afterHpNumber = Math.min(((afterBlood - 1) / oneHpBlood + 1), hpNumber);
 			if (beforeHpNumber != afterHpNumber) {

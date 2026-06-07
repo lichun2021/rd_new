@@ -5263,8 +5263,14 @@ public class WorldMarchService extends HawkAppObj {
 		
 		// 采集时长
 		long collectTime = march.getMassReadyTime();
+		// [FIX] 防止 getResCollectExtraDropTime() == 0 导致除零
+		int extraDropTime = ConstProperty.getInstance().getResCollectExtraDropTime();
+		if (extraDropTime <= 0) {
+			logger.error("calcExtraDrop2: getResCollectExtraDropTime() is 0, skip extra drop calc");
+			return;
+		}
 		// tick次数
-		int addTimes = (int) ((collectTime / 1000) / ConstProperty.getInstance().getResCollectExtraDropTime());
+		int addTimes = (int) ((collectTime / 1000) / extraDropTime);
 		// 额外奖励id
 		int extraAwardId = ConstProperty.getInstance().getResCollectExtraDropAward();
 		
@@ -5303,6 +5309,11 @@ public class WorldMarchService extends HawkAppObj {
 		int timesLimit = Integer.parseInt(cfg.getParam2());
 		// 计算周期(秒)
 		int tickPeriod = Integer.parseInt(cfg.getParam3());
+		// [FIX] 防止配置表 param3 为 0 导致除零 ArithmeticException
+		if (tickPeriod <= 0) {
+			logger.error("calcExtraDrop3: tickPeriod is 0 or negative from cfg param3, skip extra drop calc");
+			return;
+		}
 		// 掉落奖励id
 		int awardId = Integer.parseInt(cfg.getParam4());
 		
