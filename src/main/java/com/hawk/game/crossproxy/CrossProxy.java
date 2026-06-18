@@ -195,7 +195,7 @@ public class CrossProxy extends HawkTickable {
 			// 初始化通信对象
 			HawkZmq zmqObj = HawkZmqManager.getInstance().createZmq(HawkZmq.ZmqType.DEALER);
 			
-			// 设置缓冲区大小(1M)
+			// 设置缓冲区大小(2M)
 			zmqObj.checkCacheBuffer(1024 * 1024 * 2);
 			
 			// 设置标识
@@ -398,10 +398,24 @@ public class CrossProxy extends HawkTickable {
 		
 		// 注册rpc
 		int threadIdx = HawkTaskManager.getInstance().getTaskExecutor().getThreadIndex(HawkOSOperator.getThreadId());
-		rpcStubCache.put(header.getRpcid(), new CsRpcStub(header, threadIdx, callback));
+		CsRpcStub stub = new CsRpcStub(header, threadIdx, callback);
+		rpcStubCache.put(header.getRpcid(), stub);
 		stubTimeMap.put(header.getRpcid(), HawkTime.getMillisecond());
 		
-		return sendProxyProtocol(header, protocol);
+		if (!sendProxyProtocol(header, protocol)) {
+			// 无可用连接时发送失败，立即移除 stub 并触发超时回调，避免玩家等待 RPC 超时
+			rpcStubCache.invalidate(header.getRpcid());
+			stubTimeMap.remove(header.getRpcid());
+			HawkTaskManager.getInstance().postTask(new HawkTask() {
+				@Override
+				public Object run() {
+					callback.onTimeout(stub);
+					return null;
+				}
+			}, threadIdx);
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -438,6 +452,7 @@ public class CrossProxy extends HawkTickable {
 			// 判断连接状态
 			HawkZmq csZmq = getActiveZmq();
 			if (csZmq == null) {
+				HawkLog.warnPrintln("csproxy send fail, no active connection, type: {}, to: {}", header.getType(), header.getTo());
 				return false;
 			}
 			
@@ -712,13 +727,20 @@ public class CrossProxy extends HawkTickable {
 					continue;
 				}			
 
-				// 超时的协议直接丢弃
+				// 超时的协议处理
 				long gap = HawkTime.getMillisecond() - header.getTimestamp();
 				if (gap > 2000L) {
 					HawkLog.errPrintln("csproxy header timeout: {}, protocol: {}, gap: {}", header.getOri(), protocol.getType(), gap);
 					HawkProfilerAnalyzer.getInstance().addMsgHandleInfo("csproxy-header-timeout", gap);
 					if (gap > ProxyHelper.PROTOCOL_EXPIRE) {
-						continue;
+						// RPC 回包和带 rpcid 的 RPC 请求不丢弃，由发起方的 RPC 超时机制兜底
+						// 丢弃 RPC 回包会导致发起方 stub 无法回调，玩家只能等 RPC 超时才收到失败结果
+						if (header.getType() == ProtoType.RPC_REP || !HawkOSOperator.isEmptyString(header.getRpcid())) {
+							HawkLog.warnPrintln("csproxy deliver expired rpc protocol, type: {}, from: {}, rpcid: {}, gap: {}", 
+									header.getType(), header.getFrom(), header.getRpcid(), gap);
+						} else {
+							continue;
+						}
 					}
 				}
 				
