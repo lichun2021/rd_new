@@ -135,7 +135,7 @@ public class Hero1116Param {
 		if (this.eff12723Type == 1) {
 			// - 紧凑形态：自身超能攻击增加+XX.XX%【12725】，同步解析多个光反射角度，攻击时多道光束聚焦一点，造成穿透性灼伤效果，造成一次超能攻击伤害，伤害率+XX.XX%【12726】。(->针对敌方兵种留个内置系数effect12726SoldierAdjust)
 			int hurtRate = (int) (parent.getEffVal(EffType.EFF12726) * GsConst.EFF_PER
-					* ConstProperty.getInstance().effect12726SoldierAdjustMap.getOrDefault(defSoldier.getType(), 0));
+					* ConstProperty.getInstance().effect12726SoldierAdjustMap.getOrDefault(defSoldier.getType(), 10000));
 			parent.additionalAttack(defSoldier, hurtRate, false, true, "紧凑形态  造成一次超能攻击伤害，伤害率+XX.XX%【12726】");
 		} else {
 			// 狙击形态：视野转为冷色调红外成像，标记敌人热能轮廓，攻击能精准命中敌方弱点部位使其晕眩，自身攻击增加+XX.XX【12723】%，且受到攻击的敌方部队中XX.XX%数量的部队下一回合无法进行攻击(->针对敌方兵种留个内置系数effect12724SoldierAdjust)
@@ -147,7 +147,7 @@ public class Hero1116Param {
 		}
 		for (BattleSoldier tar : skill12722Targes) {
 			int hurtRate12722 = (int) ((parent.getEffVal(EffType.EFF12722) + parent.getEffVal(EffType.EFF12741)) * GsConst.EFF_PER
-					* ConstProperty.getInstance().effect12722SoldierAdjustMap.getOrDefault(tar.getType(), 0));
+					* ConstProperty.getInstance().effect12722SoldierAdjustMap.getOrDefault(tar.getType(), 10000));
 			parent.additionalAttack(tar, hurtRate12722, true, true, "【12722】光轨锁定 ");
 		}
 	}
