@@ -137,7 +137,7 @@ echo 主类数量: %CLASS_COUNT%
 echo.
 
 rem 生成批处理文件
-echo 正在生成热更新脚本: %OUTPUT_BAT%
+echo generating: %OUTPUT_BAT%
 echo.
 
 rem 使用临时文件避免编码问题
@@ -150,23 +150,22 @@ echo setlocal
 echo cd /d %%~dp0
 echo.
 echo echo ====================================
-echo echo    批量热更新脚本
-echo echo    生成时间: %date% %time%
-echo echo    差异类数: %CLASS_COUNT%
+echo echo    Batch Hotfix Script
+echo echo    Changed classes: %CLASS_COUNT%
 echo echo ====================================
 echo echo.
 echo.
-echo rem 检查端口号参数
+echo rem Check port parameter
 echo if "%%~1"=="" ^(
-echo     echo 用法: hotfix_%DATE_STR%.bat [端口号]
-echo     echo 示例: hotfix_%DATE_STR%.bat 8080
+echo     echo Usage: hotfix_%DATE_STR%.bat [port]
+echo     echo Example: hotfix_%DATE_STR%.bat 8080
 echo     echo.
 echo     pause
 echo     exit /b 1
 echo ^)
 echo.
 echo set PORT=%%~1
-echo echo 使用端口: %%PORT%%
+echo echo Port: %%PORT%%
 echo echo.
 echo.
 ) > "%TEMP_BAT%"
@@ -174,7 +173,7 @@ echo.
 rem 添加每个类的热更新命令
 if exist "%TEMP_CLASSES%" (
     for /f "usebackq delims=" %%C in ("%TEMP_CLASSES%") do (
-        echo echo [热更新] %%C >> "%TEMP_BAT%"
+        echo echo [hotfix] %%C >> "%TEMP_BAT%"
         echo call .\hotfix-class.bat %%C %%PORT%% >> "%TEMP_BAT%"
         echo timeout /t 1 /nobreak ^>nul >> "%TEMP_BAT%"
         echo echo. >> "%TEMP_BAT%"
@@ -185,7 +184,7 @@ rem 添加结束部分
 (
 echo.
 echo echo ====================================
-echo echo 热更新完成！
+echo echo Hotfix completed!
 echo echo ====================================
 echo pause
 ) >> "%TEMP_BAT%"
