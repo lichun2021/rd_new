@@ -60,6 +60,21 @@ public class CrossProxy extends HawkTickable {
 		public static final int HEART_BEAT = 99;
 	}
 	
+	private void onSendProtocolFail(ProxyHeader header) {
+		sendProtocolFailNum ++;
+		if (header == null) {
+			HawkLog.warnPrintln("csproxy flush send fail, header is null, queueSize: {}", protoSendQueue.size());
+			return;
+		}
+
+		HawkLog.warnPrintln("csproxy flush send fail, type: {}, from: {}, to: {}, source: {}, target: {}, rpcid: {}, queueSize: {}",
+				header.getType(), header.getFrom(), header.getTo(), header.getSource(), header.getTarget(), header.getRpcid(), protoSendQueue.size());
+
+		if (!HawkOSOperator.isEmptyString(header.getRpcid())) {
+			onRpcTimeout(header.getRpcid());
+		}
+	}
+
 	/**
 	 * 跨服通信对象
 	 */
@@ -113,6 +128,7 @@ public class CrossProxy extends HawkTickable {
 	 * 发送协议消耗时间
 	 */
 	private long sendProtocolCostTime;
+	private int sendProtocolFailNum;
 	/**
 	 * 接受协议数量
 	 */
@@ -495,10 +511,11 @@ public class CrossProxy extends HawkTickable {
 		try {
 			if (HawkTime.getMillisecond() - lastRecordTime >= 10000) {
 				//时间为毫秒
-				HawkLog.logPrintln("crossProxy ten seconds sendProtocolNum: {}, sendProtocolCostTime: {}ms, receivedProtocolNum: {}, receiveProtocolCostTime: {}ms", 
-						sendProtocolNum, sendProtocolCostTime / 1000000, receivedProtocolNum, receivedProtocolCostTime / 1000000);
+				HawkLog.logPrintln("crossProxy ten seconds sendProtocolNum: {}, sendProtocolCostTime: {}ms, sendProtocolFailNum: {}, sendQueueSize: {}, receivedProtocolNum: {}, receiveProtocolCostTime: {}ms",
+						sendProtocolNum, sendProtocolCostTime / 1000000, sendProtocolFailNum, protoSendQueue.size(), receivedProtocolNum, receivedProtocolCostTime / 1000000);
 				
 				sendProtocolNum = 0;
+				sendProtocolFailNum = 0;
 				sendProtocolCostTime = 0;
 				receivedProtocolCostTime = 0;
 				receivedProtocolNum = 0;
@@ -623,24 +640,36 @@ public class CrossProxy extends HawkTickable {
 				}
 				
 				ProxyHeader header = protocol.getUserData();
+				boolean sendResult = true;
 				
 				if (header.getType() == ProtoType.HEART_BEAT) {
-					csZmq.send(header.pack().getBytes(), HawkZmq.HZMQ_NOBLOCK);
+					sendResult = csZmq.send(header.pack().getBytes(), HawkZmq.HZMQ_NOBLOCK);
 				} else if (header.getType() == ProtoType.BROADCAST) {
 					// 构建广播对象列表协议
 					if (header.getBroadcastIds().size() > 0) {
 						PlayerIdList.Builder idList = PlayerIdList.newBuilder();
 						idList.addAllPlayerId(header.getBroadcastIds());
 						
-						csZmq.send(header.pack().getBytes(), HawkZmq.HZMQ_NOBLOCK | HawkZmq.HZMQ_SNDMORE);
-						csZmq.sendProtocol(protocol, HawkZmq.HZMQ_NOBLOCK | HawkZmq.HZMQ_SNDMORE);
-						csZmq.sendProtocol(HawkProtocol.valueOf(0, idList), HawkZmq.HZMQ_NOBLOCK);
+						sendResult = csZmq.send(header.pack().getBytes(), HawkZmq.HZMQ_NOBLOCK | HawkZmq.HZMQ_SNDMORE);
+						if (sendResult) {
+							sendResult = csZmq.sendProtocol(protocol, HawkZmq.HZMQ_NOBLOCK | HawkZmq.HZMQ_SNDMORE);
+						}
+						if (sendResult) {
+							sendResult = csZmq.sendProtocol(HawkProtocol.valueOf(0, idList), HawkZmq.HZMQ_NOBLOCK);
+						}
 					}
 				} else {
-					csZmq.send(header.pack().getBytes(), HawkZmq.HZMQ_NOBLOCK | HawkZmq.HZMQ_SNDMORE);
-					csZmq.sendProtocol(protocol, HawkZmq.HZMQ_NOBLOCK);
+					sendResult = csZmq.send(header.pack().getBytes(), HawkZmq.HZMQ_NOBLOCK | HawkZmq.HZMQ_SNDMORE);
+					if (sendResult) {
+						sendResult = csZmq.sendProtocol(protocol, HawkZmq.HZMQ_NOBLOCK);
+					}
 				}
 				
+				if (!sendResult) {
+					onSendProtocolFail(header);
+					continue;
+				}
+
 				sendProtocolNum ++;
 				
 				// 统计信息
@@ -947,6 +976,12 @@ public class CrossProxy extends HawkTickable {
 		CsRpcStub stub = rpcStubCache.getIfPresent(rpcId);
 		if (stub != null) {
 			rpcStubCache.invalidate(rpcId);
+			stubTimeMap.remove(rpcId);
+
+			ProxyHeader header = stub.getHeader();
+			long costTime = HawkTime.getMillisecond() - stub.getStubTime();
+			HawkLog.warnPrintln("csproxy rpc timeout, rpcid: {}, type: {}, from: {}, to: {}, source: {}, target: {}, costTime: {}ms, sendQueueSize: {}, rpcCacheSize: {}",
+					rpcId, header.getType(), header.getFrom(), header.getTo(), header.getSource(), header.getTarget(), costTime, protoSendQueue.size(), rpcStubCache.size());
 			
 			HawkTaskManager.getInstance().postTask(new HawkTask() {
 				@Override
