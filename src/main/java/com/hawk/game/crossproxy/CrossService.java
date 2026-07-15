@@ -1381,7 +1381,8 @@ public class CrossService extends HawkAppObj {
 		InnerEnterCrossReq req = protocol.parseProtocol(InnerEnterCrossReq.getDefaultInstance());
 		int curTime = HawkTime.getSeconds();
 		if (curTime > req.getCurTime() && curTime - req.getCurTime() >= GameConstCfg.getInstance().getCrossProtocolValidTime()) {
-			DungeonRedisLog.log(playerId,"inner enter cross timeout curTime:{} protocolTime:{} playerId:{}", curTime, req.getCurTime(), playerId);		
+			DungeonRedisLog.log(playerId,"inner enter cross timeout curTime:{} protocolTime:{} playerId:{} from:{} rpcid:{} crossType:{}", curTime, req.getCurTime(), playerId, proxyHeader.getFrom(), proxyHeader.getRpcid(), req.hasCrossType() ? req.getCrossType() : 0);
+			rpcCommonResp(proxyHeader, Status.SysError.EXCEPTION_VALUE);
 			return;
 		}		
 		//如果是战斗服,则走异步,讲道理战斗服的额外线程应该都是空的才对,  否则维持原有逻辑.
