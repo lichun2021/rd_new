@@ -12,6 +12,13 @@ REQUIRED_EFFECTS = {
     **{f"HERO_{effect_id}": effect_id for effect_id in range(12991, 12998)},
 }
 
+LEGACY_COMPATIBILITY_EFFECTS = {
+    "EFF_2211": 2211,
+    "EFF_11089": 11089,
+    "EFF_12773": 12773,
+    "EFF_12811": 12811,
+}
+
 
 class HeroProtocolArtifactTest(unittest.TestCase):
     @classmethod
@@ -44,6 +51,28 @@ class HeroProtocolArtifactTest(unittest.TestCase):
         )
 
         for name, effect_id in REQUIRED_EFFECTS.items():
+            pattern = rf"String {name}.*?sipush\s+{effect_id}.*?Field {name}:"
+            self.assertRegex(result.stdout, re.compile(pattern, re.DOTALL), name)
+
+    def test_legacy_effect_ids_remain_in_runtime_enum(self):
+        javap = shutil.which("javap")
+        self.assertIsNotNone(javap, "a JDK with javap is required for protocol verification")
+        self.assertTrue(self.protocol_jar.is_file(), "runtime protocol JAR is missing")
+
+        result = subprocess.run(
+            [
+                javap,
+                "-classpath",
+                str(self.protocol_jar),
+                "-c",
+                "com.hawk.game.protocol.Const$EffType",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+        for name, effect_id in LEGACY_COMPATIBILITY_EFFECTS.items():
             pattern = rf"String {name}.*?sipush\s+{effect_id}.*?Field {name}:"
             self.assertRegex(result.stdout, re.compile(pattern, re.DOTALL), name)
 

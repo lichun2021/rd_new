@@ -9,6 +9,6 @@ The new configuration requires these `EffType` values in the deployed `gameproto
 - `HERO_12981`
 - `HERO_12991`-`HERO_12997`
 
-The corresponding trusted declarations exist in `rd_server/Protocol/Const.proto`. Use the repository's `protoc.exe` and `Protocol/Protobuf/Java/build.gradle` to regenerate `Const.java` and build the protocol artifact. Keep the protocol source, generated Java, and build-output JAR in the `rd_server/Protocol` toolchain; `rd_new` tracks only the identical runtime copy at `lib/gameprotocol.jar`.
+The corresponding trusted declarations exist in `rd_server/Protocol/Const.proto`. Use the repository's `protoc.exe` to regenerate `Const.java` and build the protocol artifact. Because `rd_new` is an earlier GameServer snapshot, its runtime JAR must preserve the legacy `EffType` names referenced by this source tree while adding the required `HERO_129xx` values; replacing it wholesale with the newer `rd_server` JAR breaks compilation. `rd_new` tracks this branch-compatible runtime artifact at `lib/gameprotocol.jar`.
 
 Heroes 1121 and 1123 are staff-officer configurations (`marchUsed="0"`) and do not require battle runtime classes. Hero 1122 is a march hero, but no trustworthy `Skill1122`/checker/state implementation was found in the available source history or exports. Its battle runtime remains an explicit release gate and must not be synthesized from text descriptions alone.
