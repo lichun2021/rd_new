@@ -1,3 +1,4 @@
+import os
 import re
 import shutil
 import subprocess
@@ -24,7 +25,9 @@ class HeroProtocolArtifactTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.repo = Path(__file__).resolve().parents[3]
-        cls.protocol_jar = cls.repo / "lib" / "gameprotocol.jar"
+        cls.protocol_jar = Path(
+            os.environ.get("GAMEPROTOCOL_JAR", cls.repo / "lib" / "gameprotocol.jar")
+        )
 
     def test_runtime_protocol_jar_is_present(self):
         self.assertTrue(
