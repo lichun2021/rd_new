@@ -2,6 +2,7 @@ package com.hawk.game.crossproxy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -10,6 +11,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.LockSupport;
 
 import org.hawk.config.HawkConfigManager;
 import org.hawk.log.HawkLog;
@@ -41,6 +45,20 @@ import com.hawk.game.protocol.SysProtocol.PlayerIdList;
 import com.hawk.game.util.GsConst;
 
 public class CrossProxy extends HawkTickable {
+	private static final long HEART_BEAT_PERIOD_NANOS = TimeUnit.MILLISECONDS.toNanos(ProxyHelper.HEART_BEAT_PERIOD);
+	private static final long MASTER_CHECK_PERIOD_NANOS = TimeUnit.MILLISECONDS.toNanos(ProxyHelper.MASTER_CHECK_PERIOD);
+	private static final long BLOCKED_SEND_LOG_PERIOD_NANOS = TimeUnit.SECONDS.toNanos(10L);
+
+	private static final class PendingProtocol {
+		private final HawkProtocol protocol;
+		private final long generation;
+
+		private PendingProtocol(HawkProtocol protocol, long generation) {
+			this.protocol = protocol;
+			this.generation = generation;
+		}
+	}
+
 	/**
 	 * 跨服协议类型
 	 * 
@@ -78,11 +96,15 @@ public class CrossProxy extends HawkTickable {
 	/**
 	 * 跨服通信对象
 	 */
-	private HawkZmq activeZmq;
+	private volatile HawkZmq activeZmq;
+	private volatile CrossProxyHealth.State proxyState = CrossProxyHealth.State.DISCONNECTED;
+	private volatile long connectionGeneration;
+	private volatile String desiredProxyAddress = "";
 	/**
 	 * 当前所有连接的通信对象
 	 */
 	private List<HawkZmq> zmqList;
+	private List<String> proxyAddresses;
 	/**
 	 * 节点心跳时间
 	 */
@@ -95,6 +117,9 @@ public class CrossProxy extends HawkTickable {
 	 * 保持活跃的心跳回复时间
 	 */
 	private long keepaliveTime;
+	private long nextRecoveryTime;
+	private int recoveryAttempt;
+	private long recoveryJitterMillis;
 	/**
 	 * 代理头信息缓存对象
 	 */
@@ -102,7 +127,7 @@ public class CrossProxy extends HawkTickable {
 	/**
 	 * 发送队列
 	 */
-	private Queue<HawkProtocol> protoSendQueue;
+	private Queue<PendingProtocol> protoSendQueue;
 	/**
 	 * rpc请求存根信息
 	 */
@@ -129,6 +154,8 @@ public class CrossProxy extends HawkTickable {
 	 */
 	private long sendProtocolCostTime;
 	private int sendProtocolFailNum;
+	private final AtomicLong lastBlockedSendLogTime = new AtomicLong();
+	private final AtomicInteger suppressedBlockedSendLogs = new AtomicInteger();
 	/**
 	 * 接受协议数量
 	 */
@@ -161,7 +188,7 @@ public class CrossProxy extends HawkTickable {
 	private CrossProxy() {
 		headerBytes = new byte[8192];
 		
-		protoSendQueue = new LinkedBlockingQueue<HawkProtocol>();
+		protoSendQueue = new LinkedBlockingQueue<PendingProtocol>();
 		
 		stubTimeMap = new ConcurrentHashMap<String, Long>();
 		
@@ -199,8 +226,9 @@ public class CrossProxy extends HawkTickable {
 		HawkZmqManager.getInstance().init(HawkZmq.HZMQ_CONTEXT_THREAD);
 		
 		int localNodeCount = 0;
-		// 初始化所有连接
-		zmqList = new ArrayList<HawkZmq>(nodeCount);
+		zmqList = new ArrayList<HawkZmq>(1);
+		proxyAddresses = new ArrayList<String>(nodeCount);
+		Set<String> uniqueAddresses = new LinkedHashSet<String>();
 		for (int i = 0; i < nodeCount; i++) {
 			ProxyNodeCfg nodeCfg = HawkConfigManager.getInstance().getConfigByIndex(ProxyNodeCfg.class, i);
 			if (nodeCfg == null || !nodeCfg.getAreaId().equals(GsConfig.getInstance().getAreaId())) {
@@ -208,44 +236,28 @@ public class CrossProxy extends HawkTickable {
 			}
 			
 			localNodeCount++;
-			// 初始化通信对象
-			HawkZmq zmqObj = HawkZmqManager.getInstance().createZmq(HawkZmq.ZmqType.DEALER);
-			
-			// 设置缓冲区大小(2M)
-			zmqObj.checkCacheBuffer(1024 * 1024 * 2);
-			
-			// 设置标识
-			String identify = GsConfig.getInstance().getServerId();
-			if (GsConfig.getInstance().getZmqIdentifyMode() > 0) {
-				identify = String.format("%s@%s", identify, HawkUUIDGenerator.genUUID());
+			if (!uniqueAddresses.add(nodeCfg.getAddr())) {
+				HawkLog.warnPrintln("csproxy duplicate proxy address ignored, areaId: {}, address: {}",
+						GsConfig.getInstance().getAreaId(), nodeCfg.getAddr());
+				continue;
 			}
-			zmqObj.setIdentity(identify.getBytes());
-			
-			// 修改高低水位
-			if (GsConfig.getInstance().getZmqSndHwm() > 0) {
-				zmqObj.getSocket().setSndHWM(GsConfig.getInstance().getZmqSndHwm());
-			}
-			
-			if (GsConfig.getInstance().getZmqRcvHwm() > 0) {
-				zmqObj.getSocket().setRcvHWM(GsConfig.getInstance().getZmqRcvHwm());
-			}			
-			
-			// 连接到对端服务器			
-			zmqObj.connect(nodeCfg.getAddr());
-			
-			// 添加到列表中
-			zmqList.add(zmqObj);
-			
-			HawkLog.logPrintln("csproxy init node success, address: {}", nodeCfg.getAddr());		
+			proxyAddresses.add(nodeCfg.getAddr());
+			HawkLog.logPrintln("csproxy configured node, address: {}", nodeCfg.getAddr());
 		}
 		
-		if (GsConfig.getInstance().isDebug() && localNodeCount <= 0) {
-			HawkLog.errPrintln("csproxy node this server miss");
+		if (localNodeCount <= 0) {
+			HawkLog.errPrintln("csproxy node this server miss, areaId: {}, configNodeCount: {}",
+					GsConfig.getInstance().getAreaId(), nodeCount);
 			throw new RuntimeException("cfg/cs/proxyNode.xml配置有误");
 		}
+		if (proxyAddresses.isEmpty()) {
+			throw new RuntimeException("cfg/cs/proxyNode.xml未配置有效代理地址");
+		}
 		
-		// 检测起始时间
-		masterCheckTime = HawkTime.getMillisecond();
+		long currentTick = System.nanoTime();
+		heartbeatTime = currentTick - HEART_BEAT_PERIOD_NANOS;
+		masterCheckTime = currentTick - MASTER_CHECK_PERIOD_NANOS;
+		recoveryJitterMillis = Math.abs((long) GsConfig.getInstance().getServerId().hashCode()) % 2000L;
 		
 		// 开启一个事件线程
 		Thread thread = new Thread(new Runnable() {
@@ -269,6 +281,165 @@ public class CrossProxy extends HawkTickable {
 	 */
 	private HawkZmq getActiveZmq() {
 		return activeZmq;
+	}
+
+	private HawkZmq createProxyZmq(String address) {
+		HawkZmq zmqObj = null;
+		try {
+			zmqObj = HawkZmqManager.getInstance().createZmq(HawkZmq.ZmqType.DEALER);
+			if (zmqObj == null) {
+				throw new IllegalStateException("create DEALER socket returned null");
+			}
+			zmqObj.checkCacheBuffer(1024 * 1024 * 2);
+
+			// CSProxy ROUTER 未开启 ROUTER_HANDOVER；恢复连接始终使用唯一 identity，避免旧路由残留拒绝新连接。
+			String identify = String.format("%s@%s", GsConfig.getInstance().getServerId(), HawkUUIDGenerator.genUUID());
+			if (!zmqObj.setIdentity(identify.getBytes("UTF-8"))) {
+				throw new IllegalStateException("set DEALER identity failed");
+			}
+
+			if (GsConfig.getInstance().getZmqSndHwm() > 0) {
+				zmqObj.getSocket().setSndHWM(GsConfig.getInstance().getZmqSndHwm());
+			}
+			if (GsConfig.getInstance().getZmqRcvHwm() > 0) {
+				zmqObj.getSocket().setRcvHWM(GsConfig.getInstance().getZmqRcvHwm());
+			}
+
+			if (!zmqObj.connect(address)) {
+				throw new IllegalStateException("connect DEALER socket failed");
+			}
+			return zmqObj;
+		} catch (Exception e) {
+			HawkLog.errPrintln("csproxy create proxy failed, address: {}, reason: {}", address, e.getMessage());
+			HawkException.catchException(e);
+			if (zmqObj != null) {
+				HawkZmqManager.getInstance().closeZmq(zmqObj);
+			}
+			return null;
+		}
+	}
+
+	private boolean reconnectProxy(String address, String reason) {
+		if (HawkOSOperator.isEmptyString(address) || !proxyAddresses.contains(address)) {
+			HawkLog.warnPrintln("csproxy recovery target invalid, reason: {}, address: {}, configuredAddresses: {}",
+					reason, address, proxyAddresses);
+			return false;
+		}
+
+		HawkZmq oldZmq = activeZmq;
+		long oldGeneration = connectionGeneration;
+		proxyState = CrossProxyHealth.State.DISCONNECTED;
+		connectionGeneration = oldGeneration + 1L;
+		desiredProxyAddress = address;
+		keepaliveTime = 0L;
+		drainPendingProtocols("connection recovery: " + reason);
+		failInFlightRpcs("connection recovery: " + reason);
+		activeZmq = null;
+		zmqList.clear();
+		if (oldZmq != null) {
+			HawkZmqManager.getInstance().closeZmq(oldZmq);
+		}
+
+		HawkZmq newZmq = createProxyZmq(address);
+		long currentTick = System.nanoTime();
+		long retryDelay = CrossProxyHealth.retryDelayMillis(recoveryAttempt, recoveryJitterMillis);
+		nextRecoveryTime = currentTick + TimeUnit.MILLISECONDS.toNanos(retryDelay);
+		recoveryAttempt++;
+		if (newZmq == null) {
+			HawkLog.warnPrintln("csproxy recovery create failed, reason: {}, address: {}, generation: {}, retryDelay: {}ms, attempt: {}",
+					reason, address, connectionGeneration, retryDelay, recoveryAttempt);
+			return false;
+		}
+
+		zmqList.add(newZmq);
+		activeZmq = newZmq;
+		proxyState = CrossProxyHealth.State.RECOVERING;
+		HawkLog.warnPrintln("csproxy recovery socket created, reason: {}, address: {}, generation: {}, retryDelay: {}ms, attempt: {}",
+				reason, address, connectionGeneration, retryDelay, recoveryAttempt);
+		return true;
+	}
+
+	private void markConnectionBroken(HawkZmq brokenZmq, String reason) {
+		if (brokenZmq == null || brokenZmq != activeZmq) {
+			return;
+		}
+
+		String address = brokenZmq.getAddress();
+		CrossProxyHealth.State oldState = proxyState;
+		proxyState = CrossProxyHealth.State.DISCONNECTED;
+		connectionGeneration++;
+		desiredProxyAddress = address;
+		keepaliveTime = 0L;
+		drainPendingProtocols("connection broken: " + reason);
+		failInFlightRpcs("connection broken: " + reason);
+		activeZmq = null;
+		zmqList.clear();
+		HawkZmqManager.getInstance().closeZmq(brokenZmq);
+		// 健康连接首次失败立即允许重建；连续建连/验活失败由 reconnectProxy 的退避控制。
+		if (oldState == CrossProxyHealth.State.HEALTHY) {
+			recoveryAttempt = 0;
+			nextRecoveryTime = System.nanoTime();
+		}
+		HawkLog.errPrintln("csproxy connection marked broken, reason: {}, address: {}, oldState: {}, generation: {}, retryAttempt: {}",
+				reason, address, oldState, connectionGeneration, recoveryAttempt);
+	}
+
+	private void drainPendingProtocols(String reason) {
+		int dropped = 0;
+		int rpcFailed = 0;
+		PendingProtocol pending;
+		while ((pending = protoSendQueue.poll()) != null) {
+			dropped++;
+			ProxyHeader header = pending.protocol.getUserData();
+			if (header != null && !HawkOSOperator.isEmptyString(header.getRpcid())) {
+				rpcFailed++;
+				onRpcTimeout(header.getRpcid());
+			}
+		}
+		if (dropped > 0) {
+			sendProtocolFailNum += dropped;
+			HawkLog.warnPrintln("csproxy pending queue drained, reason: {}, dropped: {}, rpcFailed: {}, generation: {}, state: {}",
+					reason, dropped, rpcFailed, connectionGeneration, proxyState);
+		}
+	}
+
+	private void failInFlightRpcs(String reason) {
+		int failed = 0;
+		for (String rpcId : new ArrayList<String>(stubTimeMap.keySet())) {
+			if (onRpcTimeout(rpcId)) {
+				failed++;
+			}
+		}
+		if (failed > 0) {
+			HawkLog.warnPrintln("csproxy in-flight rpc failed on connection loss, reason: {}, failed: {}, remaining: {}, generation: {}",
+					reason, failed, stubTimeMap.size(), connectionGeneration);
+		}
+	}
+
+	private String selectMasterRecoveryAddress(String currentAddress) {
+		if (proxyAddresses == null || proxyAddresses.isEmpty()) {
+			return "";
+		}
+		if (HawkOSOperator.isEmptyString(currentAddress) || proxyAddresses.size() == 1) {
+			return proxyAddresses.get(0);
+		}
+		int currentIndex = proxyAddresses.indexOf(currentAddress);
+		return proxyAddresses.get((currentIndex + 1 + proxyAddresses.size()) % proxyAddresses.size());
+	}
+
+	private void logBlockedSend(ProxyHeader header, HawkZmq csZmq, CrossProxyHealth.State state, long generation) {
+		long currentTick = System.nanoTime();
+		long lastLogTick = lastBlockedSendLogTime.get();
+		if (currentTick - lastLogTick < BLOCKED_SEND_LOG_PERIOD_NANOS
+				|| !lastBlockedSendLogTime.compareAndSet(lastLogTick, currentTick)) {
+			suppressedBlockedSendLogs.incrementAndGet();
+			return;
+		}
+		int suppressed = suppressedBlockedSendLogs.getAndSet(0);
+		HawkLog.warnPrintln("csproxy send blocked, state: {}, generation: {}, activeAddr: {}, type: {}, from: {}, to: {}, source: {}, target: {}, rpcid: {}, configuredNodeCount: {}, suppressedSinceLastLog: {}",
+				state, generation, csZmq == null ? "" : csZmq.getAddress(),
+				header.getType(), header.getFrom(), header.getTo(), header.getSource(), header.getTarget(), header.getRpcid(),
+				proxyAddresses == null ? 0 : proxyAddresses.size(), suppressed);
 	}
 
 	/**
@@ -374,7 +545,7 @@ public class CrossProxy extends HawkTickable {
 	 * 
 	 * @return
 	 */
-	public boolean sendHeartbeat() {
+	private boolean sendHeartbeat() {
 		// 判断连接状态
 		HawkZmq csZmq = getActiveZmq();
 		if (csZmq == null) {
@@ -385,10 +556,15 @@ public class CrossProxy extends HawkTickable {
 			header.setType(ProtoType.HEART_BEAT);
 			header.setFrom(GsConfig.getInstance().getServerId());
 			header.setSource(new String(csZmq.getSocket().getIdentity(), "UTF-8"));
-			
-			return sendProxyProtocol(header, HawkProtocol.valueOf());
+			header.setTimestamp(HawkTime.getMillisecond());
+			boolean result = csZmq.send(header.pack().getBytes("UTF-8"), HawkZmq.HZMQ_NOBLOCK);
+			if (!result) {
+				markConnectionBroken(csZmq, "heartbeat send failed");
+			}
+			return result;
 		} catch (Exception e) {
 			HawkException.catchException(e);
+			markConnectionBroken(csZmq, "heartbeat exception: " + e.getClass().getSimpleName());
 		}
 		
 		return false;
@@ -419,16 +595,8 @@ public class CrossProxy extends HawkTickable {
 		stubTimeMap.put(header.getRpcid(), HawkTime.getMillisecond());
 		
 		if (!sendProxyProtocol(header, protocol)) {
-			// 无可用连接时发送失败，立即移除 stub 并触发超时回调，避免玩家等待 RPC 超时
-			rpcStubCache.invalidate(header.getRpcid());
-			stubTimeMap.remove(header.getRpcid());
-			HawkTaskManager.getInstance().postTask(new HawkTask() {
-				@Override
-				public Object run() {
-					callback.onTimeout(stub);
-					return null;
-				}
-			}, threadIdx);
+			// 原子认领本次失败；若恢复线程已经清队列并回调，这里不会重复回调。
+			onRpcTimeout(header.getRpcid());
 			return false;
 		}
 		return true;
@@ -465,17 +633,25 @@ public class CrossProxy extends HawkTickable {
 	 */
 	private boolean sendProxyProtocol(ProxyHeader header, HawkProtocol protocol) {
 		try {
-			// 判断连接状态
+			CrossProxyHealth.State state = proxyState;
+			long generation = connectionGeneration;
 			HawkZmq csZmq = getActiveZmq();
-			if (csZmq == null) {
-				HawkLog.warnPrintln("csproxy send fail, no active connection, type: {}, to: {}", header.getType(), header.getTo());
+			if (csZmq == null || !CrossProxyHealth.canSendBusiness(state)) {
+				sendProtocolFailNum ++;
+				logBlockedSend(header, csZmq, state, generation);
 				return false;
 			}
 			
 			// 添加到协议发送队列
 			header.setTimestamp(HawkTime.getMillisecond());
 			protocol.setUserData(header);
-			protoSendQueue.add(protocol);
+			PendingProtocol pending = new PendingProtocol(protocol, generation);
+			protoSendQueue.add(pending);
+			// 状态切换和业务线程入队可能并发；变化后撤销本次入队，防止恢复后重放旧请求。
+			if (proxyState != CrossProxyHealth.State.HEALTHY || connectionGeneration != generation || activeZmq != csZmq) {
+				protoSendQueue.remove(pending);
+				return false;
+			}
 			return true;
 		} catch (Exception e) {
 			HawkException.catchException(e);
@@ -503,23 +679,46 @@ public class CrossProxy extends HawkTickable {
 				recordMonitor();
 			} catch (Exception e) {
 				HawkException.catchException(e);
-			}			
+			}
+			if (getActiveZmq() == null) {
+				LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(10L));
+			}
 		}
 	}
 	
 	private void recordMonitor() {
 		try {
-			if (HawkTime.getMillisecond() - lastRecordTime >= 10000) {
+			long currentTime = HawkTime.getMillisecond();
+			if (currentTime - lastRecordTime >= 10000) {
+				String masterServer = "";
+				String proxyAddr = "";
+				try {
+					masterServer = ProxyHelper.getMasterServer();
+					proxyAddr = ProxyHelper.getProxyAddress();
+				} catch (Exception e) {
+					HawkException.catchException(e);
+				}
+
+				HawkZmq currentZmq = getActiveZmq();
+				String activeAddr = currentZmq == null ? "" : currentZmq.getAddress();
+				int localNodeCount = proxyAddresses == null ? 0 : proxyAddresses.size();
+				boolean addressMatched = false;
+				if (!HawkOSOperator.isEmptyString(proxyAddr) && proxyAddresses != null) {
+					addressMatched = proxyAddresses.contains(proxyAddr);
+				}
+				long keepaliveAge = keepaliveTime > 0 ? TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - keepaliveTime) : -1;
+
 				//时间为毫秒
-				HawkLog.logPrintln("crossProxy ten seconds sendProtocolNum: {}, sendProtocolCostTime: {}ms, sendProtocolFailNum: {}, sendQueueSize: {}, receivedProtocolNum: {}, receiveProtocolCostTime: {}ms",
-						sendProtocolNum, sendProtocolCostTime / 1000000, sendProtocolFailNum, protoSendQueue.size(), receivedProtocolNum, receivedProtocolCostTime / 1000000);
+				HawkLog.logPrintln("crossProxy ten seconds sendProtocolNum: {}, sendProtocolCostTime: {}ms, sendProtocolFailNum: {}, sendQueueSize: {}, receivedProtocolNum: {}, receiveProtocolCostTime: {}ms, state: {}, generation: {}, activeAddr: {}, desiredAddr: {}, masterServer: {}, proxyAddr: {}, configuredNodeCount: {}, addressMatched: {}, keepaliveAge: {}ms, recoveryAttempt: {}",
+						sendProtocolNum, sendProtocolCostTime / 1000000, sendProtocolFailNum, protoSendQueue.size(), receivedProtocolNum, receivedProtocolCostTime / 1000000,
+						proxyState, connectionGeneration, activeAddr, desiredProxyAddress, masterServer, proxyAddr, localNodeCount, addressMatched, keepaliveAge, recoveryAttempt);
 				
 				sendProtocolNum = 0;
 				sendProtocolFailNum = 0;
 				sendProtocolCostTime = 0;
 				receivedProtocolCostTime = 0;
 				receivedProtocolNum = 0;
-				lastRecordTime = HawkTime.getMillisecond();
+				lastRecordTime = currentTime;
 			}
 		} catch (Exception e) {
 			HawkException.catchException(e);
@@ -531,94 +730,139 @@ public class CrossProxy extends HawkTickable {
 	 * 发送心跳
 	 */
 	private void updateProxyState() {
-		long currentTime = HawkTime.getMillisecond();
-		
-		// 周期发送心跳
-		if (currentTime - heartbeatTime >= ProxyHelper.HEART_BEAT_PERIOD) {
-			heartbeatTime = currentTime;
-			
-			// 主服务器竞争
+		long currentTick = System.nanoTime();
+		if (currentTick - heartbeatTime >= HEART_BEAT_PERIOD_NANOS) {
+			heartbeatTime = currentTick;
 			ProxyHelper.contendMasterServer(true);
-						
-			// 和主节点选择的转发节点一致
-			if (!ProxyHelper.isMasterServer()) {
-				String proxyAddr = ProxyHelper.getProxyAddress();
-				if (!HawkOSOperator.isEmptyString(proxyAddr)) {
-					for (HawkZmq zmqObj : zmqList) {
-						if (!zmqObj.getAddress().equals(proxyAddr)) {
-							continue;
-						}
-						
-						if (activeZmq != zmqObj) {
-							activeZmq = zmqObj;
-							HawkLog.logPrintln("csproxy slave select proxy: {}", proxyAddr);
-						}
-						break;
-					}					
-				}
+			boolean masterServer = ProxyHelper.isMasterServer();
+			String targetAddress = masterServer ? desiredProxyAddress : ProxyHelper.getProxyAddress();
+			if (masterServer && (HawkOSOperator.isEmptyString(targetAddress) || !proxyAddresses.contains(targetAddress))) {
+				targetAddress = selectMasterRecoveryAddress("");
 			}
-			
-			// 发送心跳
-			sendHeartbeat();
+
+			HawkZmq currentZmq = getActiveZmq();
+			if (!masterServer && (HawkOSOperator.isEmptyString(targetAddress) || !proxyAddresses.contains(targetAddress))) {
+				if (currentZmq != null) {
+					markConnectionBroken(currentZmq, "follower redis target missing or not configured");
+				}
+				desiredProxyAddress = targetAddress;
+				if (currentTick >= nextRecoveryTime) {
+					long retryDelay = CrossProxyHealth.retryDelayMillis(recoveryAttempt, recoveryJitterMillis);
+					nextRecoveryTime = currentTick + TimeUnit.MILLISECONDS.toNanos(retryDelay);
+					recoveryAttempt++;
+					HawkLog.warnPrintln("csproxy follower target rejected, redisAddress: {}, configuredAddresses: {}, generation: {}, retryDelay: {}ms, attempt: {}",
+							targetAddress, proxyAddresses, connectionGeneration, retryDelay, recoveryAttempt);
+				}
+				return;
+			}
+			boolean desiredChanged = !targetAddress.equals(desiredProxyAddress);
+			boolean targetChanged = currentZmq != null && !currentZmq.getAddress().equals(targetAddress);
+			if (!HawkOSOperator.isEmptyString(targetAddress) && (targetChanged || desiredChanged
+					|| (currentZmq == null && currentTick >= nextRecoveryTime))) {
+				reconnectProxy(targetAddress, masterServer ? "master select target" : "follow redis target");
+				currentZmq = getActiveZmq();
+			}
+			if (currentZmq != null) {
+				sendHeartbeat();
+			}
 		}
-		
-		// 主节点心跳检测
-		if (currentTime - masterCheckTime > ProxyHelper.MASTER_CHECK_PERIOD ) {
-			masterCheckTime = currentTime;
-			if (ProxyHelper.isMasterServer()) {
-				// 没有激活节点或者检测周期内没有任何心跳, 切换节点
-				if (activeZmq == null || currentTime - keepaliveTime >= ProxyHelper.MASTER_CHECK_PERIOD) {
-					// 准备切换
-					if (activeZmq != null) {
-						HawkLog.logPrintln("csproxy master discard proxy: {}", activeZmq.getAddress());
+
+		// RECOVERING/DISCONNECTED 的退避到期后立即重试，不受 10 秒健康检测采样边界影响。
+		if (proxyState != CrossProxyHealth.State.HEALTHY && nextRecoveryTime > 0L && currentTick >= nextRecoveryTime) {
+			boolean masterServer = ProxyHelper.isMasterServer();
+			String targetAddress = masterServer
+					? selectMasterRecoveryAddress(desiredProxyAddress)
+					: ProxyHelper.getProxyAddress();
+			if (!HawkOSOperator.isEmptyString(targetAddress)) {
+				reconnectProxy(targetAddress, "recovery backoff elapsed, master=" + masterServer);
+				if (getActiveZmq() != null) {
+					sendHeartbeat();
+				}
+			} else {
+				long retryDelay = CrossProxyHealth.retryDelayMillis(recoveryAttempt, recoveryJitterMillis);
+				nextRecoveryTime = currentTick + TimeUnit.MILLISECONDS.toNanos(retryDelay);
+				recoveryAttempt++;
+				HawkLog.warnPrintln("csproxy recovery target unavailable, master: {}, state: {}, generation: {}, retryDelay: {}ms, attempt: {}",
+						masterServer, proxyState, connectionGeneration, retryDelay, recoveryAttempt);
+			}
+		}
+
+		if (currentTick - masterCheckTime >= MASTER_CHECK_PERIOD_NANOS) {
+			masterCheckTime = currentTick;
+			if (proxyState == CrossProxyHealth.State.HEALTHY
+					&& CrossProxyHealth.shouldRecover(currentTick, keepaliveTime, MASTER_CHECK_PERIOD_NANOS)
+					&& currentTick >= nextRecoveryTime) {
+				HawkZmq currentZmq = getActiveZmq();
+				String currentAddress = currentZmq == null ? desiredProxyAddress : currentZmq.getAddress();
+				// 先关业务门禁，再访问 Redis；即使 Redis 超时/异常也不能继续向已失活 socket 发业务。
+				if (currentZmq != null) {
+					markConnectionBroken(currentZmq, "heartbeat timeout");
+				} else {
+					proxyState = CrossProxyHealth.State.DISCONNECTED;
+					connectionGeneration++;
+					nextRecoveryTime = currentTick;
+				}
+				boolean masterServer = ProxyHelper.isMasterServer();
+				String targetAddress = masterServer
+						? selectMasterRecoveryAddress(currentAddress)
+						: ProxyHelper.getProxyAddress();
+				if (!HawkOSOperator.isEmptyString(targetAddress)) {
+					if (reconnectProxy(targetAddress, "heartbeat timeout, master=" + masterServer)) {
+						sendHeartbeat();
 					}
-					
-					// 遍历可用节点准备切换
-					for (HawkZmq zmqObj : zmqList) {
-						// 切换节点
-						if (activeZmq != zmqObj) {
-							// 尝试另一个节点
-							activeZmq = zmqObj;						
-							HawkLog.logPrintln("csproxy master select proxy: {}", zmqObj.getAddress());
-							
-							// 向新节点发心跳
-							sendHeartbeat();
-							break;
-						}
-					}
+				} else {
+					HawkLog.warnPrintln("csproxy recovery waiting for target, master: {}, state: {}, generation: {}, desiredAddr: {}",
+							masterServer, proxyState, connectionGeneration, desiredProxyAddress);
 				}
 			}
-			
 		}
 	}
 
 	/**
 	 * 响应的心跳通知
 	 */
-	private void onHeartbeat() {
-		HawkZmq csZmq = getActiveZmq();
-		if (csZmq == null) {
+	private void onHeartbeat(HawkZmq csZmq, long observedGeneration) {
+		if (csZmq == null || csZmq != getActiveZmq() || observedGeneration != connectionGeneration) {
+			HawkLog.warnPrintln("csproxy stale heartbeat ignored, observedGeneration: {}, currentGeneration: {}, address: {}",
+					observedGeneration, connectionGeneration, csZmq == null ? "" : csZmq.getAddress());
 			return;
 		}
-		
-		// 更新心跳时间
-		keepaliveTime = HawkTime.getMillisecond();
+		CrossProxyHealth.State oldState = proxyState;
+		int connectionRole = ProxyHelper.PROXY_CONNECTION_REJECTED;
+		String publishedAddress = "";
+		connectionRole = ProxyHelper.validateProxyConnection(csZmq.getAddress());
+
+		if (connectionRole == ProxyHelper.PROXY_CONNECTION_REJECTED) {
+			if (HawkOSOperator.isEmptyString(publishedAddress)) {
+				try {
+					publishedAddress = ProxyHelper.getProxyAddress();
+				} catch (Exception e) {
+					HawkException.catchException(e);
+				}
+			}
+			HawkLog.warnPrintln("csproxy heartbeat rejected by atomic role/address check, address: {}, redisAddress: {}, role: {}, generation: {}, state: {}",
+					csZmq.getAddress(), publishedAddress, connectionRole, connectionGeneration, oldState);
+			markConnectionBroken(csZmq, "heartbeat role/address check failed");
+			if (!HawkOSOperator.isEmptyString(publishedAddress) && proxyAddresses.contains(publishedAddress)) {
+				desiredProxyAddress = publishedAddress;
+				nextRecoveryTime = System.nanoTime();
+			}
+			return;
+		}
+
+		keepaliveTime = System.nanoTime();
+		proxyState = CrossProxyHealth.State.HEALTHY;
+		recoveryAttempt = 0;
+		nextRecoveryTime = 0L;
 		
 		String indentify = "";
 		byte[] identityBytes = csZmq.getSocket().getIdentity();
 		if (identityBytes != null) {
-			indentify = new String(identityBytes);
+			indentify = new String(identityBytes, java.nio.charset.StandardCharsets.UTF_8);
 		}
-		HawkLog.logPrintln("csproxy heartbeat: {}, identify: {}", csZmq.getAddress(), indentify);
-		
-		// 注册使用的节点
-		if (ProxyHelper.isMasterServer()) {
-			String proxyAddr = ProxyHelper.getProxyAddress();
-			if (!csZmq.getAddress().equals(proxyAddr)) {
-				ProxyHelper.registerProxyNode(csZmq.getAddress());
-				HawkLog.logPrintln("csproxy master select proxy: {}", csZmq.getAddress());	
-			}			
-		}
+		HawkLog.logPrintln("csproxy heartbeat validated, address: {}, identify: {}, generation: {}, oldState: {}, master: {}",
+				csZmq.getAddress(), indentify, connectionGeneration, oldState,
+				connectionRole == ProxyHelper.PROXY_CONNECTION_MASTER);
 	}
 	
 	/**
@@ -627,24 +871,29 @@ public class CrossProxy extends HawkTickable {
 	private void flushProtoQueue() {
 		// 判断连接状态
 		HawkZmq csZmq = getActiveZmq();
-		if (csZmq == null) {
+		long generation = connectionGeneration;
+		if (csZmq == null || !CrossProxyHealth.canSendBusiness(proxyState)) {
 			return;
 		}
 		long nanoStartTime = System.nanoTime();
 		int oldSendProtocolNum = sendProtocolNum;
 		while (protoSendQueue.size() > 0) {
 			try {
-				HawkProtocol protocol = protoSendQueue.poll();
-				if (protocol == null) {
+				PendingProtocol pending = protoSendQueue.poll();
+				if (pending == null) {
 					continue;
 				}
+				HawkProtocol protocol = pending.protocol;
 				
 				ProxyHeader header = protocol.getUserData();
+				if (pending.generation != generation || csZmq != activeZmq
+						|| generation != connectionGeneration || !CrossProxyHealth.canSendBusiness(proxyState)) {
+					onSendProtocolFail(header);
+					continue;
+				}
 				boolean sendResult = true;
 				
-				if (header.getType() == ProtoType.HEART_BEAT) {
-					sendResult = csZmq.send(header.pack().getBytes(), HawkZmq.HZMQ_NOBLOCK);
-				} else if (header.getType() == ProtoType.BROADCAST) {
+				if (header.getType() == ProtoType.BROADCAST) {
 					// 构建广播对象列表协议
 					if (header.getBroadcastIds().size() > 0) {
 						PlayerIdList.Builder idList = PlayerIdList.newBuilder();
@@ -667,7 +916,9 @@ public class CrossProxy extends HawkTickable {
 				
 				if (!sendResult) {
 					onSendProtocolFail(header);
-					continue;
+					// 任意 multipart 分帧失败后，旧 socket 的帧边界不再可信，禁止继续发送下一条消息。
+					markConnectionBroken(csZmq, "multipart send failed, type=" + header.getType());
+					return;
 				}
 
 				sendProtocolNum ++;
@@ -678,6 +929,8 @@ public class CrossProxy extends HawkTickable {
 				
 			} catch (Exception e) {
 				HawkException.catchException(e);
+				markConnectionBroken(csZmq, "flush exception: " + e.getClass().getSimpleName());
+				return;
 			}
 		}
 		
@@ -702,6 +955,7 @@ public class CrossProxy extends HawkTickable {
 			if (csZmq == null) {
 				return false;
 			}
+			long observedGeneration = connectionGeneration;
 			
 			// 检测事件
 			int event = csZmq.pollEvent(HawkZmq.HZMQ_EVENT_READ, 50);
@@ -726,7 +980,10 @@ public class CrossProxy extends HawkTickable {
 				// 心跳处理
 				if (header.getType() == ProtoType.HEART_BEAT) {
 					receivedProtocolNum++;
-					onHeartbeat();
+					onHeartbeat(csZmq, observedGeneration);
+					if (csZmq != activeZmq || observedGeneration != connectionGeneration) {
+						return true;
+					}
 					continue;
 				}
 				
@@ -753,6 +1010,13 @@ public class CrossProxy extends HawkTickable {
 				// 协议正确性
 				if (protocol == null) {
 					HawkLog.errPrintln("csproxy decode protocol fail header:{}", header.toString());					
+					continue;
+				}
+
+				if (csZmq != activeZmq || observedGeneration != connectionGeneration
+						|| !CrossProxyHealth.canSendBusiness(proxyState)) {
+					HawkLog.warnPrintln("csproxy business response dropped before heartbeat validation, type: {}, rpcid: {}, observedGeneration: {}, currentGeneration: {}, state: {}",
+							header.getType(), header.getRpcid(), observedGeneration, connectionGeneration, proxyState);
 					continue;
 				}			
 
@@ -823,11 +1087,10 @@ public class CrossProxy extends HawkTickable {
 			}
 			
 			// rpc处理
-			if (header.getType() == ProtoType.RPC_REP) {
-				CsRpcStub stub = rpcStubCache.getIfPresent(header.getRpcid());
-				if (stub != null) {
-					rpcStubCache.invalidate(header.getRpcid());
-					stubTimeMap.remove(header.getRpcid());
+				if (header.getType() == ProtoType.RPC_REP) {
+					CsRpcStub stub = rpcStubCache.getIfPresent(header.getRpcid());
+					if (stub != null && CrossProxyHealth.tryClaimRpcCompletion(stubTimeMap, header.getRpcid())) {
+						rpcStubCache.invalidate(header.getRpcid());
 					
 					HawkTaskManager.getInstance().postTask(new HawkTask() {
 						@Override
@@ -958,7 +1221,6 @@ public class CrossProxy extends HawkTickable {
 			while(it.hasNext()) {
 				Entry<String, Long> entry = it.next();
 				if (timeout > 0 && curTime - entry.getValue() >= timeout) {
-					it.remove();
 					onRpcTimeout(entry.getKey());
 				}
 			}
@@ -972,11 +1234,14 @@ public class CrossProxy extends HawkTickable {
 	 * 
 	 * @param rpcId
 	 */
-	private void onRpcTimeout(String rpcId) {
+	private boolean onRpcTimeout(String rpcId) {
+		// stubTimeMap 是完成权的原子闸门：响应、发送失败、清队列、定时超时只能有一个胜者。
+		if (!CrossProxyHealth.tryClaimRpcCompletion(stubTimeMap, rpcId)) {
+			return false;
+		}
 		CsRpcStub stub = rpcStubCache.getIfPresent(rpcId);
 		if (stub != null) {
 			rpcStubCache.invalidate(rpcId);
-			stubTimeMap.remove(rpcId);
 
 			ProxyHeader header = stub.getHeader();
 			long costTime = HawkTime.getMillisecond() - stub.getStubTime();
@@ -991,6 +1256,7 @@ public class CrossProxy extends HawkTickable {
 				}
 			}, stub.getThreadIdx());
 		}
+		return true;
 	}
 	
 	/**

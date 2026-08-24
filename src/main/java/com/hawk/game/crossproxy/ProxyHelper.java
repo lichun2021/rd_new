@@ -8,7 +8,17 @@ import org.hawk.os.HawkTime;
 import com.hawk.game.GsConfig;
 import com.hawk.game.global.RedisProxy;
 
+import redis.clients.jedis.Jedis;
+
 public class ProxyHelper {
+	private static final String VALIDATE_PROXY_CONNECTION_SCRIPT =
+			"local master = redis.call('hget', KEYS[1], 'master'); "
+			+ "if master == ARGV[1] then redis.call('hset', KEYS[1], 'address', ARGV[2]); return 1; end; "
+			+ "if master and master ~= '' and redis.call('hget', KEYS[1], 'address') == ARGV[2] then return 2; end; "
+			+ "return 0";
+	public static final int PROXY_CONNECTION_REJECTED = 0;
+	public static final int PROXY_CONNECTION_MASTER = 1;
+	public static final int PROXY_CONNECTION_FOLLOWER = 2;
 	/**
 	 * 心跳周期
 	 */
@@ -147,7 +157,12 @@ public class ProxyHelper {
 	 */
 	public static String getProxyAddress() {
 		String proxyKey = String.format("csproxy:%s", GsConfig.getInstance().getAreaId());
-		return RedisProxy.getInstance().getRedisSession().hGet(proxyKey, "address");
+		try {
+			return RedisProxy.getInstance().getRedisSession().hGet(proxyKey, "address");
+		} catch (Exception e) {
+			HawkException.catchException(e);
+			return "";
+		}
 	}
 	
 	/**
@@ -157,18 +172,30 @@ public class ProxyHelper {
 	 */
 	public static String getMasterServer() {
 		String proxyKey = String.format("csproxy:%s", GsConfig.getInstance().getAreaId());
-		String serverId = RedisProxy.getInstance().getRedisSession().hGet(proxyKey, "master");
-		return serverId;
+		try {
+			return RedisProxy.getInstance().getRedisSession().hGet(proxyKey, "master");
+		} catch (Exception e) {
+			HawkException.catchException(e);
+			return "";
+		}
 	}
 
 	/**
-	 * 注册当前节点
+	 * 原子校验当前连接角色：master 验活后发布地址，follower 仅接受 master 已发布的地址。
 	 * 
 	 * @param address
+	 * @return PROXY_CONNECTION_* 角色
 	 */
-	public static void registerProxyNode(String address) {
+	public static int validateProxyConnection(String address) {
 		String proxyKey = String.format("csproxy:%s", GsConfig.getInstance().getAreaId());
-		RedisProxy.getInstance().getRedisSession().hSet(proxyKey, "address", address);
+		String serverId = GsConfig.getInstance().getServerId();
+		try (Jedis jedis = RedisProxy.getInstance().getRedisSession().getJedis()) {
+			Object result = jedis.eval(VALIDATE_PROXY_CONNECTION_SCRIPT, 1, proxyKey, serverId, address);
+			return result instanceof Long ? ((Long) result).intValue() : PROXY_CONNECTION_REJECTED;
+		} catch (Exception e) {
+			HawkException.catchException(e);
+			return PROXY_CONNECTION_REJECTED;
+		}
 	}
 	
 	/**
@@ -198,7 +225,13 @@ public class ProxyHelper {
 			}
 			
 			long heartbeatTime = Long.valueOf(value);
-			return HawkTime.getMillisecond() - heartbeatTime <= MASTER_CHECK_PERIOD;
+			long timeDiff = HawkTime.getMillisecond() - heartbeatTime;
+			if (timeDiff < -MASTER_CHECK_PERIOD || timeDiff > MASTER_CHECK_PERIOD) {
+				HawkLog.warnPrintln("csproxy master heartbeat invalid, masterServer: {}, heartbeatTime: {}, timeDiff: {}ms",
+						getMasterServer(), heartbeatTime, timeDiff);
+				return false;
+			}
+			return true;
 		} catch (Exception e) {
 			HawkException.catchException(e);
 		}
