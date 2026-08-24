@@ -120,4 +120,10 @@
       <data id="112004" hero="1120" stage="4" consumption="30000_1001120_40" power="5500" attr="2003_5000" />
       <data id="112005" hero="1120" stage="5" consumption="30000_1001120_60" power="6500" attr="2003_7500" />
       <data id="112006" hero="1120" stage="6" consumption="30000_1001120_90" power="7500" attr="2003_7500" />
+      <data id="112201" hero="1122" stage="1" consumption="30000_1001122_10" power="2500" attr="2004_2500" />
+      <data id="112202" hero="1122" stage="2" consumption="30000_1001122_20" power="3500" attr="2004_2500" />
+      <data id="112203" hero="1122" stage="3" consumption="30000_1001122_30" power="4500" attr="2004_5000" />
+      <data id="112204" hero="1122" stage="4" consumption="30000_1001122_40" power="5500" attr="2004_5000" />
+      <data id="112205" hero="1122" stage="5" consumption="30000_1001122_60" power="6500" attr="2004_7500" />
+      <data id="112206" hero="1122" stage="6" consumption="30000_1001122_90" power="7500" attr="2004_7500" />
 </root>

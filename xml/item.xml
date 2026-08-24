@@ -8611,4 +8611,10 @@
       <data id="13006060" itemType="3" effect="13006060" buffId="240060" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" />
       <data id="13006090" itemType="3" effect="13006090" buffId="240090" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" />
       <data id="13006180" itemType="3" effect="13006180" buffId="240180" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" />
+      <data id="1001121" itemType="10" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="100" exchangeItem="30000_1000005_1" />
+      <data id="1101121" itemType="11" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="3000" resolveList="30000_1001121_10" />
+      <data id="1001122" itemType="10" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="100" exchangeItem="30000_1000005_1" />
+      <data id="1101122" itemType="11" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="3000" resolveList="30000_1001122_10" />
+      <data id="1001123" itemType="10" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="100" exchangeItem="30000_1000005_1" />
+      <data id="1101123" itemType="11" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="3000" resolveList="30000_1001123_10" />
 </root>
