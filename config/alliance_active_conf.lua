@@ -1,0 +1,78 @@
+local alliance_active_conf = {
+[1] ={
+	Id = 1,
+	ConditionValue = 30,
+	addActiveValue = 10,
+	addActiveValueType = '2',
+	activeDesc = '<font color="#ffffff" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">每日任务：每{0}点每日积分增加活跃值</font>',
+	condition1 = 0,
+	txt1 = '未参与',
+	condition2 = 1,
+	txt2 = '参与',
+	condition3 = 70,
+	txt3 = '活跃',
+	condition4 = 514,
+	txt4 = '非常活跃'
+},
+[2] ={
+	Id = 2,
+	ConditionValue = 50,
+	addActiveValue = 10,
+	addActiveValueType = '2',
+	activeDesc = '<font color="#ffffff" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">泰伯利亚：每{0}点个人积分增加活跃值</font>',
+	condition1 = 0,
+	txt1 = '无贡献',
+	condition2 = 1,
+	txt2 = '少量贡献',
+	condition3 = 280,
+	txt3 = '良好贡献',
+	condition4 = 400,
+	txt4 = '卓越贡献'
+},
+[3] ={
+	Id = 3,
+	ConditionValue = 40,
+	addActiveValue = 10,
+	addActiveValueType = '2',
+	activeDesc = '<font color="#ffffff" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">赛博之战：每{0}点个人积分增加活跃值</font>',
+	condition1 = 0,
+	txt1 = '无贡献',
+	condition2 = 1,
+	txt2 = '少量贡献',
+	condition3 = 425,
+	txt3 = '良好贡献',
+	condition4 = 600,
+	txt4 = '卓越贡献'
+},
+[4] ={
+	Id = 4,
+	ConditionValue = 30,
+	addActiveValue = 10,
+	addActiveValueType = '2',
+	activeDesc = '<font color="#ffffff" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">先驱回响：每{0}点个人积分增加活跃值</font>',
+	condition1 = 0,
+	txt1 = '无贡献',
+	condition2 = 1,
+	txt2 = '少量贡献',
+	condition3 = 534,
+	txt3 = '良好贡献',
+	condition4 = 900,
+	txt4 = '卓越贡献'
+},
+[5] ={
+	Id = 5,
+	ConditionValue = 500,
+	addActiveValue = 1,
+	addActiveValueType = '2',
+	activeDesc = '<font color="#ffffff" face = "Font/HiraginoSansGB-W3.ttf" fontsize ="20">航海远征：每{0}点个人积分增加活跃值</font>',
+	condition1 = 0,
+	txt1 = '无贡献',
+	condition2 = 1,
+	txt2 = '少量贡献',
+	condition3 = 160,
+	txt3 = '良好贡献',
+	condition4 = 400,
+	txt4 = '卓越贡献'
+}
+}
+return alliance_active_conf

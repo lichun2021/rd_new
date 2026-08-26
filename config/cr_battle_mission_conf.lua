@@ -1,0 +1,25 @@
+local cr_battle_mission_conf = {
+[9001] = {
+	id = 9001,
+	mapId = 9,
+	type = 1,
+	timeLimit = 180000,
+	defWarningY = 65,
+	defenderHasPos = "d00s_10501_70_58_1_0_0_0,d00r_10501_81_58_1_0_0_0,d00o_10129_72_50_1_2_0_0",
+	attackerHasPos = "a016_10500_68_90_1_1_0_0,a017_10500_80_93_1_1_0_0,a00y_10531_73_96_1_1_14_0",
+	attackerLeftTower = "a016",	
+	attackerRightTower = "a017",
+	attackerBase = "a00y",
+	attackerRegion = "75_84,88_99",
+	centerPos = "75_75",
+	defenderBase = "d00o",
+	defenderLeftTower = "d00s",
+	defenderRegion = "66_68,87_83",
+	defenderRightTower = "d00r",
+	loadingCCBFile = "RABattleLoadingPageCell8V3.ccbi",
+	skills = "10011_1,90013_1,90014_1",
+	skillsVirtual = "90008_1",
+	trigger_conf_prefix = "cr_stage1@",
+},
+}
+return cr_battle_mission_conf

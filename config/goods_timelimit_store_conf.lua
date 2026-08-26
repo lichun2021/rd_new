@@ -1,0 +1,267 @@
+local goods_timelimit_store_conf = {
+[1] ={
+	id = 1,
+	triggerType = 1,
+	item = '30000_104050_1',
+	limitNum = 10,
+	discount = 1000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_75',
+	price = '10000_1000_7',
+	highLight = 0
+},
+[2] ={
+	id = 2,
+	triggerType = 1,
+	item = '30000_104050_1',
+	limitNum = 50,
+	discount = 1200,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_75',
+	price = '10000_1000_9',
+	highLight = 0
+},
+[3] ={
+	id = 3,
+	triggerType = 1,
+	item = '30000_104050_1',
+	limitNum = 100,
+	discount = 1400,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_75',
+	price = '10000_1000_10',
+	highLight = 0
+},
+[4] ={
+	id = 4,
+	triggerType = 1,
+	item = '30000_1300018_1',
+	limitNum = 10,
+	discount = 1000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_2800',
+	price = '10000_1000_280',
+	highLight = 0
+},
+[5] ={
+	id = 5,
+	triggerType = 1,
+	item = '30000_850009_1',
+	limitNum = 50,
+	discount = 100,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_1500',
+	price = '10000_1000_15',
+	highLight = 0
+},
+[6] ={
+	id = 6,
+	triggerType = 1,
+	item = '30000_850039_1',
+	limitNum = 50,
+	discount = 100,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_1500',
+	price = '10000_1000_15',
+	highLight = 0
+},
+[7] ={
+	id = 7,
+	triggerType = 1,
+	item = '30000_850019_1',
+	limitNum = 50,
+	discount = 100,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_1500',
+	price = '10000_1000_15',
+	highLight = 0
+},
+[8] ={
+	id = 8,
+	triggerType = 1,
+	item = '30000_850029_1',
+	limitNum = 50,
+	discount = 100,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_1500',
+	price = '10000_1000_15',
+	highLight = 0
+},
+[11] ={
+	id = 11,
+	triggerType = 2,
+	item = '30000_101050_1',
+	limitNum = 10,
+	discount = 1000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_75',
+	price = '10000_1000_7',
+	highLight = 0
+},
+[12] ={
+	id = 12,
+	triggerType = 2,
+	item = '30000_101050_1',
+	limitNum = 20,
+	discount = 1200,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_75',
+	price = '10000_1000_9',
+	highLight = 0
+},
+[13] ={
+	id = 13,
+	triggerType = 2,
+	item = '30000_101050_1',
+	limitNum = 30,
+	discount = 1400,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_75',
+	price = '10000_1000_10',
+	highLight = 0
+},
+[14] ={
+	id = 14,
+	triggerType = 2,
+	item = '30000_101050_1',
+	limitNum = 60,
+	discount = 1600,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_75',
+	price = '10000_1000_12',
+	highLight = 0
+},
+[15] ={
+	id = 15,
+	triggerType = 2,
+	item = '30000_850008_1',
+	limitNum = 50,
+	discount = 100,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_500',
+	price = '10000_1000_5',
+	highLight = 0
+},
+[16] ={
+	id = 16,
+	triggerType = 2,
+	item = '30000_850038_1',
+	limitNum = 50,
+	discount = 100,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_500',
+	price = '10000_1000_5',
+	highLight = 0
+},
+[17] ={
+	id = 17,
+	triggerType = 2,
+	item = '30000_850018_1',
+	limitNum = 50,
+	discount = 100,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_500',
+	price = '10000_1000_5',
+	highLight = 0
+},
+[18] ={
+	id = 18,
+	triggerType = 2,
+	item = '30000_850028_1',
+	limitNum = 50,
+	discount = 100,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_500',
+	price = '10000_1000_5',
+	highLight = 0
+},
+[31] ={
+	id = 31,
+	triggerType = 4,
+	item = '30000_800100_1',
+	limitNum = 1,
+	discount = 3000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_50',
+	price = '10000_1000_15',
+	highLight = 0
+},
+[32] ={
+	id = 32,
+	triggerType = 4,
+	item = '30000_800100_1',
+	limitNum = 2,
+	discount = 4000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_50',
+	price = '10000_1000_20',
+	highLight = 0
+},
+[33] ={
+	id = 33,
+	triggerType = 4,
+	item = '30000_850051_1',
+	limitNum = 3,
+	discount = 7000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_10',
+	price = '10000_1000_7',
+	highLight = 0
+},
+[34] ={
+	id = 34,
+	triggerType = 4,
+	item = '30000_850051_1',
+	limitNum = 6,
+	discount = 8000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_10',
+	price = '10000_1000_8',
+	highLight = 0
+},
+[35] ={
+	id = 35,
+	triggerType = 4,
+	item = '30000_850051_1',
+	limitNum = 9,
+	discount = 9000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_10',
+	price = '10000_1000_9',
+	highLight = 0
+},
+[36] ={
+	id = 36,
+	triggerType = 4,
+	item = '30000_1480001_1',
+	limitNum = 200,
+	discount = 1000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_10',
+	price = '10000_1000_1',
+	highLight = 0
+},
+[37] ={
+	id = 37,
+	triggerType = 4,
+	item = '30000_13310004_1',
+	limitNum = 10,
+	discount = 3000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_30',
+	price = '10000_1000_9',
+	highLight = 0
+},
+[38] ={
+	id = 38,
+	triggerType = 4,
+	item = '30000_13310004_1',
+	limitNum = 20,
+	discount = 4000,
+	discountPic = 'V3TravellingShop_u_Num_BG_01.png',
+	originalPrice = '10000_1000_30',
+	price = '10000_1000_12',
+	highLight = 0
+}
+}
+return goods_timelimit_store_conf

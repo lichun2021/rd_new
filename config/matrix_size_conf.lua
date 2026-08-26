@@ -1,0 +1,87 @@
+local matrix_size_conf = {
+["1|11"] ={
+	type = '"1|11"',
+	name = '步兵',
+	priority = 1,
+	region1X = 7,
+	region1Y = 10,
+	region1All = 70,
+	region2X = 6,
+	region2Y = 8,
+	region2All = 48,
+	region3X = 0,
+	region3Y = 0,
+	region3All = 0
+},
+["1|12"] ={
+	type = '"1|12"',
+	name = '坦克',
+	priority = 2,
+	region1X = 2,
+	region1Y = 5,
+	region1All = 10,
+	region2X = 2,
+	region2Y = 4,
+	region2All = 8,
+	region3X = 0,
+	region3Y = 0,
+	region3All = 0
+},
+["1|13"] ={
+	type = '"1|13"',
+	name = '飞机',
+	priority = 6,
+	region1X = 0,
+	region1Y = 0,
+	region1All = 0,
+	region2X = 0,
+	region2Y = 0,
+	region2All = 0,
+	region3X = 9,
+	region3Y = 1,
+	region3All = 9
+},
+["2|12014"] ={
+	type = '"2|12014"',
+	name = 'V3',
+	priority = 3,
+	region1X = 2,
+	region1Y = 4,
+	region1All = 8,
+	region2X = 1,
+	region2Y = 4,
+	region2All = 4,
+	region3X = 0,
+	region3Y = 0,
+	region3All = 0
+},
+["2|12004"] ={
+	type = '"2|12004"',
+	name = '天启',
+	priority = 3,
+	region1X = 2,
+	region1Y = 4,
+	region1All = 8,
+	region2X = 1,
+	region2Y = 4,
+	region2All = 4,
+	region3X = 0,
+	region3Y = 0,
+	region3All = 0
+},
+["2|13004"] ={
+	type = '"2|13004"',
+	name = '基洛夫',
+	priority = 6,
+	region1X = 1,
+	region1Y = 5,
+	region1All = 5,
+	region2X = 1,
+	region2Y = 4,
+	region2All = 4,
+	region3X = 0,
+	region3Y = 0,
+	region3All = 0
+}
+}
+return matrix_size_conf

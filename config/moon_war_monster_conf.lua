@@ -1,0 +1,24 @@
+local moon_war_monster_conf = {
+[7] ={
+	id = 7,
+	monsterId = 302098,
+	orderVal = 1,
+	nationScore = 0,
+	allianceScore = 0,
+	playerScore = 30,
+	refreshTime = '60,1060,2060,3060,4060,5060,6060,7060,8060,9060,10060,11060,12060,13060,14060,15060,16060,17060,18060,19060,20060,21060,21600',
+	refreshCount = 1200,
+	refreshBuildType = '1,8'
+},
+[8] ={
+	id = 8,
+	monsterId = 302099,
+	orderVal = 0,
+	nationScore = 0,
+	allianceScore = 0,
+	playerScore = 200,
+	refreshCount = 0,
+	refreshBuildType = 8
+}
+}
+return moon_war_monster_conf

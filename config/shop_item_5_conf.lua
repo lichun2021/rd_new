@@ -1,0 +1,87 @@
+local shop_item_5_conf = {
+[1] ={
+	id = 1,
+	needItem = '30000_21063072_20',
+	gainItem = '30000_21065001_1',
+	order = 90,
+	times = 120,
+},
+[2] ={
+	id = 2,
+	needItem = '30000_21063072_12',
+	gainItem = '30000_21063005_10',
+	order = 89,
+	times = 200,
+},
+[3] ={
+	id = 3,
+	needItem = '30000_21063072_6',
+	gainItem = '30000_1782103_10',
+	order = 88,
+	times = 200,
+},
+[4] ={
+	id = 4,
+	needItem = '30000_21063072_9',
+	gainItem = '30000_800002_10',
+	order = 87,
+	times = 200,
+},
+[5] ={
+	id = 5,
+	needItem = '30000_21063072_40',
+	gainItem = '30000_1800001_10',
+	order = 86,
+	times = 10,
+},
+[6] ={
+	id = 6,
+	needItem = '30000_21063072_2',
+	gainItem = '30000_1800000_10',
+	order = 85,
+	times = 200,
+},
+[7] ={
+	id = 7,
+	needItem = '30000_21063072_8',
+	gainItem = '30000_800000_10',
+	order = 84,
+	times = 50,
+},
+[8] ={
+	id = 8,
+	needItem = '30000_21063072_2',
+	gainItem = '30000_800001_10',
+	order = 83,
+	times = 400,
+},
+[9] ={
+	id = 9,
+	needItem = '30000_21063072_6',
+	gainItem = '30000_800110_10',
+	order = 82,
+	times = 200,
+},
+[10] ={
+	id = 10,
+	needItem = '30000_21063072_15',
+	gainItem = '30000_820002_1',
+	order = 81,
+	times = 100,
+},
+[11] ={
+	id = 11,
+	needItem = '30000_21063072_4',
+	gainItem = '30000_810001_1',
+	order = 80,
+	times = 1500,
+},
+[12] ={
+	id = 12,
+	needItem = '30000_21063072_1',
+	gainItem = '30000_1780040_1',
+	order = 79,
+	times = 9999,
+}
+}
+return shop_item_5_conf

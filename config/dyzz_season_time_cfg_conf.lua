@@ -1,0 +1,51 @@
+local dyzz_season_time_cfg_conf = {
+[1] ={
+	termId = 1,
+	showTime = '2022-8-19 20:00:00',
+	startTime = '2022-8-20 20:00:00',
+	endTime = '2022-11-8 23:59:59',
+	hiddenTime = '2022-12-12 20:00:00',
+	seasonLang = '@MobaWarSeasonSign1'
+},
+[2] ={
+	termId = 2,
+	showTime = '2022-12-12 20:00:00',
+	startTime = '2022-12-13 20:00:00',
+	endTime = '2023-2-28 23:59:59',
+	hiddenTime = '2023-6-26 20:00:00',
+	seasonLang = '@MobaWarSeasonSign2'
+},
+[3] ={
+	termId = 3,
+	showTime = '2023-6-26 20:00:00',
+	startTime = '2023-6-27 20:00:00',
+	endTime = '2023-8-22 23:59:59',
+	hiddenTime = '2023-10-27 20:00:00',
+	seasonLang = '@MobaWarSeasonSign3'
+},
+[4] ={
+	termId = 4,
+	showTime = '2023-10-27 20:00:00',
+	startTime = '2023-10-30 20:00:00',
+	endTime = '2024-4-4 23:59:59',
+	hiddenTime = '2024-6-21 20:00:00',
+	seasonLang = '@MobaWarSeasonSign4'
+},
+[5] ={
+	termId = 5,
+	showTime = '2024-6-21 20:00:00',
+	startTime = '2024-6-24 20:00:00',
+	endTime = '2024-11-29 23:59:59',
+	hiddenTime = '2025-1-15 00:00:00',
+	seasonLang = '@MobaWarSeasonSign5'
+},
+[6] ={
+	termId = 6,
+	showTime = '2025-1-15 00:00:00',
+	startTime = '2025-1-20 20:00:00',
+	endTime = '2025-7-8 23:59:59',
+	hiddenTime = '2026-11-1 22:00:00',
+	seasonLang = '@MobaWarSeasonSign6'
+}
+}
+return dyzz_season_time_cfg_conf

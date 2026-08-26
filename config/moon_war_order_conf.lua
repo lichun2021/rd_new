@@ -1,0 +1,52 @@
+local moon_war_order_conf = {
+[1001] ={
+	id = 1001,
+	name = '@yqzzSkillName1',
+	desc = 'YQZZSkillDesc1',
+	desc1 = 'YQZZSkillDes11',
+	desc2 = 'YQZZSkillDes21',
+	useDesc = 'YQZZSkillUse1',
+	icon = 'NationIcon_Tech_207.png',
+	techId = 207,
+	techCost = 60,
+	coolingTime = 1500,
+},
+[2001] ={
+	id = 2001,
+	name = '@yqzzSkillName2',
+	desc = 'YQZZSkillDesc2',
+	desc1 = 'YQZZSkillDes12',
+	desc2 = 'YQZZSkillDes22',
+	useDesc = 'YQZZSkillUse2',
+	icon = 'NationIcon_Tech_214.png',
+	techId = 214,
+	techCost = 40,
+	coolingTime = 900,
+	effectTime = 3600
+},
+[3001] ={
+	id = 3001,
+	name = '@yqzzSkillName3',
+	desc = 'YQZZSkillDesc3',
+	desc1 = 'YQZZSkillDes13',
+	desc2 = 'YQZZSkillDes23',
+	useDesc = 'YQZZSkillUse3',
+	icon = 'NationIcon_Tech_116.png',
+	techId = 116,
+	techCost = 240,
+	coolingTime = 9000,
+},
+[4001] ={
+	id = 4001,
+	name = '@yqzzSkillName4',
+	desc = 'YQZZSkillDesc4',
+	desc1 = 'YQZZSkillDes14',
+	desc2 = 'YQZZSkillDes24',
+	useDesc = 'YQZZSkillUse4',
+	icon = 'NationIcon_Tech_220.png',
+	techId = 220,
+	techCost = 60,
+	coolingTime = 1500,
+}
+}
+return moon_war_order_conf

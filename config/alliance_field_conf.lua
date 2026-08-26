@@ -1,0 +1,67 @@
+local alliance_field_conf = {
+[1] ={
+	id = 1,
+	defaultName = '@alliance_field_1',
+	resourceUpLimit = 450000000,
+	collectSpeed = 2000,
+	buildingUpLimit = 50000,
+	resType = 1007,
+	description = '@Alliancefielddes',
+	spine = 'GuildBuilding_SuperGold',
+	titleicon = 'V3Alliance_u_Territory_Gold',
+	icon = 'Alliance_BuildIcon_Gold.png',
+	gridCnt = 2,
+	nameOffsetY = 20,
+	buildingModelScale = 0.65,
+	buildingModelScale1 = 0.65
+},
+[2] ={
+	id = 2,
+	defaultName = '@alliance_field_2',
+	resourceUpLimit = 450000000,
+	collectSpeed = 2000,
+	buildingUpLimit = 50000,
+	resType = 1008,
+	description = '@Alliancefielddes',
+	spine = 'GuildBuilding_SuperOil',
+	titleicon = 'V3Alliance_u_Territory_Gold',
+	icon = 'Alliance_BuildIcon_SuperOil.png',
+	gridCnt = 2,
+	nameOffsetY = 20,
+	buildingModelScale = 0.65,
+	buildingModelScale1 = 0.65
+},
+[3] ={
+	id = 3,
+	defaultName = '@alliance_field_3',
+	resourceUpLimit = 750000000,
+	collectSpeed = 2000,
+	buildingUpLimit = 50000,
+	resType = 1010,
+	description = '@Alliancefielddes',
+	spine = 'GuildBuilding_SuperAlloy',
+	titleicon = 'V3Alliance_u_Territory_Gold',
+	icon = 'Alliance_BuildIcon_Steel.png',
+	gridCnt = 2,
+	nameOffsetY = 20,
+	buildingModelScale = 0.65,
+	buildingModelScale1 = 0.65
+},
+[4] ={
+	id = 4,
+	defaultName = '@alliance_field_4',
+	resourceUpLimit = 18750000,
+	collectSpeed = 2000,
+	buildingUpLimit = 50000,
+	resType = 1009,
+	description = '@Alliancefielddes',
+	spine = 'GuildBuilding_SuperUranium',
+	titleicon = 'V3Alliance_u_Territory_Gold',
+	icon = 'Alliance_BuildIcon_Uranium.png',
+	gridCnt = 2,
+	nameOffsetY = 20,
+	buildingModelScale = 0.65,
+	buildingModelScale1 = 0.65
+}
+}
+return alliance_field_conf
