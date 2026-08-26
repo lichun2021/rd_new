@@ -3464,15 +3464,15 @@
       <data id="988030" dressId="988" continueTime="2592000" item="9988030" />
       <data id="988090" dressId="988" continueTime="7776000" item="9988090" />
       <data id="988180" dressId="988" continueTime="15552000" item="9988180" />
-      <data id="2371000" dressId="2371" continueTime="0" item="11371000" />
-      <data id="2372001" dressId="2372" continueTime="86400" item="11372001" />
-      <data id="2372003" dressId="2372" continueTime="259200" item="11372003" />
-      <data id="2372007" dressId="2372" continueTime="604800" item="11372007" />
-      <data id="2372014" dressId="2372" continueTime="1209600" item="11372014" />
-      <data id="2372030" dressId="2372" continueTime="2592000" item="11372030" />
-      <data id="2372060" dressId="2372" continueTime="5184000" item="11372060" />
-      <data id="2372090" dressId="2372" continueTime="7776000" item="11372090" />
-      <data id="2372180" dressId="2372" continueTime="15552000" item="11372180" />
+      <data id="2371000" dressId="2371" continueTime="0" item="11371000" exchangeItem="30000_840399_240" />
+      <data id="2372001" dressId="2372" continueTime="86400" item="11372001" exchangeItem="30000_840399_2" />
+      <data id="2372003" dressId="2372" continueTime="259200" item="11372003" exchangeItem="30000_840399_6" />
+      <data id="2372007" dressId="2372" continueTime="604800" item="11372007" exchangeItem="30000_840399_14" />
+      <data id="2372014" dressId="2372" continueTime="1209600" item="11372014" exchangeItem="30000_840399_28" />
+      <data id="2372030" dressId="2372" continueTime="2592000" item="11372030" exchangeItem="30000_840399_60" />
+      <data id="2372060" dressId="2372" continueTime="5184000" item="11372060" exchangeItem="30000_840399_120" />
+      <data id="2372090" dressId="2372" continueTime="7776000" item="11372090" exchangeItem="30000_840399_180" />
+      <data id="2372180" dressId="2372" continueTime="15552000" item="11372180" exchangeItem="30000_840399_360" />
       <data id="1149000" dressId="1149" continueTime="0" item="10149000" />
       <data id="1149180" dressId="1149" continueTime="15552000" item="10149180" />
       <data id="492000" dressId="492" continueTime="0" item="9492000" />
@@ -4035,4 +4035,46 @@
       <data id="650007" dressId="650" continueTime="604800" item="9650007" exchangeItem="30000_840399_7" />
       <data id="650014" dressId="650" continueTime="1209600" item="9650014" exchangeItem="30000_840399_14" />
       <data id="650030" dressId="650" continueTime="2592000" item="9650030" exchangeItem="30000_840399_30" />
+      <data id="2371001" dressId="2371" continueTime="86400" item="11371001" exchangeItem="30000_840399_2" />
+      <data id="2371003" dressId="2371" continueTime="259200" item="11371003" exchangeItem="30000_840399_6" />
+      <data id="2371007" dressId="2371" continueTime="604800" item="11371007" exchangeItem="30000_840399_14" />
+      <data id="2371014" dressId="2371" continueTime="1209600" item="11371014" exchangeItem="30000_840399_28" />
+      <data id="2371030" dressId="2371" continueTime="2592000" item="11371030" exchangeItem="30000_840399_60" />
+      <data id="2372000" dressId="2372" continueTime="0" item="11372000" exchangeItem="30000_840399_240" />
+      <data id="2375000" dressId="2375" continueTime="0" item="11375000" exchangeItem="30000_840399_240" />
+      <data id="2375001" dressId="2375" continueTime="86400" item="11375001" exchangeItem="30000_840399_2" />
+      <data id="2375003" dressId="2375" continueTime="259200" item="11375003" exchangeItem="30000_840399_6" />
+      <data id="2375007" dressId="2375" continueTime="604800" item="11375007" exchangeItem="30000_840399_14" />
+      <data id="2375014" dressId="2375" continueTime="1209600" item="11375014" exchangeItem="30000_840399_28" />
+      <data id="2375030" dressId="2375" continueTime="2592000" item="11375030" exchangeItem="30000_840399_60" />
+      <data id="2376000" dressId="2376" continueTime="0" item="11376000" exchangeItem="30000_840399_240" />
+      <data id="2376001" dressId="2376" continueTime="86400" item="11376001" exchangeItem="30000_840399_2" />
+      <data id="2376003" dressId="2376" continueTime="259200" item="11376003" exchangeItem="30000_840399_6" />
+      <data id="2376007" dressId="2376" continueTime="604800" item="11376007" exchangeItem="30000_840399_14" />
+      <data id="2376014" dressId="2376" continueTime="1209600" item="11376014" exchangeItem="30000_840399_28" />
+      <data id="2376030" dressId="2376" continueTime="2592000" item="11376030" exchangeItem="30000_840399_60" />
+      <data id="2377000" dressId="2377" continueTime="0" item="11377000" exchangeItem="30000_840399_240" />
+      <data id="2377001" dressId="2377" continueTime="86400" item="11377001" exchangeItem="30000_840399_2" />
+      <data id="2377003" dressId="2377" continueTime="259200" item="11377003" exchangeItem="30000_840399_6" />
+      <data id="2377007" dressId="2377" continueTime="604800" item="11377007" exchangeItem="30000_840399_14" />
+      <data id="2377014" dressId="2377" continueTime="1209600" item="11377014" exchangeItem="30000_840399_28" />
+      <data id="2377030" dressId="2377" continueTime="2592000" item="11377030" exchangeItem="30000_840399_60" />
+      <data id="2378000" dressId="2378" continueTime="0" item="11378000" exchangeItem="30000_840399_240" />
+      <data id="2378001" dressId="2378" continueTime="86400" item="11378001" exchangeItem="30000_840399_2" />
+      <data id="2378003" dressId="2378" continueTime="259200" item="11378003" exchangeItem="30000_840399_6" />
+      <data id="2378007" dressId="2378" continueTime="604800" item="11378007" exchangeItem="30000_840399_14" />
+      <data id="2378014" dressId="2378" continueTime="1209600" item="11378014" exchangeItem="30000_840399_28" />
+      <data id="2378030" dressId="2378" continueTime="2592000" item="11378030" exchangeItem="30000_840399_60" />
+      <data id="2379000" dressId="2379" continueTime="0" item="11379000" exchangeItem="30000_840399_240" />
+      <data id="2379001" dressId="2379" continueTime="86400" item="11379001" exchangeItem="30000_840399_2" />
+      <data id="2379003" dressId="2379" continueTime="259200" item="11379003" exchangeItem="30000_840399_6" />
+      <data id="2379007" dressId="2379" continueTime="604800" item="11379007" exchangeItem="30000_840399_14" />
+      <data id="2379014" dressId="2379" continueTime="1209600" item="11379014" exchangeItem="30000_840399_28" />
+      <data id="2379030" dressId="2379" continueTime="2592000" item="11379030" exchangeItem="30000_840399_60" />
+      <data id="2380000" dressId="2380" continueTime="0" item="11380000" exchangeItem="30000_840399_240" />
+      <data id="2380001" dressId="2380" continueTime="86400" item="11380001" exchangeItem="30000_840399_2" />
+      <data id="2380003" dressId="2380" continueTime="259200" item="11380003" exchangeItem="30000_840399_6" />
+      <data id="2380007" dressId="2380" continueTime="604800" item="11380007" exchangeItem="30000_840399_14" />
+      <data id="2380014" dressId="2380" continueTime="1209600" item="11380014" exchangeItem="30000_840399_28" />
+      <data id="2380030" dressId="2380" continueTime="2592000" item="11380030" exchangeItem="30000_840399_60" />
 </root>

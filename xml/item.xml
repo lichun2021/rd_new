@@ -8234,15 +8234,15 @@
       <data id="9988180" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="988180" />
       <data id="11031180" itemType="3" buffId="233180" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" />
       <data id="11032180" itemType="3" buffId="200172" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" />
-      <data id="11371000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371000" />
-      <data id="11372001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372001" />
-      <data id="11372003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372003" />
-      <data id="11372007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372007" />
-      <data id="11372014" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372014" />
-      <data id="11372030" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372030" />
-      <data id="11372060" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372060" />
-      <data id="11372090" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372090" />
-      <data id="11372180" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372180" />
+      <data id="11371000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371000" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11372001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372001" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11372003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372003" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11372007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372007" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11372014" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372014" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11372030" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372030" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11372060" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372060" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11372090" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372090" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11372180" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372180" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
       <data id="10149000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="1149000" />
       <data id="10149180" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="1149180" />
       <data id="9492000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="492000" />
@@ -8617,4 +8617,46 @@
       <data id="1101122" itemType="11" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="3000" resolveList="30000_1001122_10" />
       <data id="1001123" itemType="10" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="100" exchangeItem="30000_1000005_1" />
       <data id="1101123" itemType="11" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="3000" resolveList="30000_1001123_10" />
+      <data id="11371001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371001" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11371003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371003" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11371007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371007" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11371014" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371014" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11371030" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371030" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11372000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2372000" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11375000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2375000" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11375001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2375001" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11375003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2375003" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11375007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2375007" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11375014" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2375014" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11375030" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2375030" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11376000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2376000" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11376001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2376001" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11376003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2376003" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11376007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2376007" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11376014" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2376014" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11376030" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2376030" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11377000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2377000" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11377001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2377001" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11377003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2377003" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11377007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2377007" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11377014" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2377014" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11377030" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2377030" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11378000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2378000" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11378001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2378001" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11378003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2378003" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11378007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2378007" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11378014" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2378014" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11378030" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2378030" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11379000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2379000" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11379001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2379001" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11379003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2379003" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11379007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2379007" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11379014" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2379014" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11379030" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2379030" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11380000" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2380000" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11380001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2380001" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11380003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2380003" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11380007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2380007" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11380014" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2380014" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
+      <data id="11380030" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2380030" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
 </root>
