@@ -1,153 +1,84 @@
-# Hero 1122 Runtime Skill Design
+# Hero 1122 (Lexa) Runtime Skill Design
 
-## Goal
+## Goal and provenance
 
-Implement a server-side compatibility version of hero 1122's runtime battle skill in `rd_new`, using the shipped client description and configuration as the behavioral contract and existing same-quality hero implementations as engine integration references.
+Implement a server-side compatibility version of local hero 1122's battle skill. Local 1122 was remapped from official client hero 1123 (Lexa), so its authoritative client records are `hero_skill_conf[112301..112305]` and `HeroSkillDesWithValue112301`; local server identifiers remain 112201–112205.
 
-The implementation must make effects 12961–12970 and proficiency effect 12981 participate in battle. It must not claim byte-for-byte parity with unavailable official server source.
+The implementation is derived from client configuration and text because matching official server Java is unavailable. It must not be described as an exact official formula.
 
 ## Scope
 
-- Add runtime registration for skills 112201–112205.
-- Add battle consumers for effects 12961–12970 and 12981.
-- Add narrowly scoped battle state only where an effect cannot be expressed through an existing tuple/checker.
-- Reuse the existing `EffType` entries and XML values without changing their identifiers or scaling.
-- Add automated structural and behavior tests before production code.
-- Do not change hero 1123 in this delivery. Hero 1123 is a staff officer (`staffOfficer=1`, `marchUsed=0`) and its effects 12995–12997 belong to the staff-officer attribute path rather than hero 1122's expedition skill path.
-- Do not change hero 1121 merely because effects 12941–12944 have no Checker classes; it is also a staff officer.
+- Register `Skill1122` for 112201–112205 and proficiency effect 12981.
+- Implement the provable air-supremacy mechanics for effects 12961–12967 and 12970.
+- Implement 12968/12969 only if a source-backed trigger is found. Their short labels alone—electromagnetic-interception attack/defense/HP increase and incoming-damage reduction—are insufficient to invent a trigger.
+- Do not add `Skill1123` or change staff-officer heroes 1121/1123.
+- Reuse existing battle tuple stages and immutable march-count snapshots.
 
-## Evidence and Behavioral Contract
+## Client-derived behavior
 
-`hero_skill.xml` defines skills 112201–112205 with the same effect topology and progressively increasing values. The client description defines these mechanics:
+Hero 1122 qualifies to provide air supremacy in rally battles when the owner's deployed helicopters (soldier type 4) exceed 50% of that owner's deployed troops and are at least 5% of the rally's total deployed troops. Only the owner's largest helicopter battle unit qualifies. Mirage/phantom units do not contribute. In a rally, the two highest qualifying friendly player contributions are summed.
 
-1. The hero's core theme is dynamic battlefield command allocation.
-2. During preparation, troop super attack, attack, defense, and HP use the ordinary configured effects already handled by the generic effect system.
-3. Before a rally battle starts, if melee units are at least 40% of total deployed units, all allied melee units gain attack, defense, and HP. Multiple copies can stack up to seven layers.
-4. Before a rally battle starts, if ranged units are at least 40% of total deployed units, all allied ranged units gain attack, defense, and HP. Multiple copies can stack up to seven layers.
-5. For every 200,000 deployed melee units, the hero owner's melee troops receive reduced incoming attack damage, stacking up to twenty layers.
-6. For every 200,000 deployed ranged units, the hero owner's ranged troops receive reduced incoming attack damage, stacking up to twenty layers.
-7. Proficiency effect 12981 reduces damage received by helicopter units while they are attacked, for the configured duration.
+The contribution is derived from the qualifying helicopter unit's average attack, defense, and HP bonuses multiplied by effect 12961. Friendly and enemy air-supremacy totals are calculated symmetrically and cached from immutable pre-battle state.
 
-The named effects provide the remaining semantic labels:
+When friendly air supremacy exceeds enemy air supremacy:
 
-- 12961: air-current anchoring air-supremacy coefficient.
-- 12962: air-current anchoring incoming-damage reduction.
-- 12963: air-current anchoring attack increase.
-- 12964: synchronized overload super-attack increase.
-- 12965: synchronized overload outgoing-damage increase.
-- 12966: synchronized overload incoming-damage reduction.
-- 12967: rotor interference attack-deflection rate.
-- 12968: electromagnetic interception attack/defense/HP increase.
-- 12969: electromagnetic interception incoming-damage reduction.
-- 12970: air-control field additional damage.
-- 12981: helicopter incoming-damage reduction during proficiency.
+- 12962 reduces incoming damage for friendly air units by `difference × configured coefficient`, capped at 12%.
+- 12963 increases friendly all-unit attack and decreases enemy all-unit attack by `difference × configured coefficient`, capped at the client-stated limit.
 
-Where the long client description and short effect name overlap, the long description controls trigger and stacking behavior while the XML value controls magnitude.
+Synchronized-overload thresholds last until battle end and each contribution stacks at most twice:
+
+- air supremacy ≥ 3: 12966 friendly all-unit incoming-damage reduction;
+- air supremacy ≥ 5: 12965 friendly all-unit outgoing-damage increase;
+- air supremacy ≥ 7: 12964 friendly all-unit super-attack increase.
+
+Rotor interference (12967) requires Lexa to deploy with the configured partner hero. Every fifth round it raises that owner's 12961 coefficient by 8% and, for that round, applies attack deflection to enemy bomber units (soldier type 3). Its effective value is based on 12967 and the number of enemy bomber battle units, capped at two Lexa layers.
+
+Air-control field (12970) triggers once per battle at round 40 or when friendly air supremacy reaches 10. It causes enemy units to take the configured additional damage and doubles friendly air supremacy for five rounds. Additional damage must use a non-recursive existing damage hook.
+
+Proficiency effect 12981 applies only while `Skill1122` is active and only to the owner's largest deployed helicopter unit when receiving attack damage. The configured third field is duration in seconds.
 
 ## Architecture
 
-### Skill registration
+- `Skill1122`: parse and expose 12981 using the existing `ISSSHeroSkill` lifecycle.
+- `Hero1122Rules`: pure functions for 50%/5% qualification, top-two contribution selection, air-supremacy difference, threshold layers, caps, round predicates, and type predicates.
+- Battle state: cache friendly/enemy supremacy, the one-shot field trigger, and the five-round doubling window on existing battle leader/player extra-state maps; no global mutable state.
+- One annotated Checker per implemented effect, delegating arithmetic to the pure rules and retaining explicit owner/type/war-mode guards.
+- A minimal battle-class hook is allowed only for round-bound effects or non-recursive additional damage that cannot be represented by current tuple evaluation.
 
-Create `Skill1122` extending `ISSSHeroSkill`, registered for 112201–112205. It parses the three-part `proficiencyEffect` value exactly as `Skill1120` does and exposes effect 12981 only while the proficiency skill is active. Duration comes from the third configured field in seconds.
+## Scaling and safety
 
-Parsing must fail closed: malformed or absent configuration returns no proficiency effect and records the exception through the existing server exception path.
+- Use existing effect units (`GsConst.EFF_PER`) exactly once at the tuple boundary.
+- Calculate ratios with zero guards and without integer truncation.
+- Select the top two values, not the first two players encountered.
+- Never use casualty-mutated live counts for initial qualification.
+- Attacker and defender supremacy are computed independently; enemy counts never increase friendly values.
+- Threshold effects use the friendly absolute supremacy value; difference-based effects use `max(0, friendly - enemy)`.
+- The 12% cap applies only to 12962. Other caps follow the explicit client limit or existing engine-wide clamp.
+- 12970 is one-shot and cannot trigger itself recursively.
+- Malformed or missing configuration fails closed to zero and is logged through existing exception handling.
 
-### Pure rule layer
+## Tests
 
-Create `Hero1122Rules` as a small, deterministic helper for calculations that are easy to get subtly wrong:
+Tests are written and observed failing before production code:
 
-- qualifying whether a troop category reaches 40% of the total;
-- computing `floor(categoryCount / 200000)` with a maximum of 20;
-- limiting rally-wide duplicate-hero amplification to seven layers;
-- converting configured floating coefficients through the same military-value scaling convention used by existing hero Checkers;
-- identifying melee, ranged, and helicopter targets through existing soldier-type classifications rather than hard-coded unit IDs.
+- exact skill and Checker registration closure;
+- 50% is not enough because the text says “exceeds”; 50% plus one qualifies;
+- exactly 5% qualifies; below 5% fails;
+- top-two contributions are selected by value and exclude phantom units;
+- friendly/enemy difference never becomes negative;
+- thresholds 3/5/7, two-layer cap, every-fifth-round predicate, round-40 predicate, and five-round window boundaries;
+- helicopter/type and largest-unit ownership guards;
+- 12981 active/inactive duration behavior;
+- one-shot and recursion guards for 12970;
+- control battles without hero 1122 remain unchanged;
+- no runtime implementation is introduced for local hero 1123.
 
-This layer contains no mutable battle state and is tested directly.
+## Adversarial review
 
-### Checker and battle integration
+Review the final diff for source/target-ID confusion, wrong partner ID, bomber/helicopter inversion, `>=50%` instead of `>50%`, `<5%` acceptance, first-two rather than top-two selection, phantom contribution, attacker/defender inversion, percent scaling twice, live-count leakage, threshold/difference confusion, incorrect stacking, repeated 12970 activation, recursive additional damage, and unsupported 12968/12969 behavior.
 
-Each new effect receives one discoverable `@EffectChecker` entry. A Checker may delegate to a shared implementation, but annotations remain one-to-one with `EffType` so startup discovery and audits can prove closure.
+Critical and important findings require a failing regression test before correction and a fresh full verification run.
 
-Existing tuple types and battle phases are reused by semantic role:
+## Delivery boundary
 
-- attack, defense, HP, and super-attack modifiers use their existing attribute tuple stages;
-- outgoing and additional damage use the established attacker-side damage stages;
-- incoming-damage reduction uses defender-side reduction stages and remains multiplicative with independent reductions where the engine already treats that family multiplicatively;
-- deflection uses the existing deflection stage and probability scale;
-- pre-battle composition checks use immutable original deployed counts, not counts after casualties, cloning, healing, or in-battle conversion;
-- rally-wide bonuses read all participating hero copies, cap the effective layer count at seven, and apply only to the qualifying melee or ranged category;
-- per-200,000 reductions use only the owning player's original deployed category count and cap at twenty layers;
-- proficiency effect 12981 applies only to the hero owner's helicopter units and only while `Skill1122.isEffecting()` is true.
-
-No effect is allowed to apply globally merely because its ID is present in `effectid.xml`.
-
-## Scaling and Composition Rules
-
-- XML effect values remain decimal coefficients; the implementation converts them at the same boundary as comparable existing Checkers.
-- Percentage values are never multiplied by 100 twice.
-- Stack counts multiply the configured per-layer effect before entering the battle tuple.
-- A seven-layer rally cap and a twenty-layer unit-count cap are independent.
-- Attack/defense/HP bonuses are additive inside their existing attribute family.
-- Damage increase and damage reduction follow the composition policy of the matching existing tuple family; the new implementation does not introduce a new damage pipeline.
-- Additional damage from 12970 must go through an existing additional-damage hook so it cannot recursively trigger itself.
-- All category predicates are evaluated independently for attacker and defender ownership; enemy counts must never contribute to friendly stacks.
-
-## Failure and Compatibility Behavior
-
-- Missing hero skill configuration produces zero custom effect rather than a startup crash.
-- Zero or negative total troop count never qualifies for a 40% bonus.
-- Negative category counts are treated as zero by the pure rule layer.
-- Duplicate Checkers or duplicate hero registration are rejected by structural tests.
-- Battles without hero 1122 retain their prior results.
-- Hero 1120's existing behavior remains the regression baseline.
-
-## Test Strategy
-
-Tests are added before implementation and must be observed failing for the missing feature.
-
-1. Structural closure test:
-   - skills 112201–112205 resolve to `Skill1122`, not `CommonSkill`;
-   - effects 12961–12970 and 12981 each have one Checker registration;
-   - no production implementation is added for 1123 in this change.
-2. Pure rule tests:
-   - 39.999% fails and exactly 40% qualifies;
-   - 199,999 units produce zero layers, 200,000 produces one, and counts above 4,000,000 remain capped at twenty;
-   - duplicate hero layers cap at seven;
-   - zero and negative inputs fail safely.
-3. Skill tests:
-   - all five skill IDs parse their own configured values;
-   - effect 12981 is zero outside the active window and nonzero inside it;
-   - configured duration uses seconds-to-milliseconds conversion exactly once.
-4. Battle behavior harness:
-   - melee and ranged thresholds affect only their matching categories;
-   - helicopter proficiency reduction affects only helicopters owned by the skill owner;
-   - attacker and defender effects are not reversed;
-   - additional damage does not recursively re-enter its own trigger;
-   - a control battle without hero 1122 is unchanged.
-5. Regression and build:
-   - existing hero runtime tests pass;
-   - `rd_new` compiles with its configured Java/Gradle toolchain.
-
-## Adversarial Review
-
-After implementation, review the complete diff from the perspective of a hostile integrator. The review explicitly searches for:
-
-- unsupported assumptions presented as official behavior;
-- wrong troop-category mappings;
-- enemy troop counts leaking into friendly calculations;
-- integer division or rounding errors at 40% and 200,000 boundaries;
-- duplicated percentage scaling;
-- incorrect additive versus multiplicative damage composition;
-- attacker/defender inversion;
-- mutable casualty counts used instead of original deployment counts;
-- seven-layer and twenty-layer caps applied to the wrong mechanic;
-- proficiency effects active outside their duration;
-- extra damage recursively triggering itself;
-- accidental changes to heroes 1120, 1121, or 1123;
-- tests that only assert source text rather than executable behavior.
-
-Critical and important findings must be fixed and the full verification rerun before the work is reported complete.
-
-## Delivery
-
-The delivery consists of source and tests in `rd_new`. It will be reported as a client-derived compatibility implementation, not an authenticated official implementation. No server deployment, process restart, or repository push is included unless separately requested.
+Deliver source and tests in `rd_new` main as explicitly authorized. Do not deploy or restart a server. Report any effects held back for lack of evidence.
