@@ -37,6 +37,8 @@ Air-control field (12970) triggers once per battle at round 40 or when friendly 
 
 Proficiency effect 12981 applies only while `Skill1122` is active and only to the owner's largest deployed helicopter unit when receiving attack damage. The configured third field is duration in seconds.
 
+Soul effects 12991/12992 add to synchronized-overload super attack and outgoing damage, 12993 adds synchronized-overload incoming reduction while the combat skill is active, and 12994 extends the combat-skill duration. These are sourced from `hero_soul_skill.xml` and `HeroSoulSkillDes112306`.
+
 ## Architecture
 
 - `Skill1122`: parse and expose 12981 using the existing `ISSSHeroSkill` lifecycle.
