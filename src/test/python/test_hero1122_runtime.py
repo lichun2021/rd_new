@@ -72,14 +72,11 @@ class Hero1122RulesTest(unittest.TestCase):
         expected_checkers = {
             "Checker12961.java", "Checker12962.java", "Checker12963.java",
             "Checker12964.java", "Checker12965.java", "Checker12966.java",
-            "Checker12967.java", "Checker12970.java", "Checker12981.java",
-            "Checker12991.java", "Checker12992.java", "Checker12993.java",
+            "Checker12967.java", "Checker12968.java", "Checker12969.java",
+            "Checker12970.java", "Checker12981.java", "Checker12991.java",
+            "Checker12992.java", "Checker12993.java",
         }
         self.assertTrue(expected_checkers.issubset({path.name for path in RUNTIME_DIR.glob("Checker*.java")}))
-
-        java_text = "\n".join(path.read_text(encoding="utf-8") for path in RUNTIME_DIR.glob("*.java"))
-        self.assertNotIn("HERO_12968", java_text)
-        self.assertNotIn("HERO_12969", java_text)
 
         skill = (ROOT / "src/main/java/com/hawk/game/player/hero/skill/Skill1122.java").read_text(encoding="utf-8")
         self.assertIn("112201, 112202, 112203, 112204, 112205", skill)
@@ -91,6 +88,23 @@ class Hero1122RulesTest(unittest.TestCase):
             "windFieldExtraDamage", "incomingDamageReduction", "bomberInterferenceDodge",
         ):
             self.assertIn("Hero1122Runtime." + hook, battle)
+
+    def test_electromagnetic_interception_attribute_effects_use_selected_source(self):
+        checker_path = RUNTIME_DIR / "Checker12968.java"
+        self.assertTrue(checker_path.is_file(), "Checker12968.java has not been implemented")
+        checker = checker_path.read_text(encoding="utf-8")
+        self.assertIn("extends Hero1122SourceChecker", checker)
+        self.assertIn("EffType.HERO_12968", checker)
+        for tuple_type in ("Type.ATK", "Type.DEF", "Type.HP"):
+            self.assertIn(tuple_type, checker)
+
+    def test_electromagnetic_interception_damage_reduction_uses_selected_source(self):
+        checker_path = RUNTIME_DIR / "Checker12969.java"
+        self.assertTrue(checker_path.is_file(), "Checker12969.java has not been implemented")
+        checker = checker_path.read_text(encoding="utf-8")
+        self.assertIn("extends Hero1122SourceChecker", checker)
+        self.assertIn("EffType.HERO_12969", checker)
+        self.assertIn("Type.REDUCE_HURT_PCT", checker)
 
 
 if __name__ == "__main__":
