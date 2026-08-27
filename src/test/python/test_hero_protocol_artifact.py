@@ -25,6 +25,7 @@ class HeroProtocolArtifactTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.repo = Path(__file__).resolve().parents[3]
+        cls.build_file = cls.repo / "build.gradle"
         cls.protocol_jar = Path(
             os.environ.get("GAMEPROTOCOL_JAR", cls.repo / "lib" / "gameprotocol.jar")
         )
@@ -33,6 +34,20 @@ class HeroProtocolArtifactTest(unittest.TestCase):
         self.assertTrue(
             self.protocol_jar.is_file(),
             "lib/gameprotocol.jar is required by the GameServer runtime manifest",
+        )
+
+    def test_build_uses_committed_protocol_jar_as_single_enum_source(self):
+        build_source = self.build_file.read_text(encoding="utf-8")
+        self.assertIn("compile fileTree(dir: 'lib', include: '*.jar')", build_source)
+        self.assertNotIn("../Protocol/Protobuf/Java/build/libs", build_source)
+        self.assertNotIn("project(':Protocol/Protobuf/Java')", build_source)
+        self.assertRegex(
+            build_source,
+            re.compile(
+                r"compile\s*\(\s*project\s*\(\s*['\"]:GameActivity['\"]\s*\)\s*\)"
+                r"\s*\{\s*transitive\s*=\s*false\s*\}",
+                re.DOTALL,
+            ),
         )
 
     def test_required_effect_ids_are_in_runtime_enum(self):

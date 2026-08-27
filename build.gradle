@@ -34,12 +34,12 @@ dependencies {
 	compile fileTree(dir: '../GameLib/build/libs', include: '*.jar');	
 	compile fileTree(dir: '../GameLog/build/libs', include: '*.jar');	
 	compile fileTree(dir: '../GameActivity/build/libs', include: '*.jar');	
-	compile fileTree(dir: '../Protocol/Protobuf/Java/build/libs', include: '*.jar');	
 	
-	compile project(':Protocol/Protobuf/Java');
 	compile project(':GameLib');
 	compile project(':GameLog');
-	compile project(':GameActivity');	
+	compile(project(':GameActivity')) {
+		transitive = false
+	}
 }
 
 sourceSets.main.java.srcDirs += 'idipscript'
