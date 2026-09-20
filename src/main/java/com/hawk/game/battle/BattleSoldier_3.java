@@ -22,6 +22,7 @@ import org.hawk.tuple.HawkTuples;
 
 import com.hawk.game.battle.effect.BattleConst;
 import com.hawk.game.battle.effect.impl.hero1120.Buff12835;
+import com.hawk.game.battle.effect.impl.hero1120.Hero1120Rules;
 import com.hawk.game.config.BattleSoldierSkillCfg;
 import com.hawk.game.config.ConstProperty;
 import com.hawk.game.protocol.Const.EffType;
@@ -625,7 +626,8 @@ public class BattleSoldier_3 extends IPlanSoldier {
 		}
 		if (getEffVal(EffType.HERO_12839) > 0) {
 			double val12839 = getEffVal(EffType.HERO_12839) * GsConst.EFF_PER * ConstProperty.getInstance().effect12839SoldierAdjustMap.getOrDefault(defSoldier.getType(), 10000);
-			int cen = Math.min(getBattleRound() / ConstProperty.getInstance().effect12838AtkRound , ConstProperty.getInstance().effect12838Maxinum);
+			int cen = Hero1120Rules.effect12838Layer(getBattleRound(), ConstProperty.getInstance().effect12838AtkRound,
+					ConstProperty.getInstance().effect12838Maxinum);
 			val12839 = val12839  * GsConst.EFF_PER * cen;
 			addDebugLog("【12838~12839】个人战时自身轰炸机造成的伤害提高 {} cen :{}", val12839 ,cen);
 			skillPer += val12839;
@@ -694,7 +696,8 @@ public class BattleSoldier_3 extends IPlanSoldier {
 		if (getEffVal(EffType.HERO_12838) > 0) {
 			final double oldhurtVal = hurtVal;
 			double val12838 = getEffVal(EffType.HERO_12838) * GsConst.EFF_PER * ConstProperty.getInstance().effect12838SoldierAdjustMap.getOrDefault(atkSoldier.getType(), 10000);
-			int cen = Math.min(getBattleRound() / ConstProperty.getInstance().effect12838AtkRound, ConstProperty.getInstance().effect12838Maxinum);
+			int cen = Hero1120Rules.effect12838Layer(getBattleRound(), ConstProperty.getInstance().effect12838AtkRound,
+					ConstProperty.getInstance().effect12838Maxinum);
 			val12838 = val12838 * GsConst.EFF_PER * cen;
 			hurtVal *= (1 - val12838);
 			addDebugLog("【12838~12839】个人战时伤害减少 {} -> {} cen : {}",oldhurtVal, val12838 ,cen);

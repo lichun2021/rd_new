@@ -3652,6 +3652,12 @@ public class ConstProperty extends HawkConfigBase {
 
 	@Override
 	protected boolean checkValid() {
+		if (effect12838AtkRound <= 0 || effect12838Maxinum <= 0) {
+			HawkLog.errPrintln("effect12838 config invalid, effect12838AtkRound: {}, effect12838Maxinum: {}",
+					effect12838AtkRound, effect12838Maxinum);
+			return false;
+		}
+
 		if (speedUpTimeLKB == null) {
 			return false;
 		}
