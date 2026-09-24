@@ -50,4 +50,5 @@
 	  <data termId="48" showTime="2025-11-24 00:00:00" startTime="2025-11-24 00:00:00" endTime="2025-11-30 23:59:59" hiddenTime="2025-11-30 23:59:59" />
 	  <data termId="49" showTime="2026-2-14 00:00:00" startTime="2026-2-14 00:00:00" endTime="2026-2-23 23:59:59" hiddenTime="2026-2-23 23:59:59" />
 	  <data termId="50" showTime="2026-4-11 00:00:00" startTime="2026-4-11 00:00:00" endTime="2026-4-17 23:59:59" hiddenTime="2026-4-17 23:59:59" />
+<data termId="51" showTime="2026-09-25 00:00:00" startTime="2026-09-25 00:00:00" endTime="2026-09-27 23:59:59" hiddenTime="2026-09-27 23:59:59" />
 </root>

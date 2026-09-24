@@ -754,12 +754,14 @@
       <data id="3910004" channelType="android" saleId="com.tencent.tmgp.hjol.qiyuanshigift_12800" payOrNot="1" payRMB="12800" nameData="128元天奢商店礼包" desData="128元天奢商店礼包" giftType="71" />
       <data id="3910005" channelType="android" saleId="com.tencent.tmgp.hjol.qiyuanshigift_32800" payOrNot="1" payRMB="32800" nameData="328元天奢商店礼包" desData="328元天奢商店礼包" giftType="71" />
       <data id="3910006" channelType="android" saleId="com.tencent.tmgp.hjol.qiyuanshigift_64800" payOrNot="1" payRMB="64800" nameData="648元天奢商店礼包" desData="648元天奢商店礼包" giftType="71" />
+      <data id="3910007" channelType="android" saleId="com.tencent.tmgp.hjol.qiyuanshigift_188800" payOrNot="1" payRMB="188800" nameData="1888元天奢商店礼包" desData="1888元天奢商店礼包" giftType="71" />
       <data id="3910101" channelType="ios" saleId="com.tencent.tmgp.hjol.qiyuanshigift_600" payOrNot="1" payRMB="600" nameData="6元天奢商店礼包" desData="6元天奢商店礼包" giftType="71" />
       <data id="3910102" channelType="ios" saleId="com.tencent.tmgp.hjol.qiyuanshigift_3000" payOrNot="1" payRMB="3000" nameData="30元天奢商店礼包" desData="30元天奢商店礼包" giftType="71" />
       <data id="3910103" channelType="ios" saleId="com.tencent.tmgp.hjol.qiyuanshigift_6800" payOrNot="1" payRMB="6800" nameData="68元天奢商店礼包" desData="68元天奢商店礼包" giftType="71" />
       <data id="3910104" channelType="ios" saleId="com.tencent.tmgp.hjol.qiyuanshigift_12800" payOrNot="1" payRMB="12800" nameData="128元天奢商店礼包" desData="128元天奢商店礼包" giftType="71" />
       <data id="3910105" channelType="ios" saleId="com.tencent.tmgp.hjol.qiyuanshigift_32800" payOrNot="1" payRMB="32800" nameData="328元天奢商店礼包" desData="328元天奢商店礼包" giftType="71" />
       <data id="3910106" channelType="ios" saleId="com.tencent.tmgp.hjol.qiyuanshigift_64800" payOrNot="1" payRMB="64800" nameData="648元天奢商店礼包" desData="648元天奢商店礼包" giftType="71" />
+      <data id="3910107" channelType="ios" saleId="com.tencent.tmgp.hjol.qiyuanshigift_188800" payOrNot="1" payRMB="188800" nameData="1888元天奢商店礼包" desData="1888元天奢商店礼包" giftType="71" />
       <data id="3920001" channelType="android" saleId="com.tencent.tmgp.hjol.beiyonggift1_3000" payOrNot="1" payRMB="3000" nameData="30元新服跃迁礼包" desData="30元新服跃迁礼包" giftType="72" />
       <data id="3920002" channelType="android" saleId="com.tencent.tmgp.hjol.greatgiftpack5_6800" payOrNot="1" payRMB="6800" nameData="68元新服跃迁礼包" desData="68元新服跃迁礼包" giftType="72" />
       <data id="3921001" channelType="android" saleId="com.tencent.tmgp.hjol.luckygift1_9800" payOrNot="1" payRMB="9800" nameData="98元新服跃迁礼包" desData="98元新服跃迁礼包" giftType="72" />

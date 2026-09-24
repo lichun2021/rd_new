@@ -24,4 +24,5 @@
       <data termId="22" showTime="2025-7-18 00:00:00" startTime="2025-7-18 00:00:00" endTime="2025-7-25 23:59:59" hiddenTime="2025-7-25 23:59:59" />
 	  <data termId="23" showTime="2026-2-17 00:00:00" startTime="2026-2-17 00:00:00" endTime="2026-2-23 23:59:59" hiddenTime="2026-2-23 23:59:59" />
 	  <data termId="24" showTime="2026-4-14 00:00:00" startTime="2026-4-14 00:00:00" endTime="2026-4-20 23:59:59" hiddenTime="2026-4-20 23:59:59" />
+	  <data termId="25" showTime="2026-10-01 00:00:00" startTime="2026-10-01 00:00:00" endTime="2026-10-08 23:59:59" hiddenTime="2026-10-08 23:59:59" />
 </root>

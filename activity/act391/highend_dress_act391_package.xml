@@ -8,4 +8,5 @@
       <data id="6" shopItemType="1" times="2" iosPayId="3910104" androidPayId="3910004" payQuota="128" getItem="30000_21070135_40,30000_840172_40" />
       <data id="7" shopItemType="1" times="2" iosPayId="3910105" androidPayId="3910005" payQuota="328" getItem="30000_21070135_80,30000_840172_80" />
       <data id="8" shopItemType="1" times="40" iosPayId="3910106" androidPayId="3910006" payQuota="648" getItem="30000_21070135_150,30000_840172_150" />
+      <data id="9" shopItemType="1" times="25" refreshType="0" iosPayId="3910107" androidPayId="3910007" payQuota="1888" getItem="30000_21070135_437,30000_840172_437" />
 </root>
