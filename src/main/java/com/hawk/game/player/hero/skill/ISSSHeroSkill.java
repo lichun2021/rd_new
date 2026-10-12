@@ -8,6 +8,8 @@ import java.util.Objects;
 import org.apache.commons.lang.StringUtils;
 import org.hawk.os.HawkException;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hawk.game.GsApp;
 import com.hawk.game.GsConfig;
@@ -199,14 +201,25 @@ public abstract class ISSSHeroSkill extends IHeroSkill {
 	@Override
 	public void mergeFrom(String serialiedStr) {
 		try {
-			JSONObject obj = JSONObject.parseObject(serialiedStr);
+			if (StringUtils.isEmpty(serialiedStr)) {
+				return;
+			}
+			Object parsed = JSON.parse(serialiedStr);
+			cdMap.clear();
+			// 兼容旧格式: 父类 IHeroSkill 曾以数组 [exp] 序列化, 此时仅有经验、无冷却信息
+			if (parsed instanceof JSONArray) {
+				setExp(((JSONArray) parsed).getIntValue(0));
+				return;
+			}
+			JSONObject obj = (JSONObject) parsed;
 			setExp(obj.getIntValue("exp"));
 			JSONObject cinfo = obj.getJSONObject("cinfo");
-			cdMap.clear();
-			for (Entry<String, Object> ent : cinfo.entrySet()) {
-				SkillCastInfo info = new SkillCastInfo();
-				info.mergeFrom(ent.getValue().toString());
-				cdMap.put(ent.getKey(), info);
+			if (cinfo != null) {
+				for (Entry<String, Object> ent : cinfo.entrySet()) {
+					SkillCastInfo info = new SkillCastInfo();
+					info.mergeFrom(ent.getValue().toString());
+					cdMap.put(ent.getKey(), info);
+				}
 			}
 
 		} catch (Exception e) {
