@@ -17,10 +17,11 @@ public class TBLYWarMatchEndState implements ITBLYWarState {
 
     @Override
     public void tick() {
+        boolean matchReady = TBLYWarService.getInstance().onMatchEnd();
         TiberiumTimeCfg cfg = TBLYWarService.getInstance().getTimeCfg();
         if(cfg != null) {
             long now = HawkTime.getMillisecond();
-            if (now >= cfg.getMatchEndTimeValue()) {
+            if (now >= cfg.getMatchEndTimeValue() && matchReady) {
                 TBLYWarService.getInstance().toNext();
             }
         }

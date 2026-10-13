@@ -17,6 +17,7 @@ public class TBLYWarMatchState implements ITBLYWarState {
 
     @Override
     public void tick() {
+        TBLYWarService.getInstance().retryMatchIfNeeded();
         TiberiumTimeCfg cfg = TBLYWarService.getInstance().getTimeCfg();
         if(cfg != null) {
             long now = HawkTime.getMillisecond();

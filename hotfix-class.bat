@@ -12,9 +12,10 @@ echo.
 
 rem 检查参数
 if "%~1"=="" (
-    echo 用法: hotfix-class.bat 类的完整路径 [端口号]
+    echo 用法: hotfix-class.bat 类的完整路径 [端口号] [/Q]
     echo 示例: hotfix-class.bat com.hawk.game.module.PlayerRechargeModule
     echo       hotfix-class.bat com.hawk.game.module.PlayerRechargeModule 8081
+    echo       hotfix-class.bat com.hawk.game.module.PlayerRechargeModule 8081 /Q   （静默模式，不暂停）
     echo.
     echo 或直接将 .class 文件拖到此脚本上
     pause
@@ -26,6 +27,10 @@ set HOTFIX_PORT=8080
 if not "%~2"=="" (
     set HOTFIX_PORT=%~2
 )
+
+rem 静默模式：第3个参数为 /Q 时跳过所有 pause，用于批量脚本连续执行
+set SILENT=0
+if /I "%~3"=="/Q" set SILENT=1
 
 rem 判断是文件路径还是类名
 set INPUT=%~1
@@ -53,7 +58,7 @@ if /I "%INPUT:~-6%"==".class" (
     )
     
     echo 无法识别的 class 文件路径格式
-    pause
+    if %SILENT%==0 pause
     exit /b 1
 )
 
@@ -81,7 +86,7 @@ echo 查找路径3: D:\game\classes\java\main\%RELPATH%
 echo 查找路径4: ..\classes\java\main\%RELPATH%
 echo.
 echo 请先编译项目，或检查 class 文件路径！
-pause
+if %SILENT%==0 pause
 exit /b 1
 
 :found_class
@@ -110,7 +115,7 @@ echo 复制: %CLASSBASE%.class
 copy /Y "%CLASSFILE%" "hotfix\%RELPATH%" >nul
 if errorlevel 1 (
     echo 复制失败！
-    pause
+    if %SILENT%==0 pause
     exit /b 1
 )
 
@@ -147,5 +152,5 @@ echo.
 echo ====================================
 echo 热更新完成！
 echo ====================================
-pause
+if %SILENT%==0 pause
 

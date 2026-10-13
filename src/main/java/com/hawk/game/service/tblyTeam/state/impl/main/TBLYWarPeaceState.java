@@ -64,6 +64,7 @@ public class TBLYWarPeaceState implements ITBLYWarState {
                 RedisProxy.getInstance().getRedisSession().del(String.format(TBLYWarResidKey.TBLY_WAR_ROOM_SERVER, termId, serverId));
                 RedisProxy.getInstance().getRedisSession().del(String.format(TBLYWarResidKey.TBLY_WAR_ROOM, termId));
                 RedisProxy.getInstance().getRedisSession().del(String.format(TBLYWarResidKey.TBLY_WAR_MATCH, termId));
+                RedisProxy.getInstance().getRedisSession().del(String.format(TBLYWarResidKey.TBLY_WAR_MATCH_DONE, termId));
                 RedisProxy.getInstance().getRedisSession().del(String.format(TBLYWarResidKey.TBLY_WAR_TEAM_AWARD, termId));
                 RedisProxy.getInstance().getRedisSession().del(String.format(TBLYWarResidKey.TBLY_WAR_PLAYER_AWARD, termId));
             }

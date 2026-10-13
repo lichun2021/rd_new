@@ -170,11 +170,11 @@ echo echo.
 echo.
 ) > "%TEMP_BAT%"
 
-rem 添加每个类的热更新命令
+rem 添加每个类的热更新命令（传入 /Q 静默参数，批量执行时不逐个暂停）
 if exist "%TEMP_CLASSES%" (
     for /f "usebackq delims=" %%C in ("%TEMP_CLASSES%") do (
         echo echo [hotfix] %%C >> "%TEMP_BAT%"
-        echo call .\hotfix-class.bat %%C %%PORT%% >> "%TEMP_BAT%"
+        echo call .\hotfix-class.bat %%C %%PORT%% /Q >> "%TEMP_BAT%"
         echo timeout /t 1 /nobreak ^>nul >> "%TEMP_BAT%"
         echo echo. >> "%TEMP_BAT%"
     )

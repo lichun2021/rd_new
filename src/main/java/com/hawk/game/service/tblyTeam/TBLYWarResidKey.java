@@ -9,6 +9,7 @@ public class TBLYWarResidKey {
     public static final String TBLY_WAR_SIGNUP_PLAYER = "TBLY_WAR:SIGNUP:PLAYER:%d:%s";
     public static final String TBLY_WAR_GUILD = "TBLY_WAR:GUILD:%d";
     public static final String TBLY_WAR_MATCH = "TBLY_WAR:MATCH:%d";
+    public static final String TBLY_WAR_MATCH_DONE = "TBLY_WAR:MATCH:DONE:%d";
     public static final String TBLY_WAR_ROOM = "TBLY_WAR:ROOM:%d";
     public static final String TBLY_WAR_ROOM_SERVER = "TBLY_WAR:ROOM:SERVER:%d:%s";
 

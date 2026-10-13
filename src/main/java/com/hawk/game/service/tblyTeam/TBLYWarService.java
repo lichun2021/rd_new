@@ -152,6 +152,10 @@ public class TBLYWarService extends HawkAppObj {
      */
     private Map<String, Integer> playerIdToAuth = new ConcurrentHashMap<>();
     private Map<String, Set<String>> teamIdToBattlePlayerIds = new ConcurrentHashMap<>();
+    private static final long MATCH_RETRY_INTERVAL = TimeUnit.SECONDS.toMillis(5);
+    private final TBLYRedisMatchStore matchStore = new TBLYRedisMatchStore();
+    private long nextMatchRetryTime;
+    private int matchResultHandledTermId = -1;
     /**==============================================================================================================**/
 
     /**
@@ -349,6 +353,8 @@ public class TBLYWarService extends HawkAppObj {
     public void onOpen(int termId){
         //设置当前期数
         stateData.setTermId(termId);
+        nextMatchRetryTime = 0L;
+        matchResultHandledTermId = -1;
         //清理数据
         clean();
         //进入下一状态
@@ -375,16 +381,34 @@ public class TBLYWarService extends HawkAppObj {
     public void onMatch() {
         int termId = getTermId();
         HawkLog.logPrintln("TBLYWarService onMatch start, termId:{}", termId);
-        //抢锁
         String serverId = GsConfig.getInstance().getServerId();
         String matchKey = String.format(TBLYWarResidKey.TBLY_WAR_MATCH, termId);
-        boolean getLock = RedisProxy.getInstance().getRedisSession().setNx(matchKey, serverId);
-        if (!getLock) {
-            HawkLog.logPrintln("TBLYWarService onMatch get lock fail, termId:{}", termId);
-            return;
+        String completeKey = String.format(TBLYWarResidKey.TBLY_WAR_MATCH_DONE, termId);
+        String lockToken = serverId + ":" + UUID.randomUUID().toString();
+        int leaseSeconds = TiberiumConstCfg.getInstance().getMatchLockExpire();
+        String completeValue = serverId + ":" + HawkTime.getMillisecond();
+        try {
+            TBLYMatchCoordinator.Result result = TBLYMatchCoordinator.execute(matchStore, matchKey, completeKey,
+                    lockToken, leaseSeconds, completeValue, lease -> doMatch(termId, lease));
+            if (result == TBLYMatchCoordinator.Result.BUSY) {
+                HawkLog.logPrintln("TBLYWarService onMatch lock busy, termId:{}, owner:{}, ttl:{}",
+                        termId, matchStore.getOwner(matchKey), matchStore.getTtl(matchKey));
+            } else if (result == TBLYMatchCoordinator.Result.LOST_LEASE) {
+                HawkLog.logPrintln("TBLYWarService onMatch lost lease before publish, termId:{}, token:{}",
+                        termId, lockToken);
+            } else {
+                HawkLog.logPrintln("TBLYWarService onMatch result:{}, termId:{}", result, termId);
+            }
+        } catch (Exception e) {
+            HawkException.catchException(e);
+            HawkLog.logPrintln("TBLYWarService onMatch failed, termId:{}, token:{}", termId, lockToken);
         }
+    }
+
+    private void doMatch(int termId, TBLYMatchCoordinator.Lease lease) throws Exception {
         Map<String, Set<String>> serverIdToRoomIdMap = new HashMap<>();
         Map<String, String> roomStrMap = new HashMap<>();
+        Map<String, GuildTeamData> matchedTeamMap = new LinkedHashMap<>();
         List<HawkTuple2<Integer, Integer>> timeList = TiberiumConstCfg.getInstance().getTimeList();
         for(int i = 1; i <= timeList.size(); i++){
             String signUpTimeKey = String.format(TBLYWarResidKey.TBLY_WAR_SIGNUP_TIME, termId, i);
@@ -393,6 +417,7 @@ public class TBLYWarService extends HawkAppObj {
                 continue;
             }
             List<GuildTeamData> teamDayList = TBLYGuildTeamManager.getInstance().loadTeams(teamIds);
+            teamDayList.sort((o1, o2) -> o1.id.compareTo(o2.id));
             //服务器开启战场数量
             Map<String, Integer> roomServerMap = new HashMap<>();
             
@@ -417,8 +442,8 @@ public class TBLYWarService extends HawkAppObj {
                     teamData2.oppTeamId = teamData1.id;
                     GuildTeamRoomData roomData = new GuildTeamRoomData(termId, i, teamData1, teamData2);
                     roomData.roomServerId = this.selectRoomServer(roomServerMap, teamData1, teamData2);
-                    TBLYGuildTeamManager.getInstance().updateTeam(teamData1);
-                    TBLYGuildTeamManager.getInstance().updateTeam(teamData2);
+                    matchedTeamMap.put(teamData1.id, teamData1);
+                    matchedTeamMap.put(teamData2.id, teamData2);
                     roomStrMap.put(roomData.id, roomData.serialize());
                     updateRoomIdToServer(serverIdToRoomIdMap, teamData1.serverId, roomData.id);
                     updateRoomIdToServer(serverIdToRoomIdMap, teamData2.serverId, roomData.id);
@@ -457,7 +482,7 @@ public class TBLYWarService extends HawkAppObj {
                     if (o1.matchPower != o2.matchPower) {
                         return o1.matchPower > o2.matchPower ? -1 : 1;
                     }
-                    return 0;
+                    return o1.id.compareTo(o2.id);
                 });
                 while (teamList.size() > 1){
                     HawkTuple2<GuildTeamData, GuildTeamData> result = matchTeam(teamList);
@@ -480,8 +505,8 @@ public class TBLYWarService extends HawkAppObj {
                         teamData2.oppTeamId = teamData1.id;
                         GuildTeamRoomData roomData = new GuildTeamRoomData(termId, i, teamData1, teamData2);
                         roomData.roomServerId = this.selectRoomServer(roomServerMap, teamData1, teamData2);
-                        TBLYGuildTeamManager.getInstance().updateTeam(teamData1);
-                        TBLYGuildTeamManager.getInstance().updateTeam(teamData2);
+                        matchedTeamMap.put(teamData1.id, teamData1);
+                        matchedTeamMap.put(teamData2.id, teamData2);
                         roomStrMap.put(roomData.id, roomData.serialize());
                         updateRoomIdToServer(serverIdToRoomIdMap, teamData1.serverId, roomData.id);
                         updateRoomIdToServer(serverIdToRoomIdMap, teamData2.serverId, roomData.id);
@@ -499,6 +524,9 @@ public class TBLYWarService extends HawkAppObj {
                     noMatchList.addAll(teamList);
                 }
             }
+            if (!lease.renew()) {
+                throw new IllegalStateException("TBLY match lease lost while computing term " + termId);
+            }
         }
         if(!roomStrMap.isEmpty()){
             RedisProxy.getInstance().getRedisSession().hmSet(String.format(TBLYWarResidKey.TBLY_WAR_ROOM, termId), roomStrMap, 0);
@@ -506,6 +534,9 @@ public class TBLYWarService extends HawkAppObj {
         for(String toServerId : serverIdToRoomIdMap.keySet()){
             Set<String> roomIds = serverIdToRoomIdMap.get(toServerId);
             RedisProxy.getInstance().getRedisSession().sAdd(String.format(TBLYWarResidKey.TBLY_WAR_ROOM_SERVER, termId, toServerId), 0, roomIds.toArray(new String[roomIds.size()]));
+        }
+        for (GuildTeamData teamData : matchedTeamMap.values()) {
+            TBLYGuildTeamManager.getInstance().updateTeam(teamData);
         }
     }
 
@@ -552,9 +583,39 @@ public class TBLYWarService extends HawkAppObj {
     /**
      * 匹配结束阶段，加载匹配结果
      */
-    public void onMatchEnd(){
+    public boolean isMatchComplete() {
+        String completeKey = String.format(TBLYWarResidKey.TBLY_WAR_MATCH_DONE, getTermId());
+        return matchStore.isComplete(completeKey);
+    }
+
+    public void retryMatchIfNeeded() {
+        if (isMatchComplete()) {
+            return;
+        }
+        long now = HawkTime.getMillisecond();
+        if (now < nextMatchRetryTime) {
+            return;
+        }
+        nextMatchRetryTime = now + MATCH_RETRY_INTERVAL;
+        onMatch();
+    }
+
+    public boolean onMatchEnd(){
+        int termId = getTermId();
+        if (!isMatchComplete()) {
+            retryMatchIfNeeded();
+        }
+        if (!isMatchComplete()) {
+            HawkLog.logPrintln("TBLYWarService onMatchEnd waiting match completion, termId:{}", termId);
+            return false;
+        }
+        if (matchResultHandledTermId == termId) {
+            return true;
+        }
         loadBattleRoom();
         sendMatchResult();
+        matchResultHandledTermId = termId;
+        return true;
     }
 
     /**
@@ -1122,8 +1183,8 @@ public class TBLYWarService extends HawkAppObj {
         if(tmpList.isEmpty()){
             return new HawkTuple2<>(teamData1, null);
         }
-        Collections.shuffle(tmpList);
-        GuildTeamData teamData2 = tmpList.get(0);
+        int candidateIndex = TBLYMatchCoordinator.selectCandidateIndex(getTermId(), teamData1.id, tmpList.size());
+        GuildTeamData teamData2 = tmpList.get(candidateIndex);
         return new HawkTuple2<>(teamData1, teamData2);
     }
 
