@@ -11,6 +11,13 @@ REQUIRED_EFFECTS = {
     **{f"HERO_{effect_id}": effect_id for effect_id in range(12961, 12971)},
     "HERO_12981": 12981,
     **{f"HERO_{effect_id}": effect_id for effect_id in range(12991, 12998)},
+    # 1.4.111 client: 谭雅 2002 (skill/proficiency/soul) and 墨明 1125
+    **{f"HERO_{effect_id}": effect_id for effect_id in range(12901, 12908)},
+    "HERO_12911": 12911,
+    **{f"HERO_{effect_id}": effect_id for effect_id in range(12921, 12925)},
+    "HERO_13022": 13022,
+    # 1.4.111 client: Dream-Island buildings
+    **{f"EFF_{effect_id}": effect_id for effect_id in (10101, 10106, 10114, 10115, 10116, 10118)},
 }
 
 LEGACY_COMPATIBILITY_EFFECTS = {

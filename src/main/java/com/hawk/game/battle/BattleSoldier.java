@@ -1398,6 +1398,15 @@ public abstract class BattleSoldier implements IBattleSoldier {
 			hurtVal *= (1 + effVal * GsConst.EFF_PER);
 			troop.getBattle().addDebugLog("###Soldier={} effVal={} 伤害+的作用号在计算时为累乘算式, 操作后伤害值 {}", getUUID(), effVal, hurtVal);
 		}
+		if (getBattleRound() <= 20 && getEffVal(EffType.EFF_2221) > 0) {
+			hurtVal *= (1 + getEffVal(EffType.EFF_2221) * GsConst.EFF_PER);
+		}
+		if (getEffVal(EffType.EFF_2223) > 0) {
+			int layers2223 = getBattleRound() / 5;
+			if (layers2223 > 0) {
+				hurtVal *= (1 + getEffVal(EffType.EFF_2223) * layers2223 * GsConst.EFF_PER);
+			}
+		}
 		hurtVal *= (1 + Hero1122Runtime.outgoingDamageBonus(this) * GsConst.EFF_PER);
 		hurtVal *= (1 + Hero1122Runtime.windFieldExtraDamage(this) * GsConst.EFF_PER);
 		hurtVal = hurtVal * (1 - skill12362DebuffVal() * GsConst.EFF_PER);
@@ -1417,6 +1426,9 @@ public abstract class BattleSoldier implements IBattleSoldier {
 		for (int effVal : list) {
 			hurtVal *= (1 - effVal * GsConst.EFF_PER);
 			troop.getBattle().addDebugLog("###Soldier={} effVal={} 伤害减少的作用号在计算时为累乘算式, 操作后伤害值 {}", getUUID(), effVal, hurtVal);
+		}
+		if (getBattleRound() <= 20 && getEffVal(EffType.EFF_2222) > 0) {
+			hurtVal *= (1 - getEffVal(EffType.EFF_2222) * GsConst.EFF_PER);
 		}
 		hurtVal *= (1 - Hero1122Runtime.incomingDamageReduction(this) * GsConst.EFF_PER);
 		hurtVal *= (1 - getBuff1652(getTroop().getBattle().getBattleRound()) * GsConst.EFF_PER);

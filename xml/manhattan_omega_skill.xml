@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+      <data id="101" posId="1" level="1" unlockLevel="30" power="6000" attr="2222_400" />
+      <data id="102" posId="1" level="2" unlockLevel="60" power="12000" attr="2222_800" />
+      <data id="103" posId="1" level="3" unlockLevel="90" power="18000" attr="2222_1200" />
+      <data id="104" posId="1" level="4" unlockLevel="120" power="24000" attr="2222_1600" />
+      <data id="105" posId="1" level="5" unlockLevel="150" power="30000" attr="2222_2000" />
+      <data id="201" posId="2" level="1" unlockLevel="30" power="6000" attr="2223_100" />
+      <data id="202" posId="2" level="2" unlockLevel="60" power="12000" attr="2223_200" />
+      <data id="203" posId="2" level="3" unlockLevel="90" power="18000" attr="2223_300" />
+      <data id="204" posId="2" level="4" unlockLevel="120" power="24000" attr="2223_400" />
+      <data id="205" posId="2" level="5" unlockLevel="150" power="30000" attr="2223_500" />
+      <data id="301" posId="3" level="1" unlockLevel="30" power="6000" attr="2221_400" />
+      <data id="302" posId="3" level="2" unlockLevel="60" power="12000" attr="2221_800" />
+      <data id="303" posId="3" level="3" unlockLevel="90" power="18000" attr="2221_1200" />
+      <data id="304" posId="3" level="4" unlockLevel="120" power="24000" attr="2221_1600" />
+      <data id="305" posId="3" level="5" unlockLevel="150" power="30000" attr="2221_2000" />
+      <data id="901" posId="0" level="1" unlockLevel="0" power="0" />
+</root>

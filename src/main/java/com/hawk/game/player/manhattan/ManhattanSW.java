@@ -175,6 +175,18 @@ public class ManhattanSW extends PlayerManhattan {
 		WorldPointService.getInstance().notifyPointUpdate(point.getX(), point.getY());
 		point.notifyUpdate();
 	}
+
+	/** 欧米伽总技能改变时刷新已部署超武的技能编号。 */
+	public void refreshOmegaSkill() {
+		notifyChange();
+		if (!isDeployed()) {
+			return;
+		}
+		WorldPoint point = WorldPlayerService.getInstance().getPlayerWorldPoint(getEntity().getPlayerId());
+		if (point != null) {
+			syncWorldPoint(point);
+		}
+	}
 	
 	/**
 	 * 超武部署
@@ -279,7 +291,10 @@ public class ManhattanSW extends PlayerManhattan {
 	}
 	
 	public ManhattanSWSkillCfg getUnlockedSkillCfg() {
-		return ManhattanSWSkillCfg.getConfig(getSWCfgId(), getStage());
+		PlayerManhattan base = getParent() == null ? null : getParent().getManhattanBase();
+		boolean omegaActive = base instanceof ManhattanBase
+				&& ((ManhattanBase) base).isOmegaTotalSkillActive();
+		return ManhattanSWSkillCfg.getConfig(getSWCfgId(), getStage(), omegaActive);
 	}
 	
 }

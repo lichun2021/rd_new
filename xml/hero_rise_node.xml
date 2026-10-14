@@ -140,4 +140,8 @@
       <data nodeId="11202" heroId="1120" unlock="30000_21063076_5" front="11201" maxFragment="11202151" />
       <data nodeId="11203" heroId="1120" unlock="30000_21063076_8" front="11202" maxFragment="11203151" />
       <data nodeId="11204" heroId="1120" unlock="30000_21063076_10" front="11203" maxFragment="11204151" />
+      <data nodeId="11251" heroId="1125" maxFragment="11251151" />
+      <data nodeId="11252" heroId="1125" unlock="30000_21063076_5" front="11251" maxFragment="11252151" />
+      <data nodeId="11253" heroId="1125" unlock="30000_21063076_8" front="11252" maxFragment="11253151" />
+      <data nodeId="11254" heroId="1125" unlock="30000_21063076_10" front="11253" maxFragment="11254151" />
 </root>

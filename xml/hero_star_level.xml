@@ -2604,4 +2604,46 @@
       <data id="112343" heroId="1123" starLevel="4" stepLevel="3" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1001123_90" starPower="4393.5" starAttrValue="101_4420|102_990|103_990" />
       <data id="112344" heroId="1123" starLevel="4" stepLevel="4" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1001123_90" starPower="4662" starAttrValue="101_4520|102_1020|103_1020" />
       <data id="112350" heroId="1123" starLevel="5" stepLevel="0" maxLevel="120" maxSkillLevel="40" piecesForNextLevel="30000_1001123_90" starPower="6060" starAttrValue="101_4920|102_1260|103_1260" />
+      <data id="112510" heroId="1125" starLevel="1" stepLevel="0" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1001125_5" starPower="0" starAttrValue="101_2340|102_280|103_280" />
+      <data id="112511" heroId="1125" starLevel="1" stepLevel="1" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1001125_5" starPower="120" starAttrValue="101_2390|102_290|103_290" />
+      <data id="112512" heroId="1125" starLevel="1" stepLevel="2" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1001125_5" starPower="240" starAttrValue="101_2440|102_300|103_300" />
+      <data id="112513" heroId="1125" starLevel="1" stepLevel="3" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1001125_5" starPower="360" starAttrValue="101_2490|102_310|103_310" />
+      <data id="112514" heroId="1125" starLevel="1" stepLevel="4" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1001125_5" starPower="480" starAttrValue="101_2540|102_320|103_320" />
+      <data id="112520" heroId="1125" starLevel="2" stepLevel="0" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1001125_15" starPower="900" starAttrValue="101_2740|102_400|103_400" />
+      <data id="112521" heroId="1125" starLevel="2" stepLevel="1" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1001125_15" starPower="1045.5" starAttrValue="101_2800|102_412|103_412" />
+      <data id="112522" heroId="1125" starLevel="2" stepLevel="2" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1001125_15" starPower="1191" starAttrValue="101_2860|102_424|103_424" />
+      <data id="112523" heroId="1125" starLevel="2" stepLevel="3" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1001125_15" starPower="1336.5" starAttrValue="101_2920|102_436|103_436" />
+      <data id="112524" heroId="1125" starLevel="2" stepLevel="4" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1001125_15" starPower="1482" starAttrValue="101_2980|102_448|103_448" />
+      <data id="112530" heroId="1125" starLevel="3" stepLevel="0" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1001125_45" starPower="2052" starAttrValue="101_3220|102_540|103_540" />
+      <data id="112531" heroId="1125" starLevel="3" stepLevel="1" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1001125_45" starPower="2241" starAttrValue="101_3290|102_556|103_556" />
+      <data id="112532" heroId="1125" starLevel="3" stepLevel="2" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1001125_45" starPower="2430" starAttrValue="101_3360|102_572|103_572" />
+      <data id="112533" heroId="1125" starLevel="3" stepLevel="3" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1001125_45" starPower="2619" starAttrValue="101_3430|102_588|103_588" />
+      <data id="112534" heroId="1125" starLevel="3" stepLevel="4" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1001125_45" starPower="2808" starAttrValue="101_3500|102_604|103_604" />
+      <data id="112540" heroId="1125" starLevel="4" stepLevel="0" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1001125_90" starPower="3588" starAttrValue="101_3780|102_734|103_734" />
+      <data id="112541" heroId="1125" starLevel="4" stepLevel="1" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1001125_90" starPower="3856.5" starAttrValue="101_3860|102_758|103_758" />
+      <data id="112542" heroId="1125" starLevel="4" stepLevel="2" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1001125_90" starPower="4125" starAttrValue="101_3940|102_782|103_782" />
+      <data id="112543" heroId="1125" starLevel="4" stepLevel="3" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1001125_90" starPower="4393.5" starAttrValue="101_4020|102_806|103_806" />
+      <data id="112544" heroId="1125" starLevel="4" stepLevel="4" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1001125_90" starPower="4662" starAttrValue="101_4100|102_830|103_830" />
+      <data id="112550" heroId="1125" starLevel="5" stepLevel="0" maxLevel="120" maxSkillLevel="40" piecesForNextLevel="30000_1001125_90" starPower="6060" starAttrValue="101_4420|102_1000|103_1000" />
+      <data id="200210" heroId="2002" starLevel="1" stepLevel="0" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1002002_5" starPower="0" starAttrValue="101_2340|102_280|103_280" />
+      <data id="200211" heroId="2002" starLevel="1" stepLevel="1" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1002002_5" starPower="120" starAttrValue="101_2390|102_290|103_290" />
+      <data id="200212" heroId="2002" starLevel="1" stepLevel="2" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1002002_5" starPower="240" starAttrValue="101_2440|102_300|103_300" />
+      <data id="200213" heroId="2002" starLevel="1" stepLevel="3" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1002002_5" starPower="360" starAttrValue="101_2490|102_310|103_310" />
+      <data id="200214" heroId="2002" starLevel="1" stepLevel="4" maxLevel="40" maxSkillLevel="10" piecesForNextLevel="30000_1002002_5" starPower="480" starAttrValue="101_2540|102_320|103_320" />
+      <data id="200220" heroId="2002" starLevel="2" stepLevel="0" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1002002_15" starPower="900" starAttrValue="101_2740|102_400|103_400" />
+      <data id="200221" heroId="2002" starLevel="2" stepLevel="1" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1002002_15" starPower="1045.5" starAttrValue="101_2800|102_412|103_412" />
+      <data id="200222" heroId="2002" starLevel="2" stepLevel="2" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1002002_15" starPower="1191" starAttrValue="101_2860|102_424|103_424" />
+      <data id="200223" heroId="2002" starLevel="2" stepLevel="3" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1002002_15" starPower="1336.5" starAttrValue="101_2920|102_436|103_436" />
+      <data id="200224" heroId="2002" starLevel="2" stepLevel="4" maxLevel="60" maxSkillLevel="20" piecesForNextLevel="30000_1002002_15" starPower="1482" starAttrValue="101_2980|102_448|103_448" />
+      <data id="200230" heroId="2002" starLevel="3" stepLevel="0" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1002002_45" starPower="2052" starAttrValue="101_3220|102_540|103_540" />
+      <data id="200231" heroId="2002" starLevel="3" stepLevel="1" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1002002_45" starPower="2241" starAttrValue="101_3290|102_556|103_556" />
+      <data id="200232" heroId="2002" starLevel="3" stepLevel="2" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1002002_45" starPower="2430" starAttrValue="101_3360|102_572|103_572" />
+      <data id="200233" heroId="2002" starLevel="3" stepLevel="3" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1002002_45" starPower="2619" starAttrValue="101_3430|102_588|103_588" />
+      <data id="200234" heroId="2002" starLevel="3" stepLevel="4" maxLevel="80" maxSkillLevel="30" piecesForNextLevel="30000_1002002_45" starPower="2808" starAttrValue="101_3500|102_604|103_604" />
+      <data id="200240" heroId="2002" starLevel="4" stepLevel="0" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1002002_90" starPower="3588" starAttrValue="101_3780|102_734|103_734" />
+      <data id="200241" heroId="2002" starLevel="4" stepLevel="1" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1002002_90" starPower="3856.5" starAttrValue="101_3860|102_758|103_758" />
+      <data id="200242" heroId="2002" starLevel="4" stepLevel="2" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1002002_90" starPower="4125" starAttrValue="101_3940|102_782|103_782" />
+      <data id="200243" heroId="2002" starLevel="4" stepLevel="3" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1002002_90" starPower="4393.5" starAttrValue="101_4020|102_806|103_806" />
+      <data id="200244" heroId="2002" starLevel="4" stepLevel="4" maxLevel="100" maxSkillLevel="35" piecesForNextLevel="30000_1002002_90" starPower="4662" starAttrValue="101_4100|102_830|103_830" />
+      <data id="200250" heroId="2002" starLevel="5" stepLevel="0" maxLevel="120" maxSkillLevel="40" piecesForNextLevel="30000_1002002_90" starPower="6060" starAttrValue="101_4420|102_1000|103_1000" />
 </root>

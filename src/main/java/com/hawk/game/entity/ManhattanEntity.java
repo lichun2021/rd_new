@@ -82,6 +82,11 @@ public class ManhattanEntity extends HawkDBEntity {
 	@IndexProp(id = 11)
 	protected boolean invalid;
 
+	/** 欧米伽三个模块等级，仅底座记录使用。 */
+	@Column(name = "omegaPosLevel")
+	@IndexProp(id = 12)
+	private String omegaPosLevel = "";
+
 	@Transient
 	private PlayerManhattan playerManhattan;
 
@@ -93,6 +98,9 @@ public class ManhattanEntity extends HawkDBEntity {
 	public void beforeWrite() {
 		if (playerManhattan != null) {
 			posLevel = playerManhattan.serializePosLevel();
+			if (playerManhattan instanceof ManhattanBase) {
+				omegaPosLevel = ((ManhattanBase) playerManhattan).serializeOmegaPosLevel();
+			}
 		}
 		super.beforeWrite();
 	}
@@ -153,6 +161,14 @@ public class ManhattanEntity extends HawkDBEntity {
 
 	public void setPosLevel(String posLevel) {
 		this.posLevel = posLevel;
+	}
+
+	public String getOmegaPosLevel() {
+		return omegaPosLevel;
+	}
+
+	public void setOmegaPosLevel(String omegaPosLevel) {
+		this.omegaPosLevel = omegaPosLevel;
 	}
 
 	public int getDeployed() {

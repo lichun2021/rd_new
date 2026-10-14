@@ -14,4 +14,6 @@
       <data id="10304" type="1" cd="21600" continueTime="0" uiType="1" buffId="60006" talentId="10326" />
       <data id="90001" type="1" cd="86400" continueTime="7200" uiType="5" param1="2" param2="3" param3="180" />
       <data id="90002" type="0" cd="0" continueTime="-1" uiType="5" param1="1" param2="1080" />
+      <data id="90003" type="1" cd="86100" continueTime="3600" uiType="5" param1="4" param2="3" param3="10000" />
+      <data id="90004" type="0" cd="0" continueTime="-1" uiType="5" param1="3" param2="1500" />
 </root>

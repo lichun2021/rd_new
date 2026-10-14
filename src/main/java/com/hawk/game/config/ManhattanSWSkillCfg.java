@@ -1,6 +1,10 @@
 package com.hawk.game.config;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.hawk.config.HawkConfigBase;
@@ -35,6 +39,9 @@ public class ManhattanSWSkillCfg extends HawkConfigBase {
 	 * 解锁品阶
 	 */
 	protected final int unlockStage;
+	/** 欧米伽总技能，解锁后改用 unlockOmegaStage 判定。 */
+	protected final int unlockOmega;
+	protected final int unlockOmegaStage;
 
 	/**
 	 * 技能属性
@@ -49,6 +56,7 @@ public class ManhattanSWSkillCfg extends HawkConfigBase {
 	 * 每一阶对应的配置<swId*1000+stage, config>
 	 */
 	private static Map<Long, ManhattanSWSkillCfg> stageCfgMap = new HashMap<>();
+	private static Map<Integer, List<ManhattanSWSkillCfg>> swSkillMap = new HashMap<>();
 	
 	
 	public ManhattanSWSkillCfg() {
@@ -56,6 +64,8 @@ public class ManhattanSWSkillCfg extends HawkConfigBase {
 		swId = 0;
 		level = 0;
 		unlockStage = 0;
+		unlockOmega = 0;
+		unlockOmegaStage = 0;
 		attr = "";
 	}
 	
@@ -76,6 +86,14 @@ public class ManhattanSWSkillCfg extends HawkConfigBase {
 		return unlockStage;
 	}
 
+	public int getUnlockOmega() {
+		return unlockOmega;
+	}
+
+	public int getUnlockOmegaStage() {
+		return unlockOmegaStage;
+	}
+
 	public String getAttr() {
 		return attr;
 	}
@@ -85,6 +103,10 @@ public class ManhattanSWSkillCfg extends HawkConfigBase {
 		attrMap = SerializeHelper.stringToMap(attr, Integer.class, Integer.class, "_", ",");
 		long key = getMapKey(swId, unlockStage);
 		stageCfgMap.put(key, this);
+		List<ManhattanSWSkillCfg> skills = swSkillMap.computeIfAbsent(swId, value -> new ArrayList<>());
+		skills.removeIf(e -> e.getId() == this.id);
+		skills.add(this);
+		skills.sort(Comparator.comparingInt(ManhattanSWSkillCfg::getLevel));
 		return true;
 	}
 	
@@ -97,6 +119,19 @@ public class ManhattanSWSkillCfg extends HawkConfigBase {
 	}
 	
 	public static ManhattanSWSkillCfg getConfig(int swId, int stage) {
+		return getConfig(swId, stage, false);
+	}
+
+	public static ManhattanSWSkillCfg getConfig(int swId, int stage, boolean omegaActive) {
+		if (omegaActive) {
+			ManhattanSWSkillCfg result = null;
+			for (ManhattanSWSkillCfg cfg : swSkillMap.getOrDefault(swId, Collections.emptyList())) {
+				if (stage >= cfg.getUnlockOmegaStage()) {
+					result = cfg;
+				}
+			}
+			return result;
+		}
 		while (stage > 0) {
 			long key = getMapKey(swId, stage);
 			ManhattanSWSkillCfg cfg = stageCfgMap.get(key);

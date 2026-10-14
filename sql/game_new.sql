@@ -7612,6 +7612,7 @@ CREATE TABLE `manhattan` (
   `swId` int(11) NOT NULL DEFAULT '0',
   `stage` int(11) NOT NULL DEFAULT '0',
   `posLevel` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `omegaPosLevel` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `deployed` int(11) NOT NULL DEFAULT '0',
   `cityShow` int(11) NOT NULL DEFAULT '0',
   `base` int(11) NOT NULL DEFAULT '0',

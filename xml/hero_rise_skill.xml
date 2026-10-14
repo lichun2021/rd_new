@@ -175,4 +175,9 @@
       <data id="11203" heroId="1120" level="2" type="2" leftRight="2" techEffect="11084_0_6|11085_5_15" power="2000" />
       <data id="11204" heroId="1120" level="3" type="2" leftRight="2" techEffect="11084_0_8|11085_5_20" power="3000" />
       <data id="11205" heroId="1120" level="4" type="2" leftRight="2" techEffect="11084_0_12|11085_5_30" power="4000" />
+      <data id="11251" heroId="1125" level="0" type="1" leftRight="2" techEffect="11080_15_15|11081_15_15" power="0" />
+      <data id="11252" heroId="1125" level="1" type="1" leftRight="2" techEffect="11080_15_50|11081_15_50" power="1000" />
+      <data id="11253" heroId="1125" level="2" type="1" leftRight="2" techEffect="11080_15_75|11081_15_75" power="2000" />
+      <data id="11254" heroId="1125" level="3" type="1" leftRight="2" techEffect="11080_15_100|11081_15_100" power="3000" />
+      <data id="11255" heroId="1125" level="4" type="1" leftRight="2" techEffect="11080_15_150|11081_15_150" power="4000" />
 </root>

@@ -1,0 +1,62 @@
+2026-10-14 21:18:45,665 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:18:45,682 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:22:10,742 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:22:10,747 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:22:30,843 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:22:30,851 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:23:57,789 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:23:57,794 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:24:32,684 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:24:32,688 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:24:34,707 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:24:34,712 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:24:34,717 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaLevelCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_level.xml
+2026-10-14 21:24:34,754 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_skill.xml
+2026-10-14 21:24:34,758 ERROR [main] [HawkException.java:217] - 
+xid: null, args: null
+java.lang.NullPointerException
+org.hawk.os.HawkOSOperator.getClassField(HawkOSOperator.java:748)
+org.hawk.config.HawkConfigStorage.getField(HawkConfigStorage.java:384)
+org.hawk.config.HawkConfigStorage.loadXmlConfig(HawkConfigStorage.java:222)
+org.hawk.config.HawkConfigStorage.<init>(HawkConfigStorage.java:117)
+org.hawk.config.HawkConfigStorage.<init>(HawkConfigStorage.java:87)
+OmegaRuntimeHarness.loadConfig(OmegaRuntimeHarness.java:29)
+OmegaRuntimeHarness.main(OmegaRuntimeHarness.java:49)
+
+2026-10-14 21:24:51,431 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:24:51,435 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:24:51,441 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaLevelCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_level.xml
+2026-10-14 21:24:51,479 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_skill.xml
+2026-10-14 21:24:51,483 ERROR [main] [HawkException.java:217] - 
+xid: null, args: null
+java.lang.NullPointerException
+org.hawk.os.HawkOSOperator.getClassField(HawkOSOperator.java:748)
+org.hawk.config.HawkConfigStorage.getField(HawkConfigStorage.java:384)
+org.hawk.config.HawkConfigStorage.loadXmlConfig(HawkConfigStorage.java:222)
+org.hawk.config.HawkConfigStorage.<init>(HawkConfigStorage.java:117)
+org.hawk.config.HawkConfigStorage.<init>(HawkConfigStorage.java:87)
+OmegaRuntimeHarness.loadConfig(OmegaRuntimeHarness.java:29)
+OmegaRuntimeHarness.main(OmegaRuntimeHarness.java:49)
+
+2026-10-14 21:26:00,804 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:26:00,809 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:26:02,850 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:26:02,854 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:26:02,859 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaLevelCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_level.xml
+2026-10-14 21:26:02,897 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_skill.xml
+2026-10-14 21:26:02,904 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_skill.xml
+2026-10-14 21:26:02,911 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.EffectCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/effectid.xml
+2026-10-14 21:26:02,982 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ItemCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/item.xml
+2026-10-14 21:26:03,141 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress_model.xml
+2026-10-14 21:26:03,161 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressToolCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress.xml
+2026-10-14 21:27:28,725 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:27:28,731 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:27:30,955 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-14 21:27:30,960 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-14 21:27:30,967 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaLevelCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_level.xml
+2026-10-14 21:27:31,010 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_skill.xml
+2026-10-14 21:27:31,014 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_skill.xml
+2026-10-14 21:27:31,021 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.EffectCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/effectid.xml
+2026-10-14 21:27:31,099 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ItemCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/item.xml
+2026-10-14 21:27:31,272 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress_model.xml
+2026-10-14 21:27:31,298 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressToolCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress.xml

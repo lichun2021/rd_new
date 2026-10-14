@@ -7,19 +7,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import com.hawk.game.config.ManhattanBaseLevelCfg;
 import com.hawk.game.config.ManhattanBaseStageCfg;
+import com.hawk.game.config.ManhattanOmegaLevelCfg;
+import com.hawk.game.config.ManhattanOmegaSkillCfg;
 import com.hawk.game.entity.ManhattanEntity;
 import com.hawk.game.protocol.Manhattan.ManhattanPosInfo;
 import com.hawk.game.protocol.Manhattan.PBManhattanInfo;
 import com.hawk.game.protocol.World.PresetMarchManhattan;
 import com.hawk.log.LogConst.PowerChangeReason;
+import com.hawk.serialize.string.SerializeHelper;
 
 /**
  * 超武底座
  * @author lating
  */
 public class ManhattanBase extends PlayerManhattan {
+	private final Map<Integer, Integer> omegaPosLevelMap = new ConcurrentHashMap<>();
+
+	@Override
+	public void init(ManhattanEntity entity) {
+		omegaPosLevelMap.putAll(SerializeHelper.stringToMap(
+				entity.getOmegaPosLevel(), Integer.class, Integer.class));
+		super.init(entity);
+	}
 	
 	public static ManhattanBase create(ManhattanEntity entity) {
 		ManhattanBase manhattan = new ManhattanBase(); 
@@ -41,6 +53,39 @@ public class ManhattanBase extends PlayerManhattan {
 			throw new RuntimeException("wrong invoke");
 		}
 		updatePosLevel(posId, newLevel);
+	}
+
+	/** 提升一个欧米伽模块等级。调用前须完成配置、前置与消耗检查。 */
+	public void omegaLevelUpgrade(int posId) {
+		int newLevel = getOmegaPosLevel(posId) + 1;
+		if (ManhattanOmegaLevelCfg.getConfig(posId, newLevel) == null) {
+			throw new IllegalStateException("invalid omega level upgrade");
+		}
+		omegaPosLevelMap.put(posId, newLevel);
+		getEntity().notifyUpdate();
+	}
+
+	public int getOmegaPosLevel(int posId) {
+		return omegaPosLevelMap.getOrDefault(posId, 0);
+	}
+
+	public String serializeOmegaPosLevel() {
+		return SerializeHelper.mapToString(omegaPosLevelMap);
+	}
+
+	public boolean isOmegaUnlocked() {
+		ManhattanOmegaLevelCfg config = ManhattanOmegaLevelCfg.getConfig(1, 0);
+		return config != null && getStage() >= config.getUnlockBaseStage();
+	}
+
+	/** 三个模块都达到150级后激活总技能901。 */
+	public boolean isOmegaTotalSkillActive() {
+		for (int posId : ManhattanOmegaLevelCfg.getPosIds()) {
+			if (getOmegaPosLevel(posId) < 150) {
+				return false;
+			}
+		}
+		return ManhattanOmegaLevelCfg.getPosIds().size() == 3;
 	}
 	
 	/**
@@ -70,6 +115,24 @@ public class ManhattanBase extends PlayerManhattan {
 			ManhattanBaseLevelCfg cfg = this.getPosLevelCfg(entry.getKey(), entry.getValue());
 			if (cfg != null) {
 				power += cfg.getPower();
+			}
+		}
+		for (Entry<Integer, Integer> entry : omegaPosLevelMap.entrySet()) {
+			int posId = entry.getKey();
+			int omegaLevel = entry.getValue();
+			ManhattanOmegaLevelCfg cfg = ManhattanOmegaLevelCfg.getConfig(posId, omegaLevel);
+			if (cfg != null) {
+				power += cfg.getPower();
+			}
+			ManhattanOmegaSkillCfg unlockedSkill = null;
+			for (ManhattanOmegaSkillCfg skillCfg : ManhattanOmegaSkillCfg.getSkills(posId)) {
+				if (omegaLevel >= skillCfg.getUnlockLevel()
+						&& (unlockedSkill == null || skillCfg.getLevel() > unlockedSkill.getLevel())) {
+					unlockedSkill = skillCfg;
+				}
+			}
+			if (unlockedSkill != null) {
+				power += unlockedSkill.getPower();
 			}
 		}
 		return power;
@@ -109,7 +172,30 @@ public class ManhattanBase extends PlayerManhattan {
 				map.merge(attrEntry.getKey(), attrEntry.getValue(), (v1, v2) -> v1 + v2);
 			}
 		}
+		for (int posId : ManhattanOmegaLevelCfg.getPosIds()) {
+			int omegaLevel = getOmegaPosLevel(posId);
+			ManhattanOmegaLevelCfg levelCfg = ManhattanOmegaLevelCfg.getConfig(posId, omegaLevel);
+			if (levelCfg != null) {
+				mergeAttrs(map, levelCfg.getAttrMap());
+			}
+			ManhattanOmegaSkillCfg unlockedSkill = null;
+			for (ManhattanOmegaSkillCfg skillCfg : ManhattanOmegaSkillCfg.getSkills(posId)) {
+				if (omegaLevel >= skillCfg.getUnlockLevel()
+						&& (unlockedSkill == null || skillCfg.getLevel() > unlockedSkill.getLevel())) {
+					unlockedSkill = skillCfg;
+				}
+			}
+			if (unlockedSkill != null) {
+				mergeAttrs(map, unlockedSkill.getAttrMap());
+			}
+		}
 		return map;
+	}
+
+	private void mergeAttrs(Map<Integer, Integer> target, Map<Integer, Integer> attrs) {
+		for (Entry<Integer, Integer> entry : attrs.entrySet()) {
+			target.merge(entry.getKey(), entry.getValue(), Integer::sum);
+		}
 	}
 
 	@Override
@@ -148,5 +234,17 @@ public class ManhattanBase extends PlayerManhattan {
 			list.add(posInfo.build());
 		}
 		builder.addAllBasePosLevels(list);
+
+		List<ManhattanPosInfo> omegaList = new ArrayList<>();
+		for (int posId : ManhattanOmegaLevelCfg.getPosIds()) {
+			int level = getOmegaPosLevel(posId);
+			ManhattanOmegaLevelCfg cfg = ManhattanOmegaLevelCfg.getConfig(posId, level);
+			ManhattanPosInfo.Builder posInfo = ManhattanPosInfo.newBuilder();
+			posInfo.setCfgId(cfg == null ? 0 : cfg.getId());
+			posInfo.setPosId(posId);
+			posInfo.setLevel(level);
+			omegaList.add(posInfo.build());
+		}
+		builder.addAllOmegaPosLevels(omegaList);
 	}
 }

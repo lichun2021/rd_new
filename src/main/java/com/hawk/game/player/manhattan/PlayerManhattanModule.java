@@ -19,6 +19,7 @@ import com.hawk.activity.event.impl.PlantWeaponGetEvent;
 import com.hawk.activity.type.impl.plantweapon.PlantWeaponActivity;
 import com.hawk.game.config.ManhattanBaseLevelCfg;
 import com.hawk.game.config.ManhattanBaseStageCfg;
+import com.hawk.game.config.ManhattanOmegaLevelCfg;
 import com.hawk.game.config.ManhattanSWCfg;
 import com.hawk.game.config.ManhattanSWLevelCfg;
 import com.hawk.game.config.ManhattanSWStageCfg;
@@ -33,6 +34,7 @@ import com.hawk.game.protocol.Const.BuildingType;
 import com.hawk.game.protocol.HP;
 import com.hawk.game.protocol.Manhattan.ManhattanBaseLevelUpReq;
 import com.hawk.game.protocol.Manhattan.ManhattanInfoSync;
+import com.hawk.game.protocol.Manhattan.ManhattanOmegaLevelUpReq;
 import com.hawk.game.protocol.Manhattan.ManhattanSWDeployReq;
 import com.hawk.game.protocol.Manhattan.ManhattanSWLevelUpReq;
 import com.hawk.game.protocol.Manhattan.ManhattanSWShowReq;
@@ -146,8 +148,74 @@ public class PlayerManhattanModule extends PlayerModule {
 		if (funcUnlocked) {
 			PBManhattanInfo.Builder mbuilder = player.buildManhattanInfo();
 			builder.setManhattanInfo(mbuilder);
+			PlayerManhattan base = player.getManhattanBase();
+			builder.setOmegaUnlocked(base instanceof ManhattanBase
+					&& ((ManhattanBase) base).isOmegaUnlocked() ? 1 : 0);
 		}
 		player.sendProtocol(HawkProtocol.valueOf(HP.code2.MANHATTAN_INFO_SYNC_S, builder));
+	}
+
+	/** 欧米伽模块升级。 */
+	@ProtocolHandler(code = HP.code2.MANHATTAN_OMEGA_LEVEL_UP_C_VALUE)
+	private void onManhattanOmegaLevelUp(HawkProtocol protocol) {
+		if (!funcUnlocked) {
+			sendError(protocol.getType(), Status.Error.MANHATTAN_LOCK_STATE_VALUE);
+			return;
+		}
+		BuildingBaseEntity buildingEntity = player.getData().getBuildingEntityByType(BuildingType.MANHATTAN);
+		if (buildingEntity == null) {
+			HawkLog.errPrintln("manhattan omega level up failed, manhattan building not exist, playerId: {}", player.getId());
+			sendError(protocol.getType(), Status.Error.BUILDING_FRONT_NOT_EXISIT_VALUE);
+			return;
+		}
+		PlayerManhattan playerBase = player.getManhattanBase();
+		if (!(playerBase instanceof ManhattanBase)) {
+			sendError(protocol.getType(), Status.Error.MANHATTAN_OMEGA_NOT_EXIST_VALUE);
+			return;
+		}
+		ManhattanBase base = (ManhattanBase) playerBase;
+		if (!base.isOmegaUnlocked()) {
+			sendError(protocol.getType(), Status.Error.MANHATTAN_OMEGA_COND_LIMIT_VALUE);
+			return;
+		}
+
+		ManhattanOmegaLevelUpReq req = protocol.parseProtocol(ManhattanOmegaLevelUpReq.getDefaultInstance());
+		int posId = req.getPosId();
+		int oldLevel = base.getOmegaPosLevel(posId);
+		ManhattanOmegaLevelCfg config = ManhattanOmegaLevelCfg.getConfig(posId, oldLevel + 1);
+		if (ManhattanOmegaLevelCfg.getConfig(posId, 0) == null) {
+			sendError(protocol.getType(), Status.Error.MANHATTAN_OMEGA_NOT_EXIST_VALUE);
+			return;
+		}
+		if (config == null) {
+			sendError(protocol.getType(), Status.Error.MANHATTAN_OMEGA_MAX_LEVEL_VALUE);
+			return;
+		}
+		if (base.getStage() < config.getUnlockBaseStage()) {
+			sendError(protocol.getType(), Status.Error.MANHATTAN_OMEGA_COND_LIMIT_VALUE);
+			return;
+		}
+
+		ConsumeItems consumeItems = ConsumeItems.valueOf();
+		consumeItems.addConsumeInfo(ItemInfo.valueListOf(config.getConsumption()));
+		if (!consumeItems.checkConsume(player, protocol.getType())) {
+			return;
+		}
+		boolean totalSkillBefore = base.isOmegaTotalSkillActive();
+		consumeItems.consumeAndPush(player, Action.MANHATTAN_BASE_LEVEL_UP);
+		base.omegaLevelUpgrade(posId);
+		base.notifyChange();
+		if (totalSkillBefore != base.isOmegaTotalSkillActive()) {
+			for (PlayerManhattan manhattan : player.getAllManhattanSW()) {
+				if (manhattan instanceof ManhattanSW) {
+					((ManhattanSW) manhattan).refreshOmegaSkill();
+				}
+			}
+		}
+		syncManhattanInfo();
+		player.responseSuccess(protocol.getType());
+		HawkLog.logPrintln("manhattan omega level up success, playerId: {}, posId: {}, oldLevel: {}, newLevel: {}",
+				player.getId(), posId, oldLevel, base.getOmegaPosLevel(posId));
 	}
 
 	/**

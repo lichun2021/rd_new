@@ -496,7 +496,7 @@
       <data dressId="2355" dressType="5" modelType="44" useAttribute="100_1000,136_1000,102_1000" gainAttribute="201_12000,412_12000" canChange="1" skinPoint="3" attrUseValue="36" atkAttrUse="2_1000,1_1000,4_1000,3_1000,6_1000,5_1000,8_1000,7_1000" hpAttrUse="2_1000,1_1000,4_1000,3_1000,6_1000,5_1000,8_1000,7_1000" />
       <data dressId="532" dressType="5" modelType="45" useAttribute="100_1000,136_1000,102_1000" gainAttribute="201_15000,412_15000" canChange="1" skinPoint="3" attrUseValue="36" atkAttrUse="2_600,1_600,4_600,3_600,6_600,5_600,8_600,7_600" hpAttrUse="2_600,1_600,4_600,3_600,6_600,5_600,8_600,7_600" />
       <data dressId="533" dressType="5" modelType="46" useAttribute="100_1000,136_1000,102_1000" gainAttribute="201_12000,412_12000" canChange="1" skinPoint="3" attrUseValue="36" atkAttrUse="2_600,1_600,4_600,3_600,6_600,5_600,8_600,7_600" hpAttrUse="2_600,1_600,4_600,3_600,6_600,5_600,8_600,7_600" />
-      <data dressId="534" dressType="5" modelType="47" useAttribute="100_1000,136_1000,102_1000" gainAttribute="201_15000,412_15000" canChange="1" skinPoint="3" attrUseValue="36" atkAttrUse="2_600,1_600,4_600,3_600,6_600,5_600,8_600,7_600" hpAttrUse="2_600,1_600,4_600,3_600,6_600,5_600,8_600,7_600" />
+      <data dressId="534" dressType="5" modelType="47" useAttribute="100_1100,136_1100,102_1100" canChange="1" gainAttribute="201_18000,412_18000" skinPoint="3" attrUseValue="36" atkAttrUse="2_600,1_600,4_600,3_600,6_600,5_600,8_600,7_600" hpAttrUse="2_600,1_600,4_600,3_600,6_600,5_600,8_600,7_600" />
       <data dressId="601" dressType="6" modelType="1" canChange="0" skinPoint="0" />
       <data dressId="602" dressType="6" modelType="2" useAttribute="100_300,136_300,402_500" canChange="0" skinPoint="3" attrUseValue="3" atkAttrUse="2_300,1_300,4_300,3_300,6_300,5_300,8_300,7_300" />
       <data dressId="603" dressType="6" modelType="3" gainAttribute="201_4000,412_4000,607_4000,604_4000" canChange="0" skinPoint="3" />
@@ -892,4 +892,35 @@
       <data dressId="1054" dressType="7" modelType="341" canChange="0" skinPoint="3" />
       <data dressId="1055" dressType="7" modelType="342" canChange="0" skinPoint="3" />
       <data dressId="1056" dressType="7" modelType="343" canChange="0" skinPoint="3" />
+      <data dressId="2381" dressType="2" modelType="175" useAttribute="100_12000,136_12000,102_12000,1100_2900" canChange="1" gainAttribute="201_25000,607_25000,604_20000,4101_20000,1605_2200" skinPoint="5" atkAttrGain="2_2200,1_2200,4_2200,3_2200,6_2200,5_2200,8_2200,7_2200" attrUseValue="100" hpAttrGain="2_2200,1_2200,4_2200,3_2200,6_2200,5_2200,8_2200,7_2200" atkAttrUse="2_12000,1_12000,4_12000,3_12000,6_12000,5_12000,8_12000,7_12000" hpAttrUse="2_12000,1_12000,4_12000,3_12000,6_12000,5_12000,8_12000,7_12000" />
+      <data dressId="2382" dressType="2" modelType="176" highendDressId="1002" useAttribute="100_12000,136_12000,102_12000,1162_2400,1607_5400" canChange="1" gainAttribute="607_150000,12101_1000" skinPoint="10" attrUseValue="100" atkAttrUse="2_12000,1_12000,4_12000,3_12000,6_12000,5_12000,8_12000,7_12000" hpAttrUse="2_12000,1_12000,4_12000,3_12000,6_12000,5_12000,8_12000,7_12000" />
+      <data dressId="2383" dressType="2" modelType="177" useAttribute="100_12000,136_12000,102_12000,1162_2400" canChange="1" gainAttribute="607_100000,12101_500" skinPoint="5" attrUseValue="100" atkAttrUse="2_12000,1_12000,4_12000,3_12000,6_12000,5_12000,8_12000,7_12000" hpAttrUse="2_12000,1_12000,4_12000,3_12000,6_12000,5_12000,8_12000,7_12000" />
+      <data dressId="2384" dressType="2" modelType="178" useAttribute="100_12500,136_12500,102_12500,1607_5400" canChange="1" gainAttribute="201_25000,607_25000,604_20000,4101_20000,1605_2300" skinPoint="5" atkAttrGain="2_2300,1_2300,4_2300,3_2300,6_2300,5_2300,8_2300,7_2300" attrUseValue="100" hpAttrGain="2_2300,1_2300,4_2300,3_2300,6_2300,5_2300,8_2300,7_2300" atkAttrUse="2_12500,1_12500,4_12500,3_12500,6_12500,5_12500,8_12500,7_12500" hpAttrUse="2_12500,1_12500,4_12500,3_12500,6_12500,5_12500,8_12500,7_12500" />
+      <data dressId="2385" dressType="2" modelType="179" useAttribute="100_3000,136_3000,102_3000,1162_500" canChange="1" gainAttribute="607_20000,1421_600,1605_500" skinPoint="5" atkAttrGain="2_500,1_500,4_500,3_500,6_500,5_500,8_500,7_500" attrUseValue="100" hpAttrGain="2_500,1_500,4_500,3_500,6_500,5_500,8_500,7_500" atkAttrUse="2_3000,1_3000,4_3000,3_3000,6_3000,5_3000,8_3000,7_3000" hpAttrUse="2_3000,1_3000,4_3000,3_3000,6_3000,5_3000,8_3000,7_3000" />
+      <data dressId="1158" dressType="1" modelType="158" canChange="0" skinPoint="1" />
+      <data dressId="1159" dressType="1" modelType="159" canChange="0" skinPoint="1" />
+      <data dressId="2502" dressType="4" modelType="99" canChange="0" skinPoint="1" />
+      <data dressId="2503" dressType="4" modelType="100" canChange="0" skinPoint="1" />
+      <data dressId="1094" dressType="7" modelType="397" canChange="0" gainAttribute="4101_50000" skinPoint="3" />
+      <data dressId="1095" dressType="7" modelType="398" canChange="0" gainAttribute="4101_50000" skinPoint="3" />
+      <data dressId="1096" dressType="7" modelType="399" canChange="0" gainAttribute="4101_50000" skinPoint="3" />
+      <data dressId="1097" dressType="7" modelType="400" canChange="0" skinPoint="3" />
+      <data dressId="652" dressType="6" modelType="52" canChange="0" gainAttribute="201_16000,607_16000,604_16000,4101_15000" skinPoint="3" />
+      <data dressId="653" dressType="6" modelType="53" canChange="0" gainAttribute="201_17000,607_17000,604_17000,4101_16000" skinPoint="3" />
+      <data dressId="654" dressType="6" modelType="54" canChange="0" gainAttribute="201_17000,607_17000,604_17000,4101_16000" skinPoint="3" />
+      <data dressId="655" dressType="6" modelType="55" canChange="0" gainAttribute="201_8000,607_8000,604_9000,412_9000,4101_9000" skinPoint="3" />
+      <data dressId="656" dressType="6" modelType="56" canChange="0" gainAttribute="201_17000,607_17000,604_18000,4101_18000" skinPoint="3" />
+      <data dressId="359" dressType="3" modelType="62" canChange="1" gainAttribute="4101_100000" skinPoint="3" />
+      <data dressId="360" dressType="3" modelType="63" canChange="1" gainAttribute="201_17000,607_17000,604_17000,4101_16000" skinPoint="3" />
+      <data dressId="361" dressType="3" modelType="64" canChange="1" gainAttribute="201_17000,607_17000,604_18000,4101_18000" skinPoint="3" />
+      <data dressId="1057" dressType="7" modelType="344" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1058" dressType="7" modelType="345" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1059" dressType="7" modelType="346" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1060" dressType="7" modelType="347" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1061" dressType="7" modelType="348" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1062" dressType="7" modelType="349" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1063" dressType="7" modelType="350" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1064" dressType="7" modelType="351" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1065" dressType="7" modelType="352" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1066" dressType="7" modelType="353" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
 </root>
