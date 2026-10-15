@@ -90,7 +90,11 @@ OMEGA_RUNTIME_HARNESS = textwrap.dedent(
             baseEntity.setPlayerId("test_player_omega");
             baseEntity.setBase(1);
             baseEntity.setStage(60);
-            baseEntity.setOmegaPosLevel("1_150|2_150|3_150");
+            java.util.Map<Integer, Integer> omegaMap = new java.util.HashMap<>();
+            omegaMap.put(1, 150);
+            omegaMap.put(2, 150);
+            omegaMap.put(3, 150);
+            baseEntity.setOmegaPosLevel(com.hawk.serialize.string.SerializeHelper.mapToString(omegaMap));
             com.hawk.game.player.manhattan.ManhattanBase.create(baseEntity);
             check(swEntity.getManhattanObj().getUnlockedSkillCfg().getLevel() == 6, "SW after Base(150/150/150) should resolve to level 6");
             check(!swEntity.getManhattanObj().getEffValMap().isEmpty(), "SW effValMap should refresh after Base is read");
