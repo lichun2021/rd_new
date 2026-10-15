@@ -233,7 +233,7 @@ public class BattleSoldier_2 extends BattleSoldier {
 	}
 
 	private void sss12131Atk(BattleSoldier defSoldier) {
-		if (getEffVal(EffType.HERO_12131) == 0) {
+		if (getEffVal(EffType.HERO_12131) == 0 && getEffVal(EffType.HERO_12746) == 0) {
 			return;
 		}
 		Set<BattleSoldier> eff12515targets = new HashSet<>();
@@ -256,6 +256,9 @@ public class BattleSoldier_2 extends BattleSoldier {
 				sss12131Atk = true;
 				super.doAttackOnce(tar, QIAN_PAI_MAX, 0, Integer.MAX_VALUE,false); // 不触发千排
 				sss12131Atk = false;
+				if (getEffVal(EffType.HERO_12729) > 0 && tar.isAlive()) {
+					additionalAttack(tar, getEffVal(EffType.HERO_12729), false, false, "【13006】金属狂潮·冲击伤害");
+				}
 			}
 			eff12515targets.addAll(tarList);
 			if (tarList.isEmpty()) {
@@ -805,8 +808,9 @@ public class BattleSoldier_2 extends BattleSoldier {
 			getTroop().getBattle().addDebugLog("### {} 1656 额外攻击 {} {} {}", getUUID(), getEffVal(EffType.HERO_1656), getEffVal(EffType.HERO_1657), hurt);
 		}
 		if (sss12131Atk) {
-			hurt = hurt * GsConst.EFF_PER * getEffVal(EffType.HERO_12131);
-			addDebugLog("### {} 12131 额外攻击 {} {}", getUUID(), getEffVal(EffType.HERO_12131), hurt);
+			int rate12131 = getEffVal(EffType.HERO_12131) + getEffVal(EffType.HERO_12746);
+			hurt = hurt * GsConst.EFF_PER * rate12131;
+			addDebugLog("### {} 12131/13014 额外攻击 {} {}", getUUID(), rate12131, hurt);
 		}
 		if (sss12133Atk) {
 			hurt = hurt * GsConst.EFF_PER * getEffVal(EffType.HERO_12133);

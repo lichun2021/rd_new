@@ -175,6 +175,26 @@
       <data id="11203" heroId="1120" level="2" type="2" leftRight="2" techEffect="11084_0_6|11085_5_15" power="2000" />
       <data id="11204" heroId="1120" level="3" type="2" leftRight="2" techEffect="11084_0_8|11085_5_20" power="3000" />
       <data id="11205" heroId="1120" level="4" type="2" leftRight="2" techEffect="11084_0_12|11085_5_30" power="4000" />
+      <data id="11211" heroId="1121" level="0" type="1" leftRight="1" techEffect="11088_5000_5000" power="0" />
+      <data id="11212" heroId="1121" level="1" type="1" leftRight="1" techEffect="11088_5000_10000" power="1000" />
+      <data id="11213" heroId="1121" level="2" type="1" leftRight="1" techEffect="11088_5000_15000" power="2000" />
+      <data id="11214" heroId="1121" level="3" type="1" leftRight="1" techEffect="11088_5000_20000" power="3000" />
+      <data id="11215" heroId="1121" level="4" type="1" leftRight="1" techEffect="11088_5000_30000" power="4000" />
+      <data id="11221" heroId="1122" level="0" type="3" leftRight="1" techEffect="11088_5000_5000" power="0" />
+      <data id="11222" heroId="1122" level="1" type="3" leftRight="1" techEffect="11088_5000_10000" power="1000" />
+      <data id="11223" heroId="1122" level="2" type="3" leftRight="1" techEffect="11088_5000_15000" power="2000" />
+      <data id="11224" heroId="1122" level="3" type="3" leftRight="1" techEffect="11088_5000_20000" power="3000" />
+      <data id="11225" heroId="1122" level="4" type="3" leftRight="1" techEffect="11088_5000_30000" power="4000" />
+      <data id="11231" heroId="1123" level="0" type="2" leftRight="2" techEffect="11121_0_2|11122_5_5" power="0" />
+      <data id="11232" heroId="1123" level="1" type="2" leftRight="2" techEffect="11121_0_4|11122_5_10" power="1000" />
+      <data id="11233" heroId="1123" level="2" type="2" leftRight="2" techEffect="11121_0_6|11122_5_15" power="2000" />
+      <data id="11234" heroId="1123" level="3" type="2" leftRight="2" techEffect="11121_0_8|11122_5_20" power="3000" />
+      <data id="11235" heroId="1123" level="4" type="2" leftRight="2" techEffect="11121_0_12|11122_5_30" power="4000" />
+      <data id="11241" heroId="1124" level="0" type="2" leftRight="1" techEffect="11089_4000_4000" power="0" />
+      <data id="11242" heroId="1124" level="1" type="2" leftRight="1" techEffect="11089_4000_8000" power="1000" />
+      <data id="11243" heroId="1124" level="2" type="2" leftRight="1" techEffect="11089_4000_12000" power="2000" />
+      <data id="11244" heroId="1124" level="3" type="2" leftRight="1" techEffect="11089_4000_16000" power="3000" />
+      <data id="11245" heroId="1124" level="4" type="2" leftRight="1" techEffect="11089_4000_24000" power="4000" />
       <data id="11251" heroId="1125" level="0" type="1" leftRight="2" techEffect="11080_15_15|11081_15_15" power="0" />
       <data id="11252" heroId="1125" level="1" type="1" leftRight="2" techEffect="11080_15_50|11081_15_50" power="1000" />
       <data id="11253" heroId="1125" level="2" type="1" leftRight="2" techEffect="11080_15_75|11081_15_75" power="2000" />

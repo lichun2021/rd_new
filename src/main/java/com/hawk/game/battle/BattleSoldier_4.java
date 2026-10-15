@@ -64,6 +64,7 @@ public class BattleSoldier_4 extends IPlanSoldier {
 	int debuff12462Round;
 	int effect12465FirePoint;
 	public int effect2205AtkNums;
+	private int eff12997Cnt;
 	@Override
 	public void init(Player player, BattleSoldierCfg soldierCfg, int count, int shadowCnt) {
 		super.init(player, soldierCfg, count, shadowCnt);
@@ -77,6 +78,7 @@ public class BattleSoldier_4 extends IPlanSoldier {
 	@Override
 	public void roundStart() {
 		super.roundStart();
+		eff12997Cnt = 0;
 		eff2205debuf();
 	}
 
@@ -439,6 +441,17 @@ public class BattleSoldier_4 extends IPlanSoldier {
 		if (getEffVal(EffType.HERO_12465) > 0) {
 			effect12465FirePoint += ConstProperty.getInstance().getEffect12465AddFirePoint();
 			addDebugLog("每攻击命中 1(effect12465AddFirePoint) 次敌方单位后，增加自身 10(effect12465AddFirePoint) 点磁能 {}", 12465);
+		}
+		if (getEffVal(EffType.HERO_12997) > 0 && eff12997Cnt < 2 && defSoldier != null && defSoldier.isAlive()) {
+			List<BattleSoldier> bombers = getTroop().getSoldierList().stream()
+					.filter(BattleSoldier::isAlive)
+					.filter(s -> s.getType() == SoldierType.PLANE_SOLDIER_3)
+					.collect(Collectors.toList());
+			if (!bombers.isEmpty()) {
+				BattleSoldier bomber = HawkRand.randomObject(bombers);
+				eff12997Cnt++;
+				bomber.additionalAttack(defSoldier, getEffVal(EffType.HERO_12997), true, false, "【12997】蜂群链路");
+			}
 		}
 	}
 

@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 REQUIRED_EFFECTS = {
+    **{f"HERO_{effect_id}": effect_id for effect_id in range(12881, 12885)},
     **{f"HERO_{effect_id}": effect_id for effect_id in range(12941, 12945)},
     **{f"HERO_{effect_id}": effect_id for effect_id in range(12961, 12971)},
     "HERO_12981": 12981,

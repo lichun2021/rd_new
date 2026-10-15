@@ -4,11 +4,13 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
-HERO_IDS = tuple(range(1115, 1124))
+HERO_IDS = tuple(range(1115, 1126))
+SOUL_HERO_IDS = (1116, 1118, 1120, 1123, 1125)
 REQUIRED_EFFECT_IDS = {
     1121,
     1122,
     1123,
+    *range(12881, 12885),
     *range(12941, 12945),
     *range(12961, 12971),
     12981,
@@ -27,19 +29,21 @@ EXPECTED_COUNTS = {
         1119: 9,
         1120: 5,
         1121: 9,
-        1122: 5,
-        1123: 9,
+        1122: 9,
+        1123: 5,
+        1124: 9,
+        1125: 5,
     },
     "hero_soul_level.xml": {
-        hero_id: 300 if hero_id in (1116, 1118, 1120, 1122) else 0
+        hero_id: 300 if hero_id in SOUL_HERO_IDS else 0
         for hero_id in HERO_IDS
     },
     "hero_soul_skill.xml": {
-        hero_id: 6 if hero_id in (1116, 1118, 1120, 1122) else 0
+        hero_id: 6 if hero_id in SOUL_HERO_IDS else 0
         for hero_id in HERO_IDS
     },
     "hero_soul_stage.xml": {
-        hero_id: 6 if hero_id in (1116, 1118, 1120, 1122) else 0
+        hero_id: 6 if hero_id in SOUL_HERO_IDS else 0
         for hero_id in HERO_IDS
     },
 }
@@ -54,9 +58,9 @@ def hero_id_for(name: str, row: ET.Element):
         return int(row.attrib["heroId"])
     if name == "item.xml":
         item_id = int(row.attrib["id"])
-        if 1001115 <= item_id <= 1001123:
+        if 1001115 <= item_id <= 1001125:
             return item_id - 1000000
-        if 1101115 <= item_id <= 1101123:
+        if 1101115 <= item_id <= 1101125:
             return item_id - 1100000
         return None
     if name == "hero_star_level.xml":

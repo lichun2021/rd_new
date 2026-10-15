@@ -2,6 +2,7 @@ package com.hawk.game.player.hero.skill;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.hawk.os.HawkException;
 
@@ -18,10 +19,13 @@ public class Skill1122 extends ISSSHeroSkill {
 	@Override
 	public List<PBHeroEffect> effectVal() {
 		try {
-			String[] values = getCfg().getProficiencyEffect().replace("|", "_").split("_");
-			effect = NumberUtils.toInt(values[0]);
-			effectCoefficient = NumberUtils.toDouble(values[1]);
-			durationSeconds = NumberUtils.toInt(values[2]);
+			String proficiencyEffect = getCfg().getProficiencyEffect();
+			if (StringUtils.isNotEmpty(proficiencyEffect)) {
+				String[] values = proficiencyEffect.replace("|", "_").split("_");
+				effect = NumberUtils.toInt(values[0]);
+				effectCoefficient = NumberUtils.toDouble(values[1]);
+				durationSeconds = NumberUtils.toInt(values[2]);
+			}
 		} catch (Exception exception) {
 			HawkException.catchException(exception);
 		}
@@ -43,6 +47,9 @@ public class Skill1122 extends ISSSHeroSkill {
 
 	@Override
 	public int effectTime() {
+		if (durationSeconds <= 0) {
+			return 0;
+		}
 		return durationSeconds * 1000 + getSoulEffVal(EffType.HERO_12994) * 1000;
 	}
 }

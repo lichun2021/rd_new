@@ -8617,6 +8617,8 @@
       <data id="1101122" itemType="11" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="3000" resolveList="30000_1001122_10" />
       <data id="1001123" itemType="10" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="100" exchangeItem="30000_1000005_1" />
       <data id="1101123" itemType="11" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="3000" resolveList="30000_1001123_10" />
+      <data id="1001124" itemType="10" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="100" exchangeItem="30000_1000005_1" />
+      <data id="1101124" itemType="11" pile_max="999999" cityLevel="1" use="0" useAll="0" sellPrice="3000" resolveList="30000_1001124_10" />
       <data id="11371001" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371001" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
       <data id="11371003" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371003" canGive="1" protectionPeriod="7776000" protectionConsume="2" />
       <data id="11371007" itemType="141" pile_max="999999" cityLevel="1" use="1" useAll="0" sellPrice="100" dressId="2371007" canGive="1" protectionPeriod="7776000" protectionConsume="2" />

@@ -118,3 +118,15 @@
    - `world_dress.xml`：追加 `1057000`~`1066000`。
    - `item.xml`：追加 `13057000`~`13066000`。
 
+## 2026-10-15 全量补齐：1121~1124 ID 对齐 + 墨明/谭雅/参谋英雄全部技能与作用号
+
+1. **1121~1124 与客户端 1.4.111 完全对齐**：
+   - `1121` = **莱因**（坦克参谋英雄，被动 `112101~112105`，作用号 `12881~12884`）。
+   - `1122` = **艾伦**（近战/远程参谋英雄，被动 `112201~112205`，作用号 `12941~12944`）。
+   - `1123` = **莱克莎**（直升机出征英雄，含军魂，被动 `112301~112305`，作用号 `12961~12970`、战技 `12981`、魂技 `12991~12994`）。
+   - `1124` = **雪拉**（空军参谋英雄，被动 `112401~112405`，作用号 `12995~12997`）。
+   - 同步更新 `hero.xml`、`hero_skill.xml`、`hero_star_level.xml`、`hero_collect.xml`、`hero_soul_stage.xml`、`hero_soul_skill.xml`、`hero_soul_level.xml`、`hero_rise_node.xml`、`hero_rise_skill.xml`、`hero_rise_fragments.xml`（含 `1121~1125` 全部 1000 行觉醒芯片）、`battle2025ValueHero.xml`、`item.xml`（新增 `1001124`、`1101124`）、`effectid.xml`（新增 `12881~12884`），并配套存量迁移脚本 `sql/update/20261015_hero_1121_1124_align.sql`。
+2. **全部缺失技能与 Checker 补齐**：
+   - **墨明 (`1125`)**：补齐 `Checker13005`（`HERO_12728`）、`Checker13006`（`HERO_12729` + `BattleSoldier_2.sss12131Atk` 冲击伤害）、`Checker13007`（`HERO_12730`）、`Checker13014`（`HERO_12746` + `BattleSoldier_2` 坦克对决触发）、`Checker13022`（`HERO_13022` + `Hero1116Param.skill12722Atk` 棱镜视觉减伤）。
+   - **谭雅 (`2002`)**：补齐 `Checker12901` + `Checker12921`（猎杀指令 + 定点爆破，由 `BattleSoldier.hero2002HuntOrder` 每 5 回合触发追加攻击及兵种专属增益）、`Checker12903` + `Checker12904`（战术指挥集结增减伤）、`Checker12906` + `Checker12907` + `Checker12923`（意志强化 + 特工网络，拥有即生效且前 10 回合线性衰减）、`Checker12922`（特工小队单兵种出征攻防血额外加成）。
+   - **参谋英雄 (`1121` 莱因 / `1122` 艾伦 / `1124` 雪拉)**：补齐 `Skill1121`~`Skill1124`、`Checker12881~12884`（含 `BattleSoldier.skillAtkExactly` 敌方最多兵种锁定加成）、`Checker12941~12944`、`Checker12995~12997`（含 `BattleSoldier_4.attackOver` 蜂群链路轰炸机支援攻击）。

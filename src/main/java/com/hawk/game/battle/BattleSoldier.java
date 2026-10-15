@@ -403,6 +403,144 @@ public abstract class BattleSoldier implements IBattleSoldier {
 		kunNa1652();
 		eff12541SoldierAtk();
 		effect12701Atk();
+		hero2002HuntOrder();
+	}
+
+	private int buff12901Round;
+	private int buff12901AddHurtPct;
+	private int buff12901ReduceHurtPct;
+
+	private void addBuff12901AddHurt(int round, int val, int maxVal) {
+		if (buff12901Round != round) {
+			buff12901Round = round;
+			buff12901AddHurtPct = 0;
+			buff12901ReduceHurtPct = 0;
+		}
+		buff12901AddHurtPct = Math.min(maxVal, buff12901AddHurtPct + val);
+	}
+
+	private void addBuff12901ReduceHurt(int round, int val, int maxVal) {
+		if (buff12901Round != round) {
+			buff12901Round = round;
+			buff12901AddHurtPct = 0;
+			buff12901ReduceHurtPct = 0;
+		}
+		buff12901ReduceHurtPct = Math.min(maxVal, buff12901ReduceHurtPct + val);
+	}
+
+	private void hero2002HuntOrder() {
+		try {
+			int round = getBattleRound();
+			if (round <= 0 || round % 5 != 0 || getEffVal(EffType.HERO_12901) <= 0 || !isAlive()) {
+				return;
+			}
+			int hurtRate = getEffVal(EffType.HERO_12901) + getEffVal(EffType.HERO_12921);
+			boolean isMass = BattleConst.WarEff.MASS.check(getTroop().getWarEff());
+			SoldierType selfType = getType();
+			if (isMass && (selfType == SoldierType.TANK_SOLDIER_2 || selfType == SoldierType.PLANE_SOLDIER_3
+					|| selfType == SoldierType.FOOT_SOLDIER_5 || selfType == SoldierType.FOOT_SOLDIER_6)) {
+				hurtRate *= 2;
+			}
+
+			List<BattleSoldier> enemies = getTroop().getEnemyTroop().getSoldierList().stream()
+					.filter(BattleSoldier::isAlive)
+					.filter(BattleSoldier::canBeAttack)
+					.collect(Collectors.toList());
+			if (enemies.isEmpty()) {
+				return;
+			}
+
+			BattleSoldier target = null;
+			switch (selfType) {
+			case TANK_SOLDIER_2:
+				target = pickHuntTarget(enemies, SoldierType.PLANE_SOLDIER_3, true);
+				break;
+			case PLANE_SOLDIER_3:
+				target = pickHuntTarget(enemies, SoldierType.FOOT_SOLDIER_6, false);
+				break;
+			case FOOT_SOLDIER_5:
+				target = pickHuntTarget(enemies, SoldierType.TANK_SOLDIER_2, true);
+				break;
+			case FOOT_SOLDIER_6:
+				target = pickHuntTarget(enemies, SoldierType.FOOT_SOLDIER_5, false);
+				break;
+			case TANK_SOLDIER_1:
+				target = pickHuntTarget(enemies, null, true);
+				for (BattleSoldier ally : getTroop().getSoldierList()) {
+					if (ally.isAlive() && ally.isSoldier()) {
+						ally.addBuff12901ReduceHurt(round, 500, 1000);
+					}
+				}
+				break;
+			case CANNON_SOLDIER_8:
+				target = pickHuntTarget(enemies, null, true);
+				for (BattleSoldier ally : getTroop().getSoldierList()) {
+					if (ally.isAlive() && ally.isJinZhan()) {
+						ally.addBuff12901ReduceHurt(round, 1000, 2000);
+					}
+				}
+				break;
+			case PLANE_SOLDIER_4:
+				target = pickHuntTarget(enemies, null, false);
+				for (BattleSoldier ally : getTroop().getSoldierList()) {
+					if (ally.isAlive() && ally.isSoldier()) {
+						ally.addBuff12901AddHurt(round, 5000, 10000);
+					}
+				}
+				break;
+			case CANNON_SOLDIER_7:
+				target = pickHuntTarget(enemies, null, false);
+				for (BattleSoldier ally : getTroop().getSoldierList()) {
+					if (ally.isAlive() && ally.isYuanCheng()) {
+						ally.addBuff12901ReduceHurt(round, 1000, 2000);
+					}
+				}
+				break;
+			default:
+				break;
+			}
+
+			if (target != null && hurtRate > 0) {
+				additionalAttack(target, hurtRate, true, false, "【12901】猎杀指令");
+			}
+		} catch (Exception e) {
+			HawkException.catchException(e);
+		}
+	}
+
+	private BattleSoldier pickHuntTarget(List<BattleSoldier> enemies, SoldierType preferredType, boolean preferMelee) {
+		if (preferredType != null) {
+			List<BattleSoldier> pref = enemies.stream().filter(s -> s.getType() == preferredType).collect(Collectors.toList());
+			if (!pref.isEmpty()) {
+				return HawkRand.randomObject(pref);
+			}
+		}
+		List<BattleSoldier> line = enemies.stream()
+				.filter(s -> preferMelee ? s.isJinZhan() : s.isYuanCheng())
+				.collect(Collectors.toList());
+		if (!line.isEmpty()) {
+			return HawkRand.randomObject(line);
+		}
+		return HawkRand.randomObject(enemies);
+	}
+
+	private boolean isEnemyMaxSoldierType(BattleSoldier defSoldier) {
+		if (defSoldier == null || defSoldier.getTroop() == null) {
+			return false;
+		}
+		Map<SoldierType, Long> countByType = new EnumMap<>(SoldierType.class);
+		long maxCount = 0;
+		for (BattleSoldier s : defSoldier.getTroop().getSoldierList()) {
+			if (!s.isSoldier()) {
+				continue;
+			}
+			long next = countByType.getOrDefault(s.getType(), 0L) + s.getOriCnt();
+			countByType.put(s.getType(), next);
+			if (next > maxCount) {
+				maxCount = next;
+			}
+		}
+		return maxCount > 0 && countByType.getOrDefault(defSoldier.getType(), 0L) == maxCount;
 	}
 	
 	private void checkebuff2211() {
@@ -1416,6 +1554,9 @@ public abstract class BattleSoldier implements IBattleSoldier {
 			addDebugLog("###{} 【12517】 - 且受伤害的单位的- 触发条件本质为重力缠绕解除，关联【12515】- 伤害效率降低 {}", getUUID(), debuff12517Val, hurtVal);
 		}
 		hurtVal *= (1 - GsConst.EFF_PER * buff12811(defSoldier).second);
+		if (buff12901Round == getBattleRound() && buff12901AddHurtPct > 0) {
+			hurtVal *= (1 + buff12901AddHurtPct * GsConst.EFF_PER);
+		}
 		return hurtVal;
 	}
 
@@ -1426,6 +1567,13 @@ public abstract class BattleSoldier implements IBattleSoldier {
 		for (int effVal : list) {
 			hurtVal *= (1 - effVal * GsConst.EFF_PER);
 			troop.getBattle().addDebugLog("###Soldier={} effVal={} 伤害减少的作用号在计算时为累乘算式, 操作后伤害值 {}", getUUID(), effVal, hurtVal);
+		}
+		if (getBattleRound() > 1) {
+			hurtVal = adjustHero2002WillDecayReduceHurt(hurtVal, EffType.HERO_12907);
+			hurtVal = adjustHero2002WillDecayReduceHurt(hurtVal, EffType.HERO_12923);
+		}
+		if (buff12901Round == getBattleRound() && buff12901ReduceHurtPct > 0) {
+			hurtVal *= (1 - buff12901ReduceHurtPct * GsConst.EFF_PER);
 		}
 		if (getBattleRound() <= 20 && getEffVal(EffType.EFF_2222) > 0) {
 			hurtVal *= (1 - getEffVal(EffType.EFF_2222) * GsConst.EFF_PER);
@@ -1503,6 +1651,25 @@ public abstract class BattleSoldier implements IBattleSoldier {
 		return hurtVal;
 	}
 
+	private double adjustHero2002WillDecayReduceHurt(double hurtVal, EffType effType) {
+		int baseVal = getEffVal(effType);
+		if (baseVal <= 0 || baseVal >= GsConst.EFF_RATE) {
+			return hurtVal;
+		}
+		int round = getBattleRound();
+		int curVal = round > 10 ? 0 : (int) (baseVal * (11L - round) / 10);
+		return hurtVal / (1 - baseVal * GsConst.EFF_PER) * (1 - curVal * GsConst.EFF_PER);
+	}
+
+	private int hero2002WillDecayStatPenalty() {
+		int baseVal = getEffVal(EffType.HERO_12906);
+		if (baseVal <= 0 || getBattleRound() <= 1) {
+			return 0;
+		}
+		int decayedSteps = Math.min(10, getBattleRound() - 1);
+		return (int) (baseVal * (long) decayedSteps / 10);
+	}
+
 	/** 遇到需要叠加减伤覆盖 */
 	public int skillReduceHurtPer(BattleSoldier atkSoldier) {
 		return 0;
@@ -1515,6 +1682,10 @@ public abstract class BattleSoldier implements IBattleSoldier {
 	 */
 	public int skillAtkExactly(BattleSoldier defSoldier) {
 		int result = getBattleRound() * getEffVal(EffType.EFF_10093);
+		if (getEffVal(EffType.HERO_12882) > 0 && defSoldier != null && isEnemyMaxSoldierType(defSoldier)) {
+			result += getEffVal(EffType.HERO_12882);
+		}
+		result -= hero2002WillDecayStatPenalty();
 		return result;
 	}
 
@@ -1540,11 +1711,11 @@ public abstract class BattleSoldier implements IBattleSoldier {
 	 * @return 万分比
 	 */
 	public int skillDefExactly(BattleSoldier atkSoldier) {
-		return 0;
+		return -hero2002WillDecayStatPenalty();
 	}
 
 	public int skillHPExactly() {
-		return 0;
+		return -hero2002WillDecayStatPenalty();
 	}
 
 	public int skillHPExactly(BattleSoldier atkSoldier) {
