@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.google.common.collect.ImmutableMap;
 import com.hawk.game.protocol.World.PresetMarchManhattan;
 import org.hawk.config.HawkConfigManager;
 import org.hawk.log.HawkLog;
@@ -29,6 +30,7 @@ import com.hawk.log.LogConst.PowerChangeReason;
  * @author lating
  */
 public class ManhattanSW extends PlayerManhattan {
+	private boolean loadedOmegaActive;
 	
 	public static ManhattanSW create(ManhattanEntity entity) {
 		ManhattanSW manhattan = new ManhattanSW(); 
@@ -124,6 +126,7 @@ public class ManhattanSW extends PlayerManhattan {
 	}
 	
 	public Map<Integer, Integer> loadEffValMap(boolean loadSkill) {
+		this.loadedOmegaActive = isOmegaActiveForPlayer();
 		Map<Integer, Integer> map = new HashMap<>();
 		//超武品阶
 		ManhattanSWStageCfg stageCfg = this.getStageCfg();
@@ -151,6 +154,14 @@ public class ManhattanSW extends PlayerManhattan {
 		}
 		
 		return map;
+	}
+
+	@Override
+	public ImmutableMap<Integer, Integer> getEffValMap() {
+		if (isOmegaActiveForPlayer() != this.loadedOmegaActive) {
+			loadEffVal();
+		}
+		return super.getEffValMap();
 	}
 	
 	@Override
@@ -289,12 +300,15 @@ public class ManhattanSW extends PlayerManhattan {
 		swBuilder.addAllPosLevels(list);
 		builder.addSwInfos(swBuilder);
 	}
+
+	private boolean isOmegaActiveForPlayer() {
+		String playerId = getEntity() == null ? null : getEntity().getPlayerId();
+		ManhattanBase base = ManhattanBase.getBaseByPlayerId(playerId);
+		return base != null && base.isOmegaTotalSkillActive();
+	}
 	
 	public ManhattanSWSkillCfg getUnlockedSkillCfg() {
-		PlayerManhattan base = getParent() == null ? null : getParent().getManhattanBase();
-		boolean omegaActive = base instanceof ManhattanBase
-				&& ((ManhattanBase) base).isOmegaTotalSkillActive();
-		return ManhattanSWSkillCfg.getConfig(getSWCfgId(), getStage(), omegaActive);
+		return ManhattanSWSkillCfg.getConfig(getSWCfgId(), getStage(), isOmegaActiveForPlayer());
 	}
 	
 }

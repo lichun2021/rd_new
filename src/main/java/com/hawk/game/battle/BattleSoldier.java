@@ -1682,8 +1682,9 @@ public abstract class BattleSoldier implements IBattleSoldier {
 	 */
 	public int skillAtkExactly(BattleSoldier defSoldier) {
 		int result = getBattleRound() * getEffVal(EffType.EFF_10093);
-		if (getEffVal(EffType.HERO_12882) > 0 && defSoldier != null && isEnemyMaxSoldierType(defSoldier)) {
-			result += getEffVal(EffType.HERO_12882);
+		EffType eff12882 = EffType.valueOf(12882);
+		if (eff12882 != null && getEffVal(eff12882) > 0 && defSoldier != null && isEnemyMaxSoldierType(defSoldier)) {
+			result += getEffVal(eff12882);
 		}
 		result -= hero2002WillDecayStatPenalty();
 		return result;

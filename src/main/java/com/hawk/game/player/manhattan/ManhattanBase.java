@@ -24,12 +24,20 @@ import com.hawk.serialize.string.SerializeHelper;
  * @author lating
  */
 public class ManhattanBase extends PlayerManhattan {
+	private static final Map<String, ManhattanBase> BASE_BY_PLAYER = new ConcurrentHashMap<>();
 	private final Map<Integer, Integer> omegaPosLevelMap = new ConcurrentHashMap<>();
+
+	public static ManhattanBase getBaseByPlayerId(String playerId) {
+		return playerId == null ? null : BASE_BY_PLAYER.get(playerId);
+	}
 
 	@Override
 	public void init(ManhattanEntity entity) {
 		omegaPosLevelMap.putAll(SerializeHelper.stringToMap(
 				entity.getOmegaPosLevel(), Integer.class, Integer.class));
+		if (entity.getPlayerId() != null) {
+			BASE_BY_PLAYER.put(entity.getPlayerId(), this);
+		}
 		super.init(entity);
 	}
 	

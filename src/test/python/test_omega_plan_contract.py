@@ -60,6 +60,8 @@ OMEGA_RUNTIME_HARNESS = textwrap.dedent(
             loadConfig(ManhattanOmegaLevelCfg.class);
             loadConfig(ManhattanOmegaSkillCfg.class);
             loadConfig(ManhattanSWSkillCfg.class);
+            loadConfig(com.hawk.game.config.ManhattanSWStageCfg.class);
+            loadConfig(com.hawk.game.config.ManhattanBaseStageCfg.class);
             loadConfig(EffectCfg.class);
             loadConfig(ItemCfg.class);
             loadConfig(DressCfg.class);
@@ -73,6 +75,25 @@ OMEGA_RUNTIME_HARNESS = textwrap.dedent(
             check(ManhattanOmegaSkillCfg.getSkills(3).get(0).getAttrMap().containsKey(2221), "301 should map to 2221");
             check(ManhattanSWSkillCfg.getConfig(1001, 30, false).getLevel() == 5, "1001 stage 30 normal skill level != 5");
             check(ManhattanSWSkillCfg.getConfig(1001, 30, true).getLevel() == 6, "1001 stage 30 omega skill level != 6");
+
+            // Regression check: ManhattanSW.create() before ManhattanBase.create() must not call getParent()/LocalCache
+            com.hawk.game.entity.ManhattanEntity swEntity = new com.hawk.game.entity.ManhattanEntity();
+            swEntity.setPlayerId("test_player_omega");
+            swEntity.setBase(0);
+            swEntity.setSwId(1001);
+            swEntity.setStage(30);
+            swEntity.setDeployed(1);
+            com.hawk.game.player.manhattan.ManhattanSW.create(swEntity);
+            check(swEntity.getManhattanObj().getUnlockedSkillCfg().getLevel() == 5, "SW read before Base should start at level 5");
+
+            com.hawk.game.entity.ManhattanEntity baseEntity = new com.hawk.game.entity.ManhattanEntity();
+            baseEntity.setPlayerId("test_player_omega");
+            baseEntity.setBase(1);
+            baseEntity.setStage(60);
+            baseEntity.setOmegaPosLevel("1_150,2_150,3_150");
+            com.hawk.game.player.manhattan.ManhattanBase.create(baseEntity);
+            check(swEntity.getManhattanObj().getUnlockedSkillCfg().getLevel() == 6, "SW after Base(150/150/150) should resolve to level 6");
+            check(!swEntity.getManhattanObj().getEffValMap().isEmpty(), "SW effValMap should refresh after Base is read");
 
             CheckerFactory.getInstance().init();
             expectChecker(BattleTupleType.Type.SOLDIER_SKILL, EffType.EFF_2221);
