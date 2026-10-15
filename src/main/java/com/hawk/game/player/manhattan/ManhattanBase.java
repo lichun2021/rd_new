@@ -33,8 +33,15 @@ public class ManhattanBase extends PlayerManhattan {
 
 	@Override
 	public void init(ManhattanEntity entity) {
-		omegaPosLevelMap.putAll(SerializeHelper.stringToMap(
-				entity.getOmegaPosLevel(), Integer.class, Integer.class));
+		try {
+			String omegaStr = entity.getOmegaPosLevel();
+			if (omegaStr != null && !omegaStr.isEmpty()) {
+				omegaPosLevelMap.putAll(SerializeHelper.stringToMap(
+						omegaStr, Integer.class, Integer.class));
+			}
+		} catch (NoSuchMethodError e) {
+			// 兼容未同步最新 ManhattanEntity.class 时的旧版实体字节码
+		}
 		if (entity.getPlayerId() != null) {
 			BASE_BY_PLAYER.put(entity.getPlayerId(), this);
 		}
