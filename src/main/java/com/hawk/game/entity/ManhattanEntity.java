@@ -91,7 +91,9 @@ public class ManhattanEntity extends HawkDBEntity {
 	private PlayerManhattan playerManhattan;
 
 	public ManhattanEntity() {
-		asyncLandPeriod(GsConfig.getInstance().getEntitySyncPeriod());
+		if (GsConfig.getInstance() != null) {
+			asyncLandPeriod(GsConfig.getInstance().getEntitySyncPeriod());
+		}
 	}
 
 	@Override

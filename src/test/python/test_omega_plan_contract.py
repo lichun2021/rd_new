@@ -90,7 +90,7 @@ OMEGA_RUNTIME_HARNESS = textwrap.dedent(
             baseEntity.setPlayerId("test_player_omega");
             baseEntity.setBase(1);
             baseEntity.setStage(60);
-            baseEntity.setOmegaPosLevel("1_150,2_150,3_150");
+            baseEntity.setOmegaPosLevel("1_150|2_150|3_150");
             com.hawk.game.player.manhattan.ManhattanBase.create(baseEntity);
             check(swEntity.getManhattanObj().getUnlockedSkillCfg().getLevel() == 6, "SW after Base(150/150/150) should resolve to level 6");
             check(!swEntity.getManhattanObj().getEffValMap().isEmpty(), "SW effValMap should refresh after Base is read");
@@ -204,6 +204,9 @@ class OmegaPlanContractTest(unittest.TestCase):
             ROOT / "src/main/java/com/hawk/game/config/ManhattanOmegaLevelCfg.java",
             ROOT / "src/main/java/com/hawk/game/config/ManhattanOmegaSkillCfg.java",
             ROOT / "src/main/java/com/hawk/game/config/ManhattanSWSkillCfg.java",
+            ROOT / "src/main/java/com/hawk/game/entity/ManhattanEntity.java",
+            ROOT / "src/main/java/com/hawk/game/player/manhattan/ManhattanBase.java",
+            ROOT / "src/main/java/com/hawk/game/player/manhattan/ManhattanSW.java",
             ROOT / "src/main/java/com/hawk/game/battle/effect/impl/manhattan/Checker2221.java",
             ROOT / "src/main/java/com/hawk/game/battle/effect/impl/manhattan/Checker2222.java",
             ROOT / "src/main/java/com/hawk/game/battle/effect/impl/manhattan/Checker2223.java",
@@ -222,8 +225,7 @@ class OmegaPlanContractTest(unittest.TestCase):
                 ["java", "-cp", str(tmp_path) + os.pathsep + classpath, "OmegaRuntimeHarness"],
                 capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=str(ROOT),
             )
-            output = "\n".join(line for line in (result.stdout + result.stderr).splitlines()
-                               if "RESULT" in line or "FAIL" in line)
+            output = (result.stdout + "\n" + result.stderr).strip()
             self.assertEqual(0, result.returncode, "欧米伽配置与检查器加载失败:\n" + output)
             self.assertIn("RESULT OK", result.stdout)
 

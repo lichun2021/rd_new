@@ -60,3 +60,64 @@ OmegaRuntimeHarness.main(OmegaRuntimeHarness.java:49)
 2026-10-14 21:27:31,099 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ItemCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/item.xml
 2026-10-14 21:27:31,272 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress_model.xml
 2026-10-14 21:27:31,298 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressToolCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress.xml
+2026-10-15 22:48:28,158 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-15 22:48:28,163 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-15 22:48:30,473 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-15 22:48:30,477 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-15 22:48:30,485 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaLevelCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_level.xml
+2026-10-15 22:48:30,532 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_skill.xml
+2026-10-15 22:48:30,537 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_skill.xml
+2026-10-15 22:48:30,544 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.EffectCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/effectid.xml
+2026-10-15 22:48:30,630 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ItemCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/item.xml
+2026-10-15 22:48:30,823 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress_model.xml
+2026-10-15 22:48:30,850 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressToolCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress.xml
+2026-10-15 22:49:10,318 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-15 22:49:10,324 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-15 22:49:13,808 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-15 22:49:13,814 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-15 22:49:13,821 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaLevelCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_level.xml
+2026-10-15 22:49:13,874 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_skill.xml
+2026-10-15 22:49:13,879 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_skill.xml
+2026-10-15 22:49:13,886 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWStageCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_stage.xml
+2026-10-15 22:49:13,911 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanBaseStageCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_base_stage.xml
+2026-10-15 22:49:13,916 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.EffectCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/effectid.xml
+2026-10-15 22:49:13,990 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ItemCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/item.xml
+2026-10-15 22:49:14,171 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress_model.xml
+2026-10-15 22:49:14,207 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressToolCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress.xml
+2026-10-15 22:50:29,011 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-15 22:50:29,017 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-15 22:50:31,408 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-15 22:50:31,413 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-15 22:50:31,420 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaLevelCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_level.xml
+2026-10-15 22:50:31,462 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_skill.xml
+2026-10-15 22:50:31,466 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_skill.xml
+2026-10-15 22:50:31,473 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWStageCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_stage.xml
+2026-10-15 22:50:31,493 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanBaseStageCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_base_stage.xml
+2026-10-15 22:50:31,499 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.EffectCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/effectid.xml
+2026-10-15 22:50:31,573 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ItemCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/item.xml
+2026-10-15 22:50:31,738 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress_model.xml
+2026-10-15 22:50:31,768 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressToolCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress.xml
+2026-10-15 22:53:12,679 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-15 22:53:12,683 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-15 22:53:12,688 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaLevelCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_level.xml
+2026-10-15 22:53:12,724 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_skill.xml
+2026-10-15 22:53:12,729 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_skill.xml
+2026-10-15 22:53:12,735 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWStageCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_stage.xml
+2026-10-15 22:53:12,754 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanBaseStageCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_base_stage.xml
+2026-10-15 22:53:12,759 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.EffectCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/effectid.xml
+2026-10-15 22:53:12,823 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ItemCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/item.xml
+2026-10-15 22:53:12,980 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress_model.xml
+2026-10-15 22:53:13,002 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressToolCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress.xml
+2026-10-15 22:54:26,451 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-15 22:54:26,456 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-15 22:54:28,852 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.GsConfig, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/app.cfg
+2026-10-15 22:54:28,856 INFO [main] [HawkLog.java:45] - load config: D:/projects/rd_new/Code_Server/1.4.109/GameServer/cfg/svr.cfg
+2026-10-15 22:54:28,862 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaLevelCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_level.xml
+2026-10-15 22:54:28,904 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanOmegaSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_omega_skill.xml
+2026-10-15 22:54:28,907 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWSkillCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_skill.xml
+2026-10-15 22:54:28,913 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanSWStageCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_sw_stage.xml
+2026-10-15 22:54:28,935 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ManhattanBaseStageCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/manhattan_base_stage.xml
+2026-10-15 22:54:28,940 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.EffectCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/effectid.xml
+2026-10-15 22:54:29,003 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.ItemCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/item.xml
+2026-10-15 22:54:29,164 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress_model.xml
+2026-10-15 22:54:29,189 INFO [main] [HawkLog.java:45] - load config, class: com.hawk.game.config.DressToolCfg, filePath: D:/projects/rd_new/Code_Server/1.4.109/GameServer/xml/world_dress.xml
