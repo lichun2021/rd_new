@@ -136,6 +136,7 @@ import com.hawk.game.protocol.Hero.PBHeroArchiveInfo;
 import com.hawk.game.protocol.Hero.PBHeroArchivePush;
 import com.hawk.game.protocol.Hero.PBHeroArchiveReq;
 import com.hawk.game.protocol.Hero.PBHeroEffect;
+import com.hawk.game.protocol.Hero.PBHeroInfoRequest;
 import com.hawk.game.protocol.Hero.PBHeroItem;
 import com.hawk.game.protocol.Hero.PBHeroOffice;
 import com.hawk.game.protocol.Hero.PBHeroOfficeAppointRequest;
@@ -1177,8 +1178,9 @@ public class PlayerHeroModule extends PlayerModule {
 	 */
 	@ProtocolHandler(code = HP.code.HERO_INFO_REQUEST_C_VALUE)
 	private void onHeroInfoRequest(HawkProtocol protocol) {
-		final int heroId = 0;
-		final String playerId = "";
+		PBHeroInfoRequest req = protocol.parseProtocol(PBHeroInfoRequest.getDefaultInstance());
+		final int heroId = req.getHeroId();
+		final String playerId = String.valueOf(req.getPlayerId());
 		Player targetPlayer = GlobalData.getInstance().makesurePlayer(playerId);
 		if (Objects.isNull(targetPlayer)) {
 			return;
