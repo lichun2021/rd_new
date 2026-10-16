@@ -19,6 +19,8 @@ public class SkillSlot implements SerializJsonStrAble {
 	private int level; // 解锁等级
 	private int index;
 	private IHeroSkill skill;
+	// Storage-only backup of a retired fixed skill; never sent as an active skill.
+	private String legacySkillSerialized;
 
 	public SkillSlot(PlayerHero parent) {
 		this.parent = parent;
@@ -47,7 +49,7 @@ public class SkillSlot implements SerializJsonStrAble {
 
 	@Override
 	public String serializ() {
-		Object[] arr = new Object[5];
+		Object[] arr = new Object[legacySkillSerialized == null ? 5 : 6];
 		arr[0] = level;
 		arr[1] = index;
 
@@ -59,6 +61,9 @@ public class SkillSlot implements SerializJsonStrAble {
 			arr[4] = skill.serializ();
 		}
 
+		if (legacySkillSerialized != null) {
+			arr[5] = legacySkillSerialized;
+		}
 		JSONArray array = new JSONArray(Arrays.asList(arr));
 		return array.toJSONString();
 	}
@@ -68,6 +73,8 @@ public class SkillSlot implements SerializJsonStrAble {
 		JSONArray array = JSONArray.parseArray(serialiedStr);
 		level = array.getIntValue(0);
 		index = array.getIntValue(1);
+		legacySkillSerialized = array.size() > 5 ? array.getString(5) : null;
+		skill = null;
 		if (array.getBooleanValue(2)) {
 			skill = HeroSkillFactory.getInstance().createEmptySkill(array.getIntValue(3));
 			skill.setParent(this);

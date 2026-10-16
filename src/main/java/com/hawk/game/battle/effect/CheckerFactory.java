@@ -73,6 +73,10 @@ public class CheckerFactory {
 			table = ImmutableTable.copyOf(table);
 		} catch (Exception e) {
 			HawkException.catchException(e);
+			// Never continue startup with only part of the battle effects registered.
+			table = ImmutableTable.of();
+			throw new IllegalStateException("Battle checker initialization failed; verify the loaded "
+					+ "gameprotocol.jar matches the server classes", e);
 		}
 	}
 }
