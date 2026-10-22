@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 HERO_IDS = tuple(range(1115, 1126))
-SOUL_HERO_IDS = (1116, 1118, 1120, 1123, 1125)
+SOUL_HERO_IDS = (1116, 1118, 1120, 1122, 1125)
 REQUIRED_EFFECT_IDS = {
     1121,
     1122,
@@ -29,8 +29,8 @@ EXPECTED_COUNTS = {
         1119: 9,
         1120: 5,
         1121: 9,
-        1122: 9,
-        1123: 5,
+        1122: 5,
+        1123: 9,
         1124: 9,
         1125: 5,
     },
@@ -130,6 +130,56 @@ class NewHeroConfigClosureTest(unittest.TestCase):
             if unresolved:
                 missing[hero_id] = unresolved
         self.assertEqual({}, missing)
+
+    def test_online_identity_mapping_is_preserved(self):
+        heroes = {
+            int(row.attrib["heroId"]): row.attrib
+            for row in rows(self.xml_root, "hero.xml")
+        }
+        self.assertEqual("艾伦", heroes[1121]["heroname"])
+        self.assertEqual("莱克莎", heroes[1122]["heroname"])
+        self.assertEqual("雪拉", heroes[1123]["heroname"])
+        self.assertEqual("莱因", heroes[1124]["heroname"])
+
+        skills = {
+            int(row.attrib["skillId"]): row.attrib
+            for row in rows(self.xml_root, "hero_skill.xml")
+        }
+        self.assertIn("12941_0_0.195", skills[112101]["effectList"])
+        self.assertIn("12961_0_0.01", skills[112201]["effectList"])
+        self.assertIn("12995_0_0.19", skills[112301]["effectList"])
+        self.assertIn("12881_0_0.195", skills[112401]["effectList"])
+
+    def test_online_identity_rise_data_is_preserved(self):
+        rise_skills = {
+            int(row.attrib["heroId"]): row.attrib
+            for row in rows(self.xml_root, "hero_rise_skill.xml")
+            if row.attrib.get("level") == "0" and int(row.attrib["heroId"]) in (1121, 1122, 1123, 1124)
+        }
+        self.assertEqual(("3", "11088_5000_5000"),
+                         (rise_skills[1121]["type"], rise_skills[1121]["techEffect"]))
+        self.assertEqual(("2", "11121_0_2|11122_5_5"),
+                         (rise_skills[1122]["type"], rise_skills[1122]["techEffect"]))
+        self.assertEqual(("2", "11089_4000_4000"),
+                         (rise_skills[1123]["type"], rise_skills[1123]["techEffect"]))
+        self.assertEqual(("1", "11088_5000_5000"),
+                         (rise_skills[1124]["type"], rise_skills[1124]["techEffect"]))
+
+    def test_online_identity_migration_stays_disabled(self):
+        migration = (self.repo / "sql/update/20261015_hero_1121_1124_align.sql").read_text(
+            encoding="utf-8"
+        )
+        self.assertNotIn("UPDATE `hero`", migration)
+        self.assertNotIn("UPDATE `item`", migration)
+
+        player_hero = (
+            self.repo / "src/main/java/com/hawk/game/player/hero/PlayerHero.java"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("LegacyHeroSkillMigration", player_hero)
+        self.assertNotIn("migrateLegacySkillSlot", player_hero)
+        self.assertFalse(
+            (self.repo / "src/main/java/com/hawk/game/player/hero/LegacyHeroSkillMigration.java").exists()
+        )
 
 
 if __name__ == "__main__":

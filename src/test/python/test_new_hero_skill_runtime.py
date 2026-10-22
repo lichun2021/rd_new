@@ -10,23 +10,23 @@ ROOT = pathlib.Path(__file__).resolve().parents[3]
 SKILL_DIR = ROOT / "src/main/java/com/hawk/game/player/hero/skill"
 EFFECT_DIR = ROOT / "src/main/java/com/hawk/game/battle/effect/impl"
 
-# 1.4.111 客户端的全部新英雄及补齐英雄(1121 莱因 / 1122 艾伦 / 1124 雪拉 / 1125 墨明 / 2002 谭雅) 作用号
+# 保留线上英雄 ID：1121 艾伦 / 1122 莱克莎 / 1123 雪拉 / 1124 莱因。
 HERO1121_CHECKERS = {
-    "Checker12881.java": ("Type.ATK, Type.DEF, Type.HP", "EffType.HERO_12881"),
-    "Checker12882.java": ("Type.SOLDIER_SKILL", "EffType.HERO_12882"),
-    "Checker12883.java": ("Type.REDUCE_HURT_PCT", "EffType.HERO_12883"),
-    "Checker12884.java": ("Type.REDUCE_HURT_PCT", "EffType.HERO_12884"),
-}
-HERO1122_STAFF_CHECKERS = {
     "Checker12941.java": ("Type.ATK, Type.DEF, Type.HP", "EffType.HERO_12941"),
     "Checker12942.java": ("Type.ATK, Type.DEF, Type.HP", "EffType.HERO_12942"),
     "Checker12943.java": ("Type.REDUCE_HURT_PCT", "EffType.HERO_12943"),
     "Checker12944.java": ("Type.REDUCE_HURT_PCT", "EffType.HERO_12944"),
 }
-HERO1124_CHECKERS = {
+HERO1123_CHECKERS = {
     "Checker12995.java": ("Type.ATK, Type.DEF, Type.HP", "EffType.HERO_12995"),
     "Checker12996.java": ("Type.REDUCE_HURT_PCT", "EffType.HERO_12996"),
     "Checker12997.java": ("Type.SOLDIER_SKILL", "EffType.HERO_12997"),
+}
+HERO1124_CHECKERS = {
+    "Checker12881.java": ("Type.ATK, Type.DEF, Type.HP", "EffType.HERO_12881"),
+    "Checker12882.java": ("Type.SOLDIER_SKILL", "EffType.HERO_12882"),
+    "Checker12883.java": ("Type.REDUCE_HURT_PCT", "EffType.HERO_12883"),
+    "Checker12884.java": ("Type.REDUCE_HURT_PCT", "EffType.HERO_12884"),
 }
 HERO1125_CHECKERS = {
     "Checker13005.java": ("Type.HURT_PCT", "EffType.HERO_12728"),          # 值 13005
@@ -112,25 +112,25 @@ REGISTRATION_HARNESS = textwrap.dedent(
             expectSkill(heroSkills, 200205, "Skill2002");
             expectSkill(heroSkills, 112001, "Skill1120");
 
-            // 1121 莱因
-            expectChecker(BattleTupleType.Type.ATK, EffType.HERO_12881, "莱因 12881");
-            expectChecker(BattleTupleType.Type.SOLDIER_SKILL, EffType.HERO_12882, "莱因 12882");
-            expectChecker(BattleTupleType.Type.REDUCE_HURT_PCT, EffType.HERO_12883, "莱因 12883");
-            expectChecker(BattleTupleType.Type.REDUCE_HURT_PCT, EffType.HERO_12884, "莱因 12884");
-
-            // 1122 艾伦
+            // 1121 艾伦
             expectChecker(BattleTupleType.Type.ATK, EffType.HERO_12941, "艾伦 12941");
             expectChecker(BattleTupleType.Type.ATK, EffType.HERO_12942, "艾伦 12942");
             expectChecker(BattleTupleType.Type.REDUCE_HURT_PCT, EffType.HERO_12943, "艾伦 12943");
             expectChecker(BattleTupleType.Type.REDUCE_HURT_PCT, EffType.HERO_12944, "艾伦 12944");
 
-            // 1123 莱克莎
+            // 1122 莱克莎
             expectChecker(BattleTupleType.Type.REDUCE_HURT_PCT, EffType.HERO_12981, "莱克莎 12981");
 
-            // 1124 雪拉
+            // 1123 雪拉
             expectChecker(BattleTupleType.Type.ATK, EffType.HERO_12995, "雪拉 12995");
             expectChecker(BattleTupleType.Type.REDUCE_HURT_PCT, EffType.HERO_12996, "雪拉 12996");
             expectChecker(BattleTupleType.Type.SOLDIER_SKILL, EffType.HERO_12997, "雪拉 12997");
+
+            // 1124 莱因
+            expectChecker(BattleTupleType.Type.ATK, EffType.HERO_12881, "莱因 12881");
+            expectChecker(BattleTupleType.Type.SOLDIER_SKILL, EffType.HERO_12882, "莱因 12882");
+            expectChecker(BattleTupleType.Type.REDUCE_HURT_PCT, EffType.HERO_12883, "莱因 12883");
+            expectChecker(BattleTupleType.Type.REDUCE_HURT_PCT, EffType.HERO_12884, "莱因 12884");
 
             // 1125 墨明
             expectChecker(BattleTupleType.Type.HURT_PCT, EffType.HERO_12728, "墨明 13005");
@@ -171,7 +171,7 @@ class NewHeroSkillRuntimeTest(unittest.TestCase):
 
     def test_skill_classes_declare_expected_skill_ids(self):
         cases = {
-            "Skill1123.java": ("112301, 112302, 112303, 112304, 112305", "HERO_12994"),
+            "Skill1122.java": ("112201, 112202, 112203, 112204, 112205", "HERO_12994"),
             "Skill1125.java": ("112501, 112502, 112503, 112504, 112505", "HERO_12771"),
             "Skill2002.java": ("200201, 200202, 200203, 200204, 200205", "HERO_12924"),
         }
@@ -184,17 +184,19 @@ class NewHeroSkillRuntimeTest(unittest.TestCase):
 
         for staff_skill, skill_ids in (
             ("Skill1121.java", "112101, 112102, 112103, 112104, 112105"),
-            ("Skill1122.java", "112201, 112202, 112203, 112204, 112205"),
+            ("Skill1123.java", "112301, 112302, 112303, 112304, 112305"),
             ("Skill1124.java", "112401, 112402, 112403, 112404, 112405"),
         ):
             path = SKILL_DIR / staff_skill
             self.assertTrue(path.is_file(), f"{staff_skill} 未实现")
-            self.assertIn(skill_ids, path.read_text(encoding="utf-8"))
+            source = path.read_text(encoding="utf-8")
+            self.assertIn(skill_ids, source)
+            self.assertNotIn("getSoulEffVal", source, staff_skill)
 
     def test_checkers_exist_with_expected_tuple(self):
         groups = (
             (HERO1121_CHECKERS, EFFECT_DIR / "hero1121"),
-            (HERO1122_STAFF_CHECKERS, EFFECT_DIR / "hero1122"),
+            (HERO1123_CHECKERS, EFFECT_DIR / "hero1123"),
             (HERO1124_CHECKERS, EFFECT_DIR / "hero1124"),
             (HERO1125_CHECKERS, EFFECT_DIR / "hero1125"),
             (HERO2002_CHECKERS, EFFECT_DIR / "hero2002"),
@@ -241,7 +243,7 @@ class NewHeroSkillRuntimeTest(unittest.TestCase):
             SKILL_DIR / "Skill1125.java",
             SKILL_DIR / "Skill2002.java",
         ]
-        for folder in ("hero1121", "hero1122", "hero1124", "hero1125", "hero2002"):
+        for folder in ("hero1121", "hero1122", "hero1123", "hero1124", "hero1125", "hero2002"):
             sources += sorted((EFFECT_DIR / folder).glob("*.java"))
 
         with tempfile.TemporaryDirectory() as tmp:

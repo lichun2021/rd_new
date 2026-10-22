@@ -1,4 +1,4 @@
-package com.hawk.game.battle.effect.impl.hero1122;
+package com.hawk.game.battle.effect.impl.hero1123;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,12 +16,12 @@ import com.hawk.game.protocol.Const.EffType;
 import com.hawk.game.protocol.Const.SoldierType;
 
 /**
- * 【万分比】【12942】艾伦：任命在战备参谋部时，集结战斗开始前，若集结全队出征远程部队数量不低于集结部队总数 40%，
- * 己方全体远程部队攻击、防御、生命增加 【6.50% + {6}】 （多个艾伦同时存在时，上述效果可叠加，至多 7 层）
+ * 【万分比】【12995】雪拉：集结增益：集结战斗开始前，若集结队伍中的空军数量占比达到 10%，
+ * 己方全体后排部队攻击、防御、生命提升 【6.50% + {5}】（多个雪拉同时存在时，上述效果可叠加，至多 7 层）
  */
 @BattleTupleType(tuple = { Type.ATK, Type.DEF, Type.HP })
-@EffectChecker(effType = EffType.HERO_12942)
-public class Checker12942 implements IChecker {
+@EffectChecker(effType = EffType.HERO_12995)
+public class Checker12995 implements IChecker {
 	private static final int BASE_VAL = 650;
 	private static final int MAX_LAYERS = 7;
 
@@ -47,11 +47,9 @@ public class Checker12942 implements IChecker {
 		if (total <= 0) {
 			return 0;
 		}
-		double rangedCnt = parames.unitStatic.getArmyCountMapMarch().get(SoldierType.PLANE_SOLDIER_4)
-				+ parames.unitStatic.getArmyCountMapMarch().get(SoldierType.FOOT_SOLDIER_5)
-				+ parames.unitStatic.getArmyCountMapMarch().get(SoldierType.FOOT_SOLDIER_6)
-				+ parames.unitStatic.getArmyCountMapMarch().get(SoldierType.CANNON_SOLDIER_7);
-		if (rangedCnt / total < 0.40D) {
+		double planeCnt = parames.unitStatic.getArmyCountMapMarch().get(SoldierType.PLANE_SOLDIER_3)
+				+ parames.unitStatic.getArmyCountMapMarch().get(SoldierType.PLANE_SOLDIER_4);
+		if (planeCnt / total < 0.10D) {
 			return 0;
 		}
 
