@@ -1,4 +1,4 @@
-package com.hawk.game.battle.effect.impl.hero1124;
+package com.hawk.game.battle.effect.impl.hero1123;
 
 import com.hawk.game.battle.effect.BattleTupleType;
 import com.hawk.game.battle.effect.BattleTupleType.Type;

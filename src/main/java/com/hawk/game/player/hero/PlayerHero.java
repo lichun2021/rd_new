@@ -38,7 +38,6 @@ import com.hawk.game.config.HeroAttrCfg;
 import com.hawk.game.config.HeroCfg;
 import com.hawk.game.config.HeroLevelCfg;
 import com.hawk.game.config.HeroOfficeCfg;
-import com.hawk.game.config.HeroSkillCfg;
 import com.hawk.game.config.HeroStarLevelCfg;
 import com.hawk.game.entity.HeroArchivesEntity;
 import com.hawk.game.entity.HeroEntity;
@@ -85,7 +84,6 @@ public class PlayerHero {
 	/** 出征做用号 */
 	private ImmutableMap<EffType, Integer> battleEffVal = ImmutableMap.of();
 	private boolean efvalLoad;
-	private boolean legacySkillMigrated;
 	/** 英雄羁绊 */
 	private PlayerHeroCollect heroCollect;
 	private SSSSoul soul;
@@ -509,13 +507,6 @@ public class PlayerHero {
 		PlayerHero hero = new PlayerHero(heroEntity);
 		hero.init();
 		heroEntity.recordHeroObj(hero);
-		// Persist only after the complete hero has initialized successfully.
-		if (hero.legacySkillMigrated) {
-			heroEntity.setSkillSerialized(hero.serializSkill());
-			heroEntity.setChanged(true);
-			logger.info("migrated legacy hero skill slots, playerId: {}, entityId: {}, heroId: {}",
-					heroEntity.getPlayerId(), heroEntity.getId(), heroEntity.getHeroId());
-		}
 		return hero;
 	}
 
@@ -625,7 +616,7 @@ public class PlayerHero {
 		JSONArray arr = JSONArray.parseArray(heroEntity.getSkillSerialized());
 		arr.forEach(str -> {
 			SkillSlot slot = new SkillSlot(this);
-			slot.mergeFrom(migrateLegacySkillSlot(str.toString()));
+			slot.mergeFrom(str.toString());
 			if (Objects.nonNull(slot.getSkill())) {
 				HawkAssert.notNull(slot.getSkill().getCfg());// 如果属性配置文件出问题,
 																// 就重新初始化
@@ -633,28 +624,6 @@ public class PlayerHero {
 			list.add(slot);
 		});
 		return list;
-	}
-
-	private String migrateLegacySkillSlot(String serialized) {
-		if (getCfgId() != 1123 || getConfig().getStaffOfficer() != 0) {
-			return serialized;
-		}
-		JSONArray oldSlot = JSONArray.parseArray(serialized);
-		if (oldSlot.size() != 5 || !oldSlot.getBooleanValue(2)) {
-			return serialized;
-		}
-		int skillId = oldSlot.getIntValue(3);
-		boolean configExists = HawkConfigManager.getInstance()
-				.getConfigByKey(HeroSkillCfg.class, skillId) != null;
-		for (HawkTuple3<Integer, Integer, Integer> target : getConfig().getSkillBlankList()) {
-			List<?> migrated = LegacyHeroSkillMigration.migrate(getCfgId(), false,
-					target.first, target.second, target.third, configExists, oldSlot, serialized);
-			if (migrated != oldSlot) {
-				legacySkillMigrated = true;
-				return JSONArray.toJSONString(migrated);
-			}
-		}
-		return serialized;
 	}
 
 	private List<SkillSlot> initSkill() {

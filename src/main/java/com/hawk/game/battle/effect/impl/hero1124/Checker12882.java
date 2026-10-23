@@ -1,4 +1,4 @@
-package com.hawk.game.battle.effect.impl.hero1121;
+package com.hawk.game.battle.effect.impl.hero1124;
 
 import java.util.HashSet;
 import java.util.Set;

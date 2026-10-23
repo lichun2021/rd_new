@@ -16,18 +16,18 @@ import com.hawk.game.protocol.Const.EffType;
 import com.hawk.game.protocol.Const.SoldierType;
 
 /**
- * 【万分比】【12995】雪拉：集结增益：集结战斗开始前，若集结队伍中的空军数量占比达到 10%，
- * 己方全体后排部队攻击、防御、生命提升 【6.50% + {5}】（多个雪拉同时存在时，上述效果可叠加，至多 7 层）
+ * 【万分比】【12881】莱因：任命在战备参谋部时，集结战斗开始前，若集结全队出征坦克数量不低于集结部队总数 10%，
+ * 己方全体近战部队攻击、防御、生命增加 【6.50% + {5}】 （多个莱因同时存在时，上述效果可叠加，至多 7 层）
  */
 @BattleTupleType(tuple = { Type.ATK, Type.DEF, Type.HP })
-@EffectChecker(effType = EffType.HERO_12995)
-public class Checker12995 implements IChecker {
+@EffectChecker(effType = EffType.HERO_12881)
+public class Checker12881 implements IChecker {
 	private static final int BASE_VAL = 650;
 	private static final int MAX_LAYERS = 7;
 
 	@Override
 	public CheckerKVResult value(CheckerParames parames) {
-		if (!BattleConst.WarEff.MASS.check(parames.troopEffType) || !isYuanCheng(parames.type)) {
+		if (!BattleConst.WarEff.MASS.check(parames.troopEffType) || !isJinzhan(parames.type)) {
 			return CheckerKVResult.DefaultVal;
 		}
 
@@ -47,9 +47,9 @@ public class Checker12995 implements IChecker {
 		if (total <= 0) {
 			return 0;
 		}
-		double planeCnt = parames.unitStatic.getArmyCountMapMarch().get(SoldierType.PLANE_SOLDIER_3)
-				+ parames.unitStatic.getArmyCountMapMarch().get(SoldierType.PLANE_SOLDIER_4);
-		if (planeCnt / total < 0.10D) {
+		double tankCnt = parames.unitStatic.getArmyCountMapMarch().get(SoldierType.TANK_SOLDIER_1)
+				+ parames.unitStatic.getArmyCountMapMarch().get(SoldierType.TANK_SOLDIER_2);
+		if (tankCnt / total < 0.10D) {
 			return 0;
 		}
 

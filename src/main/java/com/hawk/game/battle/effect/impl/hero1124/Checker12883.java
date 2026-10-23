@@ -1,4 +1,4 @@
-package com.hawk.game.battle.effect.impl.hero1122;
+package com.hawk.game.battle.effect.impl.hero1124;
 
 import com.hawk.game.battle.effect.BattleConst;
 import com.hawk.game.battle.effect.BattleTupleType;
@@ -11,18 +11,18 @@ import com.hawk.game.protocol.Const.EffType;
 import com.hawk.game.protocol.Const.SoldierType;
 
 /**
- * 【万分比】【12944】艾伦：任命在战备参谋部时，集结战斗开始前，集结全队出征远程单位每满 20 万，
- * 自身远程部队受到攻击时伤害减少 + {8}（该效果可叠加，至多 20 层）
+ * 【万分比】【12883】莱因：任命在战备参谋部时，集结战斗开始前，集结全队出征主战坦克数量每达到 5 万，
+ * 自身主战坦克单位受到攻击时，伤害减少 + {7}（该效果可叠加，至多 20 层）
  */
 @BattleTupleType(tuple = Type.REDUCE_HURT_PCT)
-@EffectChecker(effType = EffType.HERO_12944)
-public class Checker12944 implements IChecker {
-	private static final int STEP_COUNT = 200_000;
+@EffectChecker(effType = EffType.HERO_12883)
+public class Checker12883 implements IChecker {
+	private static final int STEP_COUNT = 50_000;
 	private static final int MAX_LAYERS = 20;
 
 	@Override
 	public CheckerKVResult value(CheckerParames parames) {
-		if (!BattleConst.WarEff.MASS.check(parames.troopEffType) || !isYuanCheng(parames.type)) {
+		if (!BattleConst.WarEff.MASS.check(parames.troopEffType) || parames.type != SoldierType.TANK_SOLDIER_2) {
 			return CheckerKVResult.DefaultVal;
 		}
 		int effVal = parames.unity.getEffVal(effType());
@@ -30,11 +30,8 @@ public class Checker12944 implements IChecker {
 			return CheckerKVResult.DefaultVal;
 		}
 
-		long rangedCnt = parames.unitStatic.getArmyCountMapMarch().get(SoldierType.PLANE_SOLDIER_4)
-				+ parames.unitStatic.getArmyCountMapMarch().get(SoldierType.FOOT_SOLDIER_5)
-				+ parames.unitStatic.getArmyCountMapMarch().get(SoldierType.FOOT_SOLDIER_6)
-				+ parames.unitStatic.getArmyCountMapMarch().get(SoldierType.CANNON_SOLDIER_7);
-		int layers = (int) Math.min(MAX_LAYERS, rangedCnt / STEP_COUNT);
+		long tankCnt = parames.unitStatic.getArmyCountMapMarch().get(SoldierType.TANK_SOLDIER_2);
+		int layers = (int) Math.min(MAX_LAYERS, tankCnt / STEP_COUNT);
 		if (layers <= 0) {
 			return CheckerKVResult.DefaultVal;
 		}

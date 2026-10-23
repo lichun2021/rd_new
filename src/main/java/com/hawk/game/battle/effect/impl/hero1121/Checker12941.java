@@ -1,4 +1,4 @@
-package com.hawk.game.battle.effect.impl.hero1122;
+package com.hawk.game.battle.effect.impl.hero1121;
 
 import java.util.HashMap;
 import java.util.Map;
