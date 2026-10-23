@@ -1,212 +1,127 @@
 @echo off
-setlocal enabledelayedexpansion
+setlocal
 chcp 65001 >nul
-cd /d %~dp0
-
-echo ====================================
-echo    生成热更新文件脚本
-echo ====================================
-echo.
-
-rem 获取日期时间（使用 PowerShell 确保格式正确）
-for /f "delims=" %%a in ('powershell -Command "Get-Date -Format 'yyyyMMdd_HHmm'"') do set DATE_STR=%%a
-
-rem 设置路径
-set NEW_CLASSES=build\classes\java\main
-set OLD_CLASSES=online\classes\java\main
-set ONLINE_DIR=online
-set HOTFIX_DIR=%ONLINE_DIR%\hotfix_%DATE_STR%
-set OUTPUT_BAT=%ONLINE_DIR%\hotfix_%DATE_STR%.bat
-
-echo 日期: %DATE_STR%
-echo.
-
-rem 检查目录是否存在
-if not exist "%NEW_CLASSES%" (
-    echo 错误: 找不到新编译的 classes 目录: %NEW_CLASSES%
-    echo 请先运行编译脚本！
-    pause
-    exit /b 1
-)
-
-if not exist "%OLD_CLASSES%" (
-    echo 错误: 找不到线上 classes 目录: %OLD_CLASSES%
-    echo 请确保 online 目录存在！
-    pause
-    exit /b 1
-)
-
-rem 清空并创建 hotfix 目录
-if exist "%HOTFIX_DIR%" (
-    echo 清空旧的 hotfix 目录...
-    rd /s /q "%HOTFIX_DIR%" 2>nul
-)
-mkdir "%HOTFIX_DIR%" 2>nul
-
-echo 开始对比文件差异...
-echo.
-
-rem 获取 NEW_CLASSES 的绝对路径
-pushd "%NEW_CLASSES%"
-set NEW_CLASSES_FULL=%CD%
-popd
-
-rem 创建临时文件存储类名
-set TEMP_CLASSES=%temp%\hotfix_classes_%DATE_STR%_%RANDOM%.txt
-if exist "%TEMP_CLASSES%" del "%TEMP_CLASSES%"
-
-rem 统计计数
-set /a NEW_COUNT=0
-set /a MODIFIED_COUNT=0
-set /a TOTAL_COUNT=0
-
-rem 遍历新编译的所有文件（不只是 class 文件）
-for /r "%NEW_CLASSES%" %%F in (*.*) do (
-    set "NEW_FILE=%%F"
-    set "REL_PATH=!NEW_FILE:%NEW_CLASSES_FULL%\=!"
-    set "OLD_FILE=%OLD_CLASSES%\!REL_PATH!"
-    
-    set CHANGED=0
-    
-    rem 检查文件是否存在于 online
-    if not exist "!OLD_FILE!" (
-        echo [新增] !REL_PATH!
-        set CHANGED=1
-        set /a NEW_COUNT+=1
-    ) else (
-        rem 对比文件内容
-        fc /b "%%F" "!OLD_FILE!" >nul 2>&1
-        if errorlevel 1 (
-            echo [修改] !REL_PATH!
-            set CHANGED=1
-            set /a MODIFIED_COUNT+=1
-        )
+set "HOTFIX_GENERATOR=%~f0"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$s=[IO.File]::ReadAllText($env:HOTFIX_GENERATOR); & ([scriptblock]::Create(($s -split '(?m)^# POWERSHELL_BODY\r?\n',2)[1]))"
+set "RESULT=%ERRORLEVEL%"
+if /I not "%~1"=="/Q" pause
+exit /b %RESULT%
+# POWERSHELL_BODY
+$ErrorActionPreference = 'Stop'
+function Get-ContentHash([string]$path) {
+    $stream = [IO.File]::OpenRead($path)
+    $sha = [Security.Cryptography.SHA256]::Create()
+    try { return [BitConverter]::ToString($sha.ComputeHash($stream)) }
+    finally { $stream.Dispose(); $sha.Dispose() }
+}
+try {
+    $root = Split-Path -Parent $env:HOTFIX_GENERATOR
+    $online = Join-Path $root 'online'
+    $groups = @(
+        @{ Name='classes\java\main'; Source=(Join-Path $root 'build\classes\java\main'); Baseline=(Join-Path $online 'classes\java\main'); Filter='*.class' },
+        @{ Name='xml'; Source=(Join-Path $root 'xml'); Baseline=(Join-Path $online 'xml'); Filter='*.xml' }
     )
-    
-    rem 如果文件有变化，复制到 hotfix 目录
-    if !CHANGED! equ 1 (
-        set /a TOTAL_COUNT+=1
-        
-        rem 创建目标目录（保留 classes/java/main 路径）
-        set "TARGET_FILE=%HOTFIX_DIR%\classes\java\main\!REL_PATH!"
-        for %%D in ("!TARGET_FILE!") do set "TARGET_DIR=%%~dpD"
-        if not exist "!TARGET_DIR!" mkdir "!TARGET_DIR!" 2>nul
-        
-        rem 复制文件
-        copy /y "%%F" "!TARGET_FILE!" >nul
-        
-        rem 如果是 class 文件，提取类名（排除内部类）
-        echo %%~xF | findstr /i ".class" >nul
-        if !errorlevel! equ 0 (
-            set "CLASS_NAME=!REL_PATH:\=.!"
-            set "CLASS_NAME=!CLASS_NAME:.class=!"
-            
-            rem 检查是否是内部类（包含 $ 符号）
-            echo !CLASS_NAME! | findstr /C:"$" >nul
-            if errorlevel 1 (
-                rem 不是内部类，记录到临时文件
-                echo !CLASS_NAME!>>"%TEMP_CLASSES%"
-            )
-        )
-    )
-)
-
-echo.
-echo ====================================
-echo 差异统计:
-echo   新增文件: %NEW_COUNT%
-echo   修改文件: %MODIFIED_COUNT%
-echo   总计文件: %TOTAL_COUNT%
-echo ====================================
-echo.
-
-if %TOTAL_COUNT% equ 0 (
-    echo 没有发现差异文件，无需生成热更新脚本
-    if exist "%TEMP_CLASSES%" del "%TEMP_CLASSES%"
-    pause
-    exit /b 0
-)
-
-rem 统计主类数量
-set /a CLASS_COUNT=0
-if exist "%TEMP_CLASSES%" (
-    for /f %%i in ('type "%TEMP_CLASSES%" 2^>nul ^| find /c /v ""') do set CLASS_COUNT=%%i
-)
-
-echo 主类数量: %CLASS_COUNT%
-echo.
-
-rem 生成批处理文件
-echo generating: %OUTPUT_BAT%
-echo.
-
-rem 使用临时文件避免编码问题
-set TEMP_BAT=%temp%\hotfix_temp_%DATE_STR%_%RANDOM%.bat
-
-rem 创建批处理文件头部
-(
-echo @echo off
-echo setlocal
-echo cd /d %%~dp0
-echo.
-echo echo ====================================
-echo echo    Batch Hotfix Script
-echo echo    Changed classes: %CLASS_COUNT%
-echo echo ====================================
-echo echo.
-echo.
-echo rem Check port parameter
-echo if "%%~1"=="" ^(
-echo     echo Usage: hotfix_%DATE_STR%.bat [port]
-echo     echo Example: hotfix_%DATE_STR%.bat 8080
-echo     echo.
-echo     pause
-echo     exit /b 1
-echo ^)
-echo.
-echo set PORT=%%~1
-echo echo Port: %%PORT%%
-echo echo.
-echo.
-) > "%TEMP_BAT%"
-
-rem 添加每个类的热更新命令（传入 /Q 静默参数，批量执行时不逐个暂停）
-if exist "%TEMP_CLASSES%" (
-    for /f "usebackq delims=" %%C in ("%TEMP_CLASSES%") do (
-        echo echo [hotfix] %%C >> "%TEMP_BAT%"
-        echo call .\hotfix-class.bat %%C %%PORT%% /Q >> "%TEMP_BAT%"
-        echo timeout /t 1 /nobreak ^>nul >> "%TEMP_BAT%"
-        echo echo. >> "%TEMP_BAT%"
-    )
-)
-
-rem 添加结束部分
-(
-echo.
-echo echo ====================================
-echo echo Hotfix completed!
-echo echo ====================================
-echo pause
-) >> "%TEMP_BAT%"
-
-rem 复制到目标位置（使用 copy 保持编码）
-copy /y "%TEMP_BAT%" "%OUTPUT_BAT%" >nul
-del "%TEMP_BAT%" 2>nul
-
-rem 删除临时文件
-if exist "%TEMP_CLASSES%" del "%TEMP_CLASSES%"
-
-echo.
-echo ====================================
-echo 处理完成！
-echo ====================================
-echo 差异文件数: %TOTAL_COUNT%
-echo 已复制到: %HOTFIX_DIR%
-echo 生成脚本: %OUTPUT_BAT%
-echo.
-echo 使用方法:
-echo   cd online
-echo   .\hotfix_%DATE_STR%.bat 8080
-echo.
-pause
+    foreach ($group in $groups) {
+        foreach ($path in @($group.Source, $group.Baseline)) {
+            if (-not (Test-Path -LiteralPath $path -PathType Container)) { throw "Directory not found: $path" }
+        }
+    }
+    $changes = @(foreach ($group in $groups) {
+        foreach ($file in Get-ChildItem -LiteralPath $group.Source -Filter $group.Filter -File -Recurse) {
+            $relative = $file.FullName.Substring($group.Source.Length + 1)
+            $old = Join-Path $group.Baseline $relative
+            $added = -not (Test-Path -LiteralPath $old -PathType Leaf)
+            if ($added -or ((Get-ContentHash $file.FullName) -ne (Get-ContentHash $old))) {
+                [pscustomobject]@{ Group=$group.Name; File=$file.FullName; Relative=$relative; Added=$added }
+            }
+        }
+    })
+    if ($changes.Count -eq 0) { Write-Host 'No class or XML changes found.'; exit 0 }
+    $date = Get-Date -Format 'yyyyMMdd_HHmmss'
+    $package = Join-Path $online $date
+    $index = 1
+    while (Test-Path -LiteralPath $package) { $package = Join-Path $online ($date + '_' + $index); $index++ }
+    New-Item -ItemType Directory -Path $package | Out-Null
+    foreach ($name in @('classes\java\main','xml')) { New-Item -ItemType Directory -Path (Join-Path $package $name) | Out-Null }
+    foreach ($change in $changes) {
+        $destination = Join-Path (Join-Path $package $change.Group) $change.Relative
+        [IO.Directory]::CreateDirectory((Split-Path -Parent $destination)) | Out-Null
+        Copy-Item -LiteralPath $change.File -Destination $destination
+        $label = if ($change.Added) { 'Added' } else { 'Modified' }
+        Write-Host "[$label][$($change.Group)] $($change.Relative)"
+    }
+    $update = @"
+@echo off
+setlocal
+chcp 65001 >nul
+set "PACKAGE=%~dp0"
+if not "%~1"=="" goto :single
+rem No arguments: deploy to both configured servers, even if one fails.
+call :deploy 8080 "D:\game"
+set "FIRST_RESULT=%ERRORLEVEL%"
+call :deploy 8081 "D:\game2"
+set "SECOND_RESULT=%ERRORLEVEL%"
+if not "%FIRST_RESULT%"=="0" exit /b 1
+if not "%SECOND_RESULT%"=="0" exit /b 1
+echo Both servers updated successfully.
 exit /b 0
+:single
+set "TARGET=%~2"
+if not "%TARGET%"=="" goto :run_single
+if "%~1"=="8080" set "TARGET=D:\game"
+if "%~1"=="8081" set "TARGET=D:\game2"
+if "%TARGET%"=="" (
+    echo Usage: update.bat [port] [server-root]
+    exit /b 1
+)
+:run_single
+call :deploy "%~1" "%TARGET%"
+exit /b %ERRORLEVEL%
+:deploy
+set "PORT=%~1"
+set "SERVER=%~2"
+echo Deploying to %SERVER% on port %PORT%
+if not exist "%SERVER%\xml\" (
+    echo Server xml directory not found. Pass the server root as the second argument.
+    exit /b 1
+)
+echo Deploying changed files to %SERVER%
+robocopy "%PACKAGE%xml" "%SERVER%\xml" *.xml /E /R:1 /W:1 /NFL /NDL /NJH /NJS
+if errorlevel 8 exit /b 1
+dir /b /s "%PACKAGE%classes\java\main\*.class" >nul 2>&1
+if errorlevel 1 goto :done
+robocopy "%PACKAGE%classes\java\main" "%SERVER%\classes\java\main" *.class /E /R:1 /W:1 /NFL /NDL /NJH /NJS
+if errorlevel 8 exit /b 1
+robocopy "%PACKAGE%classes\java\main" "%SERVER%\hotfix" *.class /E /R:1 /W:1 /NFL /NDL /NJH /NJS
+if errorlevel 8 exit /b 1
+set "HOTFIX_RESPONSE=%TEMP%\hotfix_response_%RANDOM%_%RANDOM%.json"
+curl --fail --show-error --output "%HOTFIX_RESPONSE%" "http://localhost:%PORT%/script/hotfix"
+if errorlevel 1 (
+    del "%HOTFIX_RESPONSE%" 2>nul
+    echo Hotfix request failed. Files were copied, but runtime activation is not confirmed.
+    exit /b 1
+)
+type "%HOTFIX_RESPONSE%"
+powershell -NoProfile -Command "try { `$r=Get-Content -LiteralPath `$env:HOTFIX_RESPONSE -Raw | ConvertFrom-Json; if (`$null -eq `$r.code -or `$r.code -ne 0) { exit 1 } } catch { exit 1 }"
+if errorlevel 1 (
+    del "%HOTFIX_RESPONSE%" 2>nul
+    echo Hotfix API returned failure. Runtime code update is NOT confirmed.
+    exit /b 1
+)
+del "%HOTFIX_RESPONSE%" 2>nul
+echo Hotfix API reported success.
+:done
+echo File deployment completed. XML configuration may require a separate reload.
+exit /b 0
+"@
+    [IO.File]::WriteAllText((Join-Path $package 'update.bat'), ($update -replace '\r?\n', "`r`n"), (New-Object Text.UTF8Encoding($false)))
+    Write-Host "Added: $(@($changes | Where-Object Added).Count), Modified: $(@($changes | Where-Object { -not $_.Added }).Count)"
+    Write-Host "Package: $package"
+    Write-Host 'Default: update.bat deploys to D:\game:8080 and D:\game2:8081'
+    Write-Host 'Or: update.bat 8080 "D:\game"'
+    Write-Host 'Only added and modified files are packaged. Deletions are excluded; online baselines remain unchanged.'
+    exit 0
+} catch {
+    [Console]::Error.WriteLine("Generation failed: " + $_.Exception.Message)
+    exit 1
+}
