@@ -300,13 +300,16 @@ public class ArmyService {
 	public boolean heroCanMarch(Player player, List<Integer>  heroId) {
 		List<PlayerHero> heros = player.getHeroByCfgId(heroId);
 		if(heros.size() != heroId.size()){
+			logger.warn("march hero rejected, reason:HERO_COUNT_MISMATCH, playerId:{}, requestedHeroIds:{}, foundHeroCount:{}", player.getId(), heroId, heros.size());
 			return false;
 		}
 		for(PlayerHero hero : heros){
 			if(hero.getState() != PBHeroState.HERO_STATE_FREE){
+				logger.warn("march hero rejected, reason:HERO_NOT_FREE, playerId:{}, heroId:{}, state:{}", player.getId(), hero.getCfgId(), hero.getState());
 				return false;
 			}
 			if(heroId.contains(hero.getConfig().getProhibitedHero())){
+				logger.warn("march hero rejected, reason:HERO_PAIR_PROHIBITED, playerId:{}, heroId:{}, prohibitedHeroId:{}", player.getId(), hero.getCfgId(), hero.getConfig().getProhibitedHero());
 				return false;
 			}
 		}
@@ -317,10 +320,12 @@ public class ArmyService {
 		if (superSoldierId > 0) {
 			Optional<SuperSoldier> ssOP = player.getSuperSoldierByCfgId(superSoldierId);
 			if (!ssOP.isPresent()) {
+				logger.warn("march super soldier rejected, reason:SUPER_SOLDIER_MISSING, playerId:{}, superSoldierId:{}", player.getId(), superSoldierId);
 				return false;
 			}
 			SuperSoldier soldier = ssOP.get();
 			if (soldier.getState() != PBSuperSoldierState.SUPER_SOLDIER_STATE_FREE) {
+				logger.warn("march super soldier rejected, reason:SUPER_SOLDIER_NOT_FREE, playerId:{}, superSoldierId:{}, state:{}", player.getId(), superSoldierId, soldier.getState());
 				return false;
 			}
 		}

@@ -2673,62 +2673,74 @@ public class PlayerMarchModule extends PlayerModule {
 	 */
 	public boolean checkMarchReq(WorldMarchReq req, int hpCode, List<ArmyInfo> armyList, WorldPoint worldPoint,boolean checkFreeMarch, boolean isNationMarch) {
 		if (player.isCsPlayer() && !CrossActivityService.getInstance().isOpen()) {
+			logger.warn("march validation rejected, reason:CROSS_ACTIVITY_CLOSED, playerId:{}, protocol:{}", player.getId(), hpCode);
 			return false;
 		}
 		
 		if (GsConfig.getInstance().isRobotMode() && WorldMarchService.getInstance().getMarchsSize() >= GameConstCfg.getInstance().getMarchCountLimit()
 				&& player.getOpenId().startsWith("robot_puid")) {
 			HawkLog.debugPrintln("start march failed, world march count overhead");
+			logger.warn("march validation rejected, reason:ROBOT_MARCH_LIMIT, playerId:{}, protocol:{}", player.getId(), hpCode);
 			return false;
 		}
 				
 		if (WorldUtil.isOwnPoint(player.getId(), worldPoint)) {
+			logger.warn("march validation rejected, reason:OWN_POINT, playerId:{}, protocol:{}", player.getId(), hpCode);
 			sendError(hpCode, Status.Error.HAS_SAME_TYPE_MARCH);
 			return false;
 		}
 
 		if (checkFreeMarch && !WorldMarchService.getInstance().isHasFreeMarch(player)) {
+			logger.warn("march validation rejected, reason:NO_FREE_MARCH, playerId:{}, protocol:{}", player.getId(), hpCode);
 			sendError(hpCode, Status.Error.WORLD_MARCH_MAX_LIMIT);
 			return false;
 		}
 
 		List<ArmySoldierPB> reqArmyList = req.getArmyInfoList();
 		if ((req.getAssistantList() == null || req.getAssistantList().isEmpty()) && (reqArmyList == null || reqArmyList.size() == 0)) {
+			logger.warn("march validation rejected, reason:NO_ARMY, playerId:{}, protocol:{}", player.getId(), hpCode);
 			sendError(hpCode, Status.Error.WORLD_MARCH_NO_ARMY);
 			return false;
 		}
 
 		for (ArmySoldierPB marchArmy : reqArmyList) {
 			if (marchArmy.getCount() <= 0) { // 防止刷兵
+				logger.warn("march validation rejected, reason:INVALID_ARMY_COUNT, playerId:{}, protocol:{}, armyId:{}, count:{}", player.getId(), hpCode, marchArmy.getArmyId(), marchArmy.getCount());
 				sendError(hpCode, Status.Error.WORLD_MARCH_NO_ARMY);
 				return false;
 			}
 		}
 		
 		if (req.getHeroIdCount() > 2) {
+			logger.warn("march validation rejected, reason:TOO_MANY_HEROES, playerId:{}, protocol:{}, heroIds:{}", player.getId(), hpCode, req.getHeroIdList());
 			return false;
 		}
 		
 		if (!checkMarchDressReq(req.getMarchDressList())) {
+			logger.warn("march validation rejected, reason:DRESS_INVALID, playerId:{}, protocol:{}, dressIds:{}", player.getId(), hpCode, req.getMarchDressList());
 			return false;
 		}
 
 		// 检查英雄出征
 		if (!ArmyService.getInstance().heroCanMarch(player, req.getHeroIdList())) {
+			logger.warn("march validation rejected, reason:HERO_UNAVAILABLE, playerId:{}, protocol:{}, heroIds:{}", player.getId(), hpCode, req.getHeroIdList());
 			return false;
 		}	
 		
 		if (!ArmyService.getInstance().superSoldierCsnMarch(player, req.getSuperSoldierId())) {
+			logger.warn("march validation rejected, reason:SUPER_SOLDIER_UNAVAILABLE, playerId:{}, protocol:{}, superSoldierId:{}", player.getId(), hpCode, req.getSuperSoldierId());
 			return false;
 		}
 
 		if (req.getSuperLab() != 0 && !player.isSuperLabActive(req.getSuperLab())) {
+			logger.warn("march validation rejected, reason:SUPER_LAB_INACTIVE, playerId:{}, protocol:{}, superLab:{}", player.getId(), hpCode, req.getSuperLab());
 			return false;
 		}
 		if (req.getManhattan().getManhattanAtkSwId() > 0 || req.getManhattan().getManhattanDefSwId() > 0) {
 			// 检测超武信息,判断是否解锁，
 			PlayerManhattanModule manhattanModule = player.getModule(GsConst.ModuleType.MANHATTAN);
 			if (!manhattanModule.checkMarchReq(req.getManhattan())) {
+				logger.warn("march validation rejected, reason:MANHATTAN_INVALID, playerId:{}, protocol:{}, atkSwId:{}, defSwId:{}", player.getId(), hpCode, req.getManhattan().getManhattanAtkSwId(), req.getManhattan().getManhattanDefSwId());
 				return false;
 			}
 		}
@@ -2746,7 +2758,7 @@ public class PlayerMarchModule extends PlayerModule {
 		if (useSkills == null || !useSkills.contains(GsConst.SKILL_10104)) {
 			int maxMarchSoldierNum = player.getMaxMarchSoldierNum(new EffectParams(req, new ArrayList<>()));
 			if (totalCnt > maxMarchSoldierNum) {
-				logger.error("checkMarchReq failed, totalCnt:{}, maxMarchSoldierNum::{}, armyList:{}", totalCnt, maxMarchSoldierNum, armyList.toString());
+				logger.error("march validation rejected, reason:ARMY_CAPACITY_EXCEEDED, playerId:{}, protocol:{}, totalCnt:{}, maxMarchSoldierNum:{}, armyList:{}", player.getId(), hpCode, totalCnt, maxMarchSoldierNum, armyList.toString());
 				sendError(hpCode, Status.Error.WORLD_MARCH_ARMY_TOTALCOUNT);
 				return false;
 			}
