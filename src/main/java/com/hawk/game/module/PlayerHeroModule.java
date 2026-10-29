@@ -1933,13 +1933,21 @@ public class PlayerHeroModule extends PlayerModule {
 		if (!consumeItems.checkConsume(player)) {
 			return;
 		}
-		consumeItems.consumeAndPush(player, Action.HERO_ITEM_RESLOVE);// 获得整卡直接消耗掉.
-																		// 剩余转化为碎片
-
-		if (!player.getHeroByCfgId(heroId).isPresent()) {
-			this.unLockHero(heroId);
+		// Ownership is determined by the entity, even if its runtime hero failed to load.
+		boolean owned = false;
+		for (HeroEntity entity : player.getData().getHeroEntityList()) {
+			if (!entity.isInvalid() && entity.getHeroId() == heroId) {
+				owned = true;
+				break;
+			}
+		}
+		if (!owned && this.unLockHero(heroId) == null) {
+			HawkLog.errPrintln("hero card unlock failed, keeping cards, playerId:{}, heroId:{}", player.getId(), heroId);
+			return;
+		}
+		consumeItems.consumeAndPush(player, Action.HERO_ITEM_RESLOVE);
+		if (!owned) {
 			itemAdd.setCount(itemAdd.getCount() - 1);
-
 		}
 		if (itemAdd.getCount() > 0) {
 			// 有此英雄转换成碎片
@@ -1998,8 +2006,11 @@ public class PlayerHeroModule extends PlayerModule {
 	private void onUnlockHero(HawkProtocol protocol) {
 		PBUnlockHeroRequest req = protocol.parseProtocol(PBUnlockHeroRequest.getDefaultInstance());
 		final int heroId = req.getHeroId();
-		if (player.getHeroByCfgId(heroId).isPresent()) {// 已解锁
-			return;
+		for (HeroEntity entity : player.getData().getHeroEntityList()) {
+			if (!entity.isInvalid() && entity.getHeroId() == heroId) {
+				sendError(protocol.getType(), Status.Error.PLAYER_HERO_ALREADY_UNLOCK);
+				return;
+			}
 		}
 		HeroCfg cfg = HawkConfigManager.getInstance().getConfigByKey(HeroCfg.class, heroId);
 		if (cfg == null) {
@@ -2013,9 +2024,11 @@ public class PlayerHeroModule extends PlayerModule {
 			return;
 		}
 		PlayerHero hero = this.unLockHero(heroId);
-		if (Objects.nonNull(hero)) {
-			consumeItems.consumeAndPush(player, Action.HERO_UNLOCK);
+		if (hero == null) {
+			sendError(protocol.getType(), Status.SysError.EXCEPTION);
+			return;
 		}
+		consumeItems.consumeAndPush(player, Action.HERO_UNLOCK);
 
 		player.responseSuccess(protocol.getType());
 
@@ -2118,6 +2131,14 @@ public class PlayerHeroModule extends PlayerModule {
     }
 
 	public PlayerHero unLockHero(int heroId) {
+		// All callers, including story rewards and robot requests, must obey this guard.
+		for (HeroEntity entity : player.getData().getHeroEntityList()) {
+			if (!entity.isInvalid() && entity.getHeroId() == heroId) {
+				HawkLog.warnPrintln("hero unlock rejected, existing entity, playerId:{}, heroId:{}, entityId:{}",
+						player.getId(), heroId, entity.getId());
+				return null;
+			}
+		}
 		HeroCfg cfg = HawkConfigManager.getInstance().getConfigByKey(HeroCfg.class, heroId);
 		if (cfg == null) {
 			return null;
@@ -2132,7 +2153,12 @@ public class PlayerHeroModule extends PlayerModule {
 		newHero.setExp(initXp);
 
 		PlayerHero hero = PlayerHero.create(newHero);
-		HawkDBManager.getInstance().create(newHero);
+		if (!HawkDBManager.getInstance().create(newHero)) {
+			HawkLog.errPrintln("hero unlock persistence failed, playerId:{}, heroId:{}", player.getId(), heroId);
+			return null;
+		}
+		// Publish ownership before callbacks can request the same hero again.
+		player.getData().getHeroEntityList().add(newHero);
 
 		// 抛出活动事件
 		ActivityManager.getInstance().postEvent(new HeroChangeEvent(player.getId()));
@@ -2147,8 +2173,6 @@ public class PlayerHeroModule extends PlayerModule {
 
 		// 我要变强
 		StrengthenGuideManager.getInstance().postMsg(new SGPlayerHeroUnlockMsg(player));
-
-		player.getData().getHeroEntityList().add(newHero);
 
 		hero.notifyChange();
 		LogUtil.logHeroAttrChange(player, Action.HERO_UNLOCK, 0, hero);
