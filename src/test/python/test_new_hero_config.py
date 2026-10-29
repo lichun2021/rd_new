@@ -1,4 +1,6 @@
 import re
+import subprocess
+import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -140,6 +142,18 @@ class NewHeroConfigClosureTest(unittest.TestCase):
         self.assertEqual("莱克莎", heroes[1122]["heroname"])
         self.assertEqual("雪拉", heroes[1123]["heroname"])
         self.assertEqual("莱因", heroes[1124]["heroname"])
+        self.assertEqual(("1", "112101,112102,112103,112104,112105",
+                          "1_1_112111|2_1_112112|3_1_112113|4_1_112114"),
+                         (heroes[1121].get("staffOfficer"), heroes[1121]["passiveSkill"],
+                          heroes[1121]["maxSkillBlanks"]))
+        self.assertEqual((None, "112201,112202,112203,112204,112205",
+                          "1_20|2_60|3_100|4_120"),
+                         (heroes[1122].get("staffOfficer"), heroes[1122]["passiveSkill"],
+                          heroes[1122]["maxSkillBlanks"]))
+        self.assertEqual(("1", "112301,112302,112303,112304,112305",
+                          "1_1_112311|2_1_112312|3_1_112313|4_1_112314"),
+                         (heroes[1123].get("staffOfficer"), heroes[1123]["passiveSkill"],
+                          heroes[1123]["maxSkillBlanks"]))
 
         skills = {
             int(row.attrib["skillId"]): row.attrib
@@ -165,21 +179,36 @@ class NewHeroConfigClosureTest(unittest.TestCase):
         self.assertEqual(("1", "11088_5000_5000"),
                          (rise_skills[1124]["type"], rise_skills[1124]["techEffect"]))
 
-    def test_online_identity_migration_stays_disabled(self):
+    def test_online_identity_sql_migration_stays_disabled(self):
         migration = (self.repo / "sql/update/20261015_hero_1121_1124_align.sql").read_text(
             encoding="utf-8"
         )
         self.assertNotIn("UPDATE `hero`", migration)
         self.assertNotIn("UPDATE `item`", migration)
 
+    def test_legacy_skill_slot_migration_is_enabled(self):
         player_hero = (
             self.repo / "src/main/java/com/hawk/game/player/hero/PlayerHero.java"
         ).read_text(encoding="utf-8")
-        self.assertNotIn("LegacyHeroSkillMigration", player_hero)
-        self.assertNotIn("migrateLegacySkillSlot", player_hero)
-        self.assertFalse(
+        self.assertIn("LegacyHeroSkillMigration", player_hero)
+        self.assertIn("migrateLegacySkillSlot", player_hero)
+        self.assertTrue(
             (self.repo / "src/main/java/com/hawk/game/player/hero/LegacyHeroSkillMigration.java").exists()
         )
+
+    def test_legacy_skill_slot_migration_behavior(self):
+        production = self.repo / "src/main/java/com/hawk/game/player/hero/LegacyHeroSkillMigration.java"
+        test = self.repo / "src/test/java/com/hawk/game/player/hero/LegacyHeroSkillMigrationTest.java"
+        with tempfile.TemporaryDirectory() as output:
+            subprocess.run(
+                ["javac", "-encoding", "UTF-8", "-d", output, str(production), str(test)],
+                check=True,
+            )
+            subprocess.run(
+                ["java", "-cp", output,
+                 "com.hawk.game.player.hero.LegacyHeroSkillMigrationTest"],
+                check=True,
+            )
 
 
 if __name__ == "__main__":
