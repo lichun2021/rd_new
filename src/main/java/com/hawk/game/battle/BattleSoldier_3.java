@@ -558,7 +558,8 @@ public class BattleSoldier_3 extends IPlanSoldier {
 		double result = super.getHurtVal(defSoldier, reducePer);
 		final double oldhurtVal = result;
 		if (super303) {
-			double add1544 = xishou1545 * GsConst.EFF_PER * getEffVal(EffType.MDS_1544);
+			int rate1544 = Math.min(getEffVal(EffType.MDS_1544), ConstProperty.getInstance().getEffect1544MaxRate());
+			double add1544 = xishou1545 * GsConst.EFF_PER * rate1544;
 			double add1543 = oldhurtVal * GsConst.EFF_PER * getEffVal(EffType.MDS_1543) * GsConst.EFF_PER * ConstProperty.getInstance().getEffect1543Power();
 			if(defSoldier.getEffVal(EffType.HERO_12673)>0){
 				add1543 = add1543 * (1 - ConstProperty.getInstance().effect12673BaseVaule1543 * GsConst.EFF_PER);

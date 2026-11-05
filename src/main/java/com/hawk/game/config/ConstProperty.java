@@ -869,6 +869,7 @@ public class ConstProperty extends HawkConfigBase {
 	private final int effect1540Prob1;
 	private final int effect1540Prob2;
 	private final int effect1543Power;
+	private final int effect1544MaxRate;
 	private final int effect1546Power;
 	private final int effect1547Maxinum;
 	private final int effect1413SuperiorLimit;
@@ -2283,6 +2284,7 @@ public class ConstProperty extends HawkConfigBase {
 		effect1540Prob1 = 1000;
 		effect1540Prob2 = 1000;
 		effect1543Power = 10000;
+		effect1544MaxRate = 2000;
 		hateRankShowNum = 0;		
 		hateRankNumLimit = 0;		
 		hatePowerLoseLimit = 0;	
@@ -4747,6 +4749,10 @@ public class ConstProperty extends HawkConfigBase {
 
 	public int getEffect1543Power() {
 		return effect1543Power;
+	}
+
+	public int getEffect1544MaxRate() {
+		return effect1544MaxRate;
 	}
 
 	public int getEffect1546Power() {

@@ -2908,6 +2908,9 @@ effect1315Maxinum = 15
 # 门多萨专属芯片作用号【1543】强度系数
 effect1543Power = 4200
 
+# 门多萨专属芯片作用号【1544】反弹比例上限；万分比
+effect1544MaxRate = 2000
+
 # 莉塔专属芯片【1423】效果上限控制参数
 effect1413SuperiorLimit = 775
 
