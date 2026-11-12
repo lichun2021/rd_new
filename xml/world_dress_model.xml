@@ -913,14 +913,14 @@
       <data dressId="359" dressType="3" modelType="62" canChange="1" gainAttribute="4101_100000" skinPoint="3" />
       <data dressId="360" dressType="3" modelType="63" canChange="1" gainAttribute="201_17000,607_17000,604_17000,4101_16000" skinPoint="3" />
       <data dressId="361" dressType="3" modelType="64" canChange="1" gainAttribute="201_17000,607_17000,604_18000,4101_18000" skinPoint="3" />
-      <data dressId="1057" dressType="7" modelType="344" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
-      <data dressId="1058" dressType="7" modelType="345" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
-      <data dressId="1059" dressType="7" modelType="346" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
-      <data dressId="1060" dressType="7" modelType="347" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
-      <data dressId="1061" dressType="7" modelType="348" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
-      <data dressId="1062" dressType="7" modelType="349" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
-      <data dressId="1063" dressType="7" modelType="350" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
-      <data dressId="1064" dressType="7" modelType="351" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
-      <data dressId="1065" dressType="7" modelType="352" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
-      <data dressId="1066" dressType="7" modelType="353" gainAttribute="201_20000,4101_20000" canChange="0" skinPoint="3" />
+      <data dressId="1057" dressType="7" modelType="344" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
+      <data dressId="1058" dressType="7" modelType="345" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
+      <data dressId="1059" dressType="7" modelType="346" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
+      <data dressId="1060" dressType="7" modelType="347" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
+      <data dressId="1061" dressType="7" modelType="348" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
+      <data dressId="1062" dressType="7" modelType="349" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
+      <data dressId="1063" dressType="7" modelType="350" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
+      <data dressId="1064" dressType="7" modelType="351" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
+      <data dressId="1065" dressType="7" modelType="352" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
+      <data dressId="1066" dressType="7" modelType="353" gainAttribute="201_100000,4101_100000" canChange="0" skinPoint="3" />
 </root>

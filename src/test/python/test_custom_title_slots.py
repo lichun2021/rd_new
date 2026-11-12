@@ -7,7 +7,7 @@ SERVER_ROOT = Path(__file__).resolve().parents[3]
 TITLE_IDS = tuple(range(1057, 1067))
 MODEL_TYPES = tuple(range(344, 354))
 ITEM_IDS = tuple(range(13057000, 13067000, 1000))
-GAIN_ATTRIBUTE = "201_20000,4101_20000"
+GAIN_ATTRIBUTE = "201_100000,4101_100000"
 
 
 class CustomTitleSlotsTest(unittest.TestCase):
